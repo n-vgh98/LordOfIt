@@ -120,8 +120,6 @@ class AdminUserController extends Controller
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->gender = $request->gender;
-        $user->Job = $request->Job;
         $user->password = Hash::make($request->password);
         $user->save();
         return redirect()->back()->with("success", ".کاربر شما با موفقیت اضافه شد");
