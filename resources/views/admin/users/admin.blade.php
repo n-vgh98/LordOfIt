@@ -24,6 +24,7 @@
             <th scope="col">دسترسی ها</th>
             <th scope="col">ایمیل</th>
             <th scope="col">نام</th>
+            <th scope="col">عکس</th>
             <th scope="col">شماره</th>
         </tr>
     </thead>
@@ -130,6 +131,8 @@
 
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->name }}</td>
+                        <td><img src="{{ $user->photo ? $user->photo->path : 'http://www.placehold.it/400' }}"
+                                class="img-fluid" width="45"></td>
                         <th scope="row">{{ $number }}</th>
                     </tr>
 
