@@ -1,10 +1,10 @@
 @extends('admin.layouts.master')
 @section('sitetitle')
-    لیست همه کاربران
+    لیست کاربران ادمین
 @endsection
 @section('content')
 @section('pagetitle')
-    همه کاربران
+    کاربران ادمین
 @endsection
 
 <section class="text-center">
@@ -16,7 +16,7 @@
     </div>
 </section>
 
-<table class="table table-striped" style="margin-top: 3%">
+<table class="table table-striped">
     <thead>
         <tr>
             <th scope="col">تنظیمات</th>
@@ -33,109 +33,115 @@
             $number = 1;
         @endphp
         @foreach ($users as $user)
+            @if ($user->email !== 'mohamadaghakhani@gmail.com')
 
-            {{-- getting roles --}}
-            @php
-                $rolesname = [];
-            @endphp
-            {{-- putting roles name into $rolesname --}}
-            @foreach ($user->roles as $role)
+                {{-- getting roles --}}
                 @php
-                    array_push($rolesname, $role->name);
+                    $rolesname = [];
                 @endphp
-            @endforeach
+                {{-- putting roles name into $rolesname --}}
+                @foreach ($user->roles as $role)
+                    @php
+                        array_push($rolesname, $role->name);
+                    @endphp
+                @endforeach
+
+                {{-- check if admin is in rolesname or not (check mikone ke admin hast ya na) --}}
+                @if (in_array('admin', $rolesname))
+                    <tr>
+                        <td>
+                            <form action="{{ route('admin.users.destroy', $user->id) }}" method="post">
+                                @csrf
+                                @method("DELETE")
+                                <button type="submit" class="btn btn-danger">حذف کاربر</button>
+
+                            </form>
+
+                        </td>
 
 
-            <tr>
-                <td>
-                    <form action="{{ route('admin.users.destroy', $user->id) }}" method="post">
-                        @csrf
-                        @method("DELETE")
-                        <button type="submit" class="btn btn-danger">حذف کاربر</button>
-                    </form>
-                </td>
-                {{-- section for changing roles --}}
-                <td>
-                    <div class="btn-group"> <button type="button" class="btn btn-info dropdown-toggle"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">تغیر سطح <span
-                                class="caret"></span></button>
-                        <ul class="dropdown-menu">
-                            @if (in_array('admin', $rolesname))
-                                <li>
-                                    <form action="{{ route('admin.demote', $user->id) }}" method="POST"
-                                        style="margin-right:15px;">
-                                        @csrf
-                                        <button type="submit" class="btn">قطع دسترسی ادمین</button>
-                                    </form>
-                                </li>
-                            @else
-                                <li>
-                                    <form action="{{ route('admin.promote', $user->id) }}" method="POST"
-                                        style="margin-right:15px;">
-                                        @csrf
-                                        <button type="submit" class="btn">دادن دسترسی ادمین</button>
-                                    </form>
-                                </li>
-                            @endif
+                        {{-- section for changing roles --}}
+                        <td>
+                            <div class="btn-group"> <button type="button" class="btn btn-info dropdown-toggle"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">تغیر سطح <span
+                                        class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    @if (in_array('admin', $rolesname))
+                                        <li>
+                                            <form action="{{ route('admin.demote', $user->id) }}" method="POST"
+                                                style="margin-right:15px;">
+                                                @csrf
+                                                <button type="submit" class="btn">قطع دسترسی ادمین</button>
+                                            </form>
+                                        </li>
+                                    @else
+                                        <li>
+                                            <form action="{{ route('admin.promote', $user->id) }}" method="POST"
+                                                style="margin-right:15px;">
+                                                @csrf
+                                                <button type="submit" class="btn">دادن دسترسی ادمین</button>
+                                            </form>
+                                        </li>
+                                    @endif
 
-                            @if (in_array('writer', $rolesname))
-                                <li>
-                                    <form action="{{ route('writer.demote', $user->id) }}" method="POST"
-                                        style="margin-right:15px;">
-                                        @csrf
-                                        <button type="submit" class="btn">قطع دسترسی نویسنده</button>
-                                    </form>
-                                </li>
-                            @else
-                                <li>
-                                    <form action="{{ route('writer.promote', $user->id) }}" method="POST"
-                                        style="margin-right:15px;">
-                                        @csrf
-                                        <button type="submit" class="btn">دادن دسترسی نویسنده</button>
-                                    </form>
-                                </li>
-                            @endif
+                                    @if (in_array('writer', $rolesname))
+                                        <li>
+                                            <form action="{{ route('writer.demote', $user->id) }}" method="POST"
+                                                style="margin-right:15px;">
+                                                @csrf
+                                                <button type="submit" class="btn">قطع دسترسی نویسنده</button>
+                                            </form>
+                                        </li>
+                                    @else
+                                        <li>
+                                            <form action="{{ route('writer.promote', $user->id) }}" method="POST"
+                                                style="margin-right:15px;">
+                                                @csrf
+                                                <button type="submit" class="btn">دادن دسترسی
+                                                    نویسنده</button>
+                                            </form>
+                                        </li>
+                                    @endif
+                                    @if (count($rolesname) > 0)
+                                        <li>
+                                            <form action="{{ route('admin.user.clear.roles', $user->id) }}"
+                                                method="POST" style="margin-right:15px;">
+                                                @csrf
+                                                <button type="submit" class="btn">قطع تمامی دسترسی ها
+                                                </button>
+                                            </form>
+                                        </li>
+                                    @endif
 
-                            @if (count($rolesname) > 0)
-                                <li>
-                                    <form action="{{ route('admin.user.clear.roles', $user->id) }}" method="POST"
-                                        style="margin-right:15px;">
-                                        @csrf
-                                        <button type="submit" class="btn">قطع تمامی دسترسی ها </button>
-                                    </form>
-                                </li>
-                            @endif
+                                </ul>
+                            </div>
+                        </td>
 
-                        </ul>
-                    </div>
-                </td>
+                        {{-- change $rolesname to string to show roles --}}
+                        @if (count($rolesname) !== 0)
+                            <td>
+                                {{ implode(',', $rolesname) }}
 
+                            </td>
+                        @else
+                            {{-- if $rolesname is null so its user --}}
+                            <td>User</td>
+                        @endif
 
-                {{-- change $rolesname to string to show roles --}}
-                @if (count($rolesname) !== 0)
-                    <td>
-                        {{ implode(',', $rolesname) }}
+                        <td>{{ $user->email }}</td>
+                        <td>{{ $user->name }}</td>
+                        <th scope="row">{{ $number }}</th>
+                    </tr>
 
-                    </td>
-                @else
-                    {{-- if $rolesname is null so its user --}}
-                    <td>User</td>
+                    @php
+                        $number++;
+                    @endphp
                 @endif
+            @endif
 
-
-
-                <td>{{ $user->email }}</td>
-                <td>{{ $user->name }}</td>
-                <th scope="row">{{ $number }}</th>
-
-            </tr>
-            @php
-                $number++;
-            @endphp
         @endforeach
     </tbody>
 </table>
-
 {{-- button to make user --}}
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
     ساخت کاربر جدید
