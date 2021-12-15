@@ -1,8 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminDashboard;
 use App\Http\Controllers\Admin\AdminUserController;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,15 +22,42 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
 
 // admin routing
-route::prefix("admin")->group(function () {
+route::prefix("admin")->middleware("auth", "admin")->group(function () {
     route::get("/", [AdminDashboard::class, "index"])->name("admin.home");
 
     // admin can do users operation throw this routes##
     route::prefix("users")->group(function () {
-        route::get("/", [AdminUserController::class, "index"])->name("admin.users.index");
-//        route::post("/store", [AdminUserController::class, "store"])->name("admin.users.store");
+        route::get("/", [AdminUserController::class, "index"])->name("admin.users");
+        route::post("/store", [AdminUserController::class, "store"])->name("admin.users.store");
+        // dadane dastresi admin
+        route::post("/promotetoadmin/{id}", [AdminUserController::class, "promotetoadmin"])->name("admin.promote");
+
+        // hazfe dastresi admin
+        route::post("/demoteadmin/{id}", [AdminUserController::class, "demoteadmin"])->name("admin.demote");
+
+        // hazfe dastresi writer
+        route::post("/demotewriter/{id}", [AdminUserController::class, "demotewriter"])->name("writer.demote");
+
+        // dadane dastresi writer
+        route::post("/promotetowriter/{id}", [AdminUserController::class, "promotetowriter"])->name("writer.promote");
+
+        // hazfe tamame dastresi ha
+        route::post("/clearroles/{id}", [AdminUserController::class, "clearroles"])->name("admin.user.clear.roles");
+
+
+        route::delete("/destroy/{id}", [AdminUserController::class, "destroy"])->name("admin.users.destroy");
+        route::prefix("normal")->group(function () {
+            route::get("/", [AdminUserController::class, "normal"])->name("admin.normal.users");
+        });
+        route::prefix("writer")->group(function () {
+            route::get("/", [AdminUserController::class, "writer"])->name("admin.writer.users");
+        });
+        route::prefix("admin")->group(function () {
+            route::get("/", [AdminUserController::class, "admin"])->name("admin.admin.users");
+        });
     });
+    // ##
 });
