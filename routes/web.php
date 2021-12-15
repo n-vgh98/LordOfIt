@@ -32,6 +32,9 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
     route::prefix("users")->group(function () {
         route::get("/", [AdminUserController::class, "index"])->name("admin.users");
         route::post("/store", [AdminUserController::class, "store"])->name("admin.users.store");
+        route::post("/update/{id}", [AdminUserController::class, "update"])->name("admin.users.update");
+        route::post("/status/block/{id}", [AdminUserController::class, "block"])->name("admin.users.block");
+        route::post("/status/unblock/{id}", [AdminUserController::class, "unblock"])->name("admin.users.unblock");
         // dadane dastresi admin
         route::post("/promotetoadmin/{id}", [AdminUserController::class, "promotetoadmin"])->name("admin.promote");
 
@@ -60,5 +63,5 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
         });
     });
     // ##
-    
+
 });

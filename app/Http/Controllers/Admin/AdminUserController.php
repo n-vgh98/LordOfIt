@@ -96,7 +96,21 @@ class AdminUserController extends Controller
     }
 
 
+    public function block($id)
+    {
+        $user = User::find($id);
+        $user->status = 0;
+        $user->save();
+        return redirect()->back();
+    }
 
+    public function unblock($id)
+    {
+        $user = User::find($id);
+        $user->status = 1;
+        $user->save();
+        return redirect()->back();
+    }
 
 
     /**
@@ -156,7 +170,14 @@ class AdminUserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if ($request->password !== null) {
+            $user->password = Hash::make($request->password);
+        }
+        $user->save();
+        return redirect()->back()->with("success", "تغیرات شما با موفقیت انجام شد");
     }
 
     /**
