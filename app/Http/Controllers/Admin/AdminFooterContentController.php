@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\FooterContent;
+use App\Models\FooterTitle;
 use Illuminate\Http\Request;
 
 class AdminFooterContentController extends Controller
@@ -14,7 +16,9 @@ class AdminFooterContentController extends Controller
      */
     public function index()
     {
-        //
+        $contents = FooterContent::all();
+        $titles = FooterTitle::all();
+        return view("admin.footer.content", compact("contents", "titles"));
     }
 
     /**
@@ -35,7 +39,14 @@ class AdminFooterContentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $content = new FooterContent();
+        $content->title_id = $request->title_id;
+        $content->text = $request->text;
+        if ($request->text_link !== null) {
+            $content->text_link = $request->text_link;
+        }
+        $content->save();
+        return redirect()->back()->with("success", "متن شما با موفقیت ذخیره شد");
     }
 
     /**
@@ -46,7 +57,9 @@ class AdminFooterContentController extends Controller
      */
     public function show($id)
     {
-        //
+        $contents = FooterContent::where("title_id", $id)->get();
+        $titles = FooterTitle::all();
+        return view("admin.footer.content", compact("contents", "titles"));
     }
 
     /**
@@ -69,7 +82,13 @@ class AdminFooterContentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $content = FooterContent::find($id);
+        $content->text = $request->text;
+        if ($request->text_link !== null) {
+            $content->text_link = $request->text_link;
+        }
+        $content->save();
+        return redirect()->back()->with("success", "متن شما با موفقیت ویرایش شد");
     }
 
     /**
@@ -80,6 +99,8 @@ class AdminFooterContentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $content = FooterContent::find($id);
+        $content->delete();
+        return redirect()->back()->with("fail", "متن شما با موفقیت حذف شد");
     }
 }

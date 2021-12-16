@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminDashboard;
+use App\Http\Controllers\Admin\AdminFooterContentController;
 use App\Http\Controllers\Admin\AdminFooterController;
 use App\Http\Controllers\Admin\AdminFooterTitleController;
 use App\Http\Controllers\Admin\AdminUserController;
@@ -82,7 +83,13 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
 
         // route for content of footer
         route::prefix("content")->group(function () {
-            // route::get("/",)
+            route::get("/", [AdminFooterContentController::class, "index"])->name("admin.footer.content.index");
+            route::get("/show/{id}", [AdminFooterContentController::class, "show"])->name("admin.footer.content.show");
+            route::post("/unblock/{id}", [AdminFooterContentController::class, "block"])->name("admin.footer.content.block");
+            route::post("/block/{id}", [AdminFooterContentController::class, "unblock"])->name("admin.footer.content.unblock");
+            route::delete("/destroy/{id}", [AdminFooterContentController::class, "destroy"])->name("admin.footer.content.destroy");
+            route::post("/update/{id}", [AdminFooterContentController::class, "update"])->name("admin.footer.content.update");
+            route::post("/store", [AdminFooterContentController::class, "store"])->name("admin.footer.content.store");
         });
 
         // route for links of social media for footer
