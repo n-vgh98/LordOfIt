@@ -68,5 +68,20 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
     // routes for users
     route::prefix("footer")->group(function () {
         route::get("/", [AdminFooterController::class, "index"])->name("admin.footer.index");
+
+        // route for topics of footer
+        route::prefix("topics")->group(function () {
+            // route::get("/",)
+        });
+
+        // route for content of footer
+        route::prefix("content")->group(function () {
+            // route::get("/",)
+        });
+
+        // route for links of social media for footer
+        route::prefix("links")->group(function () {
+            // route::get("/",)
+        });
     });
 });

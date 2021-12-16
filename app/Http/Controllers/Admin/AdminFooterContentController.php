@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class AdminFooterController extends Controller
+class AdminFooterContentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,7 @@ class AdminFooterController extends Controller
      */
     public function index()
     {
-
-        return view("admin.footer.index");
+        //
     }
 
     /**
