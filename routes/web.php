@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminDashboard;
 use App\Http\Controllers\Admin\AdminFooterController;
+use App\Http\Controllers\Admin\AdminFooterTitleController;
 use App\Http\Controllers\Admin\AdminUserController;
 
 /*
@@ -71,7 +72,7 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
 
         // route for topics of footer
         route::prefix("topics")->group(function () {
-            // route::get("/",)
+            route::get("/", [AdminFooterTitleController::class, "index"])->name("admin.footer.topics.index");
         });
 
         // route for content of footer
