@@ -70,9 +70,14 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
     route::prefix("footer")->group(function () {
         route::get("/", [AdminFooterController::class, "index"])->name("admin.footer.index");
 
-        // route for topics of footer
-        route::prefix("topics")->group(function () {
-            route::get("/", [AdminFooterTitleController::class, "index"])->name("admin.footer.topics.index");
+        // route for titles of footer
+        route::prefix("titles")->group(function () {
+            route::get("/", [AdminFooterTitleController::class, "index"])->name("admin.footer.titles.index");
+            route::post("/unblock/{id}", [AdminFooterTitleController::class, "block"])->name("admin.footer.titles.block");
+            route::post("/block/{id}", [AdminFooterTitleController::class, "unblock"])->name("admin.footer.titles.unblock");
+            route::delete("/destroy/{id}", [AdminFooterTitleController::class, "destroy"])->name("admin.footer.titles.destroy");
+            route::post("/update/{id}", [AdminFooterTitleController::class, "update"])->name("admin.footer.titles.update");
+            route::post("/store", [AdminFooterTitleController::class, "store"])->name("admin.footer.titles.store");
         });
 
         // route for content of footer

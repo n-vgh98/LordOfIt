@@ -15,6 +15,7 @@ class CreateFooterTitlesTable extends Migration
     {
         Schema::create('footer_titles', function (Blueprint $table) {
             $table->id();
+            $table->tinyInteger("status")->default(1)->comment("1 is show and 0 is not show");
             $table->string("title");
             $table->timestamps();
         });

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\FooterTitle;
 use Illuminate\Http\Request;
 
 class AdminFooterTitleController extends Controller
@@ -14,7 +15,8 @@ class AdminFooterTitleController extends Controller
      */
     public function index()
     {
-        //
+        $titles = FooterTitle::all();
+        return view("admin.footer.titles", compact("titles"));
     }
 
     /**
@@ -35,7 +37,10 @@ class AdminFooterTitleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $title = new FooterTitle();
+        $title->title = $request->title;
+        $title->save();
+        return redirect()->back()->with("success", "عنوان شما با موفقیت ذخیره شد");
     }
 
     /**
@@ -69,7 +74,10 @@ class AdminFooterTitleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $title = FooterTitle::find($id);
+        $title->title = $request->title;
+        $title->save();
+        return redirect()->back()->with("success", "عنوان شما با موفقیت ویرایش شد");
     }
 
     /**
@@ -80,6 +88,26 @@ class AdminFooterTitleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $title = FooterTitle::find($id);
+        $title->delete();
+        return redirect()->back()->with("fail", "عنوان شما با موفقیت حذف شد");
+    }
+
+    // method to make the unshow title to show topic
+    public function unblock($id)
+    {
+        $title = FooterTitle::find($id);
+        $title->status = 1;
+        $title->save();
+        return redirect()->back();
+    }
+
+    // method to make unshow title to show title 
+    public function block($id)
+    {
+        $title = FooterTitle::find($id);
+        $title->status = 0;
+        $title->save();
+        return redirect()->back();
     }
 }
