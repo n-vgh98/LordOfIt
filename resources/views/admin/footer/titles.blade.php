@@ -12,8 +12,7 @@
         <div class="btn-group btn-group-toggle">
             <a href="{{ route('admin.footer.titles.index') }}" class="btn btn-primary">title</a>
             <a href="{{ route('admin.footer.content.index') }}" class="btn btn-primary">contents</a>
-            <a href="#" class="btn btn-primary">users</a>
-            <a href="#" class="btn btn-primary">all users</a>
+            <a href="{{ route('admin.footer.links.index') }}" class="btn btn-primary">social media</a>
         </div>
     </section>
 

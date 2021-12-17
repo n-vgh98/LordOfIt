@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\FooterLink;
+use App\Models\Image;
 use Illuminate\Http\Request;
 
 class AdminFooterLinkController extends Controller
@@ -14,7 +16,8 @@ class AdminFooterLinkController extends Controller
      */
     public function index()
     {
-        //
+        $links = FooterLink::all();
+        return view("admin.footer.links", compact("links"));
     }
 
     /**
@@ -35,7 +38,46 @@ class AdminFooterLinkController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $link = new FooterLink();
+        $link->instagram_link = $request->instagram;
+        $link->linkedin_link = $request->linkedin;
+        $link->twitter_link = $request->twitter;
+        $link->facebook_link = $request->facebook;
+        if ($request->social_1 !== null) {
+            $link->social_1 = $request->social_1;
+        }
+        if ($request->social_2 !== null) {
+            $link->social_2 = $request->social_2;
+        }
+        $link->save();
+
+        if ($request->social2_img !== null) {
+
+            $image = new Image();
+            $imagename = time() . "." . $request->social2_img->extension();
+            $request->social2_img->move(public_path("images/footerlinks/", $imagename));
+            $image->uploader_id = auth()->user()->id;
+            $image->name = $request->social2_img_name;
+            $image->alt = $request->social2_img_alt;
+            $image->path = "images/footerlinks/" . $imagename;
+            $link->social_1_icon = "images/footerlinks/" . $imagename;
+            $link->save();
+            $link->images()->save($image);
+        }
+
+        if ($request->social1_img !== null) {
+            $image = new Image();
+            $imagename = time() . "." . $request->social1_img->extension();
+            $request->social1_img->move(public_path("images/footerlinks/", $imagename));
+            $image->uploader_id = auth()->user()->id;
+            $image->name = $request->social1_img_name;
+            $image->alt = $request->social1_img_alt;
+            $image->path = "images/footerlinks/" . $imagename;
+            $link->social_2_icon = "images/footerlinks/" . $imagename;
+            $link->save();
+            $link->images()->save($image);
+        }
+        return redirect()->back()->with("success", "لینک های شما با موفقیت ثبت شد");
     }
 
     /**

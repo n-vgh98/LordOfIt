@@ -173,6 +173,7 @@
                         <a href="{{ route('admin.footer.titles.index') }}"><i class="fa fa-circle-o"></i>عناوین</a>
                         <a href="{{ route('admin.footer.content.index') }}"><i class="fa fa-circle-o"></i>متن های
                             Footer</a>
+                        <a href="{{ route('admin.footer.links.index') }}"><i class="fa fa-circle-o"></i>لینک ها</a>
                     </li>
                 </ul>
             </li>
