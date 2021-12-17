@@ -55,7 +55,7 @@ class AdminFooterLinkController extends Controller
 
             $image = new Image();
             $imagename = time() . "." . $request->social2_img->extension();
-            $request->social2_img->move(public_path("images/footerlinks/", $imagename));
+            $request->social2_img->move(public_path("images/footerlinks/"), $imagename);
             $image->uploader_id = auth()->user()->id;
             $image->name = $request->social2_img_name;
             $image->alt = $request->social2_img_alt;
@@ -68,7 +68,7 @@ class AdminFooterLinkController extends Controller
         if ($request->social1_img !== null) {
             $image = new Image();
             $imagename = time() . "." . $request->social1_img->extension();
-            $request->social1_img->move(public_path("images/footerlinks/", $imagename));
+            $request->social1_img->move(public_path("images/footerlinks/"), $imagename);
             $image->uploader_id = auth()->user()->id;
             $image->name = $request->social1_img_name;
             $image->alt = $request->social1_img_alt;

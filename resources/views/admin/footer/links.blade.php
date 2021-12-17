@@ -92,7 +92,7 @@
 
                         <button type="button" class="" data-toggle="modal"
                             data-target="#social1img{{ $link->id }}">
-                            <img src="{{$link->}}" style="width: 35px; height:35px;">
+                            <img src="{{ asset("$link->social_1_icon") }}" style="width: 35px; height:35px;">
                         </button>
                     </td>
 
@@ -109,7 +109,7 @@
 
                         <button type="button" class="" data-toggle="modal"
                             data-target="#social2img{{ $link->id }}">
-                            <img src="#" style="width: 35px; height:35px;">
+                            <img src="{{ asset("$link->social_2_icon") }}" style="width: 35px; height:35px;">
                         </button>
                     </td>
                     <th class="text-center" scope="row">{{ $number }}</th>
@@ -421,7 +421,7 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-link" id="exampleModalLabel">تغیر عنوان</h5>
+                                <h5 class="modal-link" id="exampleModalLabel">تغیر عکس</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -431,14 +431,50 @@
                                     @csrf
                                     <div class="form-group row">
                                         <label for="name"
-                                            class="col-md-4 col-form-label text-md-right">{{ __('لینک') }}</label>
+                                            class="col-md-4 col-form-label text-md-right">{{ __('عکس لینک 2') }}</label>
 
                                         <div class="col-md-6">
-                                            <input id="name" type="text"
-                                                class="form-control @error('link') is-invalid @enderror" name="link"
-                                                value="{{ $link->social_2 }}" required autocomplete="link" autofocus>
+                                            <input id="social1_img" type="file"
+                                                class="form-control @error('social1_img') is-invalid @enderror"
+                                                name="social1_img" required autocomplete="social1_img" autofocus>
 
-                                            @error('link')
+                                            @error('social1_img')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group row">
+                                        <label for="name"
+                                            class="col-md-4 col-form-label text-md-right">{{ __('لینک 2 name') }}</label>
+
+                                        <div class="col-md-6">
+                                            <input id="social1_img_name" type="text"
+                                                class="form-control @error('social1_img_name') is-invalid @enderror"
+                                             value="{{$link}}"   name="social1_img_name" required autocomplete="social1_img_name" autofocus>
+
+                                            @error('social1_img_name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group row">
+                                        <label for="social1_img_alt"
+                                            class="col-md-4 col-form-label text-md-right">{{ __('لینک 2 alt ') }}</label>
+
+                                        <div class="col-md-6">
+                                            <input id="social1_img_alt" type="text"
+                                                class="form-control @error('social1_img_alt') is-invalid @enderror"
+                                                name="social1_img_alt" required autocomplete="social1_img_alt" autofocus>
+
+                                            @error('social1_img_alt')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
