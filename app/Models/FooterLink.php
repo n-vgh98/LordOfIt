@@ -9,9 +9,5 @@ class FooterLink extends Model
 {
     use HasFactory;
 
-    // polymorphic relation to image table
-    public function images()
-    {
-        return $this->morphMany("App\Models\Image", "imageable");
-    }
+    
 }
