@@ -81,8 +81,54 @@
                     <th class="text-center" scope="row">{{ $number }}</th>
                 </tr>
 
+                <!-- modal for editing member -->
+                <div class="modal fade" id="memberdesc{{ $member->id }}" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel"> توضیحات همکار </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="{{ route('admin.ourteam.update', $member->id) }}" method="POST"
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    {{-- description of member --}}
+                                    <div class="form-group row">
+                                        <label for="description"
+                                            class="col-md-4 col-form-label text-md-right">{{ __('توضیحات') }}</label>
 
-                <!-- modal for editing image -->
+                                        <div class="col-md-6">
+                                            <textarea id="description" type="text"
+                                                class="form-control @error('job_description') is-invalid @enderror" required
+                                                disabled autocomplete="description"
+                                                autofocus>{{ $member->description }}</textarea>
+
+                                            @error('description')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div style="margin-top:15px;">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">دیدم</button>
+                                    </div>
+
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- modal for editing member image -->
                 <div class="modal fade" id="memberimg{{ $member->id }}" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -94,8 +140,8 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="{{ route('admin.ourteam.update.image', $member->image->id) }}" method="POST"
-                                    enctype="multipart/form-data">
+                                <form action="{{ route('admin.ourteam.update.image', $member->image->id) }}"
+                                    method="POST" enctype="multipart/form-data">
                                     @csrf
 
                                     {{-- section for changing member image --}}
@@ -171,7 +217,7 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel"> اضافه کردن عکس جدید </h5>
+                                <h5 class="modal-title" id="exampleModalLabel"> تغیر مشخصات همکار </h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
