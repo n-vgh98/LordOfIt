@@ -87,7 +87,12 @@ class AdminOurTeamController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $member = OurTeam::find($id);
+        $member->name = $request->name;
+        $member->job_title = $request->job_title;
+        $member->description = $request->description;
+        $member->save();
+        return redirect()->back()->with("success", "مشخصات همکار  با موفقیت ویرایش شد");
     }
 
     /**

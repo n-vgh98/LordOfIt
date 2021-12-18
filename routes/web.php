@@ -108,7 +108,6 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
         route::post("/store", [AdminOurTeamController::class, "store"])->name("admin.ourteam.store");
         route::post("/updateimage/{id}", [AdminOurTeamController::class, "updateimage"])->name("admin.ourteam.update.image");
         route::post("/update/{id}", [AdminOurTeamController::class, "update"])->name("admin.ourteam.update");
-
         route::delete("/destroy/{id}", [AdminOurTeamController::class, "destroy"])->name("admin.ourteam.destroy");
         route::post("/update/{id}", [AdminOurTeamController::class, "update"])->name("admin.ourteam.update");
 
