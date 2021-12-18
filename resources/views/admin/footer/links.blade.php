@@ -337,7 +337,7 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-link" id="exampleModalLabel">تغیر عنوان</h5>
+                                <h5 class="modal-link" id="exampleModalLabel">تغیر ایکون</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -347,12 +347,13 @@
                                     @csrf
                                     <div class="form-group row">
                                         <label for="name"
-                                            class="col-md-4 col-form-label text-md-right">{{ __('لینک') }}</label>
+                                            class="col-md-4 col-form-label text-md-right">{{ __('آیکون') }}</label>
 
                                         <div class="col-md-6">
                                             <input id="name" type="text"
                                                 class="form-control @error('link') is-invalid @enderror" name="link"
-                                                value="{{ $link->social_1 }}" required autocomplete="link" autofocus>
+                                                value="{{ $link->social_1_icon }}" required autocomplete="link"
+                                                autofocus>
 
                                             @error('link')
                                                 <span class="invalid-feedback" role="alert">
@@ -421,7 +422,7 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-link" id="exampleModalLabel">تغیر عکس</h5>
+                                <h5 class="modal-link" id="exampleModalLabel">تغیر ایکون</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -431,14 +432,15 @@
                                     @csrf
                                     <div class="form-group row">
                                         <label for="name"
-                                            class="col-md-4 col-form-label text-md-right">{{ __('عکس لینک 2') }}</label>
+                                            class="col-md-4 col-form-label text-md-right">{{ __('آیکون') }}</label>
 
                                         <div class="col-md-6">
-                                            <input id="social1_img" type="file"
-                                                class="form-control @error('social1_img') is-invalid @enderror"
-                                                name="social1_img" required autocomplete="social1_img" autofocus>
+                                            <input id="social2_img" type="text"
+                                                class="form-control @error('social2_img') is-invalid @enderror"
+                                                value="{{ $link->social_2_icon }}" name="social2_img" required
+                                                autocomplete="social2_img" autofocus>
 
-                                            @error('social1_img')
+                                            @error('social2_img')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
