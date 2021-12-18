@@ -16,7 +16,8 @@ class AdminOurTeamSliderController extends Controller
      */
     public function index()
     {
-        return view("admin.ourteam.slider");
+        $sliderimages = OurTeamSlider::all();
+        return view("admin.ourteam.slider", compact("sliderimages"));
     }
 
     /**
@@ -47,7 +48,7 @@ class AdminOurTeamSliderController extends Controller
         $image->name = $request->name;
         $image->alt = $request->alt;
         $image->uploader_id = auth()->user()->id;
-        $sliderimage->images()->save($image);
+        $sliderimage->detail()->save($image);
         return redirect()->back()->with("success", "عکس شما با موفقیت ذخیره شد");
     }
 
@@ -82,7 +83,18 @@ class AdminOurTeamSliderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $image = OurTeamSlider::find($id);
+        $image->detail->alt = $request->alt;
+        $image->detail->name = $request->name;
+        $image->detail->uploader_id = auth()->user()->id;
+        if ($request->path !== null) {
+            unlink($image->detail->path);
+            $imagename = time() . "." . $request->path->extension();
+            $request->path->move(public_path("images/ourteam/slider/"), $imagename);
+            $image->detail->path = "images/ourteam/slider/" . $imagename;
+        }
+        $image->detail->save();
+        return redirect()->back()->with("success", "عکس شما با موفقیت ویرایش شد");
     }
 
     /**
@@ -93,6 +105,10 @@ class AdminOurTeamSliderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $image = OurTeamSlider::find($id);
+        unlink($image->detail->path);
+        $image->detail->delete();
+        $image->delete();
+        return redirect()->back()->with("fail", "عکس شما با موفقیت حذف شد");
     }
 }

@@ -38,6 +38,7 @@
             @endphp
             @foreach ($links as $link)
                 <tr>
+                    {{-- button for removing all links --}}
                     <td class="text-center">
                         <form action="{{ route('admin.footer.links.destroy', $link->id) }}" method="post">
                             @csrf

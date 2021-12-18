@@ -10,8 +10,8 @@ class OurTeamSlider extends Model
     use HasFactory;
 
     // polymorphic relation to image table
-    public function images()
+    public function detail()
     {
-        return $this->morphMany("App\Models\Image", "imageable");
+        return $this->morphOne("App\Models\Image", "imageable");
     }
 }

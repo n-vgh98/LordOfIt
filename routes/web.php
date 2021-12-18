@@ -109,6 +109,8 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
         route::prefix("slider")->group(function () {
             route::get("/", [AdminOurTeamSliderController::class, "index"])->name("admin.ourteam.slider.index");
             route::post("/store", [AdminOurTeamSliderController::class, "store"])->name("admin.ourteam.slider.store");
+            route::post("/update/{id}", [AdminOurTeamSliderController::class, "update"])->name("admin.ourteam.slider.update");
+            route::delete("/destroy/{id}", [AdminOurTeamSliderController::class, "destroy"])->name("admin.ourteam.slider.destroy");
         });
     });
 });
