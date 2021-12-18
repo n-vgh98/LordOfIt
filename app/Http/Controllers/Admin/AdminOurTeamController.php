@@ -98,7 +98,10 @@ class AdminOurTeamController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $member = OurTeam::find($id);
+        unlink($member->image->path);
+        $member->delete();
+        return redirect()->back()->with("success", "همکار مورد نظر با موفقیت حذف شد");
     }
 
 

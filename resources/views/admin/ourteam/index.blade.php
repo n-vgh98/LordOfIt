@@ -41,7 +41,7 @@
                         <form action="{{ route('admin.ourteam.destroy', $member->id) }}" method="post">
                             @csrf
                             @method("DELETE")
-                            <button type="submit" class="btn btn-danger">حذف عکس</button>
+                            <button type="submit" class="btn btn-danger">حذف همکار</button>
                         </form>
                     </td>
 
