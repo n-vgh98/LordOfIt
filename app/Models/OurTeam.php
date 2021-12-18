@@ -10,8 +10,8 @@ class OurTeam extends Model
     use HasFactory;
 
     // polymorphic relation to image table
-    public function images()
+    public function image()
     {
-        return $this->morphMany("App\Models\Image", "imageable");
+        return $this->morphOne("App\Models\Image", "imageable");
     }
 }

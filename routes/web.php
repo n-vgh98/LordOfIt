@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\AdminFooterContentController;
 use App\Http\Controllers\Admin\AdminFooterController;
 use App\Http\Controllers\Admin\AdminFooterLinkController;
 use App\Http\Controllers\Admin\AdminFooterTitleController;
+use App\Http\Controllers\Admin\AdminOurTeamController;
 use App\Http\Controllers\Admin\AdminOurTeamSliderController;
 use App\Http\Controllers\Admin\AdminUserController;
 
@@ -103,7 +104,12 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
 
     // routes for footer
     route::prefix("ourteam")->group(function () {
-        // route::get("/", [AdminFooterController::class, "index"])->name("admin.footer.index");
+        route::get("/", [AdminOurTeamController::class, "index"])->name("admin.ourteam.index");
+        route::post("/store", [AdminOurTeamController::class, "store"])->name("admin.ourteam.store");
+        route::delete("/destroy/{id}", [AdminOurTeamController::class, "destroy"])->name("admin.ourteam.destroy");
+        route::post("/update/{id}", [AdminOurTeamController::class, "update"])->name("admin.ourteam.update");
+
+
 
         // route for slider of ourteam page
         route::prefix("slider")->group(function () {

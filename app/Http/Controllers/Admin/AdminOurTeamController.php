@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\OurTeam;
 use Illuminate\Http\Request;
 
 class AdminOurTeamController extends Controller
@@ -14,7 +15,8 @@ class AdminOurTeamController extends Controller
      */
     public function index()
     {
-        //
+        $members = OurTeam::all();
+        return view("admin.ourteam.index", compact("members"));
     }
 
     /**
