@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\AdminFooterContentController;
 use App\Http\Controllers\Admin\AdminFooterController;
 use App\Http\Controllers\Admin\AdminFooterLinkController;
 use App\Http\Controllers\Admin\AdminFooterTitleController;
+use App\Http\Controllers\Admin\AdminOurTeamSliderController;
 use App\Http\Controllers\Admin\AdminUserController;
 
 /*
@@ -68,7 +69,7 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
     });
     // ##
 
-    // routes for users
+    // routes for footer
     route::prefix("footer")->group(function () {
         route::get("/", [AdminFooterController::class, "index"])->name("admin.footer.index");
 
@@ -97,6 +98,16 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
             route::delete("/destroy/{id}", [AdminFooterLinkController::class, "destroy"])->name("admin.footer.links.destroy");
             route::post("/update/{id}", [AdminFooterLinkController::class, "update"])->name("admin.footer.links.update");
             route::post("/store", [AdminFooterLinkController::class, "store"])->name("admin.footer.links.store");
+        });
+    });
+
+    // routes for footer
+    route::prefix("ourteam")->group(function () {
+        // route::get("/", [AdminFooterController::class, "index"])->name("admin.footer.index");
+
+        // route for slider of ourteam page
+        route::prefix("slider")->group(function () {
+            route::get("/", [AdminOurTeamSliderController::class, "index"])->name("admin.ourteam.slider.index");
         });
     });
 });

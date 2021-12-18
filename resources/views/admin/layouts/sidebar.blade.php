@@ -154,10 +154,9 @@
                     <i class="fa fa-dashboard"></i> <span>تیم ما</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    {{-- <li class="active"><a href="{{ route('admin.our_team.index') }}"><i --}}
-                    {{-- class="fa fa-circle-o"></i>صفحه اصلی تیم ما</a></li> --}}
-                    {{-- <li class="active"><a href="{{route('members.index')}}"><i --}}
-                    {{-- class="fa fa-circle-o"></i>همکاران </a></li> --}}
+                    <li class="active"><a href="{{ route('admin.ourteam.slider.index') }}"><i
+                                class="fa fa-circle-o"></i>اسلایدر صفحه</a></li>
+                    <li class="active"><a href="#"><i class="fa fa-circle-o"></i>همکاران </a></li>
                 </ul>
             </li>
             {{-- End OurTeam --}}
