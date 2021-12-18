@@ -124,7 +124,7 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-link" id="exampleModalLabel">تغیر عنوان</h5>
+                                <h5 class="modal-link" id="exampleModalLabel">لینک اینستاگرام</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -133,14 +133,14 @@
                                 <form action="{{ route('admin.footer.links.update', $link->id) }}" method="POST">
                                     @csrf
                                     <div class="form-group row">
-                                        <label for="name"
+                                        <label for="instagram_link"
                                             class="col-md-4 col-form-label text-md-right">{{ __('لینک') }}</label>
 
                                         <div class="col-md-6">
-                                            <input id="name" type="text"
-                                                class="form-control @error('link') is-invalid @enderror" name="link"
-                                                value="{{ $link->instagram_link }}" required autocomplete="link"
-                                                autofocus>
+                                            <input id="instagram_link" type="text"
+                                                class="form-control @error('link') is-invalid @enderror"
+                                                name="instagram_link" value="{{ $link->instagram_link }}" required
+                                                autocomplete="instagram_link" autofocus>
 
                                             @error('link')
                                                 <span class="invalid-feedback" role="alert">
@@ -167,7 +167,7 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-link" id="exampleModalLabel">تغیر عنوان</h5>
+                                <h5 class="modal-link" id="exampleModalLabel">لینک توییتر</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -176,13 +176,14 @@
                                 <form action="{{ route('admin.footer.links.update', $link->id) }}" method="POST">
                                     @csrf
                                     <div class="form-group row">
-                                        <label for="name"
+                                        <label for="twitter_link"
                                             class="col-md-4 col-form-label text-md-right">{{ __('لینک') }}</label>
 
                                         <div class="col-md-6">
-                                            <input id="name" type="text"
-                                                class="form-control @error('link') is-invalid @enderror" name="link"
-                                                value="{{ $link->twitter_link }}" required autocomplete="link" autofocus>
+                                            <input id="twitter_link" type="text"
+                                                class="form-control @error('link') is-invalid @enderror" name="twitter_link"
+                                                value="{{ $link->twitter_link }}" required autocomplete="twitter_link"
+                                                autofocus>
 
                                             @error('link')
                                                 <span class="invalid-feedback" role="alert">
@@ -209,7 +210,7 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-link" id="exampleModalLabel">تغیر عنوان</h5>
+                                <h5 class="modal-link" id="exampleModalLabel">لینک فیسبوک</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -218,14 +219,14 @@
                                 <form action="{{ route('admin.footer.links.update', $link->id) }}" method="POST">
                                     @csrf
                                     <div class="form-group row">
-                                        <label for="name"
+                                        <label for="facebook_link"
                                             class="col-md-4 col-form-label text-md-right">{{ __('لینک') }}</label>
 
                                         <div class="col-md-6">
-                                            <input id="name" type="text"
-                                                class="form-control @error('link') is-invalid @enderror" name="link"
-                                                value="{{ $link->facebook_link }}" required autocomplete="link"
-                                                autofocus>
+                                            <input id="facebook_link" type="text"
+                                                class="form-control @error('link') is-invalid @enderror"
+                                                name="facebook_link" value="{{ $link->facebook_link }}" required
+                                                autocomplete="facebook_link" autofocus>
 
                                             @error('link')
                                                 <span class="invalid-feedback" role="alert">
@@ -252,7 +253,7 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-link" id="exampleModalLabel">تغیر عنوان</h5>
+                                <h5 class="modal-link" id="exampleModalLabel">لینک لینکد این</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -261,14 +262,14 @@
                                 <form action="{{ route('admin.footer.links.update', $link->id) }}" method="POST">
                                     @csrf
                                     <div class="form-group row">
-                                        <label for="name"
+                                        <label for="linkedin_link"
                                             class="col-md-4 col-form-label text-md-right">{{ __('لینک') }}</label>
 
                                         <div class="col-md-6">
-                                            <input id="name" type="text"
-                                                class="form-control @error('link') is-invalid @enderror" name="link"
-                                                value="{{ $link->linkedin_link }}" required autocomplete="link"
-                                                autofocus>
+                                            <input id="linkedin_link" type="text"
+                                                class="form-control @error('link') is-invalid @enderror"
+                                                name="linkedin_link" value="{{ $link->linkedin_link }}" required
+                                                autocomplete="linkedin_link" autofocus>
 
                                             @error('link')
                                                 <span class="invalid-feedback" role="alert">
@@ -295,7 +296,7 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-link" id="exampleModalLabel">تغیر عنوان</h5>
+                                <h5 class="modal-link" id="exampleModalLabel">لینک 1</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -304,13 +305,13 @@
                                 <form action="{{ route('admin.footer.links.update', $link->id) }}" method="POST">
                                     @csrf
                                     <div class="form-group row">
-                                        <label for="name"
+                                        <label for="social_1"
                                             class="col-md-4 col-form-label text-md-right">{{ __('لینک') }}</label>
 
                                         <div class="col-md-6">
-                                            <input id="name" type="text"
-                                                class="form-control @error('link') is-invalid @enderror" name="link"
-                                                value="{{ $link->social_1 }}" required autocomplete="link" autofocus>
+                                            <input id="social_1" type="text"
+                                                class="form-control @error('link') is-invalid @enderror" name="social_1"
+                                                value="{{ $link->social_1 }}" required autocomplete="social_1" autofocus>
 
                                             @error('link')
                                                 <span class="invalid-feedback" role="alert">
@@ -346,14 +347,14 @@
                                 <form action="{{ route('admin.footer.links.update', $link->id) }}" method="POST">
                                     @csrf
                                     <div class="form-group row">
-                                        <label for="name"
+                                        <label for="social_1_icon"
                                             class="col-md-4 col-form-label text-md-right">{{ __('آیکون') }}</label>
 
                                         <div class="col-md-6">
-                                            <input id="name" type="text"
-                                                class="form-control @error('link') is-invalid @enderror" name="link"
-                                                value="{{ $link->social_1_icon }}" required autocomplete="link"
-                                                autofocus>
+                                            <input id="social_1_icon" type="text"
+                                                class="form-control @error('link') is-invalid @enderror"
+                                                name="social_1_icon" value="{{ $link->social_1_icon }}" required
+                                                autocomplete="social_1_icon" autofocus>
 
                                             @error('link')
                                                 <span class="invalid-feedback" role="alert">
@@ -380,7 +381,7 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-link" id="exampleModalLabel">تغیر عنوان</h5>
+                                <h5 class="modal-link" id="exampleModalLabel">لینک 2</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -389,13 +390,13 @@
                                 <form action="{{ route('admin.footer.links.update', $link->id) }}" method="POST">
                                     @csrf
                                     <div class="form-group row">
-                                        <label for="name"
+                                        <label for="social_2"
                                             class="col-md-4 col-form-label text-md-right">{{ __('لینک') }}</label>
 
                                         <div class="col-md-6">
-                                            <input id="name" type="text"
-                                                class="form-control @error('link') is-invalid @enderror" name="link"
-                                                value="{{ $link->social_2 }}" required autocomplete="link" autofocus>
+                                            <input id="social_2" type="text"
+                                                class="form-control @error('link') is-invalid @enderror" name="social_2"
+                                                value="{{ $link->social_2 }}" required autocomplete="social_2" autofocus>
 
                                             @error('link')
                                                 <span class="invalid-feedback" role="alert">
@@ -431,14 +432,14 @@
                                 <form action="{{ route('admin.footer.links.update', $link->id) }}" method="POST">
                                     @csrf
                                     <div class="form-group row">
-                                        <label for="name"
+                                        <label for="social_2_icon"
                                             class="col-md-4 col-form-label text-md-right">{{ __('آیکون') }}</label>
 
                                         <div class="col-md-6">
-                                            <input id="social2_img" type="text"
+                                            <input id="social_2_icon" type="text"
                                                 class="form-control @error('social2_img') is-invalid @enderror"
-                                                value="{{ $link->social_2_icon }}" name="social2_img" required
-                                                autocomplete="social2_img" autofocus>
+                                                value="{{ $link->social_2_icon }}" name="social_2_icon" required
+                                                autocomplete="social_2_icon" autofocus>
 
                                             @error('social2_img')
                                                 <span class="invalid-feedback" role="alert">
@@ -574,15 +575,15 @@
 
                         {{-- social 1 link icon --}}
                         <div class="form-group row">
-                            <label for="social1_img"
+                            <label for="social_1_icon"
                                 class="col-md-4 col-form-label text-md-right">{{ __('ایکون لینک 1') }}</label>
 
                             <div class="col-md-6">
-                                <input id="social1_img" type="text"
-                                    class="form-control @error('social1_img') is-invalid @enderror" name="social1_img"
-                                    value="{{ old('social1_img') }}" autocomplete="social1_img" autofocus>
+                                <input id="social_1_icon" type="text"
+                                    class="form-control @error('social_1_icon') is-invalid @enderror" name="social_1_icon"
+                                    value="{{ old('social_1_icon') }}" autocomplete="social_1_icon" autofocus>
 
-                                @error('social1_img')
+                                @error('social_1_icon')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -599,7 +600,7 @@
                             <div class="col-md-6">
                                 <input id="social_2" type="text"
                                     class="form-control @error('social_2') is-invalid @enderror" name="social_2"
-                                    value="{{ old('social_1') }}" autocomplete="social_2" autofocus>
+                                    value="{{ old('social_2') }}" autocomplete="social_2" autofocus>
 
                                 @error('social_2')
                                     <span class="invalid-feedback" role="alert">
@@ -611,13 +612,13 @@
 
                         {{-- social 2 link icon --}}
                         <div class="form-group row">
-                            <label for="social2_img"
+                            <label for="social_2_icon"
                                 class="col-md-4 col-form-label text-md-right">{{ __('ایکون لینک 2') }}</label>
 
                             <div class="col-md-6">
-                                <input id="social2_img" type="text"
-                                    class="form-control @error('social2_img') is-invalid @enderror" name="social2_img"
-                                    value="{{ old('social2_img') }}" autocomplete="social2_img" autofocus>
+                                <input id="social_2_icon" type="text"
+                                    class="form-control @error('social_2_icon') is-invalid @enderror" name="social_2_icon"
+                                    value="{{ old('social_2_icon') }}" autocomplete="social_2_icon" autofocus>
 
                                 @error('social2_img')
                                     <span class="invalid-feedback" role="alert">
