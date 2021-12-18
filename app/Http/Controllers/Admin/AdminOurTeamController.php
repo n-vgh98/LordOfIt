@@ -100,4 +100,20 @@ class AdminOurTeamController extends Controller
     {
         //
     }
+
+
+    public function updateimage(Request $request, $id)
+    {
+        $image = Image::find($id);
+        $image->name = $request->name;
+        $image->alt = $request->alt;
+        if ($request->path !== null) {
+            unlink($image->path);
+            $imagename = time() . "." . $request->path->extension();
+            $request->path->move(public_path("images/ourteam/members/"), $imagename);
+            $image->path = "images/ourteam/members/" . $imagename;
+        }
+        $image->save();
+        return redirect()->back()->with("success", "عکس همکار  با موفقیت ویرایش شد");
+    }
 }

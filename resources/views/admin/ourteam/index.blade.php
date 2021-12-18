@@ -87,11 +87,11 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="{{ route('admin.ourteam.update', $member->id) }}" method="POST"
+                                <form action="{{ route('admin.ourteam.update.image', $member->image->id) }}" method="POST"
                                     enctype="multipart/form-data">
                                     @csrf
 
-                                    {{-- section for changing member --}}
+                                    {{-- section for changing member image --}}
                                     <div class="form-group row">
                                         <label for="path"
                                             class="col-md-4 col-form-label text-md-right">{{ __('عکس') }}</label>
@@ -109,7 +109,7 @@
                                         </div>
                                     </div>
 
-                                    {{-- section for changing member  alt --}}
+                                    {{-- section for changing image  alt --}}
                                     <div class="form-group row">
                                         <label for="alt"
                                             class="col-md-4 col-form-label text-md-right">{{ __('عکس alt') }}</label>
@@ -117,7 +117,7 @@
                                         <div class="col-md-6">
                                             <input id="alt" type="text"
                                                 class="form-control @error('alt') is-invalid @enderror" name="alt" required
-                                                autocomplete="alt" autofocus>
+                                                autocomplete="alt" value="{{ $member->image->alt }}" autofocus>
 
                                             @error('alt')
                                                 <span class="invalid-feedback" role="alert">
@@ -127,7 +127,7 @@
                                         </div>
                                     </div>
 
-                                    {{-- section for changing member  name --}}
+                                    {{-- section for changing image  name --}}
                                     <div class="form-group row">
                                         <label for="name"
                                             class="col-md-4 col-form-label text-md-right">{{ __('عکس name') }}</label>
@@ -135,7 +135,8 @@
                                         <div class="col-md-6">
                                             <input id="name" type="text"
                                                 class="form-control @error('name') is-invalid @enderror" name="name"
-                                                required autocomplete="name" autofocus>
+                                                required value="{{ $member->image->name }}" autocomplete="name"
+                                                autofocus>
 
                                             @error('name')
                                                 <span class="invalid-feedback" role="alert">
@@ -156,10 +157,6 @@
                         </div>
                     </div>
                 </div>
-
-
-
-
             @endforeach
 
         </tbody>
