@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Image;
+use App\Models\OurTeamSlider;
 use Illuminate\Http\Request;
 
 class AdminOurTeamSliderController extends Controller
@@ -14,7 +16,7 @@ class AdminOurTeamSliderController extends Controller
      */
     public function index()
     {
-        //
+        return view("admin.ourteam.slider");
     }
 
     /**
@@ -35,7 +37,18 @@ class AdminOurTeamSliderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $sliderimage = new OurTeamSlider();
+        $sliderimage->save();
+        $image = new Image();
+        $imagename = time() . "." . $request->path->extension();
+        $request->path->move(public_path("images/ourteam/slider/"), $imagename);
+        $image->path = "images/ourteam/slider/" . $imagename;
+        $image->name = $request->name;
+        $image->alt = $request->alt;
+        $image->uploader_id = auth()->user()->id;
+        $sliderimage->images()->save($image);
+        return redirect()->back()->with("success", "عکس شما با موفقیت ذخیره شد");
     }
 
     /**

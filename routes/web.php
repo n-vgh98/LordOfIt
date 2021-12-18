@@ -108,6 +108,7 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
         // route for slider of ourteam page
         route::prefix("slider")->group(function () {
             route::get("/", [AdminOurTeamSliderController::class, "index"])->name("admin.ourteam.slider.index");
+            route::post("/store", [AdminOurTeamSliderController::class, "store"])->name("admin.ourteam.slider.store");
         });
     });
 });
