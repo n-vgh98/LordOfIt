@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Image;
 use App\Models\OurTeam;
 use Illuminate\Http\Request;
 
@@ -37,7 +38,22 @@ class AdminOurTeamController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $member = new OurTeam();
+        $member->name = $request->name;
+        $member->job_title = $request->job_title;
+        $member->description = $request->job_description;
+        $member->save();
+
+        // making image in image table
+        $image = new Image();
+        $image->name = $request->img_name;
+        $image->alt = $request->alt;
+        $image->uploader_id = auth()->user()->id;
+        $imagename = time() . "." . $request->path->extension();
+        $request->path->move(public_path("images/ourteam/members/"), $imagename);
+        $image->path = "images/ourteam/members/" . $imagename;
+        $member->image()->save($image);
+        return redirect()->back()->with("success", "همکار جدید با موفقیت اضافه شد");
     }
 
     /**

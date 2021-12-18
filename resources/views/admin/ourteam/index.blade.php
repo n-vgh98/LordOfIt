@@ -51,7 +51,7 @@
                         <button type="button" class="" data-toggle="modal"
                             data-target="#memberimg{{ $member->id }}">
 
-                            <img src="{{ $member->image->path }}" style="width: 35px; height:35px;">
+                            <img src="{{ asset($member->image->path) }}" style="width: 35px; height:35px;">
                         </button>
                     </td>
 
@@ -184,6 +184,62 @@
                 <div class="modal-body">
                     <form action="{{ route('admin.ourteam.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
+
+
+                        {{-- name of member --}}
+                        <div class="form-group row">
+                            <label for="name"
+                                class="col-md-4 col-form-label text-md-right">{{ __('نام و نام خانوادگی') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
+                                    name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        {{-- job_title of member --}}
+                        <div class="form-group row">
+                            <label for="job_title"
+                                class="col-md-4 col-form-label text-md-right">{{ __('عنوان شغلی') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="job_title" type="text"
+                                    class="form-control @error('job_title') is-invalid @enderror" name="job_title"
+                                    value="{{ old('job_title') }}" required autocomplete="job_title" autofocus>
+
+                                @error('job_title')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        {{-- job_description of member --}}
+                        <div class="form-group row">
+                            <label for="job_description"
+                                class="col-md-4 col-form-label text-md-right">{{ __('توضیحات') }}</label>
+
+                            <div class="col-md-6">
+                                <textarea id="job_description" type="text"
+                                    class="form-control @error('job_description') is-invalid @enderror"
+                                    name="job_description" value="{{ old('job_description') }}" required
+                                    autocomplete="job_description" autofocus></textarea>
+
+                                @error('job_description')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
                         {{-- path of photo --}}
                         <div class="form-group row">
                             <label for="path" class="col-md-4 col-form-label text-md-right">{{ __('عکس') }}</label>
@@ -218,13 +274,15 @@
 
                         {{-- name of photo --}}
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('عکس name') }}</label>
+                            <label for="img_name"
+                                class="col-md-4 col-form-label text-md-right">{{ __('عکس name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="path" type="text" class="form-control @error('name') is-invalid @enderror"
-                                    name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="path" type="text" class="form-control @error('img_name') is-invalid @enderror"
+                                    name="img_name" value="{{ old('img_name') }}" required autocomplete="img_name"
+                                    autofocus>
 
-                                @error('name')
+                                @error('img_name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
