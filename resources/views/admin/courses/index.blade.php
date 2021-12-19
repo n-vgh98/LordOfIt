@@ -1,12 +1,12 @@
 @extends('admin.layouts.master')
 
 @section('sitetitle')
-    همکاران
+    دوره های آموزشی
 @endsection
 
 
 @section('pagetitle')
-    همکاران
+    دوره های آموزشی
 @endsection
 
 @section('content')
@@ -29,7 +29,7 @@
                 $number = 0;
             @endphp
 
-            @foreach ($members as $member)
+            @foreach ($courses as $course)
 
                 @php
                     $number++;
@@ -37,66 +37,66 @@
 
 
                 <tr>
-                    {{-- button for removing member --}}
+                    {{-- button for removing course --}}
                     <td class="text-center">
-                        <form action="{{ route('admin.ourteam.destroy', $member->id) }}" method="post">
+                        <form action="{{ route('admin.ourteam.destroy', $course->id) }}" method="post">
                             @csrf
                             @method("DELETE")
-                            <button type="submit" class="btn btn-danger">حذف همکار</button>
+                            <button type="submit" class="btn btn-danger">حذف دوره</button>
                         </form>
                     </td>
 
-                    {{-- button for editing member details --}}
+                    {{-- button for editing course details --}}
                     <td class="text-center">
                         <button type="button" class="btn btn-warning" data-toggle="modal"
-                            data-target="#member{{ $member->id }}">ویرایش اطلاعات
+                            data-target="#course{{ $course->id }}">ویرایش اطلاعات
                         </button>
                     </td>
 
-                    {{-- button for editing member image --}}
+                    {{-- button for editing course image --}}
                     <td class="text-center">
                         <button type="button" class="" data-toggle="modal"
-                            data-target="#memberimg{{ $member->id }}">
+                            data-target="#courseimg{{ $course->id }}">
 
-                            <img src="{{ asset($member->image->path) }}" style="width: 35px; height:35px;">
+                            <img src="{{ asset($course->image->path) }}" style="width: 35px; height:35px;">
                         </button>
                     </td>
 
-                    {{-- button for showing job description member --}}
+                    {{-- button for showing job description course --}}
                     <td class="text-center">
                         <button type="button" class="btn btn-info" data-toggle="modal"
-                            data-target="#memberdesc{{ $member->id }}">مشاهده</button>
+                            data-target="#coursedesc{{ $course->id }}">مشاهده</button>
                     </td>
 
                     {{-- button for showing job title --}}
                     <td class="text-center">
-                        {{ $member->job_title }}
+                        {{ $course->job_title }}
                     </td>
 
-                    {{-- button for member name --}}
+                    {{-- button for course name --}}
                     <td class="text-center">
-                        {{ $member->name }}
+                        {{ $course->name }}
                     </td>
 
                     <th class="text-center" scope="row">{{ $number }}</th>
                 </tr>
 
-                <!-- modal for editing member -->
-                <div class="modal fade" id="memberdesc{{ $member->id }}" tabindex="-1" role="dialog"
+                <!-- modal for editing course -->
+                <div class="modal fade" id="coursedesc{{ $course->id }}" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel"> توضیحات همکار </h5>
+                                <h5 class="modal-title" id="exampleModalLabel"> توضیحات دوره </h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="{{ route('admin.ourteam.update', $member->id) }}" method="POST"
+                                <form action="{{ route('admin.ourteam.update', $course->id) }}" method="POST"
                                     enctype="multipart/form-data">
                                     @csrf
-                                    {{-- description of member --}}
+                                    {{-- description of course --}}
                                     <div class="form-group row">
                                         <label for="description"
                                             class="col-md-4 col-form-label text-md-right">{{ __('توضیحات') }}</label>
@@ -105,7 +105,7 @@
                                             <textarea id="description" type="text"
                                                 class="form-control @error('job_description') is-invalid @enderror" required
                                                 disabled autocomplete="description"
-                                                autofocus>{{ $member->description }}</textarea>
+                                                autofocus>{{ $course->description }}</textarea>
 
                                             @error('description')
                                                 <span class="invalid-feedback" role="alert">
@@ -128,8 +128,8 @@
                     </div>
                 </div>
 
-                <!-- modal for editing member image -->
-                <div class="modal fade" id="memberimg{{ $member->id }}" tabindex="-1" role="dialog"
+                <!-- modal for editing course image -->
+                <div class="modal fade" id="courseimg{{ $course->id }}" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -140,11 +140,11 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="{{ route('admin.ourteam.update.image', $member->image->id) }}"
+                                <form action="{{ route('admin.ourteam.update.image', $course->image->id) }}"
                                     method="POST" enctype="multipart/form-data">
                                     @csrf
 
-                                    {{-- section for changing member image --}}
+                                    {{-- section for changing course image --}}
                                     <div class="form-group row">
                                         <label for="path"
                                             class="col-md-4 col-form-label text-md-right">{{ __('عکس') }}</label>
@@ -170,7 +170,7 @@
                                         <div class="col-md-6">
                                             <input id="alt" type="text"
                                                 class="form-control @error('alt') is-invalid @enderror" name="alt" required
-                                                autocomplete="alt" value="{{ $member->image->alt }}" autofocus>
+                                                autocomplete="alt" value="{{ $course->image->alt }}" autofocus>
 
                                             @error('alt')
                                                 <span class="invalid-feedback" role="alert">
@@ -188,7 +188,7 @@
                                         <div class="col-md-6">
                                             <input id="name" type="text"
                                                 class="form-control @error('name') is-invalid @enderror" name="name"
-                                                required value="{{ $member->image->name }}" autocomplete="name"
+                                                required value="{{ $course->image->name }}" autocomplete="name"
                                                 autofocus>
 
                                             @error('name')
@@ -211,24 +211,24 @@
                     </div>
                 </div>
 
-                <!-- modal for editing member -->
-                <div class="modal fade" id="member{{ $member->id }}" tabindex="-1" role="dialog"
+                <!-- modal for editing course -->
+                <div class="modal fade" id="course{{ $course->id }}" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel"> تغیر مشخصات همکار </h5>
+                                <h5 class="modal-title" id="exampleModalLabel"> تغیر مشخصات دوره </h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="{{ route('admin.ourteam.update', $member->id) }}" method="POST"
+                                <form action="{{ route('admin.ourteam.update', $course->id) }}" method="POST"
                                     enctype="multipart/form-data">
                                     @csrf
 
 
-                                    {{-- name of member --}}
+                                    {{-- name of course --}}
                                     <div class="form-group row">
                                         <label for="name"
                                             class="col-md-4 col-form-label text-md-right">{{ __('نام و نام خانوادگی') }}</label>
@@ -236,7 +236,7 @@
                                         <div class="col-md-6">
                                             <input id="name" type="text"
                                                 class="form-control @error('name') is-invalid @enderror" name="name"
-                                                value="{{ $member->name }}" required autocomplete="name" autofocus>
+                                                value="{{ $course->name }}" required autocomplete="name" autofocus>
 
                                             @error('name')
                                                 <span class="invalid-feedback" role="alert">
@@ -246,7 +246,7 @@
                                         </div>
                                     </div>
 
-                                    {{-- job_title of member --}}
+                                    {{-- job_title of course --}}
                                     <div class="form-group row">
                                         <label for="job_title"
                                             class="col-md-4 col-form-label text-md-right">{{ __('عنوان شغلی') }}</label>
@@ -254,7 +254,7 @@
                                         <div class="col-md-6">
                                             <input id="job_title" type="text"
                                                 class="form-control @error('job_title') is-invalid @enderror"
-                                                name="job_title" value="{{ $member->job_title }}" required
+                                                name="job_title" value="{{ $course->job_title }}" required
                                                 autocomplete="job_title" autofocus>
 
                                             @error('job_title')
@@ -265,7 +265,7 @@
                                         </div>
                                     </div>
 
-                                    {{-- description of member --}}
+                                    {{-- description of course --}}
                                     <div class="form-group row">
                                         <label for="description"
                                             class="col-md-4 col-form-label text-md-right">{{ __('توضیحات') }}</label>
@@ -274,7 +274,7 @@
                                             <textarea id="description" type="text"
                                                 class="form-control @error('job_description') is-invalid @enderror"
                                                 name="description" required autocomplete="description"
-                                                autofocus>{{ $member->description }}</textarea>
+                                                autofocus>{{ $course->description }}</textarea>
 
                                             @error('description')
                                                 <span class="invalid-feedback" role="alert">
@@ -303,18 +303,16 @@
         </tbody>
     </table>
 
-    {{-- button to add member --}}
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        اضافه کردن عکس جدید
-    </button>
+    {{-- button to add course --}}
+    <a href="{{ route('admin.courses.create') }}" class="btn btn-primary">ایجاد دوره جدید</a>
 
-    {{-- modal for adding new member --}}
+    {{-- modal for adding new course --}}
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"> اضافه کردن همکار جدید </h5>
+                    <h5 class="modal-title" id="exampleModalLabel"> اضافه کردن دوره جدید </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -324,10 +322,9 @@
                         @csrf
 
 
-                        {{-- name of member --}}
+                        {{-- name of course --}}
                         <div class="form-group row">
-                            <label for="name"
-                                class="col-md-4 col-form-label text-md-right">{{ __('نام و نام خانوادگی') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('نام دوره') }}</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
@@ -341,17 +338,15 @@
                             </div>
                         </div>
 
-                        {{-- job_title of member --}}
+                        {{-- type of course --}}
                         <div class="form-group row">
-                            <label for="job_title"
-                                class="col-md-4 col-form-label text-md-right">{{ __('عنوان شغلی') }}</label>
+                            <label for="type" class="col-md-4 col-form-label text-md-right">{{ __('نوع دوره') }}</label>
 
                             <div class="col-md-6">
-                                <input id="job_title" type="text"
-                                    class="form-control @error('job_title') is-invalid @enderror" name="job_title"
-                                    value="{{ old('job_title') }}" required autocomplete="job_title" autofocus>
+                                <input id="type" type="text" class="form-control @error('type') is-invalid @enderror"
+                                    name="type" value="{{ old('type') }}" required autocomplete="type" autofocus>
 
-                                @error('job_title')
+                                @error('type')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -359,18 +354,108 @@
                             </div>
                         </div>
 
-                        {{-- job_description of member --}}
+                        {{-- level of course --}}
                         <div class="form-group row">
-                            <label for="job_description"
+                            <label for="level"
+                                class="col-md-4 col-form-label text-md-right">{{ __('سطح دوره') }}</label>
+
+                            <div class="col-md-6">
+                                <textarea id="level" type="text" class="form-control @error('level') is-invalid @enderror"
+                                    name="level" value="{{ old('level') }}" required autocomplete="level"
+                                    autofocus></textarea>
+
+                                @error('level')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        {{-- section of course --}}
+                        <div class="form-group row">
+                            <label for="section"
+                                class="col-md-4 col-form-label text-md-right">{{ __('تعداد جلسات دوره') }}</label>
+
+                            <div class="col-md-6">
+                                <textarea id="section" type="text"
+                                    class="form-control @error('section') is-invalid @enderror" name="section"
+                                    value="{{ old('section') }}" required autocomplete="section" autofocus></textarea>
+
+                                @error('section')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        {{-- pre_need of course --}}
+                        <div class="form-group row">
+                            <label for="pre_need"
+                                class="col-md-4 col-form-label text-md-right">{{ __('پیش نیاز های دوره') }}</label>
+
+                            <div class="col-md-6">
+                                <textarea id="pre_need" type="text"
+                                    class="form-control @error('pre_need') is-invalid @enderror" name="pre_need"
+                                    value="{{ old('pre_need') }}" required autocomplete="pre_need" autofocus></textarea>
+
+                                @error('pre_need')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        {{-- price of course --}}
+                        <div class="form-group row">
+                            <label for="price"
+                                class="col-md-4 col-form-label text-md-right">{{ __('هزینه دوره') }}</label>
+
+                            <div class="col-md-6">
+                                <textarea id="price" type="text"
+                                    class="form-control @error('pre_need') is-invalid @enderror" name="price"
+                                    value="{{ old('price') }}" required autocomplete="price" autofocus></textarea>
+
+                                @error('price')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        {{-- lang of course --}}
+                        <div class="form-group row">
+                            <label for="lang"
+                                class="col-md-4 col-form-label text-md-right">{{ __('زبان دوره') }}</label>
+
+                            <div class="col-md-6">
+                                <textarea id="lang" type="text" class="form-control @error('lang') is-invalid @enderror"
+                                    name="lang" value="{{ old('lang') }}" required autocomplete="lang"
+                                    autofocus></textarea>
+
+                                @error('lang')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        {{-- description of course --}}
+                        <div class="form-group row">
+                            <label for="description"
                                 class="col-md-4 col-form-label text-md-right">{{ __('توضیحات') }}</label>
 
                             <div class="col-md-6">
-                                <textarea id="job_description" type="text"
-                                    class="form-control @error('job_description') is-invalid @enderror"
-                                    name="job_description" value="{{ old('job_description') }}" required
-                                    autocomplete="job_description" autofocus></textarea>
+                                <textarea id="description" type="text"
+                                    class="form-control @error('description') is-invalid @enderror" name="description"
+                                    value="{{ old('description') }}" required autocomplete="description"
+                                    autofocus></textarea>
 
-                                @error('job_description')
+                                @error('description')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -380,7 +465,8 @@
 
                         {{-- path of photo --}}
                         <div class="form-group row">
-                            <label for="path" class="col-md-4 col-form-label text-md-right">{{ __('عکس') }}</label>
+                            <label for="path"
+                                class="col-md-4 col-form-label text-md-right">{{ __('عکس دوره ') }}</label>
 
                             <div class="col-md-6">
                                 <input id="path" type="file" class="form-control @error('path') is-invalid @enderror"

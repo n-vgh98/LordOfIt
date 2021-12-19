@@ -125,6 +125,7 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
     // routes for courses
     route::prefix("courses")->group(function () {
         route::get("/", [AdminCoursesController::class, "index"])->name("admin.courses.index");
+        route::get("/create", [AdminCoursesController::class, "create"])->name("admin.courses.create");
         route::post("/store", [AdminCoursesController::class, "store"])->name("admin.courses.store");
         route::post("/updateimage/{id}", [AdminCoursesController::class, "updateimage"])->name("admin.courses.update.image");
         route::post("/update/{id}", [AdminCoursesController::class, "update"])->name("admin.courses.update");
