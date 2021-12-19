@@ -57,7 +57,7 @@ class AdminCoursesController extends Controller
         $image->uploader_id = auth()->user()->id;
         $imagename = time() . "." . $request->path->extension();
         $request->path->move(public_path("images/courses/section/"), $imagename);
-        $image->path = "images/courses/sections/" . $imagename;
+        $image->path = "images/courses/section/" . $imagename;
         $course->image()->save($image);
         return redirect()->route("admin.courses.index")->with("success", "دوره شما با موفقیت ثبت شد");
     }
@@ -70,7 +70,8 @@ class AdminCoursesController extends Controller
      */
     public function show($id)
     {
-        //
+        $course = Course::find($id);
+        return view("admin.courses.edit", compact("course"));
     }
 
     /**
@@ -104,6 +105,9 @@ class AdminCoursesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $courses = Course::find($id);
+        unlink($courses->image->path);
+        $courses->delete();
+        return redirect()->back()->with("success", "دوره مورد نظر با موفقیت حذف شد");
     }
 }

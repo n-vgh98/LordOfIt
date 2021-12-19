@@ -39,7 +39,7 @@
                 <tr>
                     {{-- button for removing course --}}
                     <td class="text-center">
-                        <form action="{{ route('admin.ourteam.destroy', $course->id) }}" method="post">
+                        <form action="{{ route('admin.courses.destroy', $course->id) }}" method="post">
                             @csrf
                             @method("DELETE")
                             <button type="submit" class="btn btn-danger">حذف دوره</button>
@@ -48,9 +48,7 @@
 
                     {{-- button for editing course details --}}
                     <td class="text-center">
-                        <button type="button" class="btn btn-warning" data-toggle="modal"
-                            data-target="#course{{ $course->id }}">ویرایش اطلاعات
-                        </button>
+                        <a href="{{ route('admin.courses.edit', $course->id) }}">ویرایش</a>
                     </td>
 
                     {{-- button for editing course image --}}
@@ -93,7 +91,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="{{ route('admin.ourteam.update', $course->id) }}" method="POST"
+                                <form action="{{ route('admin.courses.update', $course->id) }}" method="POST"
                                     enctype="multipart/form-data">
                                     @csrf
                                     {{-- description of course --}}
@@ -140,7 +138,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="{{ route('admin.ourteam.update.image', $course->image->id) }}"
+                                <form action="{{ route('admin.courses.update.image', $course->image->id) }}"
                                     method="POST" enctype="multipart/form-data">
                                     @csrf
 
@@ -223,7 +221,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="{{ route('admin.ourteam.update', $course->id) }}" method="POST"
+                                <form action="{{ route('admin.courses.update', $course->id) }}" method="POST"
                                     enctype="multipart/form-data">
                                     @csrf
 
@@ -318,7 +316,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('admin.ourteam.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.courses.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
 
