@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminCoursesController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminDashboard;
@@ -102,7 +103,7 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
         });
     });
 
-    // routes for footer
+    // routes for ourteam
     route::prefix("ourteam")->group(function () {
         route::get("/", [AdminOurTeamController::class, "index"])->name("admin.ourteam.index");
         route::post("/store", [AdminOurTeamController::class, "store"])->name("admin.ourteam.store");
@@ -111,14 +112,30 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
         route::delete("/destroy/{id}", [AdminOurTeamController::class, "destroy"])->name("admin.ourteam.destroy");
         route::post("/update/{id}", [AdminOurTeamController::class, "update"])->name("admin.ourteam.update");
 
-
-
         // route for slider of ourteam page
         route::prefix("slider")->group(function () {
             route::get("/", [AdminOurTeamSliderController::class, "index"])->name("admin.ourteam.slider.index");
             route::post("/store", [AdminOurTeamSliderController::class, "store"])->name("admin.ourteam.slider.store");
             route::post("/update/{id}", [AdminOurTeamSliderController::class, "update"])->name("admin.ourteam.slider.update");
             route::delete("/destroy/{id}", [AdminOurTeamSliderController::class, "destroy"])->name("admin.ourteam.slider.destroy");
+        });
+    });
+
+    // routes for courses
+    route::prefix("courses")->group(function () {
+        route::get("/", [AdminCoursesController::class, "index"])->name("admin.courses.index");
+        route::post("/store", [AdminCoursesController::class, "store"])->name("admin.courses.store");
+        route::post("/updateimage/{id}", [AdminCoursesController::class, "updateimage"])->name("admin.courses.update.image");
+        route::post("/update/{id}", [AdminCoursesController::class, "update"])->name("admin.courses.update");
+        route::delete("/destroy/{id}", [AdminCoursesController::class, "destroy"])->name("admin.courses.destroy");
+        route::post("/update/{id}", [AdminCoursesController::class, "update"])->name("admin.courses.update");
+
+        // route for slider of ourteam page
+        route::prefix("slider")->group(function () {
+            route::get("/", [AdminOurTeamSliderController::class, "index"])->name("admin.courses.slider.index");
+            route::post("/store", [AdminOurTeamSliderController::class, "store"])->name("admin.courses.slider.store");
+            route::post("/update/{id}", [AdminOurTeamSliderController::class, "update"])->name("admin.courses.slider.update");
+            route::delete("/destroy/{id}", [AdminOurTeamSliderController::class, "destroy"])->name("admin.courses.slider.destroy");
         });
     });
 });
