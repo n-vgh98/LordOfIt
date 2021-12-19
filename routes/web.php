@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminCoursesController;
-use App\Http\Controllers\Admin\AdminCoursesSlider;
+use App\Http\Controllers\Admin\AdminCoursesSliderController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminDashboard;
@@ -133,10 +133,10 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
 
         // route for slider of ourteam page
         route::prefix("slider")->group(function () {
-            route::get("/", [AdminCoursesSlider::class, "index"])->name("admin.courses.slider.index");
-            route::post("/store", [AdminOurTeamSliderController::class, "store"])->name("admin.courses.slider.store");
-            route::post("/update/{id}", [AdminOurTeamSliderController::class, "update"])->name("admin.courses.slider.update");
-            route::delete("/destroy/{id}", [AdminOurTeamSliderController::class, "destroy"])->name("admin.courses.slider.destroy");
+            route::get("/", [AdminCoursesSliderController::class, "index"])->name("admin.courses.slider.index");
+            route::post("/store", [AdminCoursesSliderController::class, "store"])->name("admin.courses.slider.store");
+            route::post("/update/{id}", [AdminCoursesSliderController::class, "update"])->name("admin.courses.slider.update");
+            route::delete("/destroy/{id}", [AdminCoursesSliderController::class, "destroy"])->name("admin.courses.slider.destroy");
         });
     });
 });
