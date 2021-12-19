@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Course;
+use App\Models\Image;
 use Illuminate\Http\Request;
 
 class AdminCoursesController extends Controller
@@ -37,7 +38,28 @@ class AdminCoursesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $course = new Course();
+        $course->name = $request->name;
+        $course->type = $request->type;
+        $course->level = $request->level;
+        $course->section = $request->section;
+        $course->pre_need = $request->pre_need;
+        $course->price = $request->price;
+        $course->lang = $request->lang;
+        $course->description = $request->description;
+        $course->topic_list = $request->topic_list;
+        $course->save();
+
+        // saving course image
+        $image = new Image();
+        $image->name = $request->img_name;
+        $image->alt = $request->alt;
+        $image->uploader_id = auth()->user()->id;
+        $imagename = time() . "." . $request->path->extension();
+        $request->path->move(public_path("images/courses/section/"), $imagename);
+        $image->path = "images/courses/sections/" . $imagename;
+        $course->image()->save($image);
+        return redirect()->route("admin.courses.index")->with("success", "دوره شما با موفقیت ثبت شد");
     }
 
     /**
