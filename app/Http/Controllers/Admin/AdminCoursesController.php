@@ -70,8 +70,7 @@ class AdminCoursesController extends Controller
      */
     public function show($id)
     {
-        $course = Course::find($id);
-        return view("admin.courses.edit", compact("course"));
+        // 
     }
 
     /**
@@ -82,7 +81,8 @@ class AdminCoursesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $course = Course::find($id);
+        return view("admin.courses.edit", compact("course"));
     }
 
     /**
@@ -94,7 +94,19 @@ class AdminCoursesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $course = Course::find($id);
+        $course->name = $request->name;
+        $course->type = $request->type;
+        $course->level = $request->level;
+        $course->section = $request->section;
+        $course->pre_need = $request->pre_need;
+        $course->price = $request->price;
+        $course->lang = $request->lang;
+        $course->description = $request->description;
+        $course->topic_list = $request->topic_list;
+        $course->save();
+        return redirect()->route("admin.courses.index")->with("success", "دوره شما با موفقیت ویرایش شد");
     }
 
     /**
@@ -109,5 +121,20 @@ class AdminCoursesController extends Controller
         unlink($courses->image->path);
         $courses->delete();
         return redirect()->back()->with("success", "دوره مورد نظر با موفقیت حذف شد");
+    }
+
+    public function updateimage(Request $request, $id)
+    {
+        $image = Image::find($id);
+        $image->name = $request->name;
+        $image->alt = $request->alt;
+        if ($request->path !== null) {
+            unlink($image->path);
+            $imagename = time() . "." . $request->path->extension();
+            $request->path->move(public_path("images/courses/section/"), $imagename);
+            $image->path = "images/courses/section/" . $imagename;
+        }
+        $image->save();
+        return redirect()->back()->with("success", "عکس دوره  با موفقیت ویرایش شد");
     }
 }

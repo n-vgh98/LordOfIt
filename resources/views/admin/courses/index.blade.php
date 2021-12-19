@@ -48,7 +48,7 @@
 
                     {{-- button for editing course details --}}
                     <td class="text-center">
-                        <a href="{{ route('admin.courses.edit', $course->id) }}">ویرایش</a>
+                        <a class="btn btn-warning" href="{{ route('admin.courses.edit', $course->id) }}">ویرایش</a>
                     </td>
 
                     {{-- button for editing course image --}}
