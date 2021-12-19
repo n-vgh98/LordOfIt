@@ -96,12 +96,9 @@
                     <i class="fa fa-dashboard"></i> <span>مقالات</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    {{-- <li class="active"><a href="{{ route('admin.articles.categories.index') }}"><i --}}
-                    {{-- class="fa fa-circle-o"></i>دسته بندی ها</a></li> --}}
-                    {{-- <li class="active"><a href="{{ route('admin.articles.farsi.index') }}"><i --}}
-                    {{-- class="fa fa-circle-o"></i>لیست مقالات فارسی</a></li> --}}
-                    {{-- <li class="active"><a href="{{ route('admin.articles.english.index') }}"><i --}}
-                    {{-- class="fa fa-circle-o"></i>لیست مقالات انگلیسی</a></li> --}}
+                    
+                    <li class="active"><a href="{{ route('articles.index') }}"><i 
+                     class="fa fa-circle-o"></i>لیست مقالات </a></li> 
 
                 </ul>
             </li>
