@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminDashboard;
 use App\Http\Controllers\Admin\AdminFooterContentController;
+use App\Http\Controllers\Admin\AdminArticleController;
 use App\Http\Controllers\Admin\AdminFooterController;
 use App\Http\Controllers\Admin\AdminFooterLinkController;
 use App\Http\Controllers\Admin\AdminFooterTitleController;
@@ -70,6 +71,9 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
     });
     // ##
 
+    //route for articles
+    Route::resource('articles', AdminArticleController::class);
+
     // routes for footer
     route::prefix("footer")->group(function () {
         route::get("/", [AdminFooterController::class, "index"])->name("admin.footer.index");
@@ -102,7 +106,7 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
         });
     });
 
-    // routes for footer
+    // routes for our team
     route::prefix("ourteam")->group(function () {
         route::get("/", [AdminOurTeamController::class, "index"])->name("admin.ourteam.index");
         route::post("/store", [AdminOurTeamController::class, "store"])->name("admin.ourteam.store");
