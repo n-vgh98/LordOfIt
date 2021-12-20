@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateServicePricesTable extends Migration
+class CreateServicePriceCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateServicePricesTable extends Migration
      */
     public function up()
     {
-        Schema::create('service_prices', function (Blueprint $table) {
+        Schema::create('service_price_categories', function (Blueprint $table) {
             $table->id();
             $table->string("title");
-            $table->text("attribute");
-            $table->text("price");
-            $table->foreignId("category_id")->constrained("price_categories")->onDelete("cascade")->onUpdate("cascade");
+            $table->text("text")->nullable();
+            $table->foreignId("parent_id")->constrained("service_price_categories")->onDelete("cascade")->onUpdate("cascade");
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateServicePricesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('service_prices');
+        Schema::dropIfExists('service_price_categories');
     }
 }
