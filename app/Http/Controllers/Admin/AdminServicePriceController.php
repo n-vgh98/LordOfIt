@@ -46,7 +46,7 @@ class AdminServicePriceController extends Controller
         $service->attributes = $request->text;
         $service->category_id = $request->category_id;
         $service->save();
-        return redirect()->route("admin.services.price.show", $request->category_id)->with("success", 'دسته بندی شما با موفقیت اضافه شد');
+        return redirect()->route("admin.services.price.show", $request->category_id)->with("success", 'سرویس شما با موفقیت اضافه شد');
     }
 
     /**
@@ -90,7 +90,7 @@ class AdminServicePriceController extends Controller
         $service->price = $request->price;
         $service->attributes = $request->text;
         $service->save();
-        return redirect()->route("admin.services.price.show", $service->category->id)->with("success", 'دسته بندی شما با موفقیت ویرایش شد');
+        return redirect()->route("admin.services.price.show", $service->category->id)->with("success", 'سرویس شما با موفقیت ویرایش شد');
     }
 
     /**
@@ -101,8 +101,8 @@ class AdminServicePriceController extends Controller
      */
     public function destroy($id)
     {
-        $subcategory = ServicePriceCategory::find($id);
-        $subcategory->delete();
-        return redirect()->back()->with("success", 'دسته بندی شما با موفقیت حذف شد');
+        $service = ServicePrice::find($id);
+        $service->delete();
+        return redirect()->back()->with("success", 'سرویس شما با موفقیت حذف شد');
     }
 }

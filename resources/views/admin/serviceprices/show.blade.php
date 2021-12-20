@@ -127,6 +127,6 @@
     </table>
 
     {{-- button to add service --}}
-    {{-- <a class="btn btn-primary" href="{{ route('admin.services.price.create') }}"> ساخت دسته بندی جدید </a> --}}
+    <a class="btn btn-primary" href="{{ route('admin.services.price.create', $category->id) }}"> ساخت دسته بندی جدید </a>
 
 @endsection
