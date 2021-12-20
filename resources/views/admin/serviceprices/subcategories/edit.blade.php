@@ -35,23 +35,6 @@
             </div>
 
 
-            {{-- text of subcategory --}}
-            <div class="form-group row">
-                <label for="text" class="col-md-1 col-form-label text-md-right">{{ __('توضیحات') }}</label>
-
-                <div class="col-md-11">
-                    <textarea id="body" type="text" class="form-control" @error('text') is-invalid @enderror" name="text"
-                        value="{{ old('text') }}" required autocomplete="text"
-                        autofocus>{{ $subcategory->text }}</textarea>
-
-                    @error('text')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-            </div>
-
 
             <div style="margin-top:15px;">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">منصرف

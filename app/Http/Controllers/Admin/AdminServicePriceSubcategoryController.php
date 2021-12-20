@@ -41,9 +41,6 @@ class AdminServicePriceSubcategoryController extends Controller
         $subcategory = new ServicePriceCategory();
         $subcategory->title = $request->title;
         $subcategory->parent_id = $request->parent_id;
-        if ($request->text !== null) {
-            $subcategory->text = $request->text;
-        }
         $subcategory->save();
         return redirect()->route("admin.services.price.subcategory.show", $request->parent_id)->with("success", 'دسته بندی شما با موفقیت اضافه شد');
     }
@@ -83,9 +80,7 @@ class AdminServicePriceSubcategoryController extends Controller
     {
         $subcategory = ServicePriceCategory::find($id);
         $subcategory->title = $request->title;
-        if ($request->text !== null) {
-            $subcategory->text = $request->text;
-        }
+
         $subcategory->save();
         return redirect()->route("admin.services.price.subcategory.show", $subcategory->category->id)->with("success", 'دسته بندی شما با موفقیت ویرایش شد');
     }
