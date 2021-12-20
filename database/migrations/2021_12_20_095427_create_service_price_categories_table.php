@@ -17,7 +17,7 @@ class CreateServicePriceCategoriesTable extends Migration
             $table->id();
             $table->string("title");
             $table->text("text")->nullable();
-            $table->foreignId("parent_id")->constrained("service_price_categories")->onDelete("cascade")->onUpdate("cascade");
+            $table->foreignId("parent_id")->nullable()->constrained("service_price_categories")->onDelete("cascade")->onUpdate("cascade");
             $table->timestamps();
         });
     }
