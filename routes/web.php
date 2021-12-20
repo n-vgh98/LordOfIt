@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminAboutUsController;
 use App\Http\Controllers\Admin\AdminCoursesController;
 use App\Http\Controllers\Admin\AdminCoursesSliderController;
 use Illuminate\Support\Facades\Auth;
@@ -149,4 +150,9 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
             route::delete("/destroy/{id}", [AdminCoursesSliderController::class, "destroy"])->name("admin.courses.slider.destroy");
         });
     });
+
+    //route for about_us
+    Route::resource("about_us" , AdminAboutUsController::class);
+    route::post("about_us/updateimage/{id}", [AdminArticleController::class, "updateimage"])->name("admin.about_us.update.image");
+
 });
