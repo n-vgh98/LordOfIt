@@ -112,7 +112,6 @@
 
                     <li class="active"><a href="{{ route('admin.services.price.category.index') }}"><i
                                 class="fa fa-circle-o"></i>دسته بندی تعرفه خدمات </a></li>
-
                 </ul>
             </li>
             {{-- end of services --}}

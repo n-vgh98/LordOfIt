@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\AdminOurTeamController;
 use App\Http\Controllers\Admin\AdminOurTeamSliderController;
 use App\Http\Controllers\Admin\AdminServicePriceCategoryController;
 use App\Http\Controllers\Admin\AdminServicePriceController;
+use App\Http\Controllers\Admin\AdminServicePriceSubcategoryController;
 use App\Http\Controllers\Admin\AdminUserController;
 
 /*
@@ -169,6 +170,17 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
             route::get("/edit/{id}", [AdminServicePriceCategoryController::class, "edit"])->name("admin.services.price.category.edit");
             route::post("/update/{id}", [AdminServicePriceCategoryController::class, "update"])->name("admin.services.price.category.update");
             route::delete("/destroy/{id}", [AdminServicePriceCategoryController::class, "destroy"])->name("admin.services.price.category.destroy");
+        });
+
+        // route for service price subcategories
+        route::prefix("service-prices-subcategory")->group(function () {
+            route::get("/", [AdminServicePriceSubcategoryController::class, "index"])->name("admin.services.price.subcategory.index");
+            route::get("/create/{id}", [AdminServicePriceSubcategoryController::class, "create"])->name("admin.services.price.subcategory.create");
+            route::post("/store", [AdminServicePriceSubcategoryController::class, "store"])->name("admin.services.price.subcategory.store");
+            route::get("/edit/{id}", [AdminServicePriceSubcategoryController::class, "edit"])->name("admin.services.price.subcategory.edit");
+            route::get("/show/{id}", [AdminServicePriceSubcategoryController::class, "show"])->name("admin.services.price.subcategory.show");
+            route::post("/update/{id}", [AdminServicePriceSubcategoryController::class, "update"])->name("admin.services.price.subcategory.update");
+            route::delete("/destroy/{id}", [AdminServicePriceSubcategoryController::class, "destroy"])->name("admin.services.price.subcategory.destroy");
         });
     });
 });

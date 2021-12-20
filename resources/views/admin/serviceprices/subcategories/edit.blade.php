@@ -1,28 +1,30 @@
 @extends('admin.layouts.master')
 
 @section('sitetitle')
-    ایجاد  دسته بندی جدید
+    ویرایش زیر دسته
 @endsection
 
 
 @section('pagetitle')
-    ایجاد  دسته بندی جدید
+    ویرایش زیر دسته
 @endsection
 
 @section('content')
     <section>
 
-        <form action="{{ route('admin.services.price.category.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.services.price.subcategory.update', $subcategory->id) }}" method="POST"
+            enctype="multipart/form-data">
             @csrf
 
 
-            {{-- title of category --}}
+            {{-- title of subcategory --}}
             <div class="form-group row">
                 <label for="title" class="col-md-1 col-form-label text-md-right">{{ __('نام دسته بندی') }}</label>
 
                 <div class="col-md-11">
                     <input id="title" type="text" class="form-control" @error('title') is-invalid @enderror" name="title"
-                        value="{{ old('title') }}" required autocomplete="name" autofocus>
+                        value="{{ $subcategory->title }}" value="{{ old('title') }}" required autocomplete="name"
+                        autofocus>
 
                     @error('title')
                         <span class="invalid-feedback" role="alert">
@@ -33,13 +35,14 @@
             </div>
 
 
-            {{-- text of category --}}
+            {{-- text of subcategory --}}
             <div class="form-group row">
                 <label for="text" class="col-md-1 col-form-label text-md-right">{{ __('توضیحات') }}</label>
 
                 <div class="col-md-11">
                     <textarea id="body" type="text" class="form-control" @error('text') is-invalid @enderror" name="text"
-                        value="{{ old('text') }}" required autocomplete="text" autofocus></textarea>
+                        value="{{ old('text') }}" required autocomplete="text"
+                        autofocus>{{ $subcategory->text }}</textarea>
 
                     @error('text')
                         <span class="invalid-feedback" role="alert">

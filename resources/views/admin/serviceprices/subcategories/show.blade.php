@@ -1,12 +1,12 @@
 @extends('admin.layouts.master')
 
 @section('sitetitle')
-    دسته بندی تعرفه ها
+    زیر دسته {{ $category->title }}
 @endsection
 
 
 @section('pagetitle')
-    دسته بندی تعرفه ها
+    زیر دسته {{ $category->title }}
 @endsection
 
 @section('content')
@@ -16,7 +16,7 @@
                 <th class="text-center" scope="col">امکانات</th>
                 <th class="text-center" scope="col">ویرایش</th>
                 <th class="text-center" scope="col">متن</th>
-                <th class="text-center" scope="col">زیردسته ها</th>
+                <th class="text-center" scope="col">دسته بندی اصلی</th>
                 <th class="text-center" scope="col">نام دسته بندی</th>
                 <th class="text-center" scope="col-1">#</th>
             </tr>
@@ -27,48 +27,44 @@
                 $number = 0;
             @endphp
 
-            @foreach ($categories as $category)
+            @foreach ($category->subcategories as $subcategory)
 
                 @php
                     $number++;
                 @endphp
                 <tr>
-                    {{-- button for removing category --}}
+                    {{-- button for removing subcategory --}}
                     <td class="text-center">
-                        <form action="{{ route('admin.services.price.category.destroy', $category->id) }}" method="post">
+                        <form action="{{ route('admin.services.price.subcategory.destroy', $subcategory->id) }}"
+                            method="post">
                             @csrf
                             @method("DELETE")
                             <button type="submit" class="btn btn-danger">حذف دسته بندی</button>
                         </form>
                     </td>
 
-                    {{-- button for editing category --}}
+                    {{-- button for editing subcategory --}}
                     <td class="text-center">
                         <a class="btn btn-warning"
-                            href="{{ route('admin.services.price.category.edit', $category->id) }}">ویرایش</a>
+                            href="{{ route('admin.services.price.subcategory.edit', $subcategory->id) }}">ویرایش</a>
                     </td>
 
                     <td class="text-center">
                         <button type="button" class="btn btn-info" data-toggle="modal"
-                            data-target="#cattext{{ $category->id }}">مشاهده</button>
+                            data-target="#cattext{{ $subcategory->id }}">مشاهده</button>
                     </td>
                     <td class="text-center">
-                        @if (count($category->subcategories) == 0)
-                            <a class="btn btn-success"
-                                href="{{ route('admin.services.price.subcategory.create', $category->id) }}">ساختن</a>
-                        @else
-                            <a class="btn btn-success"
-                                href="{{ route('admin.services.price.subcategory.show', $category->id) }}">مشاهده</a>
-                        @endif
+                        <a
+                            href="{{ route('admin.services.price.category.index') }}">{{ $subcategory->category->title }}</a>
                     </td>
                     <td class="text-center">
-                        {{ $category->title }}
+                        {{ $subcategory->title }}
                     </td>
                     <th class="text-center" scope="row">{{ $number }}</th>
                 </tr>
 
-                <!-- modal for showing category text -->
-                <div class="modal fade" id="cattext{{ $category->id }}" tabindex="-1" role="dialog"
+                <!-- modal for showing subcategory text -->
+                <div class="modal fade" id="cattext{{ $subcategory->id }}" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -79,10 +75,10 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="{{ route('admin.services.price.category.update', $category->id) }}"
+                                <form action="{{ route('admin.services.price.subcategory.update', $subcategory->id) }}"
                                     method="POST" enctype="multipart/form-data">
                                     @csrf
-                                    {{-- description of category --}}
+                                    {{-- description of subcategory --}}
                                     <div class="form-group row">
                                         <label for="description"
                                             class="col-md-4 col-form-label text-md-right">{{ __('توضیحات') }}</label>
@@ -91,7 +87,7 @@
                                             <textarea id="description" type="text"
                                                 class="form-control @error('job_description') is-invalid @enderror" required
                                                 disabled autocomplete="description"
-                                                autofocus>{{ $category->text }}</textarea>
+                                                autofocus>{{ $subcategory->text }}</textarea>
 
                                             @error('description')
                                                 <span class="invalid-feedback" role="alert">
@@ -116,8 +112,8 @@
 
 
 
-                <!-- modal for editing category -->
-                <div class="modal fade" id="category{{ $category->id }}" tabindex="-1" role="dialog"
+                <!-- modal for editing subcategory -->
+                <div class="modal fade" id="subcategory{{ $subcategory->id }}" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -128,12 +124,12 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="{{ route('admin.services.price.category.update', $category->id) }}"
+                                <form action="{{ route('admin.services.price.subcategory.update', $subcategory->id) }}"
                                     method="POST" enctype="multipart/form-data">
                                     @csrf
 
 
-                                    {{-- name of category --}}
+                                    {{-- name of subcategory --}}
                                     <div class="form-group row">
                                         <label for="name"
                                             class="col-md-4 col-form-label text-md-right">{{ __('نام و نام خانوادگی') }}</label>
@@ -141,7 +137,7 @@
                                         <div class="col-md-6">
                                             <input id="name" type="text"
                                                 class="form-control @error('name') is-invalid @enderror" name="name"
-                                                value="{{ $category->name }}" required autocomplete="name" autofocus>
+                                                value="{{ $subcategory->name }}" required autocomplete="name" autofocus>
 
                                             @error('name')
                                                 <span class="invalid-feedback" role="alert">
@@ -151,7 +147,7 @@
                                         </div>
                                     </div>
 
-                                    {{-- job_title of category --}}
+                                    {{-- job_title of subcategory --}}
                                     <div class="form-group row">
                                         <label for="job_title"
                                             class="col-md-4 col-form-label text-md-right">{{ __('عنوان شغلی') }}</label>
@@ -159,7 +155,7 @@
                                         <div class="col-md-6">
                                             <input id="job_title" type="text"
                                                 class="form-control @error('job_title') is-invalid @enderror"
-                                                name="job_title" value="{{ $category->job_title }}" required
+                                                name="job_title" value="{{ $subcategory->job_title }}" required
                                                 autocomplete="job_title" autofocus>
 
                                             @error('job_title')
@@ -170,7 +166,7 @@
                                         </div>
                                     </div>
 
-                                    {{-- description of category --}}
+                                    {{-- description of subcategory --}}
                                     <div class="form-group row">
                                         <label for="description"
                                             class="col-md-4 col-form-label text-md-right">{{ __('توضیحات') }}</label>
@@ -179,7 +175,7 @@
                                             <textarea id="description" type="text"
                                                 class="form-control @error('job_description') is-invalid @enderror"
                                                 name="description" required autocomplete="description"
-                                                autofocus>{{ $category->description }}</textarea>
+                                                autofocus>{{ $subcategory->description }}</textarea>
 
                                             @error('description')
                                                 <span class="invalid-feedback" role="alert">
@@ -207,7 +203,8 @@
         </tbody>
     </table>
 
-    {{-- button to add category --}}
-    <a class="btn btn-primary" href="{{ route('admin.services.price.category.create') }}"> ساخت دسته بندی جدید </a>
+    {{-- button to add subcategory --}}
+    <a class="btn btn-primary" href="{{ route('admin.services.price.subcategory.create', $category->id) }}"> ساخت دسته
+        بندی جدید </a>
 
 @endsection

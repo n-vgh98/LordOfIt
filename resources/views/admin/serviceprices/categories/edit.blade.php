@@ -1,12 +1,12 @@
 @extends('admin.layouts.master')
 
 @section('sitetitle')
-    ایجاد دوره دسته بندی جدید
+    ایجاد  دسته بندی جدید
 @endsection
 
 
 @section('pagetitle')
-    ایجاد دوره دسته بندی جدید
+    ایجاد  دسته بندی جدید
 @endsection
 
 @section('content')

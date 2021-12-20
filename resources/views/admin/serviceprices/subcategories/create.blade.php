@@ -1,22 +1,22 @@
 @extends('admin.layouts.master')
 
 @section('sitetitle')
-    ایجاد  دسته بندی جدید
+    ایجاد زیر دسته جدید
 @endsection
 
 
 @section('pagetitle')
-    ایجاد  دسته بندی جدید
+    ایجاد زیر دسته جدید برای {{ $category->title }}
 @endsection
 
 @section('content')
     <section>
 
-        <form action="{{ route('admin.services.price.category.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.services.price.subcategory.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
 
-            {{-- title of category --}}
+            {{-- title of subcategory --}}
             <div class="form-group row">
                 <label for="title" class="col-md-1 col-form-label text-md-right">{{ __('نام دسته بندی') }}</label>
 
@@ -32,8 +32,7 @@
                 </div>
             </div>
 
-
-            {{-- text of category --}}
+            {{-- text of subcategory --}}
             <div class="form-group row">
                 <label for="text" class="col-md-1 col-form-label text-md-right">{{ __('توضیحات') }}</label>
 
@@ -49,6 +48,7 @@
                 </div>
             </div>
 
+            <input name="parent_id" type="hidden" value="{{ $category->id }}">
 
             <div style="margin-top:15px;">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">منصرف

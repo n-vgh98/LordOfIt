@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\ServicePriceCategory;
-use Illuminate\Http\Request;
 
-class AdminServicePriceCategoryController extends Controller
+class AdminServicePriceSubcategoryController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -15,8 +16,7 @@ class AdminServicePriceCategoryController extends Controller
      */
     public function index()
     {
-        $categories = ServicePriceCategory::where("parent_id", null)->get();
-        return view("admin.serviceprices.categories.index", compact("categories"));
+        // 
     }
 
     /**
@@ -24,9 +24,10 @@ class AdminServicePriceCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        return view("admin.serviceprices.categories.create");
+        $category = ServicePriceCategory::find($id);
+        return view("admin.serviceprices.subcategories.create", compact("category"));
     }
 
     /**
@@ -37,13 +38,14 @@ class AdminServicePriceCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $category = new ServicePriceCategory();
-        $category->title = $request->title;
+        $subcategory = new ServicePriceCategory();
+        $subcategory->title = $request->title;
+        $subcategory->parent_id = $request->parent_id;
         if ($request->text !== null) {
-            $category->text = $request->text;
+            $subcategory->text = $request->text;
         }
-        $category->save();
-        return redirect()->route("admin.services.price.category.index")->with("success", 'دسته بندی شما با موفقیت اضافه شد');
+        $subcategory->save();
+        return redirect()->route("admin.services.price.subcategory.show", $request->parent_id)->with("success", 'دسته بندی شما با موفقیت اضافه شد');
     }
 
     /**
@@ -54,7 +56,8 @@ class AdminServicePriceCategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        $category = ServicePriceCategory::find($id);
+        return view("admin.serviceprices.subcategories.show", compact("category"));
     }
 
     /**
@@ -65,8 +68,8 @@ class AdminServicePriceCategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = ServicePriceCategory::find($id);
-        return view("admin.serviceprices.categories.edit", compact("category"));
+        $subcategory = ServicePriceCategory::find($id);
+        return view("admin.serviceprices.subcategories.edit", compact("subcategory"));
     }
 
     /**
@@ -78,13 +81,13 @@ class AdminServicePriceCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $category = ServicePriceCategory::find($id);
-        $category->title = $request->title;
+        $subcategory = ServicePriceCategory::find($id);
+        $subcategory->title = $request->title;
         if ($request->text !== null) {
-            $category->text = $request->text;
+            $subcategory->text = $request->text;
         }
-        $category->save();
-        return redirect()->route("admin.services.price.category.index")->with("success", 'دسته بندی شما با موفقیت اضافه شد');
+        $subcategory->save();
+        return redirect()->route("admin.services.price.subcategory.show", $subcategory->category->id)->with("success", 'دسته بندی شما با موفقیت ویرایش شد');
     }
 
     /**
@@ -95,8 +98,8 @@ class AdminServicePriceCategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = ServicePriceCategory::find($id);
-        $category->delete();
+        $subcategory = ServicePriceCategory::find($id);
+        $subcategory->delete();
         return redirect()->back()->with("success", 'دسته بندی شما با موفقیت حذف شد');
     }
 }
