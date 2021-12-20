@@ -45,7 +45,7 @@
                 </ul>
             </li>
 
-            {{-- contact_us --}}
+            <!-- {{-- contact_us --}}
             <li class="header">ارتباطات</li>
             <li class="treeview">
                 <a href="#">
@@ -58,10 +58,10 @@
                     </li>
                 </ul>
             </li>
-            {{-- contact_us --}}
+            {{-- contact_us --}} -->
 
 
-            {{-- notifications --}}
+            <!-- {{-- notifications --}}
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-dashboard"></i> <span>پیام ها</span> <i class="fa fa-angle-left pull-right"></i>
@@ -73,7 +73,7 @@
                     {{-- class="fa fa-circle-o"></i>پیام های عمومی</a></li> --}}
                 </ul>
             </li>
-            {{-- notifications --}}
+            {{-- notifications --}} -->
             {{-- amoozesh --}}
             <li class="header">تحقیق و توسعه</li>
             <li class="treeview">
@@ -116,7 +116,7 @@
             </li>
             {{-- end of services --}}
 
-            {{-- invite to coaperate --}}
+            <!-- {{-- invite to coaperate --}}
             <li class="header">دعوت به همکاری</li>
             <li class="treeview">
                 <a href="#">
@@ -133,12 +133,12 @@
                     {{-- class="fa fa-circle-o"></i>مشاهده همه صفحات</a></li> --}}
                 </ul>
 
-            </li>
+            </li> -->
 
-            {{-- invite to coaperate --}}
+            <!-- {{-- invite to coaperate --}} -->
 
-            {{-- Start OurTeam --}}
-            <li class="header">تیم ما</li>
+            {{-- Start OurTeam & about us--}}
+            <li class="header"> تیم ما و درباره ما</li>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-dashboard"></i> <span>تیم ما</span> <i class="fa fa-angle-left pull-right"></i>
@@ -150,7 +150,12 @@
                                 class="fa fa-circle-o"></i>همکاران </a></li>
                 </ul>
             </li>
-            {{-- End OurTeam --}}
+            <li class="treeview">
+                <a href="{{ route('about_us.index') }}">
+                    <i class="fa fa-dashboard"></i><span>درباره ما</span>
+                </a>
+            </li>
+            {{-- End OurTeam & about us --}}
 
             {{-- Start Footer --}}
             <li class="header">footer</li>

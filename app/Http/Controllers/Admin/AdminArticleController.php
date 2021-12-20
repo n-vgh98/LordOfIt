@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Article;
+use App\Models\Image;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -61,6 +62,16 @@ class AdminArticleController extends Controller
         $article->meta_keywords = $request->input('meta_keywords');
         $article->status = $request->input('status');
         $article->save();
+
+        // saving article image
+        $image = new Image();
+        $image->name = $request->img_name;
+        $image->alt = $request->alt;
+        $image->uploader_id = auth()->user()->id;
+        $imagename = time() . "." . $request->path->extension();
+        $request->path->move(public_path("images/articles/"), $imagename);
+        $image->path = "images/articles/" . $imagename;
+        $article->image()->save($image);
 
         Session::flash('add_article','مقاله جدید با موفقیت ثبت شد');
         return redirect('admin/articles');
@@ -134,9 +145,25 @@ class AdminArticleController extends Controller
      */
     public function destroy($id)
     {
-        $articles = Article::findOrFail($id);
-        $articles->delete();
+        $article = Article::findOrFail($id);
+        unlink($article->image->path);
+        $article->delete();
         Session::flash('delete_article','مقاله حذف شد');
         return redirect('admin/articles');
+    }
+
+    public function updateimage(Request $request, $id)
+    {
+        $image = Image::find($id);
+        $image->name = $request->name;
+        $image->alt = $request->alt;
+        if ($request->path !== null) {
+            unlink($image->path);
+            $imagename = time() . "." . $request->path->extension();
+            $request->path->move(public_path("images/articles/"), $imagename);
+            $image->path = "images/articles/" . $imagename;
+        }
+        $image->save();
+        return redirect()->back()->with("success", "عکس مقاله  با موفقیت ویرایش شد");
     }
 }

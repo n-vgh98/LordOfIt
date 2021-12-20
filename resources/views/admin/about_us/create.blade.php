@@ -4,25 +4,16 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">ایجاد مقاله جدید</h1>
+                <h1 class="m-0 text-dark"> ایجاد متن جدید درباره ما</h1>
             </div><!-- /.col -->
         </div><!-- /.row -->
     </div>
 
-    {!! Form::open(['method' => 'post', 'action' => 'App\Http\Controllers\Admin\AdminArticleController@store', 'files' => true]) !!}
+    {!! Form::open(['method' => 'post', 'action' => 'App\Http\Controllers\Admin\AdminAboutUsController@store', 'files' => true]) !!}
 
     <div>
         {!! Form::label('title', 'عنوان:') !!}
         {!! Form::text('title', null, ['class' => 'form-control']) !!}
-    </div><br>
-    <div>
-        {!! Form::label('slug', 'نام مستعار:') !!}
-        {!! Form::text('slug', null, ['class' => 'form-control']) !!}
-    </div><br>
-
-    <div>
-        {!! Form::label('status', 'وضعیت:') !!}
-        {!! Form::select('status', ['0' => 'غیرفعال', '1' => 'فعال'], 1, ['class' => 'form-control']) !!}
     </div><br>
     <div>
         {!! Form::label('meta_description', 'متا توضیحات:') !!}
@@ -80,7 +71,7 @@
 
     {{-- path of photo --}}
     <div class="form-group row">
-        <label for="path" class="col-md-1 col-form-label text-md-right">{{ __('عکس مقاله  ') }}</label>
+        <label for="path" class="col-md-1 col-form-label text-md-right">{{ __('عکس  درباره ما ') }}</label>
 
         <div class="col-md-11">
             <input id="path" type="file" class="form-control" @error('path') is-invalid @enderror" name="path" value="{{ old('path') }}" required autocomplete="path" autofocus>
