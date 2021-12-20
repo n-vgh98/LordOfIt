@@ -9,7 +9,7 @@ class ServicePrice extends Model
 {
     use HasFactory;
 
-    public function subcategory()
+    public function category()
     {
         return $this->belongsTo("App\Models\ServicePriceCategory", "category_id");
     }

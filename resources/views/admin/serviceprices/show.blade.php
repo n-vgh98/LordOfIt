@@ -15,9 +15,11 @@
             <tr>
                 <th class="text-center" scope="col">امکانات</th>
                 <th class="text-center" scope="col">ویرایش</th>
-                <th class="text-center" scope="col">متن</th>
-                <th class="text-center" scope="col">زیردسته ها</th>
-                <th class="text-center" scope="col">نام دسته بندی</th>
+                <th class="text-center" scope="col">نام زیردسته</th>
+                <th class="text-center" scope="col">ویژگی های</th>
+                <th class="text-center" scope="col">مدت زمان تعرفه</th>
+                <th class="text-center" scope="col">هزینه تعرفه</th>
+                <th class="text-center" scope="col">نام تعرفه</th>
                 <th class="text-center" scope="col-1">#</th>
             </tr>
         </thead>
@@ -27,7 +29,7 @@
                 $number = 0;
             @endphp
 
-            @foreach ($services as $service)
+            @foreach ($category->services as $service)
 
                 @php
                     $number++;
@@ -52,17 +54,17 @@
                         <button type="button" class="btn btn-info" data-toggle="modal"
                             data-target="#cattext{{ $service->id }}">مشاهده</button>
                     </td>
+
                     <td class="text-center">
-                        @if (count($service->subcategories) == 0)
-                            <a class="btn btn-success"
-                                href="{{ route('admin.services.price.subcategory.create', $service->id) }}">ساختن</a>
-                        @else
-                            <a class="btn btn-success"
-                                href="{{ route('admin.services.price.subcategory.show', $service->id) }}">مشاهده</a>
-                        @endif
+                        {{ $service->price }}
                     </td>
+
                     <td class="text-center">
-                        {{ $service->title }}
+                        {{ $service->time }}
+                    </td>
+
+                    <td class="text-center">
+                        {{ $service->name }}
                     </td>
                     <th class="text-center" scope="row">{{ $number }}</th>
                 </tr>
@@ -208,6 +210,6 @@
     </table>
 
     {{-- button to add service --}}
-    <a class="btn btn-primary" href="{{ route('admin.services.price.create') }}"> ساخت دسته بندی جدید </a>
+    {{-- <a class="btn btn-primary" href="{{ route('admin.services.price.create') }}"> ساخت دسته بندی جدید </a> --}}
 
 @endsection

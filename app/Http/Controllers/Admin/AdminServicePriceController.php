@@ -27,6 +27,7 @@ class AdminServicePriceController extends Controller
     public function create($id)
     {
         $category = ServicePriceCategory::find($id);
+
         return view("admin.serviceprices.create", compact("category"));
     }
 
@@ -69,8 +70,9 @@ class AdminServicePriceController extends Controller
      */
     public function edit($id)
     {
-        $subcategory = ServicePriceCategory::find($id);
-        return view("admin.serviceprices.subcategories.edit", compact("subcategory"));
+        $service = ServicePrice::find($id);
+
+        return view("admin.serviceprices.edit", compact("service"));
     }
 
     /**
@@ -82,11 +84,13 @@ class AdminServicePriceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $subcategory = ServicePriceCategory::find($id);
-        $subcategory->title = $request->title;
-
-        $subcategory->save();
-        return redirect()->route("admin.services.price.show", $subcategory->category->id)->with("success", 'دسته بندی شما با موفقیت ویرایش شد');
+        $service = ServicePrice::find($id);
+        $service->name = $request->name;
+        $service->time = $request->time;
+        $service->price = $request->price;
+        $service->attributes = $request->text;
+        $service->save();
+        return redirect()->route("admin.services.price.show", $service->category->id)->with("success", 'دسته بندی شما با موفقیت ویرایش شد');
     }
 
     /**

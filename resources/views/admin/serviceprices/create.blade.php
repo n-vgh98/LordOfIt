@@ -93,11 +93,3 @@
 
     </section>
 @endsection
-@section('script')
-
-    <script src="{{ asset('adminpanel/ckeditor/ckeditor.js') }}"></script>
-    <script>
-        CKEDITOR.replace('body');
-    </script>
-
-@endsection

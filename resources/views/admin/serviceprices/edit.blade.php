@@ -1,12 +1,12 @@
 @extends('admin.layouts.master')
 
 @section('sitetitle')
-    ایجاد تعرفه برای زیرسته {{ $category->title }}
+    ویرایش
 @endsection
 
 
 @section('pagetitle')
-    ایجاد تعرفه برای زیرسته {{ $category->title }}
+    ویرایش
 @endsection
 
 @section('content')
@@ -38,7 +38,7 @@
                 <label for="price" class="col-md-1 col-form-label text-md-right">{{ __('قیمت تعرفه') }}</label>
 
                 <div class="col-md-11">
-                    <input id="title" type="text" class="form-control" @error('price') is-invalid @enderror" price="price"
+                    <input id="title" type="text" class="form-control" @error('price') is-invalid @enderror" name="price"
                         value="{{ $service->price }}" value="{{ old('price') }}" required autocomplete="price"
                         autofocus>
 
@@ -55,7 +55,7 @@
                 <label for="time" class="col-md-1 col-form-label text-md-right">{{ __('زمان تعرفه') }}</label>
 
                 <div class="col-md-11">
-                    <input id="title" type="text" class="form-control" @error('time') is-invalid @enderror" time="time"
+                    <input id="title" type="text" class="form-control" @error('time') is-invalid @enderror" name="time"
                         value="{{ $service->time }}" value="{{ old('time') }}" placeholder="میتواند خالی باشد"
                         autocomplete="time" autofocus>
 
@@ -69,14 +69,14 @@
 
             {{-- attributes of category --}}
             <div class="form-group row">
-                <label for="attributes" class="col-md-1 col-form-label attributes-md-right">{{ __('ویژگی ها') }}</label>
+                <label for="text" class="col-md-1 col-form-label text-md-right">{{ __('ویژگی ها') }}</label>
 
                 <div class="col-md-11">
-                    <textarea id="body" type="attributes" class="form-control" @error('attributes') is-invalid @enderror"
-                        name="attributes" value="{{ old('attributes') }}" required autocomplete="attributes"
-                        autofocus> value="{{ $service->attributes }}"</textarea>
+                    <textarea id="body" type="text" class="form-control" @error('text') is-invalid @enderror" name="text"
+                        value="{{ old('text') }}" cols="30" rows="30" required autocomplete="text"
+                        autofocus>{{ $service->attributes }}</textarea>
 
-                    @error('attributes')
+                    @error('text')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -85,7 +85,6 @@
             </div>
 
 
-            <input name="categpry_id" type="hidden" value="{{ $category->id }}">
 
             <div style="margin-top:15px;">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">منصرف
@@ -96,12 +95,4 @@
         </form>
 
     </section>
-@endsection
-@section('script')
-
-    <script src="{{ asset('adminpanel/ckeditor/ckeditor.js') }}"></script>
-    <script>
-        CKEDITOR.replace('body');
-    </script>
-
 @endsection

@@ -15,7 +15,7 @@
             <tr>
                 <th class="text-center" scope="col">امکانات</th>
                 <th class="text-center" scope="col">ویرایش</th>
-                <th class="text-center" scope="col">متن</th>
+                <th class="text-center" scope="col">تعرفه ها</th>
                 <th class="text-center" scope="col">دسته بندی اصلی</th>
                 <th class="text-center" scope="col">نام دسته بندی</th>
                 <th class="text-center" scope="col-1">#</th>
