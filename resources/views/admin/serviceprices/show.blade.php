@@ -60,14 +60,17 @@
                             href="{{ route('admin.services.price.subcategory.show', $service->category->id) }}">{{ $service->category->title }}</a>
                     </td>
 
-                    <td class="text-center">
-                        {{ $service->price }}
-                    </td>
 
 
                     <td class="text-center">
                         {{ $service->time }}
                     </td>
+
+                    <td class="text-center">
+                        {{ $service->price }}
+                    </td>
+
+
 
                     <td class="text-center">
                         {{ $service->name }}
