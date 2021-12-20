@@ -12,7 +12,8 @@
 @section('content')
     <section>
 
-        <form action="{{ route('admin.services.price.category.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.services.price.category.update', $category->id) }}" method="POST"
+            enctype="multipart/form-data">
             @csrf
 
 
@@ -22,7 +23,8 @@
 
                 <div class="col-md-11">
                     <input id="title" type="text" class="form-control" @error('title') is-invalid @enderror" name="title"
-                        value="{{ old('title') }}" required autocomplete="name" autofocus>
+                        value="{{ $category->title }}" value="{{ old('title') }}" required autocomplete="name"
+                        autofocus>
 
                     @error('title')
                         <span class="invalid-feedback" role="alert">
@@ -39,7 +41,8 @@
 
                 <div class="col-md-11">
                     <textarea id="body" type="text" class="form-control" @error('text') is-invalid @enderror" name="text"
-                        value="{{ old('text') }}" required autocomplete="text" autofocus></textarea>
+                        value="{{ old('text') }}" required autocomplete="text"
+                        autofocus>{{ $category->text }}</textarea>
 
                     @error('text')
                         <span class="invalid-feedback" role="alert">

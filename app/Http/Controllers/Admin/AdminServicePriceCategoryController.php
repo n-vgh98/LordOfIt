@@ -67,7 +67,8 @@ class AdminServicePriceCategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = ServicePriceCategory::find($id);
+        return view("admin.serviceprices.categories.edit", compact("category"));
     }
 
     /**
@@ -79,7 +80,13 @@ class AdminServicePriceCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = ServicePriceCategory::find($id);
+        $category->title = $request->title;
+        if ($request->text !== null) {
+            $category->text = $request->text;
+        }
+        $category->save();
+        return redirect()->route("admin.services.price.category.index")->with("success", 'دسته بندی شما با موفقیت اضافه شد');
     }
 
     /**

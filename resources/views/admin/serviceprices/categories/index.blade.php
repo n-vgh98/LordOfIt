@@ -14,6 +14,7 @@
         <thead>
             <tr>
                 <th class="text-center" scope="col">امکانات</th>
+                <th class="text-center" scope="col">ویرایش</th>
                 <th class="text-center" scope="col">متن</th>
                 <th class="text-center" scope="col">زیردسته ها</th>
                 <th class="text-center" scope="col">نام دسته بندی</th>
@@ -41,14 +42,22 @@
                         </form>
                     </td>
 
+                    {{-- button for editing category --}}
+                    <td class="text-center">
+                        <a class="btn btn-warning"
+                            href="{{ route('admin.services.price.category.edit', $category->id) }}">ویرایش</a>
+                    </td>
+
                     <td class="text-center">
                         <button type="button" class="btn btn-info" data-toggle="modal"
                             data-target="#cattext{{ $category->id }}">مشاهده</button>
                     </td>
                     <td class="text-center">
-                        @foreach ($category->subcategories as $subcategory)
-                            ,{{ $subcategory->title }}
-                        @endforeach
+                        @if (count($category->subcategories) == 0)
+                            ندارد
+                        @else
+                            <a class="btn btn-success" href="#">مشاهده</a>
+                        @endif
                     </td>
                     <td class="text-center">
                         {{ $category->title }}
