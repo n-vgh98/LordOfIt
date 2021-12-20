@@ -27,6 +27,7 @@ class CreateAboutUsTable extends Migration
             $table->text('meta_description')->nullable();
             $table->text('meta_keywords')->nullable();
             $table->integer('views')->default(0);
+            $table->timestamps();
         });
     }
 

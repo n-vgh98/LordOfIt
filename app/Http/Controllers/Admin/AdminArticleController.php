@@ -63,7 +63,7 @@ class AdminArticleController extends Controller
         $article->status = $request->input('status');
         $article->save();
 
-        // saving course image
+        // saving article image
         $image = new Image();
         $image->name = $request->img_name;
         $image->alt = $request->alt;

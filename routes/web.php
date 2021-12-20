@@ -153,6 +153,6 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
 
     //route for about_us
     Route::resource("about_us" , AdminAboutUsController::class);
-    route::post("about_us/updateimage/{id}", [AdminArticleController::class, "updateimage"])->name("admin.about_us.update.image");
+    route::post("about_us/updateimage/{id}", [AdminAboutUsController::class, "updateimage"])->name("admin.about_us.update.image");
 
 });

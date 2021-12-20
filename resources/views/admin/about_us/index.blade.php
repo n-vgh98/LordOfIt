@@ -8,14 +8,14 @@
 @endsection
 
 @section('content')
-@if(Session()->has('add_article'))
+@if(Session()->has('add_about_us'))
 <div class="alert alert-success">
-    <div>{{session('add_article')}}</div>
+    <div>{{session('add_about_us')}}</div>
 </div>
 @endif
-@if(Session()->has('delete_article'))
+@if(Session()->has('delete_about_us'))
 <div class="alert alert-danger">
-    <div>{{session('delete_article')}}</div>
+    <div>{{session('delete_about_us')}}</div>
 </div>
 @endif
 <table class="table table-striped">
