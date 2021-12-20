@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
 class AdminCommentController extends Controller
@@ -14,7 +15,8 @@ class AdminCommentController extends Controller
      */
     public function index()
     {
-        //
+        $comments = Comment::all();
+        return view("admin.comments.index", compact("comments"));
     }
 
     /**
@@ -80,6 +82,24 @@ class AdminCommentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $comment = Comment::find($id);
+        $comment->delete();
+        return redirect()->back()->with("success", "پیام مورد نظر حذف شد");
+    }
+
+    public function accept($id)
+    {
+        $comment = Comment::find($id);
+        $comment->status = 1;
+        $comment->save();
+        return redirect()->back()->with("success", "پیام مورد نظر به حالت تایید شده تغیر کرد");
+    }
+
+    public function decline($id)
+    {
+        $comment = Comment::find($id);
+        $comment->status = 0;
+        $comment->save();
+        return redirect()->back()->with("success", "پیام مورد نظر دیگر نمایش داده نمیشود");
     }
 }

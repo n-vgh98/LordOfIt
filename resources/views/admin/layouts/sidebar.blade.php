@@ -137,7 +137,7 @@
 
             <!-- {{-- invite to coaperate --}} -->
 
-            {{-- Start OurTeam & about us--}}
+            {{-- Start OurTeam & about us --}}
             <li class="header"> تیم ما و درباره ما</li>
             <li class="treeview">
                 <a href="#">
@@ -148,11 +148,18 @@
                                 class="fa fa-circle-o"></i>اسلایدر صفحه</a></li>
                     <li class="active"><a href="{{ route('admin.ourteam.index') }}"><i
                                 class="fa fa-circle-o"></i>همکاران </a></li>
+
                 </ul>
             </li>
             <li class="treeview">
                 <a href="{{ route('about_us.index') }}">
                     <i class="fa fa-dashboard"></i><span>درباره ما</span>
+                </a>
+            </li>
+
+            <li class="treeview">
+                <a href="{{ route('admin.comments.index') }}">
+                    <i class="fa fa-dashboard"></i><span>کامنت ها</span>
                 </a>
             </li>
             {{-- End OurTeam & about us --}}

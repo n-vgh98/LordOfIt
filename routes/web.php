@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminDashboard;
 use App\Http\Controllers\Admin\AdminFooterContentController;
 use App\Http\Controllers\Admin\AdminArticleController;
+use App\Http\Controllers\Admin\AdminCommentController;
 use App\Http\Controllers\Admin\AdminFooterController;
 use App\Http\Controllers\Admin\AdminFooterLinkController;
 use App\Http\Controllers\Admin\AdminFooterTitleController;
@@ -188,5 +189,13 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
             route::post("/update/{id}", [AdminServicePriceSubcategoryController::class, "update"])->name("admin.services.price.subcategory.update");
             route::delete("/destroy/{id}", [AdminServicePriceSubcategoryController::class, "destroy"])->name("admin.services.price.subcategory.destroy");
         });
+    });
+
+    // routes for comments
+    route::prefix("comments")->group(function () {
+        route::get("/", [AdminCommentController::class, "index"])->name("admin.comments.index");
+        route::post("/accept/{id}", [AdminCommentController::class, "accept"])->name("admin.comments.accept");
+        route::post("/decline/{id}", [AdminCommentController::class, "decline"])->name("admin.comments.decline");
+        route::delete("/destroy/{id}", [AdminCommentController::class, "destroy"])->name("admin.comments.destroy");
     });
 });
