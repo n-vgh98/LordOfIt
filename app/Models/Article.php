@@ -11,4 +11,10 @@ class Article extends Model
     public function users(){
         return $this->belongsToMany(User::class);
     }
+
+    // polymorphic relation to image table
+    public function image()
+    {
+        return $this->morphOne("App\Models\Image", "imageable");
+    }
 }

@@ -75,7 +75,9 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
 
     //route for articles
     Route::resource('articles', AdminArticleController::class);
-
+    route::post("articles/updateimage/{id}", [AdminArticleController::class, "updateimage"])->name("admin.article.update.image");
+     
+    
     // routes for footer
     route::prefix("footer")->group(function () {
         route::get("/", [AdminFooterController::class, "index"])->name("admin.footer.index");
