@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\ServicePrice;
+use App\Models\ServicePriceCategory;
 
 class AdminServicePriceController extends Controller
 {
@@ -14,7 +16,7 @@ class AdminServicePriceController extends Controller
      */
     public function index()
     {
-        //
+        // 
     }
 
     /**
@@ -22,9 +24,10 @@ class AdminServicePriceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $category = ServicePriceCategory::find($id);
+        return view("admin.serviceprices.create", compact("category"));
     }
 
     /**
@@ -35,7 +38,14 @@ class AdminServicePriceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $service = new ServicePrice();
+        $service->name = $request->name;
+        $service->time = $request->time;
+        $service->price = $request->price;
+        $service->attributes = $request->text;
+        $service->category_id = $request->category_id;
+        $service->save();
+        return redirect()->route("admin.services.price.show", $request->category_id)->with("success", 'دسته بندی شما با موفقیت اضافه شد');
     }
 
     /**
@@ -46,7 +56,9 @@ class AdminServicePriceController extends Controller
      */
     public function show($id)
     {
-        //
+
+        $category = ServicePriceCategory::find($id);
+        return view("admin.serviceprices.show", compact("category"));
     }
 
     /**
@@ -57,7 +69,8 @@ class AdminServicePriceController extends Controller
      */
     public function edit($id)
     {
-        //
+        $subcategory = ServicePriceCategory::find($id);
+        return view("admin.serviceprices.subcategories.edit", compact("subcategory"));
     }
 
     /**
@@ -69,7 +82,11 @@ class AdminServicePriceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $subcategory = ServicePriceCategory::find($id);
+        $subcategory->title = $request->title;
+
+        $subcategory->save();
+        return redirect()->route("admin.services.price.show", $subcategory->category->id)->with("success", 'دسته بندی شما با موفقیت ویرایش شد');
     }
 
     /**
@@ -80,6 +97,8 @@ class AdminServicePriceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $subcategory = ServicePriceCategory::find($id);
+        $subcategory->delete();
+        return redirect()->back()->with("success", 'دسته بندی شما با موفقیت حذف شد');
     }
 }

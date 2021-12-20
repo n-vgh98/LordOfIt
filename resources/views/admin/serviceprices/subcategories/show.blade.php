@@ -50,8 +50,13 @@
                     </td>
 
                     <td class="text-center">
-                        <button type="button" class="btn btn-info" data-toggle="modal"
-                            data-target="#cattext{{ $subcategory->id }}">مشاهده</button>
+                        @if (count($subcategory->services) == 0)
+                            <a href="{{ route('admin.services.price.create', $subcategory->id) }}"
+                                class="btn btn-success">ساختن</a>
+                        @else
+                            <a href="#" class="btn btn-success">مشاهده</a>
+
+                        @endif
                     </td>
                     <td class="text-center">
                         <a

@@ -15,6 +15,7 @@ class CreateServicePricesTable extends Migration
     {
         Schema::create('service_prices', function (Blueprint $table) {
             $table->id();
+            $table->foreignId("category_id")->constrained("service_price_categories")->onDelete("cascade")->onUpdate("cascade");
             $table->string("name");
             $table->text("price");
             $table->text("attributes")->nullable();

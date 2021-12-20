@@ -153,14 +153,12 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
 
     // routes for services prices
     route::prefix("service-prices")->group(function () {
-        route::get("/", [AdminServicePriceController::class, "index"])->name("admin.services.price.index");
-        route::get("/create", [AdminServicePriceController::class, "create"])->name("admin.services.price.create");
-        route::get("/edit/{id}", [AdminServicePriceController::class, "edit"])->name("admin.services.price.edit");
+        route::get("/create/{id}", [AdminServicePriceController::class, "create"])->name("admin.services.price.create");
         route::post("/store", [AdminServicePriceController::class, "store"])->name("admin.services.price.store");
-        route::post("/updateimage/{id}", [AdminServicePriceController::class, "updateimage"])->name("admin.services.price.update.image");
+        route::get("/edit/{id}", [AdminServicePriceController::class, "edit"])->name("admin.services.price.edit");
+        route::get("/show/{id}", [AdminServicePriceController::class, "show"])->name("admin.services.price.show");
         route::post("/update/{id}", [AdminServicePriceController::class, "update"])->name("admin.services.price.update");
         route::delete("/destroy/{id}", [AdminServicePriceController::class, "destroy"])->name("admin.services.price.destroy");
-        route::post("/update/{id}", [AdminServicePriceController::class, "update"])->name("admin.services.price.update");
 
         // route for service price categories
         route::prefix("service-prices-category")->group(function () {

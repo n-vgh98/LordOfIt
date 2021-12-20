@@ -18,4 +18,9 @@ class ServicePriceCategory extends Model
     {
         return $this->belongsTo("App\Models\ServicePriceCategory", "parent_id");
     }
+
+    public function services()
+    {
+        return $this->hasMany("App\Models\ServicePrice", "category_id");
+    }
 }

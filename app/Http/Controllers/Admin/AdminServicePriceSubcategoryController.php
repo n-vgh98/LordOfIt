@@ -53,6 +53,7 @@ class AdminServicePriceSubcategoryController extends Controller
      */
     public function show($id)
     {
+
         $category = ServicePriceCategory::find($id);
         return view("admin.serviceprices.subcategories.show", compact("category"));
     }
