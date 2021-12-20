@@ -12,6 +12,8 @@ use App\Http\Controllers\Admin\AdminFooterLinkController;
 use App\Http\Controllers\Admin\AdminFooterTitleController;
 use App\Http\Controllers\Admin\AdminOurTeamController;
 use App\Http\Controllers\Admin\AdminOurTeamSliderController;
+use App\Http\Controllers\Admin\AdminServicePriceCategoryController;
+use App\Http\Controllers\Admin\AdminServicePriceController;
 use App\Http\Controllers\Admin\AdminUserController;
 
 /*
@@ -145,6 +147,26 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
             route::post("/store", [AdminCoursesSliderController::class, "store"])->name("admin.courses.slider.store");
             route::post("/update/{id}", [AdminCoursesSliderController::class, "update"])->name("admin.courses.slider.update");
             route::delete("/destroy/{id}", [AdminCoursesSliderController::class, "destroy"])->name("admin.courses.slider.destroy");
+        });
+    });
+
+    // routes for services prices
+    route::prefix("service-prices")->group(function () {
+        route::get("/", [AdminServicePriceController::class, "index"])->name("admin.services.price.index");
+        route::get("/create", [AdminServicePriceController::class, "create"])->name("admin.services.price.create");
+        route::get("/edit/{id}", [AdminServicePriceController::class, "edit"])->name("admin.services.price.edit");
+        route::post("/store", [AdminServicePriceController::class, "store"])->name("admin.services.price.store");
+        route::post("/updateimage/{id}", [AdminServicePriceController::class, "updateimage"])->name("admin.services.price.update.image");
+        route::post("/update/{id}", [AdminServicePriceController::class, "update"])->name("admin.services.price.update");
+        route::delete("/destroy/{id}", [AdminServicePriceController::class, "destroy"])->name("admin.services.price.destroy");
+        route::post("/update/{id}", [AdminServicePriceController::class, "update"])->name("admin.services.price.update");
+
+        // route for service price categories
+        route::prefix("service-prices-category")->group(function () {
+            route::get("/", [AdminServicePriceCategoryController::class, "index"])->name("admin.services.price.category.index");
+            route::post("/store", [AdminServicePriceCategoryController::class, "store"])->name("admin.services.price.category.store");
+            route::post("/update/{id}", [AdminServicePriceCategoryController::class, "update"])->name("admin.services.price.category.update");
+            route::delete("/destroy/{id}", [AdminServicePriceCategoryController::class, "destroy"])->name("admin.services.price.category.destroy");
         });
     });
 });

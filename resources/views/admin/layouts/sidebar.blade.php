@@ -89,21 +89,33 @@
             </li>
             {{-- end of amoozesh --}}
 
-
             {{-- articels --}}
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-dashboard"></i> <span>مقالات</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    
-                    <li class="active"><a href="{{ route('articles.index') }}"><i 
-                     class="fa fa-circle-o"></i>لیست مقالات </a></li> 
+
+                    <li class="active"><a href="{{ route('articles.index') }}"><i
+                                class="fa fa-circle-o"></i>لیست مقالات </a></li>
 
                 </ul>
             </li>
             {{-- end of articels --}}
 
+            {{-- services --}}
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>تعرفه خدمات</span> <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+
+                    <li class="active"><a href="{{ route('admin.services.price.category.index') }}"><i
+                                class="fa fa-circle-o"></i>دسته بندی تعرفه خدمات </a></li>
+
+                </ul>
+            </li>
+            {{-- end of services --}}
 
             {{-- invite to coaperate --}}
             <li class="header">دعوت به همکاری</li>

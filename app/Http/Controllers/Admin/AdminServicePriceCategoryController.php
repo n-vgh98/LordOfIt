@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\ServicePriceCategory;
 use Illuminate\Http\Request;
 
 class AdminServicePriceCategoryController extends Controller
@@ -14,7 +15,8 @@ class AdminServicePriceCategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = ServicePriceCategory::where("parent_id", null)->get();
+        return view("admin.serviceprices.categories.index", compact("categories"));
     }
 
     /**
