@@ -16,7 +16,9 @@ class AdminServicePriceCategoryController extends Controller
     public function index()
     {
         $categories = ServicePriceCategory::where("parent_id", null)->get();
-        return view("admin.serviceprices.categories.index", compact("categories"));
+        // x shows that we are sending maing categories
+        $x = 1;
+        return view("admin.serviceprices.categories.index", compact("categories", "x"));
     }
 
     /**
@@ -82,6 +84,8 @@ class AdminServicePriceCategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = ServicePriceCategory::find($id);
+        $category->delete();
+        return redirect()->back()->with("succes", 'دسته بندی شما با موفقیت حذف شد');
     }
 }

@@ -16,7 +16,7 @@
                 <th class="text-center" scope="col">امکانات</th>
                 <th class="text-center" scope="col">متن</th>
                 {{-- check if we are in main category page --}}
-                @if ($categories[0]->parent_id == null)
+                @if ($x == 1)
                     <th class="text-center" scope="col">زیردسته ها</th>
                 @endif
                 <th class="text-center" scope="col">نام دسته بندی</th>
@@ -52,7 +52,7 @@
                     </td>
 
                     {{-- check if we are in main category page --}}
-                    @if ($categories[0]->parent_id == null)
+                    @if ($x == 1)
 
                         <td class="text-center">
                             @foreach ($category->subcategories as $subcategory)
