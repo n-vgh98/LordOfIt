@@ -164,6 +164,7 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
         // route for service price categories
         route::prefix("service-prices-category")->group(function () {
             route::get("/", [AdminServicePriceCategoryController::class, "index"])->name("admin.services.price.category.index");
+            route::get("/create", [AdminServicePriceCategoryController::class, "create"])->name("admin.services.price.category.create");
             route::post("/store", [AdminServicePriceCategoryController::class, "store"])->name("admin.services.price.category.store");
             route::post("/update/{id}", [AdminServicePriceCategoryController::class, "update"])->name("admin.services.price.category.update");
             route::delete("/destroy/{id}", [AdminServicePriceCategoryController::class, "destroy"])->name("admin.services.price.category.destroy");

@@ -28,7 +28,7 @@ class AdminServicePriceCategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.serviceprices.categories.create");
     }
 
     /**
@@ -39,7 +39,13 @@ class AdminServicePriceCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = new ServicePriceCategory();
+        $category->title = $request->title;
+        if ($request->text !== null) {
+            $category->text = $request->text;
+        }
+        $category->save();
+        return redirect()->route("admin.services.price.category.index")->with("success", 'دسته بندی شما با موفقیت اضافه شد');
     }
 
     /**
@@ -86,6 +92,6 @@ class AdminServicePriceCategoryController extends Controller
     {
         $category = ServicePriceCategory::find($id);
         $category->delete();
-        return redirect()->back()->with("succes", 'دسته بندی شما با موفقیت حذف شد');
+        return redirect()->back()->with("success", 'دسته بندی شما با موفقیت حذف شد');
     }
 }
