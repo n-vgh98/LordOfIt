@@ -54,7 +54,8 @@
                             <a href="{{ route('admin.services.price.create', $subcategory->id) }}"
                                 class="btn btn-success">ساختن</a>
                         @else
-                            <a href="#" class="btn btn-success">مشاهده</a>
+                            <a href="{{ route('admin.services.price.show', $subcategory->id) }}"
+                                class="btn btn-success">مشاهده</a>
 
                         @endif
                     </td>
