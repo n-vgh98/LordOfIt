@@ -54,10 +54,10 @@
                     <td class="text-center">
                         @if (count($category->samples) == 0)
                             <a class="btn btn-success"
-                                href="{{ route('admin.services.price.subcategory.create', $category->id) }}">ساختن</a>
+                                href="{{ route('admin.work_samples.create', $category->id) }}">ساختن</a>
                         @else
                             <a class="btn btn-success"
-                                href="{{ route('admin.services.price.subcategory.show', $category->id) }}">مشاهده</a>
+                                href="{{ route('admin.work_samples.category.show', $category->id) }}">مشاهده</a>
                         @endif
                     </td>
                     <td class="text-center">

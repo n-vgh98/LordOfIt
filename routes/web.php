@@ -207,12 +207,15 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
     // routes for services prices
     route::prefix("work_samples")->group(function () {
         route::get("/", [AdminWorkSample::class, "index"])->name("admin.work_samples.index");
+        route::get("/create/{id}", [AdminWorkSample::class, "create"])->name("admin.work_samples.create");
+        route::post("/store", [AdminWorkSample::class, "store"])->name("admin.work_samples.store");
 
         // route for service price categories
         route::prefix("categories")->group(function () {
             route::get("/", [AdminWorkSampleCategory::class, "index"])->name("admin.work_samples.category.index");
             route::post("/store", [AdminWorkSampleCategory::class, "store"])->name("admin.work_samples.category.store");
             route::post("/update/{id}", [AdminWorkSampleCategory::class, "update"])->name("admin.work_samples.category.update");
+            route::get("/show/{id}", [AdminWorkSampleCategory::class, "show"])->name("admin.work_samples.category.show");
             route::delete("/destroy/{id}", [AdminWorkSampleCategory::class, "destroy"])->name("admin.work_samples.category.destroy");
         });
     });
