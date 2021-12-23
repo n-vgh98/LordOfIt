@@ -213,7 +213,7 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
             route::get("/", [AdminWorkSampleCategory::class, "index"])->name("admin.work_samples.category.index");
             route::post("/store", [AdminWorkSampleCategory::class, "store"])->name("admin.work_samples.category.store");
             route::post("/update/{id}", [AdminWorkSampleCategory::class, "update"])->name("admin.work_samples.category.update");
-            route::post("/destroy/{id}", [AdminWorkSampleCategory::class, "destroy"])->name("admin.work_samples.category.destroy");
+            route::delete("/destroy/{id}", [AdminWorkSampleCategory::class, "destroy"])->name("admin.work_samples.category.destroy");
         });
     });
 });

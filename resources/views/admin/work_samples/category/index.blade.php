@@ -35,7 +35,7 @@
                 <tr>
                     {{-- button for removing category --}}
                     <td class="text-center">
-                        <form action="{{ route('admin.services.price.category.destroy', $category->id) }}" method="post">
+                        <form action="{{ route('admin.work_samples.category.destroy', $category->id) }}" method="post">
                             @csrf
                             @method("DELETE")
                             <button type="submit" class="btn btn-danger">حذف دسته بندی</button>
