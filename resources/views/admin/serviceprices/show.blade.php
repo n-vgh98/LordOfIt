@@ -74,8 +74,7 @@
                     </td>
 
                     <td class="text-center">
-                        <a
-                            href="{{ route('admin.services.price.subcategory.show', $service->category->id) }}">{{ $service->category->title }}</a>
+                        <a href="#">{{ $service->category->title }}</a>
                     </td>
 
                     <td class="text-center">
