@@ -15,7 +15,7 @@ class AdminWorkSample extends Controller
      */
     public function index()
     {
-        $samples = WorkSample::all();
+        $sample = WorkSample::all();
         return view("admin.work_samples.index", compact("samples"));
     }
 

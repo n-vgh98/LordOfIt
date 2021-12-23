@@ -1,23 +1,26 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminAboutUsController;
-use App\Http\Controllers\Admin\AdminCoursesController;
-use App\Http\Controllers\Admin\AdminCoursesSliderController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminDashboard;
-use App\Http\Controllers\Admin\AdminFooterContentController;
+use App\Http\Controllers\Admin\AdminWorkSample;
+use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\Admin\AdminFooterController;
+use App\Http\Controllers\Admin\AdminAboutUsController;
 use App\Http\Controllers\Admin\AdminArticleController;
 use App\Http\Controllers\Admin\AdminCommentController;
-use App\Http\Controllers\Admin\AdminFooterController;
+use App\Http\Controllers\Admin\AdminCoursesController;
+use App\Http\Controllers\Admin\AdminOurTeamController;
+use App\Http\Controllers\Admin\AdminWorkSampleCategory;
 use App\Http\Controllers\Admin\AdminFooterLinkController;
 use App\Http\Controllers\Admin\AdminFooterTitleController;
-use App\Http\Controllers\Admin\AdminOurTeamController;
+use App\Http\Controllers\Admin\AdminServicePriceController;
+use App\Http\Controllers\Admin\AdminCoursesSliderController;
+use App\Http\Controllers\Admin\AdminFooterContentController;
 use App\Http\Controllers\Admin\AdminOurTeamSliderController;
 use App\Http\Controllers\Admin\AdminServicePriceCategoryController;
-use App\Http\Controllers\Admin\AdminServicePriceController;
 use App\Http\Controllers\Admin\AdminServicePriceSubcategoryController;
-use App\Http\Controllers\Admin\AdminUserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -199,5 +202,18 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
         route::post("/accept/{id}", [AdminCommentController::class, "accept"])->name("admin.comments.accept");
         route::post("/decline/{id}", [AdminCommentController::class, "decline"])->name("admin.comments.decline");
         route::delete("/destroy/{id}", [AdminCommentController::class, "destroy"])->name("admin.comments.destroy");
+    });
+
+    // routes for services prices
+    route::prefix("work_samples")->group(function () {
+        route::get("/", [AdminWorkSample::class, "index"])->name("admin.work_samples.index");
+
+        // route for service price categories
+        route::prefix("categories")->group(function () {
+            route::get("/", [AdminWorkSampleCategory::class, "index"])->name("admin.work_samples.category.index");
+            route::post("/store", [AdminWorkSampleCategory::class, "store"])->name("admin.work_samples.category.store");
+            route::post("/update/{id}", [AdminWorkSampleCategory::class, "update"])->name("admin.work_samples.category.update");
+            route::post("/destroy/{id}", [AdminWorkSampleCategory::class, "destroy"])->name("admin.work_samples.category.destroy");
+        });
     });
 });

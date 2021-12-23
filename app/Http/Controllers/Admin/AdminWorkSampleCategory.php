@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use App\Models\WorkSampleCategory;
 use App\Http\Controllers\Controller;
+use App\Models\WorkSampleCategory;
+use Illuminate\Http\Request;
 
 class AdminWorkSampleCategory extends Controller
 {
@@ -16,7 +16,7 @@ class AdminWorkSampleCategory extends Controller
     public function index()
     {
         $categories = WorkSampleCategory::all();
-        return view("admin.work_samples.category.index", "categories");
+        return view("admin.work_samples.category.index", compact("categories"));
     }
 
     /**

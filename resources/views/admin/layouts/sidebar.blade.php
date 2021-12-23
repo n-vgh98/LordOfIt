@@ -116,6 +116,21 @@
             </li>
             {{-- end of services --}}
 
+            {{-- work_samples --}}
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>نمونه کار ها</span> <i
+                        class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="active"><a href="{{ route('admin.work_samples.category.index') }}"><i
+                                class="fa fa-circle-o"></i>دسته بندی نمونه کار ها</a></li>
+                    <li class="active"><a href="{{ route('admin.work_samples.index') }}"><i
+                                class="fa fa-circle-o"></i>همه نمونه کار ها</a></li>
+                </ul>
+            </li>
+            {{-- work_samples end --}}
+
             <!-- {{-- invite to coaperate --}}
             <li class="header">دعوت به همکاری</li>
             <li class="treeview">
