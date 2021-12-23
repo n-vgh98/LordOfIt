@@ -16,6 +16,7 @@
                 <th class="text-center" scope="col">امکانات</th>
                 <th class="text-center" scope="col">ویرایش</th>
                 <th class="text-center" scope="col">ویژگی های</th>
+                <th class="text-center" scope="col">نمایش در منو</th>
                 <th class="text-center" scope="col">نام زیردسته</th>
                 <th class="text-center" scope="col">مدت زمان تعرفه</th>
                 <th class="text-center" scope="col">هزینه تعرفه</th>
@@ -50,17 +51,32 @@
                             href="{{ route('admin.services.price.edit', $service->id) }}">ویرایش</a>
                     </td>
 
+
+
                     <td class="text-center">
                         <button type="button" class="btn btn-info" data-toggle="modal"
                             data-target="#cattext{{ $service->id }}">مشاهده</button>
                     </td>
 
                     <td class="text-center">
+                        @if ($service->show_in_menu == 1)
+                            <form action="{{ route('admin.services.price.unshow', $service->id) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-danger">عدم نمایش</button>
+                            </form>
+                        @endif
+                        @if ($service->show_in_menu == 0)
+                            <form action="{{ route('admin.services.price.showinenu', $service->id) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-success">نمایش </button>
+                            </form>
+                        @endif
+                    </td>
+
+                    <td class="text-center">
                         <a
                             href="{{ route('admin.services.price.subcategory.show', $service->category->id) }}">{{ $service->category->title }}</a>
                     </td>
-
-
 
                     <td class="text-center">
                         {{ $service->time }}
@@ -69,8 +85,6 @@
                     <td class="text-center">
                         {{ $service->price }}
                     </td>
-
-
 
                     <td class="text-center">
                         {{ $service->name }}

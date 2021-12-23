@@ -168,6 +168,8 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
         route::get("/show/{id}", [AdminServicePriceController::class, "show"])->name("admin.services.price.show");
         route::post("/update/{id}", [AdminServicePriceController::class, "update"])->name("admin.services.price.update");
         route::delete("/destroy/{id}", [AdminServicePriceController::class, "destroy"])->name("admin.services.price.destroy");
+        route::post("/showinmenu/{id}", [AdminServicePriceController::class, "showinenu"])->name("admin.services.price.showinenu");
+        route::post("/unshow/{id}", [AdminServicePriceController::class, "unshow"])->name("admin.services.price.unshow");
 
         // route for service price categories
         route::prefix("service-prices-category")->group(function () {

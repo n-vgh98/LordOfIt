@@ -105,4 +105,21 @@ class AdminServicePriceController extends Controller
         $service->delete();
         return redirect()->back()->with("success", 'سرویس شما با موفقیت حذف شد');
     }
+
+
+    public function showinenu($id)
+    {
+        $service = ServicePrice::find($id);
+        $service->show_in_menu = 1;
+        $service->save();
+        return redirect()->back()->with("success", 'سرویس مورد نظر در منو نمایش داده میشود');
+    }
+
+    public function unshow($id)
+    {
+        $service = ServicePrice::find($id);
+        $service->show_in_menu = 0;
+        $service->save();
+        return redirect()->back()->with("success", 'سرویس مورد نظر در منو نمایش داده نمیشود');
+    }
 }
