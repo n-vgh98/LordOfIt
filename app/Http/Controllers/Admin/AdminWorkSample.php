@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\WorkSample;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class AdminWorkSample extends Controller
 {
@@ -14,7 +15,8 @@ class AdminWorkSample extends Controller
      */
     public function index()
     {
-        //
+        $samples = WorkSample::all();
+        return view("admin.work_samples.index", compact("samples"));
     }
 
     /**
@@ -24,7 +26,7 @@ class AdminWorkSample extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.work_samples.create");
     }
 
     /**
@@ -57,7 +59,7 @@ class AdminWorkSample extends Controller
      */
     public function edit($id)
     {
-        //
+        return view("admin.work_samples.edit");
     }
 
     /**
