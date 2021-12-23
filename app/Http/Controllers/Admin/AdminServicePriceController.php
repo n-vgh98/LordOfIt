@@ -43,6 +43,7 @@ class AdminServicePriceController extends Controller
         $service->name = $request->name;
         $service->time = $request->time;
         $service->price = $request->price;
+        $service->show_in_menu = $request->show_in_menu;
         $service->attributes = $request->text;
         $service->category_id = $request->category_id;
         $service->save();

@@ -63,6 +63,10 @@
                 </div>
             </div>
 
+
+
+
+
             {{-- text of category --}}
             <div class="form-group row">
                 <label for="text" class="col-md-1 col-form-label text-md-right">{{ __('ویژگی ها') }}</label>
@@ -79,7 +83,16 @@
                 </div>
             </div>
 
-
+            {{-- show in menu of service --}}
+            <div class="form-group row">
+                <label for="time" class="col-md-1 col-form-label text-md-right">{{ __('زمان تعرفه') }}</label>
+                <div class="col-md-11">
+                    <select name="show_in_menu" class="custom-select">
+                        <option value="1">نمایش داده شود</option>
+                        <option value="0">نمایش دادده نشود</option>
+                    </select>
+                </div>
+            </div>
 
             <input name="category_id" type="hidden" value="{{ $category->id }}">
 
