@@ -33,16 +33,7 @@
                 <ul class="treeview-menu">
                     <li class="active"><a href="{{ route('admin.users') }}"><i class="fa fa-circle-o"></i>لیست
                             همه کاربران</a></li>
-                    {{-- <li class="active"><a href="{{ route('admin.normal.users') }}"><i --}}
-                    {{-- class="fa fa-circle-o"></i>لیست --}}
-                    {{-- کاربران عادی</a></li> --}}
-                    {{-- <li class="active"><a href="{{ route('admin.writer.users') }}"><i --}}
-                    {{-- class="fa fa-circle-o"></i>لیست --}}
-                    {{-- کاربران نویسنده</a></li> --}}
-                    {{-- <li class="active"><a href="{{ route('admin.admin.users') }}"><i --}}
-                    {{-- class="fa fa-circle-o"></i>لیست --}}
-                    {{-- ادمین ها</a></li> --}}
-                </ul>
+                    {{-- <li class="active"><a href="{{ route('admin.normal.users') }}"><i --}} {{-- class="fa fa-circle-o"></i>لیست --}} {{-- کاربران عادی</a></li> --}} {{-- <li class="active"><a href="{{ route('admin.writer.users') }}"><i --}} {{-- class="fa fa-circle-o"></i>لیست --}} {{-- کاربران نویسنده</a></li> --}} {{-- <li class="active"><a href="{{ route('admin.admin.users') }}"><i --}} {{-- class="fa fa-circle-o"></i>لیست --}} {{-- ادمین ها</a></li> --}} </ul>
             </li>
 
             <!-- {{-- contact_us --}}
@@ -81,10 +72,8 @@
                     <i class="fa fa-dashboard"></i> <span>دوره ها</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="{{ route('admin.courses.index') }}"><i
-                                class="fa fa-circle-o"></i>دوره ها</a></li>
-                    <li class="active"><a href="{{ route('admin.courses.slider.index') }}"><i
-                                class="fa fa-circle-o"></i>اسلایدر</a></li>
+                    <li class="active"><a href="{{ route('admin.courses.index') }}"><i class="fa fa-circle-o"></i>دوره ها</a></li>
+                    <li class="active"><a href="{{ route('admin.courses.slider.index') }}"><i class="fa fa-circle-o"></i>اسلایدر</a></li>
                 </ul>
             </li>
             {{-- end of amoozesh --}}
@@ -96,46 +85,35 @@
                 </a>
                 <ul class="treeview-menu">
 
-                    <li class="active"><a href="{{ route('articles.index') }}"><i
-                                class="fa fa-circle-o"></i>لیست مقالات </a></li>
+                    <li class="active"><a href="{{ route('articles.index') }}"><i class="fa fa-circle-o"></i>لیست مقالات </a></li>
 
                 </ul>
             </li>
             {{-- end of articels --}}
 
-            {{-- services --}}
+            <!-- {{-- Services --}} -->
+            <li class="header">خدمات</li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span>  خدمات</span> <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+
+                    <li class="active"><a href="{{ route('services.index') }}"><i class="fa fa-circle-o"></i> متن های خدمات </a></li>
+                    <li class="active"><a href="{{ route('services_categories.index') }}"><i class="fa fa-circle-o"></i>دسته بندی متن خدمات </a></li>
+                </ul>
+            </li>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-dashboard"></i> <span>تعرفه خدمات</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
 
-                    <li class="active"><a href="{{ route('admin.services.price.category.index') }}"><i
-                                class="fa fa-circle-o"></i>دسته بندی تعرفه خدمات </a></li>
+                    <li class="active"><a href="{{ route('admin.services.price.category.index') }}"><i class="fa fa-circle-o"></i>دسته بندی تعرفه خدمات </a></li>
                 </ul>
             </li>
-            {{-- end of services --}}
 
-            <!-- {{-- invite to coaperate --}}
-            <li class="header">دعوت به همکاری</li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-dashboard"></i> <span>گروه ها</span> <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    {{-- <li class="active"><a href="{{ route('admin.invites.category.index') }}"><i --}}
-                    {{-- class="fa fa-circle-o"></i>مشاهده همه گروه ها</a></li> --}}
-
-                </ul>
-
-                <ul class="treeview-menu">
-                    {{-- <li class="active"><a href="{{ route('admin.invites.pages.index') }}"><i --}}
-                    {{-- class="fa fa-circle-o"></i>مشاهده همه صفحات</a></li> --}}
-                </ul>
-
-            </li> -->
-
-            <!-- {{-- invite to coaperate --}} -->
+            <!-- {{-- end of services --}} -->
 
             {{-- Start OurTeam & about us --}}
             <li class="header"> تیم ما و درباره ما</li>
@@ -144,10 +122,8 @@
                     <i class="fa fa-dashboard"></i> <span>تیم ما</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="{{ route('admin.ourteam.slider.index') }}"><i
-                                class="fa fa-circle-o"></i>اسلایدر صفحه</a></li>
-                    <li class="active"><a href="{{ route('admin.ourteam.index') }}"><i
-                                class="fa fa-circle-o"></i>همکاران </a></li>
+                    <li class="active"><a href="{{ route('admin.ourteam.slider.index') }}"><i class="fa fa-circle-o"></i>اسلایدر صفحه</a></li>
+                    <li class="active"><a href="{{ route('admin.ourteam.index') }}"><i class="fa fa-circle-o"></i>همکاران </a></li>
 
                 </ul>
             </li>

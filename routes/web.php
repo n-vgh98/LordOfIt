@@ -17,6 +17,8 @@ use App\Http\Controllers\Admin\AdminOurTeamSliderController;
 use App\Http\Controllers\Admin\AdminServicePriceCategoryController;
 use App\Http\Controllers\Admin\AdminServicePriceController;
 use App\Http\Controllers\Admin\AdminServicePriceSubcategoryController;
+use App\Http\Controllers\Admin\AdminServicecategoryController;
+use App\Http\Controllers\Admin\AdminServiceController;
 use App\Http\Controllers\Admin\AdminUserController;
 
 /*
@@ -158,6 +160,11 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
     //route for about_us
     Route::resource("about_us", AdminAboutUsController::class);
     route::post("about_us/updateimage/{id}", [AdminAboutUsController::class, "updateimage"])->name("admin.about_us.update.image");
+
+    //route for services
+    Route::resource('services', AdminServiceController::class);
+    Route::resource('services_categories', AdminServiceCategoryController::class);
+    route::post("services/updateimage/{id}", [AdminServiceController::class, "updateimage"])->name("admin.services.update.image");
 
 
     // routes for services prices
