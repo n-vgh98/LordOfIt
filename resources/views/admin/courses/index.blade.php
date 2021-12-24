@@ -156,7 +156,7 @@
                     </div>
                 </div>
 
-                <!-- modal for editing course -->
+                <!-- modal for showing course text -->
                 <div class="modal fade" id="coursedesc{{ $course->id }}" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">

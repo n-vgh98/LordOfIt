@@ -52,7 +52,8 @@ class AdminWorkSampleCategory extends Controller
      */
     public function show($id)
     {
-        //
+        $category = WorkSampleCategory::find($id);
+        return view("admin.work_samples.category.show", compact("category"));
     }
 
     /**

@@ -16,6 +16,7 @@ class CreateWorkSamplesTable extends Migration
         Schema::create('work_samples', function (Blueprint $table) {
             $table->id();
             $table->foreignId("category_id")->constrained("work_sample_categories")->onDelete("cascade")->onUpdate("cascade");
+            $table->string("title");
             $table->text("text")->nullable();
             $table->text("link")->nullable();
             $table->timestamps();

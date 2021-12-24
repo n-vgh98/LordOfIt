@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Image;
 use App\Models\WorkSample;
-use Illuminate\Http\Request;
 use App\Models\WorkSampleCategory;
-use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class AdminWorkSample extends Controller
 {
@@ -48,6 +48,7 @@ class AdminWorkSample extends Controller
         if ($request->text !== null) {
             $sample->text = $request->text;
         }
+        $sample->title = $request->title;
         $sample->category_id = $request->category_id;
         $sample->save();
 
@@ -60,7 +61,7 @@ class AdminWorkSample extends Controller
         $request->path->move(public_path("images/work_samples/"), $imagename);
         $image->path = "images/work_samples/" . $imagename;
         $sample->image()->save($image);
-        return redirect()->route("admin.Work_samples.category.show", $request->category_id)->with("success", "نمونه کار جدید با موفقیت اضافه شد");
+        return redirect()->route("admin.work_samples.category.show", $request->category_id)->with("success", "نمونه کار جدید با موفقیت اضافه شد");
     }
 
     /**
