@@ -21,7 +21,7 @@
 
                 <div class="col-md-11">
                     <input id="title" type="text" class="form-control" @error('title') is-invalid @enderror" name="title"
-                        value="{{ old('title') }}" autocomplete="title" autofocus>
+                        value="{{ old('title') }}" required autocomplete="title" autofocus>
 
                     @error('title')
                         <span class="invalid-feedback" role="alert">

@@ -1,26 +1,25 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\AdminDashboard;
-use App\Http\Controllers\Admin\AdminWorkSample;
-use App\Http\Controllers\Admin\AdminUserController;
-use App\Http\Controllers\Admin\AdminFooterController;
 use App\Http\Controllers\Admin\AdminAboutUsController;
 use App\Http\Controllers\Admin\AdminArticleController;
 use App\Http\Controllers\Admin\AdminCommentController;
 use App\Http\Controllers\Admin\AdminCoursesController;
-use App\Http\Controllers\Admin\AdminOurTeamController;
-use App\Http\Controllers\Admin\AdminWorkSampleCategory;
+use App\Http\Controllers\Admin\AdminCoursesSliderController;
+use App\Http\Controllers\Admin\AdminDashboard;
+use App\Http\Controllers\Admin\AdminFooterContentController;
+use App\Http\Controllers\Admin\AdminFooterController;
 use App\Http\Controllers\Admin\AdminFooterLinkController;
 use App\Http\Controllers\Admin\AdminFooterTitleController;
-use App\Http\Controllers\Admin\AdminServicePriceController;
-use App\Http\Controllers\Admin\AdminCoursesSliderController;
-use App\Http\Controllers\Admin\AdminFooterContentController;
+use App\Http\Controllers\Admin\AdminOurTeamController;
 use App\Http\Controllers\Admin\AdminOurTeamSliderController;
 use App\Http\Controllers\Admin\AdminServicePriceCategoryController;
+use App\Http\Controllers\Admin\AdminServicePriceController;
 use App\Http\Controllers\Admin\AdminServicePriceSubcategoryController;
-
+use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\Admin\AdminWorkSample;
+use App\Http\Controllers\Admin\AdminWorkSampleCategory;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +30,7 @@ use App\Http\Controllers\Admin\AdminServicePriceSubcategoryController;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 Route::get('/', function () {
     return view('welcome');
@@ -67,7 +66,6 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
         // hazfe tamame dastresi ha
         route::post("/clearroles/{id}", [AdminUserController::class, "clearroles"])->name("admin.user.clear.roles");
 
-
         route::delete("/destroy/{id}", [AdminUserController::class, "destroy"])->name("admin.users.destroy");
         route::prefix("normal")->group(function () {
             route::get("/", [AdminUserController::class, "normal"])->name("admin.normal.users");
@@ -84,7 +82,6 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
     //route for articles
     Route::resource('articles', AdminArticleController::class);
     route::post("articles/updateimage/{id}", [AdminArticleController::class, "updateimage"])->name("admin.article.update.image");
-
 
     // routes for footer
     route::prefix("footer")->group(function () {
@@ -117,8 +114,6 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
             route::post("/store", [AdminFooterLinkController::class, "store"])->name("admin.footer.links.store");
         });
     });
-
-
 
     // routes for our team
     route::prefix("ourteam")->group(function () {
@@ -161,7 +156,6 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
     //route for about_us
     Route::resource("about_us", AdminAboutUsController::class);
     route::post("about_us/updateimage/{id}", [AdminAboutUsController::class, "updateimage"])->name("admin.about_us.update.image");
-
 
     // routes for services prices
     route::prefix("service-prices")->group(function () {
@@ -209,6 +203,7 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
         route::get("/", [AdminWorkSample::class, "index"])->name("admin.work_samples.index");
         route::get("/create/{id}", [AdminWorkSample::class, "create"])->name("admin.work_samples.create");
         route::get("/edit/{id}", [AdminWorkSample::class, "edit"])->name("admin.work_samples.edit");
+        route::post("/update/{id}", [AdminWorkSample::class, "update"])->name("admin.work_samples.update");
         route::post("/updateimage/{id}", [AdminWorkSample::class, "updateimage"])->name("admin.work_samples.update.image");
         route::post("/store", [AdminWorkSample::class, "store"])->name("admin.work_samples.store");
         route::delete("/destroy/{id}", [AdminWorkSample::class, "destroy"])->name("admin.work_samples.destroy");

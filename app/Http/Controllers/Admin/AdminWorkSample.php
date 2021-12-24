@@ -83,7 +83,8 @@ class AdminWorkSample extends Controller
      */
     public function edit($id)
     {
-        return view("admin.work_samples.edit");
+        $sample = WorkSample::find($id);
+        return view("admin.work_samples.edit", compact("sample"));
     }
 
     /**
@@ -95,7 +96,17 @@ class AdminWorkSample extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $sample = WorkSample::find($id);
+        if ($request->link !== null) {
+            $sample->link = $request->link;
+        }
+        if ($request->text !== null) {
+            $sample->text = $request->text;
+        }
+        $sample->title = $request->title;
+        $sample->save();
+        return redirect()->route("admin.work_samples.category.show", $sample->category_id)->with("success", "نمونه کار مورد نظر با موفقیت ویرایش شد");
+
     }
 
     /**

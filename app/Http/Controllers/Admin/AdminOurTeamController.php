@@ -109,7 +109,6 @@ class AdminOurTeamController extends Controller
         return redirect()->back()->with("success", "همکار مورد نظر با موفقیت حذف شد");
     }
 
-
     public function updateimage(Request $request, $id)
     {
         $image = Image::find($id);
