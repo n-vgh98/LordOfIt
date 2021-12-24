@@ -40,7 +40,7 @@
                         <form action="{{ route('admin.work_samples.destroy', $sample->id) }}" method="post">
                             @csrf
                             @method("DELETE")
-                            <button type="submit" class="btn btn-danger">حذف تعرفه</button>
+                            <button type="submit" class="btn btn-danger">حذف نمونه کار</button>
                         </form>
                     </td>
 
