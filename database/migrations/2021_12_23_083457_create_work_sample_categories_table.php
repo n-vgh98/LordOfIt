@@ -15,7 +15,7 @@ class CreateWorkSampleCategoriesTable extends Migration
     {
         Schema::create('work_sample_categories', function (Blueprint $table) {
             $table->id();
-            $table->string("text");
+            $table->string("title");
             $table->timestamps();
         });
     }

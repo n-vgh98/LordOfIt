@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\WorkSample;
+use App\Models\WorkSampleCategory;
 use Illuminate\Http\Request;
 
 class AdminWorkSampleCategory extends Controller
@@ -14,7 +16,8 @@ class AdminWorkSampleCategory extends Controller
      */
     public function index()
     {
-        //
+        $categories = WorkSampleCategory::all();
+        return view("admin.work_samples.category.index", compact("categories"));
     }
 
     /**
@@ -35,7 +38,10 @@ class AdminWorkSampleCategory extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = new WorkSampleCategory();
+        $category->title = $request->title;
+        $category->save();
+        return redirect()->back()->with("success", "دسته بندی شما با موفقیت ساخته شد");
     }
 
     /**
@@ -46,7 +52,8 @@ class AdminWorkSampleCategory extends Controller
      */
     public function show($id)
     {
-        //
+        $category = WorkSampleCategory::find($id);
+        return view("admin.work_samples.category.show", compact("category"));
     }
 
     /**
@@ -57,7 +64,7 @@ class AdminWorkSampleCategory extends Controller
      */
     public function edit($id)
     {
-        //
+        //    
     }
 
     /**
@@ -69,7 +76,10 @@ class AdminWorkSampleCategory extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = WorkSampleCategory::find($id);
+        $category->title = $request->title;
+        $category->save();
+        return redirect()->back()->with("success", "دسته بندی شما با موفقیت ویرایش شد");
     }
 
     /**
@@ -80,6 +90,8 @@ class AdminWorkSampleCategory extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = WorkSampleCategory::find($id);
+        $category->delete();
+        return redirect()->back()->with("success", "دسته بندی شما با موفقیت حذف شد");
     }
 }

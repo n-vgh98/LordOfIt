@@ -12,4 +12,8 @@ class WorkSample extends Model
     {
         return $this->belongsTo("App\Models\WorkSampleCategory", "category_id");
     }
+    public function image()
+    {
+        return $this->morphOne("App\Models\Image", "imageable");
+    }
 }

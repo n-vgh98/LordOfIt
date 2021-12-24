@@ -11,6 +11,6 @@ class WorkSampleCategory extends Model
 
     public function samples()
     {
-        return $this->hasMany("App\Models\WorkSample");
+        return $this->hasMany("App\Models\WorkSample", "category_id");
     }
 }
