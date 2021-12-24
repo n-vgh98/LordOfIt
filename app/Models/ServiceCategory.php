@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class ServiceCategory extends Model
 {
     use HasFactory;
+    protected $table = "services_categories";
+
+
     public function services(){
         return $this->hasMany("App\Models\Service_Category");
     }

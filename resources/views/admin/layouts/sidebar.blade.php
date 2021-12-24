@@ -33,14 +33,8 @@
                 <ul class="treeview-menu">
                     <li class="active"><a href="{{ route('admin.users') }}"><i class="fa fa-circle-o"></i>لیست
                             همه کاربران</a></li>
-                    {{-- <li class="active"><a href="{{ route('admin.normal.users') }}"><i --}}
-                    {{-- class="fa fa-circle-o"></i>لیست --}}
-                    {{-- کاربران عادی</a></li> --}}
-                    {{-- <li class="active"><a href="{{ route('admin.writer.users') }}"><i --}}
-                    {{-- class="fa fa-circle-o"></i>لیست --}}
-                    {{-- کاربران نویسنده</a></li> --}}
-                    {{-- <li class="active"><a href="{{ route('admin.admin.users') }}"><i --}}
-                    {{-- class="fa fa-circle-o"></i>لیست --}}
+                    {{-- <li class="active"><a href="{{ route('admin.normal.users') }}"><i --}} {{-- class="fa fa-circle-o"></i>لیست --}} {{-- کاربران عادی</a></li> --}} {{-- <li class="active"><a href="{{ route('admin.writer.users') }}"><i --}}
+                    {{-- class="fa fa-circle-o"></i>لیست --}} {{-- کاربران نویسنده</a></li> --}} {{-- <li class="active"><a href="{{ route('admin.admin.users') }}"><i --}} {{-- class="fa fa-circle-o"></i>لیست --}}
                     {{-- ادمین ها</a></li> --}}
                 </ul>
             </li>
@@ -103,7 +97,20 @@
             </li>
             {{-- end of articels --}}
 
-            {{-- services --}}
+            <!-- {{-- Services --}} -->
+            <li class="header">خدمات</li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-dashboard"></i> <span> خدمات</span> <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+
+                    <li class="active"><a href="{{ route('services.index') }}"><i class="fa fa-circle-o"></i>
+                            متن های خدمات </a></li>
+                    <li class="active"><a href="{{ route('services_categories.index') }}"><i
+                                class="fa fa-circle-o"></i>دسته بندی متن خدمات </a></li>
+                </ul>
+            </li>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-dashboard"></i> <span>تعرفه خدمات</span> <i class="fa fa-angle-left pull-right"></i>
@@ -114,7 +121,6 @@
                                 class="fa fa-circle-o"></i>دسته بندی تعرفه خدمات </a></li>
                 </ul>
             </li>
-            {{-- end of services --}}
 
             {{-- work_samples --}}
             <li class="treeview">
@@ -151,6 +157,7 @@
             </li> -->
 
             <!-- {{-- invite to coaperate --}} -->
+            <!-- {{-- end of services --}} -->
 
             {{-- Start OurTeam & about us --}}
             <li class="header"> تیم ما و درباره ما</li>
