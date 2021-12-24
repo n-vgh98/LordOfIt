@@ -106,6 +106,24 @@ class AdminWorkSample extends Controller
      */
     public function destroy($id)
     {
-        //
+        $member = WorkSample::find($id);
+        unlink($member->image->path);
+        $member->delete();
+        return redirect()->back()->with("success", "نمونه کار مورد نظر با موفقیت حذف شد");
+    }
+
+    public function updateimage(Request $request, $id)
+    {
+        $image = Image::find($id);
+        $image->name = $request->name;
+        $image->alt = $request->alt;
+        if ($request->path !== null) {
+            unlink($image->path);
+            $imagename = time() . "." . $request->path->extension();
+            $request->path->move(public_path("images/work_samples/"), $imagename);
+            $image->path = "images/work_samples/" . $imagename;
+        }
+        $image->save();
+        return redirect()->back()->with("success", "عکس نمونه کار  با موفقیت ویرایش شد");
     }
 }
