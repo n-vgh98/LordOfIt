@@ -70,7 +70,8 @@
 
 
                     <td class="text-center">
-                        <a href="#">{{ $sample->category->title }}</a>
+                        <a
+                            href="{{ route('admin.work_samples.category.show', $sample->category->id) }}">{{ $sample->category->title }}</a>
                     </td>
 
 
@@ -262,5 +263,5 @@
         </tbody>
     </table>
     {{-- button to add sample --}}
-    <a class="btn btn-primary" href="{{ route('admin.work_samples.create', $category->id) }}"> ساخت دسته بندی جدید </a>
+    <a class="btn btn-primary" href="{{ route('admin.work_samples.create', $category->id) }}"> ساخت نمونه کار جدید </a>
 @endsection
