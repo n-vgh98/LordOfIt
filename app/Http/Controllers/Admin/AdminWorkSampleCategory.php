@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\WorkSample;
 use App\Models\WorkSampleCategory;
 use Illuminate\Http\Request;
 
@@ -40,6 +39,9 @@ class AdminWorkSampleCategory extends Controller
     {
         $category = new WorkSampleCategory();
         $category->title = $request->title;
+        if ($request->text !== null) {
+            $category->text = $request->text;
+        }
         $category->save();
         return redirect()->back()->with("success", "دسته بندی شما با موفقیت ساخته شد");
     }
@@ -64,7 +66,7 @@ class AdminWorkSampleCategory extends Controller
      */
     public function edit($id)
     {
-        //    
+        //
     }
 
     /**
@@ -78,6 +80,9 @@ class AdminWorkSampleCategory extends Controller
     {
         $category = WorkSampleCategory::find($id);
         $category->title = $request->title;
+        if ($request->text !== null) {
+            $category->text = $request->text;
+        }
         $category->save();
         return redirect()->back()->with("success", "دسته بندی شما با موفقیت ویرایش شد");
     }
