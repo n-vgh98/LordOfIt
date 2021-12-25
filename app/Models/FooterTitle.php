@@ -12,4 +12,10 @@ class FooterTitle extends Model
     {
         return $this->hasMany("App\Models\FooterContent");
     }
+
+    // polymorphic relation to lang table
+    public function language()
+    {
+        return $this->morphOne("App\Models\Lang", "langable");
+    }
 }

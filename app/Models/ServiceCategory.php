@@ -14,4 +14,10 @@ class ServiceCategory extends Model
     public function services(){
         return $this->hasMany("App\Models\Service_Category");
     }
+
+    // polymorphic relation to lang table
+    public function language()
+    {
+        return $this->morphOne("App\Models\Lang", "langable");
+    }
 }

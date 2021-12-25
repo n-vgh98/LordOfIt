@@ -16,4 +16,10 @@ class WorkSample extends Model
     {
         return $this->morphOne("App\Models\Image", "imageable");
     }
+
+    // polymorphic relation to lang table
+    public function language()
+    {
+        return $this->morphOne("App\Models\Lang", "langable");
+    }
 }
