@@ -20,6 +20,8 @@ use App\Http\Controllers\Admin\AdminServicePriceSubcategoryController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminWorkSample;
 use App\Http\Controllers\Admin\AdminWorkSampleCategory;
+use App\Http\Controllers\User\HomeController;
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -34,13 +36,24 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
+route::get("/", function () {
+    return redirect()->route("home");
+})->middleware("language");
+
+route::get("/fa", function () {
+    return redirect()->route("home", "fa");
+})->name("fa");
+
+route::get("/en", function () {
+    return redirect()->route("home", "en");
+})->name("en");
+
+Route::prefix('/{locale}/home')->middleware("language")->group(function () {
+    route::get("/", [HomeController::class, "index"])->name("home");
+
+});
 
 // admin routing
 route::prefix("admin")->middleware("auth", "admin")->group(function () {
