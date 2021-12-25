@@ -4,25 +4,21 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">ایجاد مقاله جدید</h1>
+                <h1 class="m-0 text-dark">ایجاد خدمات جدید</h1>
             </div><!-- /.col -->
         </div><!-- /.row -->
     </div>
 
-    {!! Form::open(['method' => 'post', 'action' => 'App\Http\Controllers\Admin\AdminArticleController@store', 'files' => true]) !!}
+    {!! Form::open(['method' => 'post', 'action' => 'App\Http\Controllers\Admin\AdminServiceController@store', 'files' => true]) !!}
 
     <div>
         {!! Form::label('title', 'عنوان:') !!}
         {!! Form::text('title', null, ['class' => 'form-control']) !!}
     </div><br>
-    <div>
-        {!! Form::label('slug', 'نام مستعار:') !!}
-        {!! Form::text('slug', null, ['class' => 'form-control']) !!}
-    </div><br>
 
     <div>
-        {!! Form::label('status', 'وضعیت:') !!}
-        {!! Form::select('status', ['0' => 'غیرفعال', '1' => 'فعال'], 1, ['class' => 'form-control']) !!}
+        {!! Form::label('category','دسته بندی:') !!}
+        {!! Form::select('category',$category,null , ['class'=>'form-control']) !!}
     </div><br>
     <div>
         {!! Form::label('meta_description', 'متا توضیحات:') !!}

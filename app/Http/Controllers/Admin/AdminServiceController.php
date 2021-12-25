@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Service;
+use App\Models\ServiceCategory;
+use App\Models\Image;
+use Illuminate\Support\Facades\Session;
 
 class AdminServiceController extends Controller
 {
@@ -14,7 +18,8 @@ class AdminServiceController extends Controller
      */
     public function index()
     {
-        //
+        $services = Service::with('category')->get();
+        return view('admin.services.index',compact('services'));
     }
 
     /**
@@ -24,7 +29,8 @@ class AdminServiceController extends Controller
      */
     public function create()
     {
-        //
+        $category= ServiceCategory::pluck('title','id');
+        return view('admin.services.create',compact('category'));
     }
 
     /**
@@ -35,7 +41,33 @@ class AdminServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $services = new Service();
+        $services->title = $request->input('title');
+        $services->text_1 = $request->input('text_1');
+        $services->text_2 = $request->input('text_2');
+        $services->text_3 = $request->input('text_3');
+        $services->text_4 = $request->input('text_4');
+        $services->v_link_1 = $request->input('v_link_1');
+        $services->v_link_1 = $request->input('v_link_2');
+        $services->v_link_3 = $request->input('v_link_3');
+        $services->v_link_4 = $request->input('v_link_4');
+        $services->category_id = $request->input('category');
+        $services->meta_description = $request->input('meta_description');
+        $services->meta_keywords = $request->input('meta_keywords');
+        $services->save();
+
+        // saving service image
+        $image = new Image();
+        $image->name = $request->img_name;
+        $image->alt = $request->alt;
+        $image->uploader_id = auth()->user()->id;
+        $imagename = time() . "." . $request->path->extension();
+        $request->path->move(public_path("images/services/category/"), $imagename);
+        $image->path = "images/services/category/" . $imagename;
+        $services->image()->save($image);
+
+        Session::flash('add_service','خدمات جدید با موفقیت ثبت شد');
+        return redirect('admin/services');
     }
 
     /**
@@ -57,7 +89,9 @@ class AdminServiceController extends Controller
      */
     public function edit($id)
     {
-        //
+        $service=Service::with('category')->where('id',$id)->first();
+        $category=ServiceCategory::pluck('title','id');
+        return view('admin.services.edit',compact(['service','category']));
     }
 
     /**
@@ -69,7 +103,22 @@ class AdminServiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $service = Service::findOrFail($id);
+        $service->title = $request->input('title');
+        $service->text_1 = $request->input('text_1');
+        $service->text_2 = $request->input('text_2');
+        $service->text_3 = $request->input('text_3');
+        $service->text_4 = $request->input('text_4');
+        $service->v_link_1 = $request->input('v_link_1');
+        $service->v_link_1 = $request->input('v_link_2');
+        $service->v_link_3 = $request->input('v_link_3');
+        $service->v_link_4 = $request->input('v_link_4');
+        $service->category_id = $request->input('category');
+        $service->meta_description = $request->input('meta_description');
+        $service->meta_keywords = $request->input('meta_keywords');
+        $service->save();
+        Session::flash('add_service','خدمات با موفقیت ویرایش شد');
+        return redirect('admin/services');
     }
 
     /**
@@ -80,6 +129,25 @@ class AdminServiceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $service = Service::findOrFail($id);
+        unlink($service->image->path);
+        $service->delete();
+        Session::flash('delete_service','خدمات حذف شد');
+        return redirect('admin/services');
+    }
+
+    public function updateimage(Request $request, $id)
+    {
+        $image = Image::find($id);
+        $image->name = $request->name;
+        $image->alt = $request->alt;
+        if ($request->path !== null) {
+            unlink($image->path);
+            $imagename = time() . "." . $request->path->extension();
+            $request->path->move(public_path("images/services/category/"), $imagename);
+            $image->path = "images/services/category/" . $imagename;
+        }
+        $image->save();
+        return redirect()->back()->with("success", "عکس خدمات  با موفقیت ویرایش شد");
     }
 }

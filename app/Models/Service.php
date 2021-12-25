@@ -8,9 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Service extends Model
 {
     use HasFactory;
+    protected $table = "services";
 
     public function category(){
-        return $this->belongsTo("App\Models\Service");
+        return $this->belongsTo("App\Models\ServiceCategory");
     }
 
     // polymorphic relation to image table
