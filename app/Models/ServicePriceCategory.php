@@ -23,4 +23,10 @@ class ServicePriceCategory extends Model
     {
         return $this->hasMany("App\Models\ServicePrice", "category_id");
     }
+
+    // polymorphic relation to lang table
+    public function language()
+    {
+        return $this->morphOne("App\Models\Lang", "langable");
+    }
 }

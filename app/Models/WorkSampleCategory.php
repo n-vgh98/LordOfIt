@@ -13,4 +13,10 @@ class WorkSampleCategory extends Model
     {
         return $this->hasMany("App\Models\WorkSample", "category_id");
     }
+
+    // polymorphic relation to lang table
+    public function language()
+    {
+        return $this->morphOne("App\Models\Lang", "langable");
+    }
 }

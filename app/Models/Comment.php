@@ -22,4 +22,10 @@ class Comment extends Model
     {
         return $this->belongsTo("App\Models\Comment", "parent_id");
     }
+
+    // polymorphic relation to lang table
+    public function language()
+    {
+        return $this->morphOne("App\Models\Lang", "langable");
+    }
 }
