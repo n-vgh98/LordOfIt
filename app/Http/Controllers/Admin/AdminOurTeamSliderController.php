@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Image;
+use App\Models\Lang;
 use App\Models\OurTeamSlider;
 use Illuminate\Http\Request;
 
@@ -14,10 +15,11 @@ class AdminOurTeamSliderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($lang)
     {
-        $sliderimages = OurTeamSlider::all();
-        return view("admin.ourteam.slider", compact("sliderimages"));
+        $languages = Lang::where([["langable_type", "App\Models\OurTeamSlider"], ["name", $lang]])->get();
+        // dd($languages);
+        return view("admin.ourteam.slider", compact("languages", "lang"));
     }
 
     /**
@@ -38,7 +40,6 @@ class AdminOurTeamSliderController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
         $sliderimage = new OurTeamSlider();
         $sliderimage->save();
         $image = new Image();
@@ -49,6 +50,11 @@ class AdminOurTeamSliderController extends Controller
         $image->alt = $request->alt;
         $image->uploader_id = auth()->user()->id;
         $sliderimage->detail()->save($image);
+
+        // saving language for article
+        $language = new Lang();
+        $language->name = $request->lang;
+        $sliderimage->language()->save($language);
         return redirect()->back()->with("success", "عکس شما با موفقیت ذخیره شد");
     }
 
@@ -109,6 +115,7 @@ class AdminOurTeamSliderController extends Controller
         unlink($image->detail->path);
         $image->detail->delete();
         $image->delete();
+        $image->language()->delete();
         return redirect()->back()->with("fail", "عکس شما با موفقیت حذف شد");
     }
 }

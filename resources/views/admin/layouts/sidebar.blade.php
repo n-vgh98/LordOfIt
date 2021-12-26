@@ -166,7 +166,7 @@
                     <i class="fa fa-dashboard"></i> <span>تیم ما</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="{{ route('admin.ourteam.slider.index') }}"><i
+                    <li class="active"><a href="{{ route('admin.ourteam.slider.index', 'fa') }}"><i
                                 class="fa fa-circle-o"></i>اسلایدر صفحه</a></li>
                     <li class="active"><a href="{{ route('admin.ourteam.index', 'fa') }}"><i
                                 class="fa fa-circle-o"></i>همکاران </a></li>

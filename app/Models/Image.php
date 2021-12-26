@@ -13,4 +13,10 @@ class Image extends Model
     {
         return $this->morphTo();
     }
+
+    // polymorphic relation to lang table
+    public function language()
+    {
+        return $this->morphOne("App\Models\Lang", "langable");
+    }
 }
