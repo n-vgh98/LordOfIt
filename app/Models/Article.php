@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Article extends Model
 {
     use HasFactory;
-    public function users(){
+    public function users()
+    {
         return $this->belongsToMany(User::class);
     }
 
@@ -21,6 +22,6 @@ class Article extends Model
     // polymorphic relation to lang table
     public function language()
     {
-        return $this->morphOne("App\Models\Lang", "langable");
+        return $this->morphOne("App\Models\Language", "languageable");
     }
 }
