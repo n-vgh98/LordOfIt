@@ -11,6 +11,12 @@
 @endsection
 
 @section('content')
+    <section class="text-center">
+        <div class="btn-group btn-group-toggle">
+            <a href="{{ route('admin.work_samples.category.index', 'fa') }}" class="btn btn-primary">فارسی</a>
+            <a href="{{ route('admin.work_samples.category.index', 'en') }}" class="btn btn-primary">انگلیسی</a>
+        </div>
+    </section>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -28,10 +34,11 @@
                 $number = 0;
             @endphp
 
-            @foreach ($categories as $category)
+            @foreach ($languages as $language)
 
                 @php
                     $number++;
+                    $category = $language->langable;
                 @endphp
                 <tr>
                     {{-- button for removing category --}}
@@ -244,6 +251,8 @@
                                 شدم</button>
                             <button type="submit" class="btn btn-primary">ارسال</button>
                         </div>
+
+                        <input type="hidden" name="lang" value="{{ $lang }}">
 
                     </form>
                 </div>

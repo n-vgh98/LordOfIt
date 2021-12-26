@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Lang;
 use App\Models\WorkSampleCategory;
 use Illuminate\Http\Request;
 
@@ -13,10 +14,11 @@ class AdminWorkSampleCategory extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($lang)
     {
-        $categories = WorkSampleCategory::all();
-        return view("admin.work_samples.category.index", compact("categories"));
+        $languages = Lang::where([["langable_type", "App\Models\WorkSampleCategory"], ["name", $lang]])->get();
+
+        return view("admin.work_samples.category.index", compact("languages", "lang"));
     }
 
     /**
@@ -37,12 +39,19 @@ class AdminWorkSampleCategory extends Controller
      */
     public function store(Request $request)
     {
+
         $category = new WorkSampleCategory();
         $category->title = $request->title;
         if ($request->text !== null) {
             $category->text = $request->text;
         }
         $category->save();
+
+        // saving language for course
+        $language = new Lang();
+        $language->name = $request->lang;
+        $category->language()->save($language);
+
         return redirect()->back()->with("success", "دسته بندی شما با موفقیت ساخته شد");
     }
 
@@ -97,6 +106,7 @@ class AdminWorkSampleCategory extends Controller
     {
         $category = WorkSampleCategory::find($id);
         $category->delete();
+        $category->language()->delete();
         return redirect()->back()->with("success", "دسته بندی شما با موفقیت حذف شد");
     }
 }

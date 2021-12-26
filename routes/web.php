@@ -239,7 +239,7 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
 
         // route for service price categories
         route::prefix("categories")->group(function () {
-            route::get("/", [AdminWorkSampleCategory::class, "index"])->name("admin.work_samples.category.index");
+            route::get("/{lang}", [AdminWorkSampleCategory::class, "index"])->name("admin.work_samples.category.index");
             route::post("/store", [AdminWorkSampleCategory::class, "store"])->name("admin.work_samples.category.store");
             route::post("/update/{id}", [AdminWorkSampleCategory::class, "update"])->name("admin.work_samples.category.update");
             route::get("/show/{id}", [AdminWorkSampleCategory::class, "show"])->name("admin.work_samples.category.show");

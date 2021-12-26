@@ -129,7 +129,7 @@
                         class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="{{ route('admin.work_samples.category.index') }}"><i
+                    <li class="active"><a href="{{ route('admin.work_samples.category.index', 'fa') }}"><i
                                 class="fa fa-circle-o"></i>دسته بندی نمونه کار ها</a></li>
                     <li class="active"><a href="{{ route('admin.work_samples.index') }}"><i
                                 class="fa fa-circle-o"></i>همه نمونه کار ها</a></li>

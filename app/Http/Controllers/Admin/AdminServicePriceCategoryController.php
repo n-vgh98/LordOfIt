@@ -48,7 +48,6 @@ class AdminServicePriceCategoryController extends Controller
         // saving language for course
         $language = new Lang();
         $language->name = $request->lang;
-
         $category->language()->save($language);
 
         return redirect()->route("admin.services.price.category.index", $request->lang)->with("success", 'دسته بندی شما با موفقیت اضافه شد');
