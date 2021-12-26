@@ -95,7 +95,6 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
     // ##
 
     //route for articles
-    // Route::resource("articles/{lang}", AdminArticleController::class);
     route::prefix("articles")->group(function () {
         route::get("/{lang}", [AdminArticleController::class, "index"])->name("admin.articles.index");
         route::get("/create/{lang}", [AdminArticleController::class, "create"])->name("admin.articles.create");
@@ -176,13 +175,40 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
     });
 
     //route for about_us
-    Route::resource("about_us", AdminAboutUsController::class);
-    route::post("about_us/updateimage/{id}", [AdminAboutUsController::class, "updateimage"])->name("admin.about_us.update.image");
-
+    // Route::resource("about_us", AdminAboutUsController::class);
+    route::prefix("about_us")->group(function () {
+        route::get("/{lang}", [AdminAboutUsController::class, "index"])->name("admin.about_us.index");
+        route::get("/create/{lang}", [AdminAboutUsController::class, "create"])->name("admin.about_us.create");
+        route::post("/store", [AdminAboutUsController::class, "store"])->name("admin.about_us.store");
+        route::get("/edit/{id}", [AdminAboutUsController::class, "edit"])->name("admin.about_us.edit");
+        route::patch("update/{id}", [AdminAboutUsController::class, "update"])->name("admin.about_us.update");
+        route::delete("destroy/{id}", [AdminAboutUsController::class, "destroy"])->name("admin.about_us.destroy");
+        route::post("/updateimage/{id}", [AdminAboutUsController::class, "updateimage"])->name("admin.about_us.update.image");
+        // route::post("about_us/updateimage/{id}", [AdminAboutUsController::class, "updateimage"])->name("admin.about_us.update.image");
+    });
     //route for services
-    Route::resource('services', AdminServiceController::class);
-    Route::resource('services_categories', AdminServiceCategoryController::class);
-    route::post("services/updateimage/{id}", [AdminServiceController::class, "updateimage"])->name("admin.services.update.image");
+    route::prefix("services")->group(function () {
+        route::get("/{lang}", [AdminServiceController::class, "index"])->name("admin.services.index");
+        route::get("/create/{lang}", [AdminServiceController::class, "create"])->name("admin.services.create");
+        route::post("/store", [AdminServiceController::class, "store"])->name("admin.services.store");
+        route::get("/edit/{id}", [AdminServiceController::class, "edit"])->name("admin.services.edit");
+        route::patch("update/{id}", [AdminServiceController::class, "update"])->name("admin.services.update");
+        route::delete("destroy/{id}", [AdminServiceController::class, "destroy"])->name("admin.services.destroy");
+        route::post("/updateimage/{id}", [AdminServiceController::class, "updateimage"])->name("admin.services.update.image");
+
+        //create services categories route
+        route::prefix("categories")->group(function () {
+            route::get("/{lang}", [AdminServiceCategoryController::class, "index"])->name("admin.services_categories.index");
+            route::get("/create/{lang}", [AdminServiceCategoryController::class, "create"])->name("admin.services_categories.create");
+            route::post("/store", [AdminServiceCategoryController::class, "store"])->name("admin.services_categories.store");
+            route::get("/edit/{id}", [AdminServiceCategoryController::class, "edit"])->name("admin.services_categories.edit");
+            route::patch("update/{id}", [AdminServiceCategoryController::class, "update"])->name("admin.services_categories.update");
+            route::delete("destroy/{id}", [AdminServiceCategoryController::class, "destroy"])->name("admin.services_categories.destroy");
+
+        });
+    });
+    // 
+
 
     // routes for services prices
     route::prefix("service-prices")->group(function () {

@@ -16,10 +16,21 @@
         {!! Form::text('title', null, ['class' => 'form-control']) !!}
     </div><br>
 
+
     <div>
-        {!! Form::label('category','دسته بندی:') !!}
-        {!! Form::select('category',$category,null , ['class'=>'form-control']) !!}
-    </div><br>
+    <label style="display: inline-block;
+                max-width: 100%;
+                margin-bottom: 5px;
+                font-weight: bold;
+                ">نام دسته بندی:</label>
+        <select class="form-control" name="category">
+            @foreach($categories as $category)
+            <option value="{{$category->id}}">{{$category->title}}</option>
+            @endforeach
+        </select>
+        
+    </div>
+
     <div>
         {!! Form::label('meta_description', 'متا توضیحات:') !!}
         {!! Form::textarea('meta_description', null, ['class' => 'form-control']) !!}
@@ -118,6 +129,8 @@
             @enderror
         </div>
     </div>
+    <input type="hidden" value="{{$lang}}" name="lang">
+    </input>
     <div>
         {!! Form::submit('ذخیره', ['class' => 'btn btn-primary']) !!}
     </div>

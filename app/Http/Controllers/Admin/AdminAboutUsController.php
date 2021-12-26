@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\AboutUs;
 use Illuminate\Http\Request;
 use App\Models\Image;
+use App\Models\Lang;
 use Illuminate\Support\Facades\Session;
 
 class AdminAboutUsController extends Controller
@@ -15,10 +16,11 @@ class AdminAboutUsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($lang)
     {
-        $about_us = AboutUs::all();
-        return view('admin.about_us.index',compact('about_us'));
+        $languages = Lang::where([["langable_type", "App\Models\AboutUs"], ["name", $lang]])->get();
+        // dd($languages[0]->langable);
+        return view('admin.about_us.index', compact('languages', 'lang'));
     }
 
     /**
@@ -26,9 +28,9 @@ class AdminAboutUsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($lang)
     {
-        return view('admin.about_us.create');
+        return view('admin.about_us.create',compact('lang'));
     }
 
     /**
@@ -63,8 +65,13 @@ class AdminAboutUsController extends Controller
         $image->path = "images/about_us/" . $imagename;
         $about_us->image()->save($image);
 
+         // saving language for about us
+         $language = new Lang();
+         $language->name = $request->lang;
+         $about_us->language()->save($language);
+
         Session::flash('add_about_us','درباره ما با موفقیت ثبت شد');
-        return redirect('admin/about_us');
+        return redirect()->route('admin.about_us.index',$request->lang);
     }
 
     /**
@@ -114,7 +121,7 @@ class AdminAboutUsController extends Controller
         $about_us->save();
 
         Session::flash('add_about_us','درباره ما با موفقیت ویرایش شد');
-        return redirect('admin/about_us');
+        return redirect()->route('admin.about_us.index',$request->lang);
 
     }
 
@@ -128,9 +135,10 @@ class AdminAboutUsController extends Controller
     {
         $about_us = AboutUs::findOrFail($id);
         unlink($about_us->image->path);
+        $about_us->language()->delete();
         $about_us->delete();
         Session::flash('delete_about_us','درباره ما حذف شد.');
-        return redirect('admin/about_us');
+        return redirect()->back();
     }
 
     public function updateimage(Request $request, $id)

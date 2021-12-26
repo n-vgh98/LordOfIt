@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Lang;
 use App\Models\ServiceCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -14,10 +15,15 @@ class AdminServiceCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($lang)
     {
-        $categories = ServiceCategory::all();
-        return view('admin.services.categories.index',compact('categories'));
+        $languages = Lang::where([["langable_type", "App\Models\ServiceCategory"], ["name", $lang]])->get();
+        // dd($languages[0]->langable);
+        return view('admin.services.categories.index', compact('languages', 'lang'));
+
+
+        // $categories = ServiceCategory::all();
+        // return view('admin.services.categories.index',compact('categories'));
     }
 
     /**
@@ -50,8 +56,14 @@ class AdminServiceCategoryController extends Controller
         $category->meta_keywords  = $request->meta_keywords;
         $category->save();
 
+        // saving language for category
+        $language = new Lang();
+        $language->name = $request->lang;
+        $category->language()->save($language);
+
         Session::flash('add_servise_categroy','دسته بندی جدید با موفقیت ثبت شد');
-        return redirect('admin/services_categories');
+        return redirect()->route('admin.services_categories.index',$request->lang);
+
 
 
        }
@@ -90,7 +102,7 @@ class AdminServiceCategoryController extends Controller
     {
         $category = ServiceCategory::findOrFail($id);
         $category->title  = $request->title;
-        $category->slug= $request->input('slug');
+        $category->slug= $request->slug;
         if ($request->input('slug')){
             $category->slug =make_slug( $request->input('slug'));
         }else{
@@ -101,7 +113,8 @@ class AdminServiceCategoryController extends Controller
         $category->save();
 
         Session::flash('add_servise_categroy','دسته بندی  با موفقیت ویرایش شد');
-        return redirect('admin/services_categories');
+        return redirect()->route('admin.services_categories.index',$request->lang);
+
     }
 
     /**
@@ -113,8 +126,9 @@ class AdminServiceCategoryController extends Controller
     public function destroy($id)
     {
         $category = ServiceCategory::findOrFail($id);
+        $category->language()->delete();
         $category->delete();
         Session::flash('delete_servise_categroy','دسته بندی حذف شد');
-        return redirect('admin/services_categories');
+        return redirect()->back();
     }
 }
