@@ -168,7 +168,7 @@
                 <ul class="treeview-menu">
                     <li class="active"><a href="{{ route('admin.ourteam.slider.index') }}"><i
                                 class="fa fa-circle-o"></i>اسلایدر صفحه</a></li>
-                    <li class="active"><a href="{{ route('admin.ourteam.index') }}"><i
+                    <li class="active"><a href="{{ route('admin.ourteam.index', 'fa') }}"><i
                                 class="fa fa-circle-o"></i>همکاران </a></li>
 
                 </ul>

@@ -10,6 +10,12 @@
 @endsection
 
 @section('content')
+    <section class="text-center">
+        <div class="btn-group btn-group-toggle">
+            <a href="{{ route('admin.ourteam.index', 'fa') }}" class="btn btn-primary">فارسی</a>
+            <a href="{{ route('admin.ourteam.index', 'en') }}" class="btn btn-primary">انگلیسی</a>
+        </div>
+    </section>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -29,10 +35,11 @@
                 $number = 0;
             @endphp
 
-            @foreach ($members as $member)
+            @foreach ($languages as $language)
 
                 @php
                     $number++;
+                    $member = $language->langable;
                 @endphp
 
 
@@ -433,7 +440,7 @@
                                 شدم</button>
                             <button type="submit" class="btn btn-primary">ارسال</button>
                         </div>
-
+                        <input type="hidden" name="lang" value="{{ $lang }}">
                     </form>
                 </div>
                 <div class="modal-footer">

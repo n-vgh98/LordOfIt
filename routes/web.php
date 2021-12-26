@@ -141,7 +141,7 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
 
     // routes for our team
     route::prefix("ourteam")->group(function () {
-        route::get("/", [AdminOurTeamController::class, "index"])->name("admin.ourteam.index");
+        route::get("/{lang}", [AdminOurTeamController::class, "index"])->name("admin.ourteam.index");
         route::post("/store", [AdminOurTeamController::class, "store"])->name("admin.ourteam.store");
         route::post("/updateimage/{id}", [AdminOurTeamController::class, "updateimage"])->name("admin.ourteam.update.image");
         route::post("/update/{id}", [AdminOurTeamController::class, "update"])->name("admin.ourteam.update");

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Image;
+use App\Models\Lang;
 use App\Models\OurTeam;
 use Illuminate\Http\Request;
 
@@ -14,10 +15,10 @@ class AdminOurTeamController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($lang)
     {
-        $members = OurTeam::all();
-        return view("admin.ourteam.index", compact("members"));
+        $languages = Lang::where([["langable_type", "App\Models\OurTeam"], ["name", $lang]])->get();
+        return view("admin.ourteam.index", compact("languages", "lang"));
     }
 
     /**
@@ -53,6 +54,11 @@ class AdminOurTeamController extends Controller
         $request->path->move(public_path("images/ourteam/members/"), $imagename);
         $image->path = "images/ourteam/members/" . $imagename;
         $member->image()->save($image);
+
+        // saving language for course
+        $language = new Lang();
+        $language->name = $request->lang;
+        $member->language()->save($language);
         return redirect()->back()->with("success", "همکار جدید با موفقیت اضافه شد");
     }
 
@@ -106,6 +112,7 @@ class AdminOurTeamController extends Controller
         $member = OurTeam::find($id);
         unlink($member->image->path);
         $member->delete();
+        $member->language()->delete();
         return redirect()->back()->with("success", "همکار مورد نظر با موفقیت حذف شد");
     }
 
