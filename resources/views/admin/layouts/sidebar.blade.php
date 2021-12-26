@@ -77,7 +77,7 @@
                 <ul class="treeview-menu">
                     <li class="active"><a href="{{ route('admin.courses.index', 'fa') }}"><i
                                 class="fa fa-circle-o"></i>دوره ها</a></li>
-                    <li class="active"><a href="{{ route('admin.courses.slider.index') }}"><i
+                    <li class="active"><a href="{{ route('admin.courses.slider.index', 'fa') }}"><i
                                 class="fa fa-circle-o"></i>اسلایدر</a></li>
                 </ul>
             </li>

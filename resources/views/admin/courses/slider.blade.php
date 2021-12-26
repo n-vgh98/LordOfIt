@@ -10,6 +10,12 @@
 @endsection
 
 @section('content')
+    <section class="text-center">
+        <div class="btn-group btn-group-toggle">
+            <a href="{{ route('admin.courses.slider.index', 'fa') }}" class="btn btn-primary">فارسی</a>
+            <a href="{{ route('admin.courses.slider.index', 'en') }}" class="btn btn-primary">انگلیسی</a>
+        </div>
+    </section>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -25,11 +31,12 @@
                 $number = 0;
             @endphp
 
-            @foreach ($sliderimages as $image)
+            @foreach ($languages as $language)
 
 
                 {{-- it get  image detail because we cant use relations in on src tags --}}
                 @php
+                    $image = $language->langable;
                     $imagedetail = $image->detail;
                     $number++;
                 @endphp
@@ -105,7 +112,8 @@
                                             <div class="col-md-6">
                                                 <input id="alt" type="text"
                                                     class="form-control @error('alt') is-invalid @enderror" name="alt"
-                                                    required value="{{ $imagedetail->alt }}" autocomplete="alt" autofocus>
+                                                    required value="{{ $imagedetail->alt }}" autocomplete="alt"
+                                                    autofocus>
 
                                                 @error('alt')
                                                     <span class="invalid-feedback" role="alert">
@@ -171,6 +179,7 @@
                 <div class="modal-body">
                     <form action="{{ route('admin.courses.slider.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        <input type="hidden" name="lang" value="{{ $lang }}">
                         {{-- path of photo --}}
                         <div class="form-group row">
                             <label for="path" class="col-md-4 col-form-label text-md-right">{{ __('عکس') }}</label>

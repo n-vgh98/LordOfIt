@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Image;
-use App\Models\Course;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\CourseSlider;
+use App\Models\Image;
+use App\Models\Lang;
+use Illuminate\Http\Request;
 
 class AdminCoursesSliderController extends Controller
 {
@@ -15,10 +15,11 @@ class AdminCoursesSliderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($lang)
     {
-        $sliderimages = CourseSlider::all();
-        return view("admin.courses.slider", compact("sliderimages"));
+        // dd($lang);
+        $languages = Lang::where([["langable_type", "App\Models\CourseSlider"], ["name", $lang]])->get();
+        return view("admin.courses.slider", compact("languages", "lang"));
     }
 
     /**
@@ -39,6 +40,7 @@ class AdminCoursesSliderController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $sliderimage = new CourseSlider();
         $sliderimage->save();
         $image = new Image();
@@ -49,6 +51,10 @@ class AdminCoursesSliderController extends Controller
         $image->alt = $request->alt;
         $image->uploader_id = auth()->user()->id;
         $sliderimage->detail()->save($image);
+        // saving language for article
+        $language = new Lang();
+        $language->name = $request->lang;
+        $sliderimage->language()->save($language);
         return redirect()->back()->with("success", "دوره شما با موفقیت ذخیره شد");
     }
 
@@ -109,6 +115,7 @@ class AdminCoursesSliderController extends Controller
         unlink($image->detail->path);
         $image->detail->delete();
         $image->delete();
+        $image->language()->delete();
         return redirect()->back()->with("fail", "دوره شما با موفقیت حذف شد");
     }
 }
