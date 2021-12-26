@@ -105,9 +105,9 @@
                 </a>
                 <ul class="treeview-menu">
 
-                    <li class="active"><a href="{{ route('services.index') }}"><i class="fa fa-circle-o"></i>
+                    <li class="active"><a href="{{ route('admin.services.index','fa') }}"><i class="fa fa-circle-o"></i>
                             متن های خدمات </a></li>
-                    <li class="active"><a href="{{ route('services_categories.index') }}"><i
+                    <li class="active"><a href="{{ route('admin.services_categories.index','fa') }}"><i
                                 class="fa fa-circle-o"></i>دسته بندی متن خدمات </a></li>
                 </ul>
             </li>
@@ -174,7 +174,7 @@
                 </ul>
             </li>
             <li class="treeview">
-                <a href="{{ route('about_us.index') }}">
+                <a href="{{ route('admin.about_us.index','fa') }}">
                     <i class="fa fa-dashboard"></i><span>درباره ما</span>
                 </a>
             </li>

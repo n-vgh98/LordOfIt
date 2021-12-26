@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\Service;
 use App\Models\ServiceCategory;
 use App\Models\Image;
+use App\Models\Lang;
 use Illuminate\Support\Facades\Session;
+use PhpParser\Node\Stmt\Foreach_;
 
 class AdminServiceController extends Controller
 {
@@ -16,10 +18,10 @@ class AdminServiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($lang)
     {
-        $services = Service::with('category')->get();
-        return view('admin.services.index',compact('services'));
+        $languages = Lang::where([["langable_type", "App\Models\Service"], ["name", $lang]])->get();
+        return view('admin.services.index', compact('languages', 'lang'));
     }
 
     /**
@@ -27,10 +29,14 @@ class AdminServiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($lang)
     {
-        $category= ServiceCategory::pluck('title','id');
-        return view('admin.services.create',compact('category'));
+        $languages = Lang::where([["langable_type", "App\Models\ServiceCategory"], ["name", $lang]])->get();
+        $categories = array();
+        foreach ($languages as $language) {
+            array_push($categories, $language->langable);
+        }
+        return view('admin.services.create', compact(['lang', 'languages', 'categories']));
     }
 
     /**
@@ -51,7 +57,7 @@ class AdminServiceController extends Controller
         $services->v_link_1 = $request->input('v_link_2');
         $services->v_link_3 = $request->input('v_link_3');
         $services->v_link_4 = $request->input('v_link_4');
-        $services->category_id = $request->input('category');
+        $services->category_id = $request->category;
         $services->meta_description = $request->input('meta_description');
         $services->meta_keywords = $request->input('meta_keywords');
         $services->save();
@@ -66,8 +72,13 @@ class AdminServiceController extends Controller
         $image->path = "images/services/category/" . $imagename;
         $services->image()->save($image);
 
-        Session::flash('add_service','خدمات جدید با موفقیت ثبت شد');
-        return redirect('admin/services');
+        // saving language for services
+        $language = new Lang();
+        $language->name = $request->lang;
+        $services->language()->save($language);
+
+        Session::flash('add_service', 'خدمات جدید با موفقیت ثبت شد');
+        return redirect()->route('admin.services.index', $request->lang);
     }
 
     /**
@@ -89,9 +100,13 @@ class AdminServiceController extends Controller
      */
     public function edit($id)
     {
-        $service=Service::with('category')->where('id',$id)->first();
-        $category=ServiceCategory::pluck('title','id');
-        return view('admin.services.edit',compact(['service','category']));
+        $languages = Lang::where([["langable_type", "App\Models\ServiceCategory"]])->get();
+        $categories = array();
+        foreach ($languages as $language) {
+            array_push($categories, $language->langable);
+        }
+        $service = Service::with('category')->where('id', $id)->first();
+        return view('admin.services.edit', compact(['service', 'categories', 'languages']));
     }
 
     /**
@@ -117,8 +132,8 @@ class AdminServiceController extends Controller
         $service->meta_description = $request->input('meta_description');
         $service->meta_keywords = $request->input('meta_keywords');
         $service->save();
-        Session::flash('add_service','خدمات با موفقیت ویرایش شد');
-        return redirect('admin/services');
+        Session::flash('add_service', 'خدمات با موفقیت ویرایش شد');
+        return redirect()->route('admin.services.index',$request->lang);
     }
 
     /**
@@ -131,9 +146,10 @@ class AdminServiceController extends Controller
     {
         $service = Service::findOrFail($id);
         unlink($service->image->path);
+        $service->language()->delete();
         $service->delete();
-        Session::flash('delete_service','خدمات حذف شد');
-        return redirect('admin/services');
+        Session::flash('delete_service', 'خدمات حذف شد');
+        return redirect()->back();
     }
 
     public function updateimage(Request $request, $id)

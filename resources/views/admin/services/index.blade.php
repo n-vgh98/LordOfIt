@@ -8,6 +8,13 @@
 @endsection
 
 @section('content')
+<section class="text-center">
+    <div class="btn-group btn-group-toggle">
+        <a href="{{ route('admin.services.index','fa') }}" class="btn btn-primary">فارسی</a>
+        <a href="{{ route('admin.services.index','en') }}" class="btn btn-primary">انگلیسی</a>
+    </div>
+</section>
+
 @if(Session()->has('add_service'))
 <div class="alert alert-success">
     <div>{{session('add_service')}}</div>
@@ -34,16 +41,20 @@
         @php
         $number = 1;
         @endphp
-        @foreach($services as $service)
+
+        @foreach($languages as $language)
+        @php
+        $service=$language->langable
+        @endphp
         <tr>
             <td>
-                <form action="{{ route('services.destroy', $service->id) }}" method="POST">
+                <form action="{{ route('admin.services.destroy', $service->id) }}" method="POST">
                     @csrf
                     @method("DELETE")
                     <button class="btn btn-danger" type="submit">حذف</button>
                 </form>
             </td>
-            <td><a class="btn btn-warning" href="{{ route('services.edit', $service->id) }}">ویرایش</a></td>
+            <td><a class="btn btn-warning" href="{{ route('admin.services.edit', $service->id) }}">ویرایش</a></td>
             <td>
                 {!! \Illuminate\Support\Str::limit($service->text_1) !!}
                 <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#service{{ $service->id }}">
@@ -176,6 +187,6 @@
 
     </tbody>
 </table>
-<a href="{{ route('services.create') }}" class="btn btn-primary">ساخت خدمات جدید</a>
+<a href="{{ route('admin.services.create',$lang) }}" class="btn btn-primary">ساخت خدمات جدید</a>
 
 @endsection
