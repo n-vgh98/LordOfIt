@@ -12,4 +12,5 @@ class Lang extends Model
     {
         return $this->morphTo();
     }
+
 }

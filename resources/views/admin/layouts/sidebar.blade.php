@@ -90,7 +90,7 @@
                 </a>
                 <ul class="treeview-menu">
 
-                    <li class="active"><a href="{{ route('articles.index') }}"><i
+                    <li class="active"><a href="{{ route('admin.articles.index','fa') }}"><i
                                 class="fa fa-circle-o"></i>لیست مقالات </a></li>
 
                 </ul>

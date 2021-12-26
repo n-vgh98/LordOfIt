@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Models\Image;
+use App\Models\Lang;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -17,10 +18,14 @@ class AdminArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($lang)
     {
-        $articles = Article::all();
-        return view('admin.articles.index',compact('articles'));
+
+        
+        // $articles = $language->articles;
+        $languages = Lang::where("name",$lang)->get();
+        // dd($languages[0]->langable);
+        return view('admin.articles.index',compact('languages'));
     }
 
     /**
@@ -30,6 +35,7 @@ class AdminArticleController extends Controller
      */
     public function create()
     {
+        
         return view('admin.articles.create');   
     }
 
@@ -74,7 +80,7 @@ class AdminArticleController extends Controller
         $article->image()->save($image);
 
         Session::flash('add_article','مقاله جدید با موفقیت ثبت شد');
-        return redirect('admin/articles');
+        return redirect('admin/articles/{lang}');
     }
 
     /**
