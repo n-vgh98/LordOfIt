@@ -25,7 +25,7 @@
             </div>
         </ul>
         <figure class="big-mediaquery-logo">
-            <img src="imgs/small-logo.png" alt="logo">
+            <img src="{{ asset('front/imgs/small-logo.png') }}" alt="logo">
             <p>LORD OF IT</p>
         </figure>
 
@@ -199,7 +199,7 @@
             <li>
 
                 <a href="#">
-                    <img src="imgs/small-logo.png" alt="logo">
+                    <img src="{{ asset('front/imgs/small-logo.png') }}" alt="logo">
 
                 </a>
 
@@ -211,7 +211,7 @@
     </ul>
 
     <figure class="big-mediaquery-logo">
-        <img src="imgs/small-logo.png" alt="logo">
+        <img src="{{ asset('front/imgs/small-logo.png') }}" alt="logo">
         <p>LORD OF IT</p>
     </figure>
 
