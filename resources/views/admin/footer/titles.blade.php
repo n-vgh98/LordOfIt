@@ -10,9 +10,16 @@
 
     <section class="text-center">
         <div class="btn-group btn-group-toggle">
-            <a href="{{ route('admin.footer.titles.index') }}" class="btn btn-primary">title</a>
-            <a href="{{ route('admin.footer.content.index') }}" class="btn btn-primary">contents</a>
-            <a href="{{ route('admin.footer.links.index') }}" class="btn btn-primary">social media</a>
+            <a href="{{ route('admin.footer.titles.index', $lang) }}" class="btn btn-primary">title</a>
+            <a href="{{ route('admin.footer.content.index', $lang) }}" class="btn btn-primary">contents</a>
+            <a href="{{ route('admin.footer.links.index', $lang) }}" class="btn btn-primary">social media</a>
+        </div>
+    </section>
+
+    <section class="text-center">
+        <div class="btn-group btn-group-toggle">
+            <a href="{{ route('admin.footer.titles.index', 'fa') }}" class="btn btn-primary">فارسی</a>
+            <a href="{{ route('admin.footer.titles.index', 'en') }}" class="btn btn-primary">انگلیسی</a>
         </div>
     </section>
 
@@ -32,7 +39,10 @@
             @php
                 $number = 1;
             @endphp
-            @foreach ($titles as $title)
+            @foreach ($languages as $language)
+                @php
+                    $title = $language->langable;
+                @endphp
                 <tr>
                     <td class="text-center">
                         <form action="{{ route('admin.footer.titles.destroy', $title->id) }}" method="post">
@@ -145,6 +155,8 @@
                 <div class="modal-body">
                     <form action="{{ route('admin.footer.titles.store') }}" method="POST">
                         @csrf
+                        <input type="hidden" name="lang" value="{{ $lang }}">
+
                         <div class="form-group row">
                             <label for="title" class="col-md-4 col-form-label text-md-right">{{ __('عنوان') }}</label>
 

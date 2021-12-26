@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\FooterTitle;
+use App\Models\Lang;
 use Illuminate\Http\Request;
 
 class AdminFooterTitleController extends Controller
@@ -13,10 +14,10 @@ class AdminFooterTitleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($lang)
     {
-        $titles = FooterTitle::all();
-        return view("admin.footer.titles", compact("titles"));
+        $languages = Lang::where([["langable_type", "App\Models\FooterTitle"], ["name", $lang]])->get();
+        return view("admin.footer.titles", compact("languages", "lang"));
     }
 
     /**
@@ -40,6 +41,10 @@ class AdminFooterTitleController extends Controller
         $title = new FooterTitle();
         $title->title = $request->title;
         $title->save();
+        // saving language for article
+        $language = new Lang();
+        $language->name = $request->lang;
+        $title->language()->save($language);
         return redirect()->back()->with("success", "عنوان شما با موفقیت ذخیره شد");
     }
 
@@ -90,6 +95,8 @@ class AdminFooterTitleController extends Controller
     {
         $title = FooterTitle::find($id);
         $title->delete();
+        $title->language()->delete();
+
         return redirect()->back()->with("fail", "عنوان شما با موفقیت حذف شد");
     }
 
@@ -102,7 +109,7 @@ class AdminFooterTitleController extends Controller
         return redirect()->back();
     }
 
-    // method to make unshow title to show title 
+    // method to make unshow title to show title
     public function block($id)
     {
         $title = FooterTitle::find($id);

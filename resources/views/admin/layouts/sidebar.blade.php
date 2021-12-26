@@ -194,10 +194,13 @@
                 </a>
                 <ul class="treeview-menu">
                     <li class="active">
-                        <a href="{{ route('admin.footer.titles.index') }}"><i class="fa fa-circle-o"></i>عناوین</a>
-                        <a href="{{ route('admin.footer.content.index') }}"><i class="fa fa-circle-o"></i>متن های
+                        <a href="{{ route('admin.footer.titles.index', 'fa') }}"><i
+                                class="fa fa-circle-o"></i>عناوین</a>
+                        <a href="{{ route('admin.footer.content.index', 'fa') }}"><i class="fa fa-circle-o"></i>متن
+                            های
                             Footer</a>
-                        <a href="{{ route('admin.footer.links.index') }}"><i class="fa fa-circle-o"></i>لینک ها</a>
+                        <a href="{{ route('admin.footer.links.index', 'fa') }}"><i class="fa fa-circle-o"></i>لینک
+                            ها</a>
                     </li>
                 </ul>
             </li>

@@ -10,9 +10,16 @@
 
     <section class="text-center">
         <div class="btn-group btn-group-toggle">
-            <a href="{{ route('admin.footer.titles.index') }}" class="btn btn-primary">titles</a>
-            <a href="{{ route('admin.footer.content.index') }}" class="btn btn-primary">contents</a>
-            <a href="{{ route('admin.footer.links.index') }}" class="btn btn-primary">social media</a>
+            <a href="{{ route('admin.footer.titles.index', $lang) }}" class="btn btn-primary">title</a>
+            <a href="{{ route('admin.footer.content.index', $lang) }}" class="btn btn-primary">contents</a>
+            <a href="{{ route('admin.footer.links.index', $lang) }}" class="btn btn-primary">social media</a>
+        </div>
+    </section>
+
+    <section class="text-center">
+        <div class="btn-group btn-group-toggle">
+            <a href="{{ route('admin.footer.links.index', 'fa') }}" class="btn btn-primary">فارسی</a>
+            <a href="{{ route('admin.footer.links.index', 'en') }}" class="btn btn-primary">انگلیسی</a>
         </div>
     </section>
 
@@ -36,7 +43,10 @@
             @php
                 $number = 1;
             @endphp
-            @foreach ($links as $link)
+            @foreach ($languages as $language)
+                @php
+                    $title = $language->langable;
+                @endphp
                 <tr>
                     {{-- button for removing all links --}}
                     <td class="text-center">
@@ -484,6 +494,8 @@
                 <div class="modal-body">
                     <form action="{{ route('admin.footer.links.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        <input type="hidden" name="lang" value="{{ $lang }}">
+
                         {{-- facbook link --}}
                         <div class="form-group row">
                             <label for="facebook"

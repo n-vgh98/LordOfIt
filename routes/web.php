@@ -113,7 +113,7 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
 
         // route for titles of footer
         route::prefix("titles")->group(function () {
-            route::get("/", [AdminFooterTitleController::class, "index"])->name("admin.footer.titles.index");
+            route::get("/{lang}", [AdminFooterTitleController::class, "index"])->name("admin.footer.titles.index");
             route::post("/unblock/{id}", [AdminFooterTitleController::class, "block"])->name("admin.footer.titles.block");
             route::post("/block/{id}", [AdminFooterTitleController::class, "unblock"])->name("admin.footer.titles.unblock");
             route::delete("/destroy/{id}", [AdminFooterTitleController::class, "destroy"])->name("admin.footer.titles.destroy");
@@ -123,7 +123,7 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
 
         // route for content of footer
         route::prefix("content")->group(function () {
-            route::get("/", [AdminFooterContentController::class, "index"])->name("admin.footer.content.index");
+            route::get("/{lang}", [AdminFooterContentController::class, "index"])->name("admin.footer.content.index");
             route::get("/show/{id}", [AdminFooterContentController::class, "show"])->name("admin.footer.content.show");
             route::delete("/destroy/{id}", [AdminFooterContentController::class, "destroy"])->name("admin.footer.content.destroy");
             route::post("/update/{id}", [AdminFooterContentController::class, "update"])->name("admin.footer.content.update");
@@ -132,7 +132,7 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
 
         // route for links of social media for footer
         route::prefix("links")->group(function () {
-            route::get("/", [AdminFooterLinkController::class, "index"])->name("admin.footer.links.index");
+            route::get("/{lang}", [AdminFooterLinkController::class, "index"])->name("admin.footer.links.index");
             route::delete("/destroy/{id}", [AdminFooterLinkController::class, "destroy"])->name("admin.footer.links.destroy");
             route::post("/update/{id}", [AdminFooterLinkController::class, "update"])->name("admin.footer.links.update");
             route::post("/store", [AdminFooterLinkController::class, "store"])->name("admin.footer.links.store");

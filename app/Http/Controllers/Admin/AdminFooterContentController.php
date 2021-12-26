@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\FooterContent;
 use App\Models\FooterTitle;
+use App\Models\Lang;
 use Illuminate\Http\Request;
 
 class AdminFooterContentController extends Controller
@@ -14,11 +15,21 @@ class AdminFooterContentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($lang)
     {
-        $contents = FooterContent::all();
-        $titles = FooterTitle::all();
-        return view("admin.footer.content", compact("contents", "titles"));
+        $titles = array();
+        $contents = array();
+        $languages = Lang::where([["langable_type", "App\Models\FooterContent"], ["name", $lang]])->get();
+        $titless = Lang::where([["langable_type", "App\Models\FooterTitle"], ["name", $lang]])->get();
+        foreach ($titless as $titlesz) {
+            array_push($titles, $titlesz->langable);
+        }
+
+        $contentss = Lang::where([["langable_type", "App\Models\FooterContent"], ["name", $lang]])->get();
+        foreach ($contentss as $contentsz) {
+            array_push($contents, $contentsz->langable);
+        }
+        return view("admin.footer.content", compact("contents", "titles", "languages", "lang"));
     }
 
     /**
@@ -46,6 +57,10 @@ class AdminFooterContentController extends Controller
             $content->text_link = $request->text_link;
         }
         $content->save();
+        // saving language for article
+        $language = new Lang();
+        $language->name = $request->lang;
+        $content->language()->save($language);
         return redirect()->back()->with("success", "متن شما با موفقیت ذخیره شد");
     }
 
@@ -101,6 +116,8 @@ class AdminFooterContentController extends Controller
     {
         $content = FooterContent::find($id);
         $content->delete();
+        $content->language()->delete();
+
         return redirect()->back()->with("fail", "متن شما با موفقیت حذف شد");
     }
 }

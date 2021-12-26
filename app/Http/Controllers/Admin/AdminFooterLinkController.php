@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\FooterLink;
-use App\Models\Image;
+use App\Models\Lang;
 use Illuminate\Http\Request;
 
 class AdminFooterLinkController extends Controller
@@ -14,10 +14,10 @@ class AdminFooterLinkController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($lang)
     {
-        $links = FooterLink::all();
-        return view("admin.footer.links", compact("links"));
+        $languages = Lang::where([["langable_type", "App\Models\FooterLink"], ["name", $lang]])->get();
+        return view("admin.footer.links", compact("languages","lang"));
     }
 
     /**
@@ -56,7 +56,10 @@ class AdminFooterLinkController extends Controller
             }
         }
         $link->save();
-
+        // saving language for article
+        $language = new Lang();
+        $language->name = $request->lang;
+        $link->language()->save($language);
 
         return redirect()->back()->with("success", "لینک های شما با موفقیت ثبت شد");
     }
@@ -147,6 +150,8 @@ class AdminFooterLinkController extends Controller
     {
         $link = FooterLink::find($id);
         $link->delete();
+        $link->language()->delete();
+
         return redirect()->back()->with("fail", "لینک های شما با موفقیت حذف شد");
     }
 }

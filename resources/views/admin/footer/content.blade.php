@@ -11,11 +11,19 @@
 
     <section class="text-center">
         <div class="btn-group btn-group-toggle">
-            <a href="{{ route('admin.footer.titles.index') }}" class="btn btn-primary">title</a>
-            <a href="{{ route('admin.footer.content.index') }}" class="btn btn-primary">contents</a>
-            <a href="{{ route('admin.footer.links.index') }}" class="btn btn-primary">social media</a>
+            <a href="{{ route('admin.footer.titles.index', $lang) }}" class="btn btn-primary">title</a>
+            <a href="{{ route('admin.footer.content.index', $lang) }}" class="btn btn-primary">contents</a>
+            <a href="{{ route('admin.footer.links.index', $lang) }}" class="btn btn-primary">social media</a>
         </div>
     </section>
+
+    <section class="text-center">
+        <div class="btn-group btn-group-toggle">
+            <a href="{{ route('admin.footer.content.index', 'fa') }}" class="btn btn-primary">فارسی</a>
+            <a href="{{ route('admin.footer.content.index', 'en') }}" class="btn btn-primary">انگلیسی</a>
+        </div>
+    </section>
+
 
     <table class="table table-striped" style="margin-top: 3%">
         <thead>
@@ -201,7 +209,7 @@
                                 شدم</button>
                             <button type="submit" class="btn btn-primary">ارسال</button>
                         </div>
-
+                        <input type="hidden" name="lang" value="{{ $lang }}">
                     </form>
                 </div>
                 <div class="modal-footer">
