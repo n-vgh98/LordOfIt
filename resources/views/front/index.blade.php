@@ -608,7 +608,7 @@
         <div class="chat-box">
             <textarea type="text" name="" id="top-input-chat" placeholder="تا چند لحظه دیگر گفتگو انلاین شما شروع می شود"
                 rows="3" cols="3">
-                                    </textarea>
+                                                    </textarea>
             <input type="text" name="" id="down-input-chat" placeholder="متن خود را تایپ کنید">
             <div class="parent-btn-chat">
                 <div class="send-chat-btn">
@@ -623,5 +623,15 @@
     </section>
     <!-- end fixed online conversition icon  -->
 
+
+@endsection
+@section('scripts')
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js" type="text/javascript">
+    </script>
+    <script type="text/javascript">
+        particlesJS.load('#particles-js', 'particles.json', function() {});
+    </script> --}}
+    <script src="{{ asset('front/js/particles.js') }}"></script>
+    <script src="{{ asset('front/js/app.js') }}"></script>
 
 @endsection
