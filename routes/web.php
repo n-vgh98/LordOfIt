@@ -95,8 +95,18 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
     // ##
 
     //route for articles
-    Route::resource('articles', AdminArticleController::class);
-    route::post("articles/updateimage/{id}", [AdminArticleController::class, "updateimage"])->name("admin.article.update.image");
+    // Route::resource("articles/{lang}", AdminArticleController::class);
+    route::prefix("articles")->group(function () {
+        route::get("/{lang}", [AdminArticleController::class, "index"])->name("admin.articles.index");
+        route::get("/create/{lang}", [AdminArticleController::class, "create"])->name("admin.articles.create");
+        route::post("/store", [AdminArticleController::class, "store"])->name("admin.articles.store");
+        route::get("/edit/{id}", [AdminArticleController::class, "edit"])->name("admin.articles.edit");
+        route::patch("update/{id}", [AdminArticleController::class, "update"])->name("admin.articles.update");
+        route::delete("destroy/{id}", [AdminArticleController::class, "destroy"])->name("admin.articles.destroy");
+        route::post("articles/updateimage/{id}", [AdminArticleController::class, "updateimage"])->name("admin.article.update.image");
+
+    });
+    
 
     // routes for footer
     route::prefix("footer")->group(function () {

@@ -20,7 +20,7 @@ class Article extends Model
     }
 
     // polymorphic relation to lang table
-    public function language()
+    public function lang()
     {
         return $this->morphOne("App\Models\Language", "languageable");
     }

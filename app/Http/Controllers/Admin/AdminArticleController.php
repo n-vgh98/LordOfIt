@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Models\Image;
+use App\Models\Lang;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -17,10 +19,14 @@ class AdminArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($lang)
     {
-        $articles = Article::all();
-        return view('admin.articles.index',compact('articles'));
+
+
+        // $articles = $language->articles;
+        $languages = Lang::where([["langable_type", "App\Models\Article"], ["name", $lang]])->get();
+        // dd($languages[0]->langable);
+        return view('admin.articles.index', compact('languages', 'lang'));
     }
 
     /**
@@ -28,9 +34,10 @@ class AdminArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($lang)
     {
-        return view('admin.articles.create');   
+
+        return view('admin.articles.create', compact('lang'));
     }
 
     /**
@@ -43,10 +50,10 @@ class AdminArticleController extends Controller
     {
         $article = new Article();
         $article->title = $request->input('title');
-        $article->slug= $request->input('slug');
-        if ($request->input('slug')){
-            $article->slug =make_slug( $request->input('slug'));
-        }else{
+        $article->slug = $request->input('slug');
+        if ($request->input('slug')) {
+            $article->slug = make_slug($request->input('slug'));
+        } else {
             $article->slug = make_slug($request->input('title'));
         }
         $article->text_1 = $request->input('text_1');
@@ -73,8 +80,15 @@ class AdminArticleController extends Controller
         $image->path = "images/articles/" . $imagename;
         $article->image()->save($image);
 
-        Session::flash('add_article','مقاله جدید با موفقیت ثبت شد');
-        return redirect('admin/articles');
+
+
+        // saving language for article
+        $language = new Lang();
+        $language->name = $request->lang;
+        $article->lang()->save($language);
+
+        Session::flash('add_article', 'مقاله جدید با موفقیت ثبت شد');
+        return redirect()->route('admin.articles.index',$request->lang);
     }
 
     /**
@@ -98,7 +112,6 @@ class AdminArticleController extends Controller
     {
         $article = Article::findOrFail($id);
         return view('admin.articles.edit', compact('article'));
-        
     }
 
     /**
@@ -112,10 +125,10 @@ class AdminArticleController extends Controller
     {
         $article = Article::findOrFail($id);
         $article->title = $request->input('title');
-        $article->slug= $request->input('slug');
-        if ($request->input('slug')){
-            $article->slug =make_slug( $request->input('slug'));
-        }else{
+        $article->slug = $request->input('slug');
+        if ($request->input('slug')) {
+            $article->slug = make_slug($request->input('slug'));
+        } else {
             $article->slug = make_slug($request->input('title'));
         }
         $article->text_1 = $request->input('text_1');
@@ -132,9 +145,8 @@ class AdminArticleController extends Controller
         $article->status = $request->input('status');
         $article->save();
 
-        Session::flash('add_article','مقاله با موفقیت ویرایش شد');
-        return redirect('admin/articles');
-
+        Session::flash('add_article', 'مقاله با موفقیت ویرایش شد');
+        return redirect()->route('admin.articles.index',$request->lang);
     }
 
     /**
@@ -147,9 +159,11 @@ class AdminArticleController extends Controller
     {
         $article = Article::findOrFail($id);
         unlink($article->image->path);
+        $article->lang()->delete();
         $article->delete();
-        Session::flash('delete_article','مقاله حذف شد');
-        return redirect('admin/articles');
+
+        Session::flash('delete_article', 'مقاله حذف شد');
+        return redirect()->back();
     }
 
     public function updateimage(Request $request, $id)

@@ -75,9 +75,8 @@
             {!! Form::textarea('text_4', $article->text_4, ['class' => 'form-control', 'id' => 'text_4']) !!}
         </div><br>
     </div>
-
-
-   
+    <input type="hidden" value="{{$article->lang->name}}" name="lang">
+    </input>
     <div>
         {!! Form::submit('ذخیره', ['class' => 'btn btn-primary']) !!}
     </div>

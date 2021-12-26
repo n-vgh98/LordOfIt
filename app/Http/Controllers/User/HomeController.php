@@ -16,7 +16,7 @@ class HomeController extends Controller
     public function index()
     {
         // dd("hi");
-        dd(App::getLocale());
+        // dd(App::getLocale());
 
     }
 

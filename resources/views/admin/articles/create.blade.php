@@ -122,6 +122,8 @@
             @enderror
         </div>
     </div>
+    <input type="hidden" value="{{$lang}}" name="lang">
+    </input>
     <div>
         {!! Form::submit('ذخیره', ['class' => 'btn btn-primary']) !!}
     </div>
