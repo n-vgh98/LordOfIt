@@ -61,7 +61,7 @@
                     </td>
                     <td class="text-center">
                         <a
-                            href="{{ route('admin.services.price.category.index') }}">{{ $subcategory->category->title }}</a>
+                            href="{{ route('admin.services.price.category.index', $subcategory->category->language->name) }}">{{ $subcategory->category->title }}</a>
                     </td>
                     <td class="text-center">
                         {{ $subcategory->title }}

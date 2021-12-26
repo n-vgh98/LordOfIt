@@ -1,12 +1,12 @@
 @extends('admin.layouts.master')
 
 @section('sitetitle')
-    ایجاد  دسته بندی جدید
+    ایجاد دسته بندی جدید
 @endsection
 
 
 @section('pagetitle')
-    ایجاد  دسته بندی جدید
+    ایجاد دسته بندی جدید
 @endsection
 
 @section('content')
@@ -49,6 +49,7 @@
                 </div>
             </div>
 
+            <input type="hidden" name="lang" value="{{ $lang }}">
 
             <div style="margin-top:15px;">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">منصرف

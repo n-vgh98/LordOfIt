@@ -10,6 +10,12 @@
 @endsection
 
 @section('content')
+    <section class="text-center">
+        <div class="btn-group btn-group-toggle">
+            <a href="{{ route('admin.services.price.category.index', 'fa') }}" class="btn btn-primary">فارسی</a>
+            <a href="{{ route('admin.services.price.category.index', 'en') }}" class="btn btn-primary">انگلیسی</a>
+        </div>
+    </section>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -27,45 +33,51 @@
                 $number = 0;
             @endphp
 
-            @foreach ($categories as $category)
+            @foreach ($languages as $language)
 
                 @php
                     $number++;
+                    $category = $language->langable;
                 @endphp
-                <tr>
-                    {{-- button for removing category --}}
-                    <td class="text-center">
-                        <form action="{{ route('admin.services.price.category.destroy', $category->id) }}" method="post">
-                            @csrf
-                            @method("DELETE")
-                            <button type="submit" class="btn btn-danger">حذف دسته بندی</button>
-                        </form>
-                    </td>
+                @if ($category->parent_id == null)
 
-                    {{-- button for editing category --}}
-                    <td class="text-center">
-                        <a class="btn btn-warning"
-                            href="{{ route('admin.services.price.category.edit', $category->id) }}">ویرایش</a>
-                    </td>
+                    <tr>
+                        {{-- button for removing category --}}
+                        <td class="text-center">
+                            <form action="{{ route('admin.services.price.category.destroy', $category->id) }}"
+                                method="post">
+                                @csrf
+                                @method("DELETE")
+                                <button type="submit" class="btn btn-danger">حذف دسته بندی</button>
+                            </form>
+                        </td>
 
-                    <td class="text-center">
-                        <button type="button" class="btn btn-info" data-toggle="modal"
-                            data-target="#cattext{{ $category->id }}">مشاهده</button>
-                    </td>
-                    <td class="text-center">
-                        @if (count($category->subcategories) == 0)
-                            <a class="btn btn-success"
-                                href="{{ route('admin.services.price.subcategory.create', $category->id) }}">ساختن</a>
-                        @else
-                            <a class="btn btn-success"
-                                href="{{ route('admin.services.price.subcategory.show', $category->id) }}">مشاهده</a>
-                        @endif
-                    </td>
-                    <td class="text-center">
-                        {{ $category->title }}
-                    </td>
-                    <th class="text-center" scope="row">{{ $number }}</th>
-                </tr>
+                        {{-- button for editing category --}}
+                        <td class="text-center">
+                            <a class="btn btn-warning"
+                                href="{{ route('admin.services.price.category.edit', $category->id) }}">ویرایش</a>
+                        </td>
+
+                        <td class="text-center">
+                            <button type="button" class="btn btn-info" data-toggle="modal"
+                                data-target="#cattext{{ $category->id }}">مشاهده</button>
+                        </td>
+                        <td class="text-center">
+                            @if (count($category->subcategories) == 0)
+                                <a class="btn btn-success"
+                                    href="{{ route('admin.services.price.subcategory.create', $category->id) }}">ساختن</a>
+                            @else
+                                <a class="btn btn-success"
+                                    href="{{ route('admin.services.price.subcategory.show', $category->id) }}">مشاهده</a>
+                            @endif
+                        </td>
+                        <td class="text-center">
+                            {{ $category->title }}
+                        </td>
+                        <th class="text-center" scope="row">{{ $number }}</th>
+                    </tr>
+                @endif
+
 
                 <!-- modal for showing category text -->
                 <div class="modal fade" id="cattext{{ $category->id }}" tabindex="-1" role="dialog"
@@ -118,6 +130,7 @@
     </table>
 
     {{-- button to add category --}}
-    <a class="btn btn-primary" href="{{ route('admin.services.price.category.create') }}"> ساخت دسته بندی جدید </a>
+    <a class="btn btn-primary" href="{{ route('admin.services.price.category.create', $lang) }}"> ساخت دسته بندی جدید
+    </a>
 
 @endsection

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Lang;
 use App\Models\ServicePriceCategory;
 use Illuminate\Http\Request;
 
@@ -13,10 +14,10 @@ class AdminServicePriceCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($lang)
     {
-        $categories = ServicePriceCategory::where("parent_id", null)->get();
-        return view("admin.serviceprices.categories.index", compact("categories"));
+        $languages = Lang::where([["langable_type", "App\Models\ServicePriceCategory"], ["name", $lang]])->get();
+        return view("admin.serviceprices.categories.index", compact("languages", "lang"));
     }
 
     /**
@@ -24,9 +25,9 @@ class AdminServicePriceCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($lang)
     {
-        return view("admin.serviceprices.categories.create");
+        return view("admin.serviceprices.categories.create", compact("lang"));
     }
 
     /**
@@ -43,7 +44,14 @@ class AdminServicePriceCategoryController extends Controller
             $category->text = $request->text;
         }
         $category->save();
-        return redirect()->route("admin.services.price.category.index")->with("success", 'دسته بندی شما با موفقیت اضافه شد');
+
+        // saving language for course
+        $language = new Lang();
+        $language->name = $request->lang;
+
+        $category->language()->save($language);
+
+        return redirect()->route("admin.services.price.category.index", $request->lang)->with("success", 'دسته بندی شما با موفقیت اضافه شد');
     }
 
     /**
@@ -97,6 +105,7 @@ class AdminServicePriceCategoryController extends Controller
     {
         $category = ServicePriceCategory::find($id);
         $category->delete();
+        $category->language()->delete();
         return redirect()->back()->with("success", 'دسته بندی شما با موفقیت حذف شد');
     }
 }

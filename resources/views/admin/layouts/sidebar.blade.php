@@ -117,7 +117,7 @@
                 </a>
                 <ul class="treeview-menu">
 
-                    <li class="active"><a href="{{ route('admin.services.price.category.index') }}"><i
+                    <li class="active"><a href="{{ route('admin.services.price.category.index', 'fa') }}"><i
                                 class="fa fa-circle-o"></i>دسته بندی تعرفه خدمات </a></li>
                 </ul>
             </li>
