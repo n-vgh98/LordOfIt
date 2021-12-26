@@ -182,6 +182,7 @@
 
     </tbody>
 </table>
-<a href="{{ route('admin.articles.create') }}" class="btn btn-primary">ساخت مقاله جدید</a>
+
+<a href="{{ route('admin.articles.create',$lang) }}" class="btn btn-primary">ساخت مقاله جدید</a>
 
 @endsection

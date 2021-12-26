@@ -98,7 +98,7 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
     // Route::resource("articles/{lang}", AdminArticleController::class);
     route::prefix("articles")->group(function () {
         route::get("/{lang}", [AdminArticleController::class, "index"])->name("admin.articles.index");
-        route::get("/", [AdminArticleController::class, "create"])->name("admin.articles.create");
+        route::get("/create/{lang}", [AdminArticleController::class, "create"])->name("admin.articles.create");
         route::post("/store", [AdminArticleController::class, "store"])->name("admin.articles.store");
         route::get("/edit/{id}", [AdminArticleController::class, "edit"])->name("admin.articles.edit");
         route::patch("update/{id}", [AdminArticleController::class, "update"])->name("admin.articles.update");
