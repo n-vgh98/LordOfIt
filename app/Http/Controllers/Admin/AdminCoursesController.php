@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\Image;
+use App\Models\Lang;
 use Illuminate\Http\Request;
 
 class AdminCoursesController extends Controller
@@ -14,10 +15,11 @@ class AdminCoursesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($lang)
     {
-        $courses = Course::all();
-        return view("admin.courses.index", compact("courses"));
+
+        $languages = Lang::where([["name", $lang], ["langable_type", "App\Models\Course"]])->get();
+        return view("admin.courses.index", compact("languages", "lang"));
     }
 
     /**
@@ -25,9 +27,9 @@ class AdminCoursesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($lang)
     {
-        return view("admin.courses.create");
+        return view("admin.courses.create", compact("lang"));
     }
 
     /**
@@ -45,7 +47,7 @@ class AdminCoursesController extends Controller
         $course->section = $request->section;
         $course->pre_need = $request->pre_need;
         $course->price = $request->price;
-        $course->lang = $request->lang;
+        $course->lang = $request->language;
         $course->description = $request->description;
         $course->topic_list = $request->topic_list;
         $course->save();
@@ -59,7 +61,12 @@ class AdminCoursesController extends Controller
         $request->path->move(public_path("images/courses/section/"), $imagename);
         $image->path = "images/courses/section/" . $imagename;
         $course->image()->save($image);
-        return redirect()->route("admin.courses.index")->with("success", "دوره شما با موفقیت ثبت شد");
+
+        // saving language for course
+        $language = new Lang();
+        $language->name = $request->lang;
+        $course->language()->save($language);
+        return redirect()->route("admin.courses.index", $request->lang)->with("success", "دوره شما با موفقیت ثبت شد");
     }
 
     /**
@@ -70,7 +77,7 @@ class AdminCoursesController extends Controller
      */
     public function show($id)
     {
-        // 
+        //
     }
 
     /**
@@ -102,7 +109,7 @@ class AdminCoursesController extends Controller
         $course->section = $request->section;
         $course->pre_need = $request->pre_need;
         $course->price = $request->price;
-        $course->lang = $request->lang;
+        $course->lang = $request->language;
         $course->description = $request->description;
         $course->topic_list = $request->topic_list;
         $course->save();
@@ -119,6 +126,7 @@ class AdminCoursesController extends Controller
     {
         $courses = Course::find($id);
         unlink($courses->image->path);
+        $courses->language()->delete();
         $courses->delete();
         return redirect()->back()->with("success", "دوره مورد نظر با موفقیت حذف شد");
     }

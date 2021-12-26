@@ -112,15 +112,15 @@
                 </div>
             </div>
 
-            {{-- lang of course --}}
+            {{-- language of course --}}
             <div class="form-group row">
-                <label for="lang" class="col-md-1 col-form-label text-md-right">{{ __('زبان دوره') }}</label>
+                <label for="language" class="col-md-1 col-form-label text-md-right">{{ __('زبان دوره') }}</label>
 
                 <div class="col-md-11">
-                    <input id="lang" type="text" class="form-control" @error('lang') is-invalid @enderror" name="lang"
-                        value="{{ old('lang') }}" required autocomplete="lang" autofocus>
+                    <input id="language" type="text" class="form-control" @error('language') is-invalid @enderror" name="language"
+                        value="{{ old('language') }}" required autocomplete="language" autofocus>
 
-                    @error('lang')
+                    @error('language')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -215,6 +215,8 @@
                     شدم</button>
                 <button type="submit" class="btn btn-primary">ارسال</button>
             </div>
+
+            <input type="hidden" name="lang" value="{{ $lang }}">
 
         </form>
 

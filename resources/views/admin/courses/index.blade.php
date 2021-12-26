@@ -10,6 +10,13 @@
 @endsection
 
 @section('content')
+
+    <section class="text-center">
+        <div class="btn-group btn-group-toggle">
+            <a href="{{ route('admin.courses.index', 'fa') }}" class="btn btn-primary">فارسی</a>
+            <a href="{{ route('admin.courses.index', 'en') }}" class="btn btn-primary">انگلیسی</a>
+        </div>
+    </section>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -35,10 +42,11 @@
                 $number = 0;
             @endphp
 
-            @foreach ($courses as $course)
+            @foreach ($languages as $language)
 
                 @php
                     $number++;
+                    $course = $language->langable;
                 @endphp
 
 
@@ -379,6 +387,6 @@
     </table>
 
     {{-- button to add course --}}
-    <a href="{{ route('admin.courses.create') }}" class="btn btn-primary">ایجاد دوره جدید</a>
+    <a href="{{ route('admin.courses.create', $lang) }}" class="btn btn-primary">ایجاد دوره جدید</a>
 
 @endsection

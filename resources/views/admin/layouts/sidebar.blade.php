@@ -75,7 +75,7 @@
                     <i class="fa fa-dashboard"></i> <span>دوره ها</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="{{ route('admin.courses.index') }}"><i
+                    <li class="active"><a href="{{ route('admin.courses.index', 'fa') }}"><i
                                 class="fa fa-circle-o"></i>دوره ها</a></li>
                     <li class="active"><a href="{{ route('admin.courses.slider.index') }}"><i
                                 class="fa fa-circle-o"></i>اسلایدر</a></li>
@@ -90,7 +90,7 @@
                 </a>
                 <ul class="treeview-menu">
 
-                    <li class="active"><a href="{{ route('admin.articles.index','fa') }}"><i
+                    <li class="active"><a href="{{ route('admin.articles.index', 'fa') }}"><i
                                 class="fa fa-circle-o"></i>لیست مقالات </a></li>
 
                 </ul>

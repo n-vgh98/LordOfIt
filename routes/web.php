@@ -106,7 +106,6 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
         route::post("articles/updateimage/{id}", [AdminArticleController::class, "updateimage"])->name("admin.article.update.image");
 
     });
-    
 
     // routes for footer
     route::prefix("footer")->group(function () {
@@ -160,8 +159,8 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
 
     // routes for courses
     route::prefix("courses")->group(function () {
-        route::get("/", [AdminCoursesController::class, "index"])->name("admin.courses.index");
-        route::get("/create", [AdminCoursesController::class, "create"])->name("admin.courses.create");
+        route::get("/{lang}", [AdminCoursesController::class, "index"])->name("admin.courses.index");
+        route::get("/create/{lang}", [AdminCoursesController::class, "create"])->name("admin.courses.create");
         route::get("/edit/{id}", [AdminCoursesController::class, "edit"])->name("admin.courses.edit");
         route::post("/store", [AdminCoursesController::class, "store"])->name("admin.courses.store");
         route::post("/updateimage/{id}", [AdminCoursesController::class, "updateimage"])->name("admin.courses.update.image");

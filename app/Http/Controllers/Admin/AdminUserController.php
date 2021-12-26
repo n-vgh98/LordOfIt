@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 
 class AdminUserController extends Controller
@@ -21,12 +21,13 @@ class AdminUserController extends Controller
         return view("admin.users.index", compact("users"));
     }
 
-    // safe haye har role ro miare
+    // safe haye har role ro miare 
     public function normal()
     {
         $users = User::all();
         return view("admin.users.normal", compact("users"));
     }
+
 
     public function writer()
     {
@@ -35,13 +36,17 @@ class AdminUserController extends Controller
         return view("admin.users.writer", compact("users"));
     }
 
+
     public function admin()
     {
         $users = User::all();
         // dd($users[0]->roles()->exists("admin"));
         return view("admin.users.admin", compact("users"));
     }
-    // safe haye har role ro miare
+    // safe haye har role ro miare 
+
+
+
 
     // give admin access
     public function promotetoadmin($id)
@@ -61,6 +66,7 @@ class AdminUserController extends Controller
         return redirect()->back()->with("success", " دسترسی مدیریت از کاربر گرفته شد");
     }
 
+
     // give writer access
     public function promotetowriter($id)
     {
@@ -69,6 +75,7 @@ class AdminUserController extends Controller
         $user->roles()->attach($role->id);
         return redirect()->back()->with("success", " دسترسی نویسندگی به کاربر داده شد");
     }
+
 
     // remove writer access
     public function demotewriter($id)
@@ -88,6 +95,7 @@ class AdminUserController extends Controller
         return redirect()->back()->with("success", "تمامی دسترسی ها از کاربر گرفته شد");
     }
 
+
     public function block($id)
     {
         $user = User::find($id);
@@ -103,6 +111,7 @@ class AdminUserController extends Controller
         $user->save();
         return redirect()->back();
     }
+
 
     /**
      * Show the form for creating a new resource.
