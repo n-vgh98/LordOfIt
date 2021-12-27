@@ -22,6 +22,7 @@
                 <th class="text-center" scope="col">امکانات</th>
                 <th class="text-center" scope="col">ویرایش</th>
                 <th class="text-center" scope="col">عکس</th>
+                <th class="text-center" scope="col">2عکس</th>
                 <th class="text-center" scope="col">توضیحات</th>
                 <th class="text-center" scope="col">عنوان شغلی</th>
                 <th class="text-center" scope="col">نام و نام خانوادگی</th>
@@ -60,14 +61,32 @@
                         </button>
                     </td>
 
-                    {{-- button for editing member image --}}
+
+
+                    {{-- button for editing member images --}}
                     <td class="text-center">
                         <button type="button" class="" data-toggle="modal"
                             data-target="#memberimg{{ $member->id }}">
 
-                            <img src="{{ asset($member->image->path) }}" style="width: 35px; height:35px;">
+                            <img src="{{ asset($member->images[0]->path) }}" style="width: 35px; height:35px;">
                         </button>
                     </td>
+                    @if (count($member->images) == 2)
+
+                        {{-- button for editing member image2 --}}
+                        <td class="text-center">
+                            <button type="button" class="" data-toggle="modal"
+                                data-target="#memberimg2{{ $member->id }}">
+
+                                <img src="{{ asset($member->images[1]->path) }}" style="width: 35px; height:35px;">
+                            </button>
+                        </td>
+
+                    @else
+                        <td>
+                            <p class="text-center">ندارد</p>
+                        </td>
+                    @endif
 
                     {{-- button for showing job description member --}}
                     <td class="text-center">
@@ -134,7 +153,7 @@
                     </div>
                 </div>
 
-                <!-- modal for editing member image -->
+                <!-- modal for editing member images -->
                 <div class="modal fade" id="memberimg{{ $member->id }}" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -146,11 +165,11 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="{{ route('admin.ourteam.update.image', $member->image->id) }}"
+                                <form action="{{ route('admin.ourteam.update.image', $member->images[0]->id) }}"
                                     method="POST" enctype="multipart/form-data">
                                     @csrf
 
-                                    {{-- section for changing member image --}}
+                                    {{-- section for changing member images --}}
                                     <div class="form-group row">
                                         <label for="path"
                                             class="col-md-4 col-form-label text-md-right">{{ __('عکس') }}</label>
@@ -168,7 +187,7 @@
                                         </div>
                                     </div>
 
-                                    {{-- section for changing image  alt --}}
+                                    {{-- section for changing images  alt --}}
                                     <div class="form-group row">
                                         <label for="alt"
                                             class="col-md-4 col-form-label text-md-right">{{ __('عکس alt') }}</label>
@@ -176,7 +195,7 @@
                                         <div class="col-md-6">
                                             <input id="alt" type="text"
                                                 class="form-control @error('alt') is-invalid @enderror" name="alt" required
-                                                autocomplete="alt" value="{{ $member->image->alt }}" autofocus>
+                                                autocomplete="alt" value="{{ $member->images[0]->alt }}" autofocus>
 
                                             @error('alt')
                                                 <span class="invalid-feedback" role="alert">
@@ -186,7 +205,7 @@
                                         </div>
                                     </div>
 
-                                    {{-- section for changing image  name --}}
+                                    {{-- section for changing images  name --}}
                                     <div class="form-group row">
                                         <label for="name"
                                             class="col-md-4 col-form-label text-md-right">{{ __('عکس name') }}</label>
@@ -194,7 +213,7 @@
                                         <div class="col-md-6">
                                             <input id="name" type="text"
                                                 class="form-control @error('name') is-invalid @enderror" name="name"
-                                                required value="{{ $member->image->name }}" autocomplete="name"
+                                                required value="{{ $member->images[0]->name }}" autocomplete="name"
                                                 autofocus>
 
                                             @error('name')
@@ -216,6 +235,93 @@
                         </div>
                     </div>
                 </div>
+
+                @if (count($member->images) == 2)
+
+                    <!-- modal for editing member images -->
+                    <div class="modal fade" id="memberimg2{{ $member->id }}" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-link" id="exampleModalLabel">تغیر مشخصات عکس</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{{ route('admin.ourteam.update.image', $member->images[1]->id) }}"
+                                        method="POST" enctype="multipart/form-data">
+                                        @csrf
+
+                                        {{-- section for changing member images --}}
+                                        <div class="form-group row">
+                                            <label for="path"
+                                                class="col-md-4 col-form-label text-md-right">{{ __('عکس') }}</label>
+
+                                            <div class="col-md-6">
+                                                <input id="path" type="file"
+                                                    class="form-control @error('path') is-invalid @enderror" name="path"
+                                                    autocomplete="path" autofocus>
+
+                                                @error('path')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        {{-- section for changing images  alt --}}
+                                        <div class="form-group row">
+                                            <label for="alt"
+                                                class="col-md-4 col-form-label text-md-right">{{ __('عکس alt') }}</label>
+
+                                            <div class="col-md-6">
+                                                <input id="alt" type="text"
+                                                    class="form-control @error('alt') is-invalid @enderror" name="alt"
+                                                    required autocomplete="alt" value="{{ $member->images[1]->alt }}"
+                                                    autofocus>
+
+                                                @error('alt')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        {{-- section for changing images  name --}}
+                                        <div class="form-group row">
+                                            <label for="name"
+                                                class="col-md-4 col-form-label text-md-right">{{ __('عکس name') }}</label>
+
+                                            <div class="col-md-6">
+                                                <input id="name" type="text"
+                                                    class="form-control @error('name') is-invalid @enderror" name="name"
+                                                    required value="{{ $member->images[1]->name }}" autocomplete="name"
+                                                    autofocus>
+
+                                                @error('name')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        <div style="margin-top:15px;">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">منصرف
+                                                شدم</button>
+                                            <button type="submit" class="btn btn-primary">ارسال</button>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
 
                 <!-- modal for editing member -->
                 <div class="modal fade" id="member{{ $member->id }}" tabindex="-1" role="dialog"
@@ -427,6 +533,57 @@
                                     autofocus>
 
                                 @error('img_name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        {{-- second images --}}
+                        {{-- path of photo --}}
+                        <div class="form-group row">
+                            <label for="path_1" class="col-md-4 col-form-label text-md-right">{{ __('عکس') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="path_1" type="file" class="form-control @error('path_1') is-invalid @enderror"
+                                    name="path_1" value="{{ old('path_1') }}" autocomplete="path_1" autofocus>
+
+                                @error('path_1')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        {{-- alt of photo --}}
+                        <div class="form-group row">
+                            <label for="alt_1" class="col-md-4 col-form-label text-md-right">{{ __('عکس alt') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="alt_1" type="text" class="form-control @error('alt_1') is-invalid @enderror"
+                                    name="alt_1" value="{{ old('alt_1') }}" autocomplete="alt_1" autofocus>
+
+                                @error('alt_1')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        {{-- name of photo --}}
+                        <div class="form-group row">
+                            <label for="img_name_1"
+                                class="col-md-4 col-form-label text-md-right">{{ __('عکس name') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="path" type="text" class="form-control @error('img_name_1') is-invalid @enderror"
+                                    name="img_name_1" value="{{ old('img_name_1') }}" autocomplete="img_name_1"
+                                    autofocus>
+
+                                @error('img_name_1')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

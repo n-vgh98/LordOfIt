@@ -18,7 +18,7 @@ class OurTeamController extends Controller
         $lang = substr($request->getPathInfo(), 1, 2);
         $languages = Lang::where([["langable_type", "App\Models\OurTeamSlider"], ["name", $lang]])->get();
         $members = Lang::where([["langable_type", "App\Models\OurTeam"], ["name", $lang]])->get();
-
+        
         return view("front.ourteam", compact("members", "languages"));
     }
 

@@ -39,6 +39,7 @@ class AdminOurTeamController extends Controller
      */
     public function store(Request $request)
     {
+
         $member = new OurTeam();
         $member->name = $request->name;
         $member->job_title = $request->job_title;
@@ -53,7 +54,21 @@ class AdminOurTeamController extends Controller
         $imagename = time() . "." . $request->path->extension();
         $request->path->move(public_path("images/ourteam/members/"), $imagename);
         $image->path = "images/ourteam/members/" . $imagename;
-        $member->image()->save($image);
+        $member->images()->save($image);
+
+        // making second image in image table
+        if ($request->path_1 !== null) {
+            $i = 1;
+            // making image2 in image2 table
+            $image2 = new Image();
+            $image2->name = $request->img_name_1;
+            $image2->alt = $request->alt_1;
+            $image2->uploader_id = auth()->user()->id;
+            $imagename = time() . "." . $i . "." . $request->path_1->extension();
+            $request->path_1->move(public_path("images/ourteam/members/"), $imagename);
+            $image2->path = "images/ourteam/members/" . $imagename;
+            $member->images()->save($image2);
+        }
 
         // saving language for course
         $language = new Lang();

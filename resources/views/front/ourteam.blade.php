@@ -56,130 +56,24 @@
     <section class="ourTeamWrapper">
         <!-- 1 -->
         <div class="team-card">
-
-            <div class="team-card-content">
-                <h3>نرگس واقفی</h3>
-                <p>برنامه نویس ارشد سایت</p>
-                <p>5 سال سابقه طراحی و پیاده سازی کسب و کار های اینترنتی (طراحی سایت ) و ۲ سال مدیریت تیم طراحی
-                    سایت در شرکت Lord Of IT</p>
-            </div>
-            <figure class="team-card-img">
-                <img class="img-change1" src="imgs/16087662523.jpg" alt="">
-                <img class="img-change2" src="imgs/1608766482omid.jpg" alt="">
-            </figure>
-
-
-
+            @foreach ($members as $member)
+                @php
+                    $person = $member->langable;
+                @endphp
+                <div class="team-card-content">
+                    <h3>{{ $person->name }}</h3>
+                    <p>{{ $person->job_title }}</p>
+                    <p>{{ $person->description }}</p>
+                </div>
+                <figure class="team-card-img">
+                    <img class="img-change1" src="{{ asset($person->images[0]->path) }}" alt="">
+                    @if (count($person->images) == 2)
+                        <img class="img-change2" src="{{ asset($person->images[1]->path) }}" alt="">
+                    @endif
+                </figure>
         </div>
-        <!-- 2 -->
-        <!-- 1 -->
-        <div class="team-card">
+        @endforeach
 
-            <div class="team-card-content">
-                <h3>نرگس واقفی</h3>
-                <p>برنامه نویس ارشد سایت</p>
-                <p>5 سال سابقه طراحی و پیاده سازی کسب و کار های اینترنتی (طراحی سایت ) و ۲ سال مدیریت تیم طراحی
-                    سایت در شرکت Lord Of IT</p>
-            </div>
-            <figure class="team-card-img">
-                <img class="img-change1" src="imgs/16087662523.jpg" alt="">
-                <img class="img-change2" src="imgs/1608766482omid.jpg" alt="">
-            </figure>
-
-
-
-        </div>
-        <!-- 2 -->
-        <!-- 1 -->
-        <div class="team-card">
-
-            <div class="team-card-content">
-                <h3>نرگس واقفی</h3>
-                <p>برنامه نویس ارشد سایت</p>
-                <p>5 سال سابقه طراحی و پیاده سازی کسب و کار های اینترنتی (طراحی سایت ) و ۲ سال مدیریت تیم طراحی
-                    سایت در شرکت Lord Of IT</p>
-            </div>
-            <figure class="team-card-img">
-                <img class="img-change1" src="imgs/16087662523.jpg" alt="">
-                <img class="img-change2" src="imgs/1608766482omid.jpg" alt="">
-            </figure>
-
-
-
-        </div>
-        <!-- 2 -->
-        <!-- 1 -->
-        <div class="team-card">
-
-            <div class="team-card-content">
-                <h3>نرگس واقفی</h3>
-                <p>برنامه نویس ارشد سایت</p>
-                <p>5 سال سابقه طراحی و پیاده سازی کسب و کار های اینترنتی (طراحی سایت ) و ۲ سال مدیریت تیم طراحی
-                    سایت در شرکت Lord Of IT</p>
-            </div>
-            <figure class="team-card-img">
-                <img class="img-change1" src="imgs/16087662523.jpg" alt="">
-                <img class="img-change2" src="imgs/1608766482omid.jpg" alt="">
-            </figure>
-
-
-
-        </div>
-        <!-- 2 -->
-        <!-- 1 -->
-        <div class="team-card">
-
-            <div class="team-card-content">
-                <h3>نرگس واقفی</h3>
-                <p>برنامه نویس ارشد سایت</p>
-                <p>5 سال سابقه طراحی و پیاده سازی کسب و کار های اینترنتی (طراحی سایت ) و ۲ سال مدیریت تیم طراحی
-                    سایت در شرکت Lord Of IT</p>
-            </div>
-            <figure class="team-card-img">
-                <img class="img-change1" src="imgs/16087662523.jpg" alt="">
-                <img class="img-change2" src="imgs/1608766482omid.jpg" alt="">
-            </figure>
-
-
-
-        </div>
-        <!-- 2 -->
-        <!-- 1 -->
-        <div class="team-card">
-
-            <div class="team-card-content">
-                <h3>نرگس واقفی</h3>
-                <p>برنامه نویس ارشد سایت</p>
-                <p>5 سال سابقه طراحی و پیاده سازی کسب و کار های اینترنتی (طراحی سایت ) و ۲ سال مدیریت تیم طراحی
-                    سایت در شرکت Lord Of IT</p>
-            </div>
-            <figure class="team-card-img">
-                <img class="img-change1" src="imgs/16087662523.jpg" alt="">
-                <img class="img-change2" src="imgs/1608766482omid.jpg" alt="">
-            </figure>
-
-
-
-        </div>
-        <!-- 2 -->
-        <!-- 1 -->
-        <div class="team-card">
-
-            <div class="team-card-content">
-                <h3>نرگس واقفی</h3>
-                <p>برنامه نویس ارشد سایت</p>
-                <p>5 سال سابقه طراحی و پیاده سازی کسب و کار های اینترنتی (طراحی سایت ) و ۲ سال مدیریت تیم طراحی
-                    سایت در شرکت Lord Of IT</p>
-            </div>
-            <figure class="team-card-img">
-                <img class="img-change1" src="imgs/16087662523.jpg" alt="">
-                <img class="img-change2" src="imgs/1608766482omid.jpg" alt="">
-            </figure>
-
-
-
-        </div>
-        <!-- 2 -->
     </section>
     <!-- start fixed arrow up  -->
     <div class="fixed-arrow-up-parent">
