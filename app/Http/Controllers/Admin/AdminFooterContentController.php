@@ -53,8 +53,8 @@ class AdminFooterContentController extends Controller
         $content = new FooterContent();
         $content->title_id = $request->title_id;
         $content->text = $request->text;
-        if ($request->text_link !== null) {
-            $content->text_link = $request->text_link;
+        if ($request->link !== null) {
+            $content->text_link = $request->link;
         }
         $content->save();
         // saving language for article
@@ -100,7 +100,7 @@ class AdminFooterContentController extends Controller
         $content = FooterContent::find($id);
         $content->text = $request->text;
         if ($request->text_link !== null) {
-            $content->text_link = $request->text_link;
+            $content->text_link = $request->link;
         }
         $content->save();
         return redirect()->back()->with("success", "متن شما با موفقیت ویرایش شد");

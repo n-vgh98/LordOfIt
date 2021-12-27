@@ -7,11 +7,11 @@ $footertitles = App\Models\Lang::where([['langable_type', 'App\Models\FooterTitl
 <footer id="footer_showMenu">
     <!-- Footer Line One -->
     <section class="footer-line-one">
-        @if (count($footertitles) !== 0)
+        @if (count($footertitles) > 0)
             <div class="order">
                 <div class="order-content">
                     <h4 class="p-title">{{ $footertitles[0]->langable->title }}</h4>
-                    @if (count($footertitles[0]->langable->contents))
+                    @if (count($footertitles[0]->langable->contents) !== 0)
                         <p>{{ $footertitles[0]->langable->contents[0]->text }}</p>
                     @endif
                     <a href="">
@@ -23,14 +23,23 @@ $footertitles = App\Models\Lang::where([['langable_type', 'App\Models\FooterTitl
                 </div>
             </div>
         @endif
-        <div class="academy-content">
-            <h4 class="p-title">مطالب آموزشی</h4>
-            <ul>
-                <li><a href="#"><i class="fas fa-chevron-left"></i>اشتباهات مخرب</a></li>
-                <li><a href="#"><i class="fas fa-chevron-left"></i>ترفند های جذب مشتری</a></li>
-                <li> <a href="#"><i class="fas fa-chevron-left"></i>برندینگ و امنیت آن</a></li>
-            </ul>
-        </div>
+        @if (count($footertitles) > 1)
+            <div class="academy-content">
+                <h4 class="p-title">{{ $footertitles[1]->langable->title }}</h4>
+                @if (count($footertitles[1]->langable->contents) !== 0)
+                    <ul>
+                        @foreach ($footertitles[1]->langable->contents as $content)
+                            <li><a href="{{ $content->text_link }}"><i
+                                        class="fas fa-chevron-left"></i>{{ $content->text }}</a>
+                            </li>
+                        @endforeach
+
+                    </ul>
+                @endif
+
+            </div>
+        @endif
+
         <div class="useful-link">
             <h4 class="p-title">لینک های مفید</h4>
             <ul>

@@ -64,34 +64,34 @@
     <!-- start main menu  -->
     <nav class="main-menu">
         <ul class="main-menu-first-ul">
-            <li><a href="{{route('home')}}">
+            <li><a href="{{ route('home') }}">
                     <i class="fa fa-home"></i>
 
                     خانه
                 </a></li>
             <li><a href="#">
-                
+
                     <i class="fa fa-hands-helping"></i>
                     خدمات
                     <i class="fas fa-chevron-down"></i>
                     <div class="submenu">
                         <ul class="submenu-ul">
-                        @foreach($categories as $category)
-                            <li>
-                                <a href="#">
-                                    <span>{{$category->title}}</span>
-                                    <i class="fas fa-chevron-left"></i>
-                                </a>
-                                <!-- <ul class="submenu-ul-ul">
-                                    @foreach($categories as $category)
-                                    <li><a href="#">{{$category->title}}  </a></li>
+                            @foreach ($categories as $category)
+                                <li>
+                                    <a href="#">
+                                        <span>{{ $category->title }}</span>
+                                        <i class="fas fa-chevron-left"></i>
+                                    </a>
+                                    <!-- <ul class="submenu-ul-ul">
+                                    @foreach ($categories as $category)
+                                    <li><a href="#">{{ $category->title }}  </a></li>
                                     @endforeach
                                     <li><a href="#">طراحی سایت ورد پرس</a></li>
                                     <li><a href="#">طراحی سایت اختصاصی</a></li>
 
                                 </ul> -->
-                            </li>
-                        @endforeach
+                                </li>
+                            @endforeach
                         </ul>
 
                     </div>
