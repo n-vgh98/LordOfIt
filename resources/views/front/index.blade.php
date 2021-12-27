@@ -395,35 +395,7 @@
 
     <!-- end section-slider -->
 
-    <!-- start section-from -->
-    <section class="section-from">
-        <div class="content-text-section-from">
-            <p>دریافت مشاوره رایگان</p>
-            <p>برای گرفتن بهترین تصمیم از مشاوره لورد اف ایتی استفاده کنید</p>
-        </div>
-        <form>
-            <input type="text" placeholder="شماره موبایل" />
-            <textarea name="" id="" cols="30" rows="10" placeholder="شرح درخواست"></textarea>
-            <button type="submit" id="show-apply-form">ثبت</button>
-        </form>
-
-        <section class="form-apply">
-            <div class="form-apply-content">
-                <div class="form-head">
-                    <h4> درخواست شما با موفقیت ثبت شد <i class="fas fa-check-square"></i></h4>
-                    <p>در اسرع وقت با شما تماس می گیریم</p>
-                    <textarea name="Text1" cols="30" rows="3" placeholder="شرح درخواست"></textarea>
-                </div>
-                <div class="form-button">
-                    <button type="submit" class="form-apply-edit">ویرایش</button>
-                    <button type="submit" class="form-apply-cancel">لغو</button>
-                </div>
-            </div>
-        </section>
-
-    </section>
-    <!-- start section-from -->
-
+    
     <section class="sections-title titles skills-title">
         <h3>
             مهارت ما

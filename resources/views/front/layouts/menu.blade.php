@@ -64,17 +64,21 @@
     <!-- start main menu  -->
     <nav class="main-menu">
         <ul class="main-menu-first-ul">
-            <li><a href="index.html">
+            <li><a href="{{route('home')}}">
                     <i class="fa fa-home"></i>
 
                     خانه
                 </a></li>
-            <li><a href="">
+            <li><a href="#">
+                
                     <i class="fa fa-hands-helping"></i>
                     خدمات
                     <i class="fas fa-chevron-down"></i>
                     <div class="submenu">
                         <ul class="submenu-ul">
+                            <!-- @php
+                                $categories = app\Http\Models\ServiceCategory
+                            @endphp -->
                             <li>
                                 <a href="#">
                                     <span>طراحی سایت</span>
