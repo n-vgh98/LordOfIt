@@ -18,9 +18,28 @@
                 </a></li>
             <div class="change-language-wrapper">
                 <li class="change-language">
-                    <span>En</span>
-                    <div class="change-language-line"></div>
-                    <span>Fa</span>
+                    @php
+                        $x = substr(Request::getPathInfo(), 3);
+                        $lang = substr(Request::getPathInfo(), 1, 2);
+                        if ($lang == 'fa') {
+                            $lang = 'en';
+                            $link = $lang . $x;
+                        } else {
+                            $lang = 'fa';
+                            $link = $lang . $x;
+                        }
+                    @endphp
+                    @if ($lang == 'fa')
+                        <a href="/{{ $link }}">Fa</a>
+                        <div class="change-language-line"></div>
+                        <a href="#">En</a>
+                    @else
+                        <a href="/{{ $link }}">En</a>
+                        <div class="change-language-line"></div>
+                        <a href="#">Fa</a>
+
+                    @endif
+
                 </li>
             </div>
         </ul>

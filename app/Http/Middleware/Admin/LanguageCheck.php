@@ -19,6 +19,8 @@ class LanguageCheck
      */
     public function handle(Request $request, Closure $next)
     {
+
+        $x = substr($request->getPathInfo(), 1, 2);
         $ip = $request->ip();
         $geoip = new GeoIPLocation();
         $geoip->setIP($ip);
@@ -26,11 +28,24 @@ class LanguageCheck
         if ($country == "iran") {
             URL::defaults(['locale' => "fa"]);
             App::setLocale("fa");
-            return $next($request);
+            if ($x == "fa") {
+                return $next($request);
+            } else {
+                App::setLocale("en");
+                return $next($request);
+
+            }
+
         } else {
             URL::defaults(['locale' => "en"]);
             App::setLocale("en");
-            return $next($request);
+            if ($x == "en") {
+                return $next($request);
+            } else {
+                App::setLocale("fa");
+                return $next($request);
+
+            }
         }
     }
 }

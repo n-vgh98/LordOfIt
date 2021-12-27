@@ -42,22 +42,23 @@ route::get("/", function () {
     return redirect()->route("home");
 })->middleware("language");
 
-route::get("/fa", function () {
-    return redirect()->route("home", "fa");
-})->name("fa");
+// route::get("/fa", function () {
+//     return redirect()->back();
+// })->name("fa");
 
-route::get("/en", function () {
-    return redirect()->route("home", "en");
-})->name("en");
+// route::get("/en", function () {
+//     return redirect()->back();
+// })->name("en");
 
-Route::prefix('/{locale}/home')->middleware("language")->group(function () {
+Route::prefix('/{locale}')->middleware("language")->group(function () {
     route::get("/", [HomeController::class, "index"])->name("home");
+    route::get("/enghelab", [HomeController::class, "update"])->name("home.update");
 
 });
 
 // admin routing
 route::prefix("admin")->middleware("auth", "admin")->group(function () {
-    route::get("/", [AdminDashboard::class, "index"])->name("admin.home");
+    route::get("/home", [AdminDashboard::class, "index"])->name("admin.home");
 
     // admin can do users operation throw this routes##
     route::prefix("users")->group(function () {
@@ -207,8 +208,7 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
 
         });
     });
-    // 
-
+    //
 
     // routes for services prices
     route::prefix("service-prices")->group(function () {

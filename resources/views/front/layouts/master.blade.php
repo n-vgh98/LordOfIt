@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" dir="rtl">
+@if ($local = app()->getLocale() == 'fa')
+    <html lang="fa" dir="rtl">
+@else
+    <html lang="en" dir="ltr">
+@endif
 @yield('head')
 @include('front.layouts.head')
 <title>@yield('title')</title>
@@ -39,7 +43,8 @@
                     <p>
                         ما در سال 2016 با هدف ایجاد تغییر و تحول در فضای وب ایران فعالیت رسمی خود را اغاز کردیم
                         و هر سال با تلاش و پشتکار همگام با استاندارد های روز دنیا
-                        قدم برداشتیم و در کنار این ارزش افرینی مستمر توانستیم لورد اف ایتی را تا اندازه ای چشمگیر تغییر
+                        قدم برداشتیم و در کنار این ارزش افرینی مستمر توانستیم لورد اف ایتی را تا اندازه ای چشمگیر
+                        تغییر
                         دهیم
                         .
                     </p>
@@ -590,4 +595,5 @@
 </body>
 @yield('scripts')
 @include('front.layouts.scripts')
+
 </html>
