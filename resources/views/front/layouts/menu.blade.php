@@ -76,7 +76,7 @@
                     <i class="fas fa-chevron-down"></i>
                     <div class="submenu">
                         <ul class="submenu-ul">
-                            @foreach ($categories as $category)
+                            {{-- @foreach ($categories as $category)
                                 <li>
                                     <a href="#">
                                         <span>{{ $category->title }}</span>
@@ -91,7 +91,7 @@
 
                                 </ul> -->
                                 </li>
-                            @endforeach
+                            @endforeach --}}
                         </ul>
 
                     </div>
@@ -121,7 +121,7 @@
                     <i class="fa fa-address-card"></i>
                     درباره ما
                 </a></li>
-            <li><a href="ourTeam.html">
+            <li><a href="{{ route('front.ourteam.index') }}">
                     <i class="fa fa-users"></i>
                     تیم ما
                 </a></li>

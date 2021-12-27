@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminWorkSample;
 use App\Http\Controllers\Admin\AdminWorkSampleCategory;
 use App\Http\Controllers\Front\HomeController;
+use App\Http\Controllers\Front\OurTeamController;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -54,6 +55,7 @@ route::get("/", function () {
 
 Route::prefix('/{locale}')->middleware("language")->group(function () {
     route::get("/", [HomeController::class, "index"])->name("home");
+    route::get("/ourteam", [OurTeamController::class, "index"])->name("front.ourteam.index");
 });
 
 // admin routing
