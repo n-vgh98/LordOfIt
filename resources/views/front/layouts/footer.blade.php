@@ -1,21 +1,28 @@
+@php
+$lang = substr(Request::getPathInfo(), 1, 2);
+$sociallinks = App\Models\Lang::where([['langable_type', 'App\Models\FooterLink'], ['name', $lang]])->get();
+$footertitles = App\Models\Lang::where([['langable_type', 'App\Models\FooterTitle'], ['name', $lang]])->get();
+@endphp
+
 <footer id="footer_showMenu">
     <!-- Footer Line One -->
     <section class="footer-line-one">
-        <div class="order">
-            <div class="order-content">
-                <h4 class="p-title">نحوه ثبت سفارش</h4>
-                <p>برای ثبت سفارش خود، لطفا با شماره های درج شده در سایت با ما تماس بگیریدو یا فرم مربوط به
-                    ثبت
-                    سفارش آنلاین راتکمیل کرده تا کارشناسان ما در اسرع وقت با شما تماس بگیرند.</p>
-                <a href="">
-                    <button class="btn1">فرم ثبت سفارش</button>
-
-                </a>
-                <a href="signup.html">
-                    <button class="btn2">دریافت مشاوره</button>
-                </a>
+        @if (count($footertitles) !== 0)
+            <div class="order">
+                <div class="order-content">
+                    <h4 class="p-title">{{ $footertitles[0]->langable->title }}</h4>
+                    @if (count($footertitles[0]->langable->contents))
+                        <p>{{ $footertitles[0]->langable->contents[0]->text }}</p>
+                    @endif
+                    <a href="">
+                        <button class="btn1">فرم ثبت سفارش</button>
+                    </a>
+                    <a href="signup.html">
+                        <button class="btn2">دریافت مشاوره</button>
+                    </a>
+                </div>
             </div>
-        </div>
+        @endif
         <div class="academy-content">
             <h4 class="p-title">مطالب آموزشی</h4>
             <ul>
@@ -77,12 +84,33 @@
                 </form>
             </div>
             <div class="footer-social-media">
-                <ul>
-                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                    <li><a href="#"><i class="fab fa-skype"></i></a></li>
-                    <li><a href="#"><i class="fab fa-telegram-plane"></i></a></li>
-                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                </ul>
+                @if (count($sociallinks) !== 0)
+
+                    <ul>
+                        <li><a href="{{ $sociallinks[0]->langable->linkedin_link }}"><i
+                                    class="fab fa-linkedin-in"></i></a>
+                        </li>
+                        <li><a href="{{ $sociallinks[0]->langable->skype_link }}"><i class="fab fa-skype"></i></a>
+                        </li>
+                        <li><a href="{{ $sociallinks[0]->langable->facebook_link }}"><i
+                                    class="fab fa-facebook"></i></a>
+                        </li>
+                        <li><a href="{{ $sociallinks[0]->langable->instagram_link }}"><i
+                                    class="fab fa-instagram"></i></a>
+                        </li>
+                        @if ($sociallinks[0]->langable->social_1 !== null)
+                            <li><a href="{{ $sociallinks[0]->langable->social_1 }}"><i
+                                        class="{{ $sociallinks[0]->langable->social_1_icon }}"></i></a>
+                            </li>
+                        @endif
+                        @if ($sociallinks[0]->langable->social_2 !== null)
+                            <li><a href="{{ $sociallinks[0]->langable->social_2 }}"><i
+                                        class="{{ $sociallinks[0]->langable->social_2_icon }}"></i></a>
+                            </li>
+                        @endif
+                    </ul>
+                @endif
+
             </div>
         </div>
     </section>

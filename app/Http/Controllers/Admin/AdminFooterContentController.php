@@ -70,11 +70,11 @@ class AdminFooterContentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, $lang)
     {
         $contents = FooterContent::where("title_id", $id)->get();
         $titles = FooterTitle::all();
-        return view("admin.footer.content", compact("contents", "titles"));
+        return view("admin.footer.content", compact("contents", "titles", "lang"));
     }
 
     /**

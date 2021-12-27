@@ -76,9 +76,9 @@
                     <i class="fas fa-chevron-down"></i>
                     <div class="submenu">
                         <ul class="submenu-ul">
-                            <!-- @php
+                            {{-- <!-- @php
                                 $categories = app\Http\Models\ServiceCategory
-                            @endphp -->
+                            @endphp --> --}}
                             <li>
                                 <a href="#">
                                     <span>طراحی سایت</span>

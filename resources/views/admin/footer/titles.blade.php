@@ -61,7 +61,8 @@
                     </td>
 
                     <td class="text-center">
-                        <a class="btn btn-info" href="{{ route('admin.footer.content.show', $title->id) }}">مشاهده متن
+                        <a class="btn btn-info"
+                            href="{{ route('admin.footer.content.show', [$title->id, $lang]) }}">مشاهده متن
                             های مربوط به عنوان
                             عنوان</a>
                     </td>

@@ -45,7 +45,7 @@
             @endphp
             @foreach ($languages as $language)
                 @php
-                    $title = $language->langable;
+                    $link = $language->langable;
                 @endphp
                 <tr>
                     {{-- button for removing all links --}}

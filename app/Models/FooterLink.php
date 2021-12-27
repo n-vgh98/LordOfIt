@@ -9,5 +9,9 @@ class FooterLink extends Model
 {
     use HasFactory;
 
-    
+    // polymorphic relation to lang table
+    public function language()
+    {
+        return $this->morphOne("App\Models\Lang", "langable");
+    }
 }

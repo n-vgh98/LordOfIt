@@ -54,13 +54,9 @@ route::get("/", function () {
 
 Route::prefix('/{locale}')->middleware("language")->group(function () {
     route::get("/", [HomeController::class, "index"])->name("home");
-
 });
 
-
-
-
-/////////// admin routing
+// admin routing
 route::prefix("admin")->middleware("auth", "admin")->group(function () {
     route::get("/home", [AdminDashboard::class, "index"])->name("admin.home");
 
@@ -128,7 +124,7 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
         // route for content of footer
         route::prefix("content")->group(function () {
             route::get("/{lang}", [AdminFooterContentController::class, "index"])->name("admin.footer.content.index");
-            route::get("/show/{id}", [AdminFooterContentController::class, "show"])->name("admin.footer.content.show");
+            route::get("/show/{id}/{lang}", [AdminFooterContentController::class, "show"])->name("admin.footer.content.show");
             route::delete("/destroy/{id}", [AdminFooterContentController::class, "destroy"])->name("admin.footer.content.destroy");
             route::post("/update/{id}", [AdminFooterContentController::class, "update"])->name("admin.footer.content.update");
             route::post("/store", [AdminFooterContentController::class, "store"])->name("admin.footer.content.store");

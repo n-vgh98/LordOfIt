@@ -10,7 +10,7 @@ class FooterContent extends Model
     use HasFactory;
     public function title()
     {
-        return $this->belongsTo("App\Models\FooterTitle");
+        return $this->belongsTo("App\Models\FooterTitle", "title_id");
     }
 
     // polymorphic relation to lang table
