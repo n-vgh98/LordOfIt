@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\ServiceCategory;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -14,7 +15,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('front.index');
+        $categories = ServiceCategory::all();
+        return view('front.index',compact('categories'));
     }
 
     /**

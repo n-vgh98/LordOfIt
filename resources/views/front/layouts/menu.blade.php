@@ -76,65 +76,22 @@
                     <i class="fas fa-chevron-down"></i>
                     <div class="submenu">
                         <ul class="submenu-ul">
-                            <!-- @php
-                                $categories = app\Http\Models\ServiceCategory
-                            @endphp -->
+                        @foreach($categories as $category)
                             <li>
                                 <a href="#">
-                                    <span>طراحی سایت</span>
+                                    <span>{{$category->title}}</span>
                                     <i class="fas fa-chevron-left"></i>
                                 </a>
-
-                                <ul class="submenu-ul-ul">
-                                    <li><a href="#">طراحی سایت فروشگاهی</a></li>
+                                <!-- <ul class="submenu-ul-ul">
+                                    @foreach($categories as $category)
+                                    <li><a href="#">{{$category->title}}  </a></li>
+                                    @endforeach
                                     <li><a href="#">طراحی سایت ورد پرس</a></li>
                                     <li><a href="#">طراحی سایت اختصاصی</a></li>
 
-                                </ul>
+                                </ul> -->
                             </li>
-                            <li>
-                                <a href="#">
-                                    <span>طراحی اپلیکشن موبایل</span>
-                                    <i class="fas fa-chevron-left"></i>
-                                </a>
-
-                                <ul class="submenu-ul-ul">
-                                    <li><a href="#">اندروید</a></li>
-                                    <li><a href="#">ios</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span>بهینه سازی سایت (سئو)</span>
-                                    <i class="fas fa-chevron-left"></i>
-                                </a>
-
-                                <ul class="submenu-ul-ul">
-                                    <li><a href="#">سئو داخلی</a></li>
-                                    <li><a href="#">سئو خارجی</a></li>
-                                    <li><a href="#">سئو تکنیکال</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span>طراحی گرافیک</span>
-                                    <i class="fas fa-chevron-left"></i>
-                                </a>
-
-
-                                <ul class="submenu-ul-ul">
-                                    <li><a href="#">لوگو یا آرم</a></li>
-                                    <li><a href="#">موشن گرافی</a></li>
-                                    <li><a href="#">UX/UI</a></li>
-                                    <li><a href="#">ساخت بنر تبلیغاتی</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">دیجیتال مارکتینگ</a>
-                            </li>
-                            <li>
-                                <a href="#">سفارش تولید محتوا</a>
-                            </li>
+                        @endforeach
                         </ul>
 
                     </div>
