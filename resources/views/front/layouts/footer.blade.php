@@ -40,38 +40,34 @@ $footertitles = App\Models\Lang::where([['langable_type', 'App\Models\FooterTitl
             </div>
         @endif
 
-        <div class="useful-link">
-            <h4 class="p-title">لینک های مفید</h4>
-            <ul>
-                <li><a href="index.html"><i class="fas fa-chevron-left"></i>خانه</a></li>
-                <li><a href="#"><i class="fas fa-chevron-left"></i>نمونه کار</a></li>
-                <li><a href="#"><i class="fas fa-chevron-left"></i>خدمات ما</a></li>
-                <li><a href="#"><i class="fas fa-chevron-left"></i>درباره ما</a></li>
-                <li><a href="#"><i class="fas fa-chevron-left"></i>تیم ما</a></li>
-                <li><a href="#"><i class="fas fa-chevron-left"></i>آموزش</a></li>
-                <li><a href="workwithus.html"><i class="fas fa-chevron-left"></i>دعوت همکاری</a></li>
-                <li><a href="#"><i class="fas fa-chevron-left"></i>گالری ویدئو</a></li>
-            </ul>
-        </div>
-        <div class="contact-us">
-            <h4 class="p-title">تماس با ما</h4>
-            <p class="edit-p"> آدرس: شیراز خیابان ملاصدرا خیابان شهید جمالی ساختمان یاشیل طبقه چهارم واحد ۸
-            </p>
-            <p>پاسخگویی ۲۴ ساعته: ۰۹۱۷۴۴۷۷۷۴۹</p>
-            <p>ایمیل:com.lordofit@nfo</p>
-            <p class="edit-p">ساعت کاری: شنبه تا چهارشنبه ۱۰ الی ۲۰</p>
-            <div class="contact-us-ostrolia-wrapper">
-                <div class="contact-us-ostrolia-wrapper-item1">
-                    <p>شعبه استرالیا :</p>
-                </div>
-                <div class="contact-us-ostrolia-wrapper-item2">
-                    <p class="contact-us-ostrolia">228-234 Lonsdale Street
-                        Dandenong VIC 3175
-                        +61498360696
-                    </p>
+        @if (count($footertitles) > 2)
+            <div class="useful-link">
+                <h4 class="p-title">{{ $footertitles[2]->langable->title }}</h4>
+                @if (count($footertitles[2]->langable->contents) !== 0)
+                    <ul>
+                        @foreach ($footertitles[2]->langable->contents as $content)
+                            <li><a href="{{ $content->text_link }}"><i
+                                        class="fas fa-chevron-left"></i>{{ $content->text }}</a></li>
+                        @endforeach
+
+                    </ul>
+
+                @endif
+
+            </div>
+        @endif
+
+        @if (count($footertitles) > 3)
+            <div class="contact-us">
+                <div class="order-content">
+                    <h4 class="p-title">{{ $footertitles[3]->langable->title }}</h4>
+                    @if (count($footertitles[3]->langable->contents) !== 0)
+                        <p>{{ $footertitles[3]->langable->contents[3]->text }}</p>
+                    @endif
                 </div>
             </div>
-        </div>
+        @endif
+
     </section>
     <!-- Footer Line two -->
     <section class="footer-line-two">
