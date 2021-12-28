@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers\Front;
 
-use App\Http\Controllers\Controller;
-use App\Models\ServiceCategory;
+use App\Models\Lang;
+
 use Illuminate\Http\Request;
+use App\Models\ServiceCategory;
+use App\Http\Controllers\Controller;
+
+
 
 class HomeController extends Controller
 {
@@ -13,10 +17,11 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $categories = ServiceCategory::all();
-        return view('front.index',compact('categories'));
+        $lang = substr($request->getPathInfo(), 1, 2);
+        $languages = Lang::where([["langable_type", "App\Models\ServiceCategory"], ["name", $lang]])->get();
+        return view('front.index',compact(['lang','languages']));
     }
 
     /**
@@ -26,7 +31,6 @@ class HomeController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**

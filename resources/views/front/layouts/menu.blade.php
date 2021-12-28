@@ -75,23 +75,24 @@
                     خدمات
                     <i class="fas fa-chevron-down"></i>
                     <div class="submenu">
-                        <ul class="submenu-ul">
-                            {{-- @foreach ($categories as $category)
-                                <li>
-                                    <a href="#">
-                                        <span>{{ $category->title }}</span>
-                                        <i class="fas fa-chevron-left"></i>
-                                    </a>
-                                    <!-- <ul class="submenu-ul-ul">
-                                    @foreach ($categories as $category)
-                                    <li><a href="#">{{ $category->title }}  </a></li>
-                                    @endforeach
-                                    <li><a href="#">طراحی سایت ورد پرس</a></li>
-                                    <li><a href="#">طراحی سایت اختصاصی</a></li>
-
-                                </ul> -->
-                                </li>
-                            @endforeach --}}
+                    <ul class="submenu-ul">
+                            @foreach($languages as $language)
+                            @php
+                            $category = $language->langable;
+                            @endphp
+                            <li>
+                                @if( $category->parent_id == null)
+                                <a href="#">
+                                    <span> {{$category->title}}</span>
+                                    <i class="fas fa-chevron-left"></i>
+                                </a>
+                                <ul class="submenu-ul-ul">
+                                    @elseif ($category->parent_id !==null || $category->parent_id == $category->id)
+                                    <li><a href="#">{{$category->title}}</a></li>
+                                </ul>
+                                @endif
+                            </li>
+                            @endforeach
                         </ul>
 
                     </div>
