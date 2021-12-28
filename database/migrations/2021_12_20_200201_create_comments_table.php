@@ -19,6 +19,8 @@ class CreateCommentsTable extends Migration
             $table->foreignId("parent_id")->nullable()->constrained("comments")->onDelete("cascade")->onUpdate("cascade");
             $table->text("text");
             $table->tinyInteger("status")->default(0)->comment("0 is not accept and 1 is accept");
+            $table->integer("commentable_id");
+            $table->text("commentable_type");
             $table->timestamps();
         });
     }

@@ -28,4 +28,9 @@ class Comment extends Model
     {
         return $this->morphOne("App\Models\Lang", "langable");
     }
+
+    public function commentable()
+    {
+        return $this->morphTo();
+    }
 }

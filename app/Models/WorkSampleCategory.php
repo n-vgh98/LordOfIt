@@ -19,4 +19,10 @@ class WorkSampleCategory extends Model
     {
         return $this->morphOne("App\Models\Lang", "langable");
     }
+
+    // polymorphic relation to comments table
+    public function comments()
+    {
+        return $this->morphMany("App\Models\Comment", "commentable");
+    }
 }
