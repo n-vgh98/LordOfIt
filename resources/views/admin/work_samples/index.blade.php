@@ -16,6 +16,7 @@
                 <th class="text-center" scope="col">امکانات</th>
                 <th class="text-center" scope="col">ویرایش</th>
                 <th class="text-center" scope="col">عکس</th>
+                <th class="text-center" scope="col">وضعیت</th>
                 <th class="text-center" scope="col">لینک نمونه کار</th>
                 <th class="text-center" scope="col">متن نمونه کار</th>
                 <th class="text-center" scope="col">نام دسته بندی</th>
@@ -56,6 +57,22 @@
 
                             <img src="{{ asset($sample->image->path) }}" style="width: 35px; height:35px;">
                         </button>
+                    </td>
+
+                    {{-- status button --}}
+                    <td class="text-center" class="text-center">
+                        @if ($sample->status == 1)
+                            <form action="{{ route('admin.work_samples.inprogress', $sample->id) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-success">تمام شده</button>
+                            </form>
+                        @endif
+                        @if ($sample->status == 2)
+                            <form action="{{ route('admin.work_samples.finished', $sample->id) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-warning">در حال پیشرفت</button>
+                            </form>
+                        @endif
                     </td>
 
                     <td class="text-center">

@@ -22,6 +22,8 @@ use App\Http\Controllers\Admin\AdminWorkSample;
 use App\Http\Controllers\Admin\AdminWorkSampleCategory;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\OurTeamController;
+use App\Http\Controllers\Front\ProjectController;
+use App\Http\Controllers\Front\WorkSampleCategory;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -56,6 +58,9 @@ route::get("/", function () {
 Route::prefix('/{locale}')->middleware("language")->group(function () {
     route::get("/", [HomeController::class, "index"])->name("home");
     route::get("/ourteam", [OurTeamController::class, "index"])->name("front.ourteam.index");
+    route::prefix("work-samples")->group(function () {
+        route::get("/", [WorkSampleCategory::class, "index"])->name("front.project.categories");
+    });
 });
 
 // admin routing
@@ -257,6 +262,8 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
         route::get("/create/{id}", [AdminWorkSample::class, "create"])->name("admin.work_samples.create");
         route::get("/edit/{id}", [AdminWorkSample::class, "edit"])->name("admin.work_samples.edit");
         route::post("/update/{id}", [AdminWorkSample::class, "update"])->name("admin.work_samples.update");
+        route::post("/finished/{id}", [AdminWorkSample::class, "finished"])->name("admin.work_samples.finished");
+        route::post("/inprogress/{id}", [AdminWorkSample::class, "inprogress"])->name("admin.work_samples.inprogress");
         route::post("/updateimage/{id}", [AdminWorkSample::class, "updateimage"])->name("admin.work_samples.update.image");
         route::post("/store", [AdminWorkSample::class, "store"])->name("admin.work_samples.store");
         route::delete("/destroy/{id}", [AdminWorkSample::class, "destroy"])->name("admin.work_samples.destroy");

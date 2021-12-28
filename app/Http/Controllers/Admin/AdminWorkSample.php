@@ -106,7 +106,6 @@ class AdminWorkSample extends Controller
         $sample->title = $request->title;
         $sample->save();
         return redirect()->route("admin.work_samples.category.show", $sample->category_id)->with("success", "نمونه کار مورد نظر با موفقیت ویرایش شد");
-
     }
 
     /**
@@ -136,5 +135,21 @@ class AdminWorkSample extends Controller
         }
         $image->save();
         return redirect()->back()->with("success", "عکس نمونه کار  با موفقیت ویرایش شد");
+    }
+
+    public function finished($id)
+    {
+        $user = WorkSample::find($id);
+        $user->status = 1;
+        $user->save();
+        return redirect()->back();
+    }
+
+    public function inprogress($id)
+    {
+        $user = WorkSample::find($id);
+        $user->status = 2;
+        $user->save();
+        return redirect()->back();
     }
 }

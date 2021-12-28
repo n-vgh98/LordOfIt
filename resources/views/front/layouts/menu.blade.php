@@ -96,7 +96,7 @@
 
                     </div>
                 </a></li>
-            <li><a href="projects.html">
+            <li><a href="{{ route('front.project.categories') }}">
                     <i class="fa fa-project-diagram"></i>
                     نمونه کار
                 </a></li>

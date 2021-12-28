@@ -47,7 +47,23 @@
                 </div>
             </div>
 
+            {{-- status of project --}}
+            <div class="form-group row">
+                <label for="status" class="col-md-1 col-form-label text-md-right">{{ __('وضعیت') }}</label>
 
+                <div class="col-md-11">
+                    <select name="status" class="custom-select">
+                        <option value="1">تمام شده</option>
+                        <option value="2">در حال پیشرفت</option>
+                    </select>
+
+                    @error('status')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>
             {{-- text of work_sample --}}
             <div class="form-group row">
                 <label for="text" class="col-md-1 col-form-label text-md-right">{{ __('متن') }}</label>

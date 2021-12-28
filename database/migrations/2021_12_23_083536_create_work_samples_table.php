@@ -19,6 +19,7 @@ class CreateWorkSamplesTable extends Migration
             $table->string("title");
             $table->text("text")->nullable();
             $table->text("link")->nullable();
+            $table->tinyInteger("status")->default(1)->comment("1 is finished and 2 is in progress");
             $table->timestamps();
         });
     }
