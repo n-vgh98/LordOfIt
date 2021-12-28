@@ -106,7 +106,6 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
         route::patch("update/{id}", [AdminArticleController::class, "update"])->name("admin.articles.update");
         route::delete("destroy/{id}", [AdminArticleController::class, "destroy"])->name("admin.articles.destroy");
         route::post("articles/updateimage/{id}", [AdminArticleController::class, "updateimage"])->name("admin.article.update.image");
-
     });
 
     // routes for footer
@@ -207,7 +206,6 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
             route::get("/edit/{id}", [AdminServiceCategoryController::class, "edit"])->name("admin.services_categories.edit");
             route::patch("update/{id}", [AdminServiceCategoryController::class, "update"])->name("admin.services_categories.update");
             route::delete("destroy/{id}", [AdminServiceCategoryController::class, "destroy"])->name("admin.services_categories.destroy");
-
         });
     });
     //

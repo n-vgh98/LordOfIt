@@ -55,15 +55,17 @@
 
     <section class="ourTeamWrapper">
         <!-- 1 -->
-        <div class="team-card">
-            @foreach ($members as $member)
+        @foreach ($members as $member)
+
+            <div class="team-card">
                 @php
                     $person = $member->langable;
                 @endphp
                 <div class="team-card-content">
                     <h3>{{ $person->name }}</h3>
                     <p>{{ $person->job_title }}</p>
-                    <p>{{ $person->description }}</p>
+                    <p>5 سال سابقه طراحی و پیاده سازی کسب و کار های اینترنتی (طراحی سایت ) و ۲ سال مدیریت تیم طراحی
+                        سایت در شرکت Lord Of IT</p>
                 </div>
                 <figure class="team-card-img">
                     <img class="img-change1" src="{{ asset($person->images[0]->path) }}" alt="">
@@ -71,7 +73,7 @@
                         <img class="img-change2" src="{{ asset($person->images[1]->path) }}" alt="">
                     @endif
                 </figure>
-        </div>
+            </div>
         @endforeach
 
     </section>

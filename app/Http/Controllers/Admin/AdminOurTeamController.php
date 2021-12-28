@@ -125,7 +125,9 @@ class AdminOurTeamController extends Controller
     public function destroy($id)
     {
         $member = OurTeam::find($id);
-        unlink($member->image->path);
+        foreach ($member->images as $image) {
+            unlink($image->path);
+        }
         $member->delete();
         $member->language()->delete();
         return redirect()->back()->with("success", "همکار مورد نظر با موفقیت حذف شد");
@@ -133,6 +135,7 @@ class AdminOurTeamController extends Controller
 
     public function updateimage(Request $request, $id)
     {
+
         $image = Image::find($id);
         $image->name = $request->name;
         $image->alt = $request->alt;
