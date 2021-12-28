@@ -75,23 +75,24 @@
                     خدمات
                     <i class="fas fa-chevron-down"></i>
                     <div class="submenu">
-                    <ul class="submenu-ul">
-                            @foreach($languages as $language)
-                            @php
-                            $category = $language->langable;
-                            @endphp
-                            <li>
-                                @if( $category->parent_id == null)
-                                <a href="#">
-                                    <span> {{$category->title}}</span>
-                                    <i class="fas fa-chevron-left"></i>
-                                </a>
-                                <ul class="submenu-ul-ul">
-                                    @elseif ($category->parent_id !==null || $category->parent_id == $category->id)
-                                    <li><a href="#">{{$category->title}}</a></li>
-                                </ul>
-                                @endif
-                            </li>
+                        <ul class="submenu-ul">
+                            @foreach ($languages as $language)
+                                @php
+                                    $category = $language->langable;
+                                @endphp
+                                <li>
+                                    @if ($category->parent_id == null)
+                                        <a href="#">
+                                            <span> {{ $category->title }}</span>
+                                            <i class="fas fa-chevron-left"></i>
+                                        </a>
+                                        <ul class="submenu-ul-ul">
+                                        @elseif ($category->parent_id !==null || $category->parent_id ==
+                                            $category->id)
+                                            <li><a href="#">{{ $category->title }}</a></li>
+                                        </ul>
+                                    @endif
+                                </li>
                             @endforeach
                         </ul>
 
@@ -112,7 +113,7 @@
 
             <li>
                 <!-- تعرفه خدمات  -->
-                <a href="Tarefe.html">
+                <a href="{{ route('front.project.serviceprice.category') }}">
                     <i class="fa fa-hand-holding-usd"></i>
                     تعرفه خدمات
                 </a>

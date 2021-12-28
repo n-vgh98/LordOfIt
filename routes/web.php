@@ -20,9 +20,11 @@ use App\Http\Controllers\Admin\AdminServicePriceSubcategoryController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminWorkSample;
 use App\Http\Controllers\Admin\AdminWorkSampleCategory;
+use App\Http\Controllers\Front\FrontServicePrice;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\OurTeamController;
 use App\Http\Controllers\Front\ProjectController;
+use App\Http\Controllers\Front\ServicePrice;
 use App\Http\Controllers\Front\WorkSampleCategory;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Auth;
@@ -61,6 +63,11 @@ Route::prefix('/{locale}')->middleware("language")->group(function () {
     route::prefix("work-samples")->group(function () {
         route::get("/", [WorkSampleCategory::class, "index"])->name("front.project.categories");
     });
+
+    route::prefix("service_prices")->group(function () {
+        route::get("/", [FrontServicePrice::class, "index"])->name("front.project.serviceprice.category");
+    });
+    // need more work
     route::prefix("comment")->group(function () {
         route::post("/store", [AdminCommentController::class, "store"])->name("front.project.comments");
     });

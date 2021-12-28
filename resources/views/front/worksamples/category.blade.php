@@ -46,10 +46,6 @@
             </div>
 
             <section class="article-text-wrapper">
-
-
-
-
                 <!--                           web examples project start                    -->
                 @php
                     $i = 0;
@@ -170,7 +166,7 @@
                         <button class="amozesh-btn cm-btn" type="submit">
                             <span>پاسخ</span>
                         </button>
-                    </form>
+                    </form>xR
 
                 </div>
             </div>
