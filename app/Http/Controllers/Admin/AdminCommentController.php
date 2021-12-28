@@ -37,7 +37,14 @@ class AdminCommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $comment = new Comment();
+        $comment->writer_id = auth()->user()->id;
+        $comment->text = $request->didgah;
+        if ($request->parent_id !== null) {
+            $comment->parent_id = $request->parent_id;
+        }
+        $comment->save();
+        return redirect()->back()->with("success", "پیام با موفقیت ارسال شد و پس از تایید ادمین نمایش داده میشود کرد");
     }
 
     /**

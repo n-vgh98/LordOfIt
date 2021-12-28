@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Models\Lang;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -15,10 +16,11 @@ class WorkSampleCategory extends Controller
      */
     public function index(Request $request)
     {
+        $comments = Comment::where("status", 1)->get();
         $lang = substr($request->getPathInfo(), 1, 2);
         $languages = Lang::where([["langable_type", "App\Models\WorkSampleCategory"], ["name", $lang]])->get();
 
-        return view("front.worksamples.category", compact("languages"));
+        return view("front.worksamples.category", compact("languages", "comments"));
     }
 
     /**

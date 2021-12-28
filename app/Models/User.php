@@ -42,12 +42,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function roles(){
+    public function roles()
+    {
 
         return $this->belongsToMany(Role::class);
     }
 
-    public function articles(){
+    public function articles()
+    {
         return $this->hasMany(Article::class);
+    }
+
+    // polymorphic relation to image table
+    public function image()
+    {
+        return $this->morphOne("App\Models\Image", "imageable");
     }
 }

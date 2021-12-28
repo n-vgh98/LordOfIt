@@ -61,6 +61,9 @@ Route::prefix('/{locale}')->middleware("language")->group(function () {
     route::prefix("work-samples")->group(function () {
         route::get("/", [WorkSampleCategory::class, "index"])->name("front.project.categories");
     });
+    route::prefix("comment")->group(function () {
+        route::post("/store", [AdminCommentController::class, "store"])->name("front.project.comments");
+    });
 });
 
 // admin routing
