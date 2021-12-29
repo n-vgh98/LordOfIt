@@ -1,36 +1,40 @@
 <?php
 
+use GuzzleHttp\Middleware;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AdminDashboard;
+use App\Http\Controllers\Front\HomeController;
+use App\Http\Controllers\Admin\AdminWorkSample;
+use App\Http\Controllers\Front\FrontServicePrice;
+use App\Http\Controllers\Front\OurTeamController;
+
+use App\Http\Controllers\Front\WorkSampleCategory;
+use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\Admin\AdminFooterController;
 use App\Http\Controllers\Admin\AdminAboutUsController;
 use App\Http\Controllers\Admin\AdminArticleController;
 use App\Http\Controllers\Admin\AdminCommentController;
 use App\Http\Controllers\Admin\AdminCoursesController;
-use App\Http\Controllers\Admin\AdminCoursesSliderController;
-use App\Http\Controllers\Admin\AdminDashboard;
-use App\Http\Controllers\Admin\AdminFooterContentController;
-use App\Http\Controllers\Admin\AdminFooterController;
+use App\Http\Controllers\Admin\AdminOurTeamController;
+use App\Http\Controllers\Admin\AdminServiceController;
+use App\Http\Controllers\Admin\AdminServiceSubCategory;
+use App\Http\Controllers\Admin\AdminWorkSampleCategory;
 use App\Http\Controllers\Admin\AdminFooterLinkController;
 use App\Http\Controllers\Admin\AdminFooterTitleController;
-use App\Http\Controllers\Admin\AdminOurTeamController;
+use App\Http\Controllers\Admin\AdminServicePriceController;
+use App\Http\Controllers\Admin\AdminCoursesSliderController;
+use App\Http\Controllers\Admin\AdminFooterContentController;
 use App\Http\Controllers\Admin\AdminOurTeamSliderController;
 use App\Http\Controllers\Admin\AdminServicecategoryController;
-use App\Http\Controllers\Admin\AdminServiceController;
 use App\Http\Controllers\Admin\AdminServicePriceCategoryController;
-use App\Http\Controllers\Admin\AdminServicePriceController;
 use App\Http\Controllers\Admin\AdminServicePriceSubcategoryController;
-use App\Http\Controllers\Admin\AdminServiceSubCategory;
-use App\Http\Controllers\Admin\AdminUserController;
-use App\Http\Controllers\Admin\AdminWorkSample;
-use App\Http\Controllers\Admin\AdminWorkSampleCategory;
-use App\Http\Controllers\Front\FrontServicePrice;
-use App\Http\Controllers\Front\HomeController;
-use App\Http\Controllers\Front\OurTeamController;
+use App\Http\Controllers\Front\AboutUsController;
 use App\Http\Controllers\Front\ProjectController;
 use App\Http\Controllers\Front\ServicePrice;
-use App\Http\Controllers\Front\WorkSampleCategory;
 use App\Http\Controllers\Front\WorkSampleController;
-use GuzzleHttp\Middleware;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Front\FrontServiceController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -77,6 +81,10 @@ Route::prefix('/{locale}')->middleware("language")->group(function () {
     route::prefix("comment")->group(function () {
         route::post("/store", [AdminCommentController::class, "store"])->name("front.project.comments");
     });
+    // route::prefix("service")->group(function () {
+        route::get("service/{slug}", [FrontServiceController::class, "index"])->name("front.services");
+    // });
+    route::get("about_us", [AboutUsController::class, "index"])->name("front.about_us");
 });
 
 // admin routing
@@ -218,6 +226,14 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
         route::patch("update/{id}", [AdminServiceController::class, "update"])->name("admin.services.update");
         route::delete("destroy/{id}", [AdminServiceController::class, "destroy"])->name("admin.services.destroy");
         route::post("/updateimage/{id}", [AdminServiceController::class, "updateimage"])->name("admin.services.update.image");
+        // Route::get('/ajax-subcat',function () {
+        //     $cat_id = ServiceCategory::whereNotNull('parent_id')->get();
+        // //    return $cat_id;
+        //     $subcategories = DB::table('services_categories')->where('title', '=',$cat_id)->get();
+        //     return Response::json($subcategories);
+        // });
+
+
 
         //create services categories route
         route::prefix("categories")->group(function () {

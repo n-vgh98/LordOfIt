@@ -73,8 +73,7 @@ $languages = App\Models\Lang::where([['langable_type', 'App\Models\ServiceCatego
 
                     خانه
                 </a></li>
-            <li><a href="#">
-
+            <li><a>
                     <i class="fa fa-hands-helping"></i>
                     خدمات
                     <i class="fas fa-chevron-down"></i>
@@ -85,15 +84,16 @@ $languages = App\Models\Lang::where([['langable_type', 'App\Models\ServiceCatego
                                     $category = $language->langable;
                                 @endphp
                                 <li>
+                            
                                     @if ($category->parent_id == null)
-                                        <a href="#">
+                                        <a href="{{route('front.services',$category->slug)}}">
                                             <span> {{ $category->title }}</span>
                                             <i class="fas fa-chevron-left"></i>
                                         </a>
                                         <ul class="submenu-ul-ul">
                                         @elseif ($category->parent_id !==null || $category->parent_id ==
                                             $category->id)
-                                            <li><a href="#">{{ $category->title }}</a></li>
+                                            <li><a href="{{route('front.services',$services->slug)}}">{{ $category->title }}</a></li>
                                         </ul>
                                     @endif
                                 </li>
@@ -123,7 +123,7 @@ $languages = App\Models\Lang::where([['langable_type', 'App\Models\ServiceCatego
                 </a>
                 <!-- پایان  تعرفه خدمات -->
             </li>
-            <li><a href="aboutUs.html">
+            <li><a href="{{route('front.about_us')}}">
                     <i class="fa fa-address-card"></i>
                     درباره ما
                 </a></li>

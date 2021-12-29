@@ -18,18 +18,36 @@
 
 
     <div>
-    <label style="display: inline-block;
+        <label style="display: inline-block;
                 max-width: 100%;
                 margin-bottom: 5px;
                 font-weight: bold;
                 ">نام دسته بندی:</label>
         <select class="form-control" name="category">
             @foreach($categories as $category)
+            @if($category->parent_id == null)
             <option value="{{$category->id}}">{{$category->title}}</option>
+            @endif
             @endforeach
         </select>
-        
+
+    </div><br />
+    <div class="form-group">
+        <label style="display: inline-block;
+                max-width: 100%;
+                margin-bottom: 5px;
+                font-weight: bold;
+                ">نام زیر دسته :</label>
+        <select name="subcategory" id="subcategory" class="form-control input-sm">
+            <!-- @foreach($categories as $category)
+            @if($category->parent_id !== null  || $category->parent_id == $category->id) -->
+            <option value=""></option>
+            <!-- @endif
+            @endforeach -->
+        </select>
     </div>
+
+
 
     <div>
         {!! Form::label('meta_description', 'متا توضیحات:') !!}
@@ -155,4 +173,40 @@
         language: 'fa',
     });
 </script>
+
+<!-- cripts for subcategories -->
+<!-- $('#category').on(change,function(e){
+  console.log(e);
+   var cat_id = e.target.value;
+
+    //ajax
+    $get('/ajax-subcat?cat_id='+ cat_id,function(data){
+        //success data
+        //console.log(data);
+        $('#subcategory').empty();
+        $.each(data,function(index,subcatObj){
+            $('#subcategory').append('<option value ="'+subcatObj.id+'">'+subcatObj.name+'</option>');
+        });
+
+    });
+}); -->
+
+
+<!-- 
+$.ajax({
+                url : url,
+                type : "GET",
+                success : function(response){
+                    if(response.status){
+                        if(response.checked)
+                        element.prop('checked', true);
+                        else
+                        element.prop('checked', false);
+                    }
+                    else{
+                        element.prop('checked', elementValue);
+                    }
+                }
+            }) -->
+
 @endsection
