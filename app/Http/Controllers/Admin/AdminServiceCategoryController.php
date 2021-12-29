@@ -19,6 +19,7 @@ class AdminServiceCategoryController extends Controller
     {
         $languages = Lang::where([["langable_type", "App\Models\ServiceCategory"], ["name", $lang]])->get();
         // dd($languages[0]->langable);
+        
         return view('admin.services.categories.index', compact('languages', 'lang'));
 
 
