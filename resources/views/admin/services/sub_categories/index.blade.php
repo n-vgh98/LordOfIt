@@ -4,7 +4,7 @@
 @endsection
 
 @section('pagetitle')
-لیست  زیر دستهها
+لیست زیر دستهها
 @endsection
 
 @section('content')
@@ -31,7 +31,8 @@
         <tr>
             <th>تنظیمات</th>
             <th>امکانات</th>
-            <th> نام دسته بندی</th>
+            <th> نام دسته بندی اصلی</th>
+            <th> نام زیر دسته </th>
             <th>#</th>
         </tr>
     </thead>
@@ -42,39 +43,40 @@
         <!-- create foreach for languages -->
         @foreach($languages as $language)
         @php
-        $category=$language->langable
+        $subcategory=$language->langable
         @endphp
-        @if ($category->parent_id !== null)
+        @if ($subcategory->parent_id !== null)
         <tr>
             <td>
-                <form action="{{ route('admin.services_categories.destroy', $category->id) }}" method="POST">
+                <form action="{{ route('admin.services_sub_categories.destroy', $subcategory->id) }}" method="POST">
                     @csrf
                     @method("DELETE")
                     <button class="btn btn-danger" type="submit">حذف</button>
                 </form>
             </td>
             <td>
-                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#category{{ $category->id }}">
+                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#category{{ $subcategory->id }}">
                     ویرایش
                 </button>
 
             </td>
-            <td>{{ $category->title }}</td>
+            <td>{{ $subcategory->category->title }}</td>
+            <td>{{ $subcategory->title }}</td>
             <th>{{ $number }}</th>
         </tr>
         @endif
         {{-- modal to show edit service category --}}
-        <div class="modal fade" id="category{{ $category->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="category{{ $subcategory->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">ویرایش دسته بندی {{$category->title}} </h5>
+                        <h5 class="modal-title" id="exampleModalLabel">ویرایش دسته بندی {{$subcategory->title}} </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('admin.services_categories.update', $category->id) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('admin.services_sub_categories.update', $subcategory->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method("PATCH")
                             {{-- section for changing category title --}}
@@ -82,9 +84,28 @@
                                 <label for="title" class="col-md-4 col-form-label text-md-right">{{ __('عنوان') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" autocomplete="title" value="{{ $category->title }}" autofocus>
+                                    <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" autocomplete="title" value="{{ $subcategory->title }}" autofocus>
 
                                     @error('title')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            {{-- section for changing main category --}}
+                            <div class="form-group row">
+                                <label for="category" class="col-md-4 col-form-label text-md-right">{{ __('دسته بندی اصلی') }}</label>
+
+                                <div class="col-md-6">
+                                    <select class="form-control" name="category">
+                                        @foreach($categories as $category)
+                                        @if($category->parent_id == null)
+                                        <option value="{{$category->id}}">{{$category->title}}</option>
+                                        @endif
+                                        @endforeach
+                                    </select>
+                                    @error('category')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -97,7 +118,7 @@
                                 <label for="slug" class="col-md-4 col-form-label text-md-right">{{ __('slug') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="slug" type="text" class="form-control @error('slug') is-invalid @enderror" name="slug" value="{{ $category->slug }}" autofocus>
+                                    <input id="slug" type="text" class="form-control @error('slug') is-invalid @enderror" name="slug" value="{{ $subcategory->slug }}" autofocus>
 
                                     @error('slug')
                                     <span class="invalid-feedback" role="alert">
@@ -112,7 +133,7 @@
                                 <label for="meta_keywords" class="col-md-4 col-form-label text-md-right">{{ __('meta_keywords') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="meta_keywords" type="text" class="form-control @error('meta_keywords') is-invalid @enderror" name="meta_keywords" required value="{{ $category->meta_keywords }}" autocomplete="meta_keywords" autofocus>
+                                    <input id="meta_keywords" type="text" class="form-control @error('meta_keywords') is-invalid @enderror" name="meta_keywords" required value="{{ $subcategory->meta_keywords }}" autocomplete="meta_keywords" autofocus>
 
                                     @error('meta_keywords')
                                     <span class="invalid-feedback" role="alert">
@@ -127,7 +148,7 @@
                                 <label for="meta_description" class="col-md-4 col-form-label text-md-right">{{ __('meta_description') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="meta_description" type="text" class="form-control @error('meta_description') is-invalid @enderror" name="meta_description" required value="{{ $category->meta_description }}" autocomplete="meta_description" autofocus>
+                                    <input id="meta_description" type="text" class="form-control @error('meta_description') is-invalid @enderror" name="meta_description" required value="{{ $subcategory->meta_description }}" autocomplete="meta_description" autofocus>
 
                                     @error('meta_description')
                                     <span class="invalid-feedback" role="alert">
@@ -140,7 +161,7 @@
                             <div style="margin-top:15px;">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">منصرف
                                     شدم</button>
-                                <input type="hidden" value="{{$category->language->name}}" name="lang">
+                                <input type="hidden" value="{{$subcategory->language->name}}" name="lang">
                                 </input>
                                 <button type="submit" class="btn btn-primary">ارسال</button>
                             </div>
@@ -171,13 +192,13 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel"> اضافه کردن دسته بندی جدید </h5>
+                <h5 class="modal-title" id="exampleModalLabel"> اضافه کردن زیر دسته جدید </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('admin.services_categories.store',$lang) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('admin.services_sub_categories.store',$lang) }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
                     {{-- title of category --}}
@@ -194,7 +215,25 @@
                             @enderror
                         </div>
                     </div>
+                    {{-- main category --}}
+                    <div class="form-group row">
+                        <label for="category" class="col-md-4 col-form-label text-md-right">{{ __(' دسته بندی اصلی') }}</label>
 
+                        <div class="col-md-6">
+                            <select class="form-control" name="category">
+                                @foreach($categories as $category)
+                                @if($category->parent_id == null)
+                                <option value="{{$category->id}}">{{$category->title}}</option>
+                                @endif
+                                @endforeach
+                            </select>
+                            @error('category')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
                     {{-- slug of category --}}
                     <div class="form-group row">
                         <label for="job_title" class="col-md-4 col-form-label text-md-right">{{ __('نام مستعار ') }}</label>

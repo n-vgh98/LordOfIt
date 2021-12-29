@@ -31,8 +31,8 @@
         <tr>
             <th>تنظیمات</th>
             <th>امکانات</th>
+            <!-- <th>زیردسته ها</th> -->
             <th> نام دسته بندی</th>
-            <th>زیردسته ها</th>
             <th>#</th>
         </tr>
     </thead>
@@ -60,13 +60,13 @@
                 </button>
 
             </td>
-            <td class="text-center">
+            <!-- <td>
                 @if (count($category->subcategories) == 0)
                 <a class="btn btn-success" href="{{ route('admin.services.price.subcategory.create', $category->id) }}">ساختن</a>
                 @else
                 <a class="btn btn-success" href="{{ route('admin.services.price.subcategory.show', $category->id) }}">مشاهده</a>
                 @endif
-            </td>
+            </td> -->
             <td>{{ $category->title }}</td>
             <th>{{ $number }}</th>
         </tr>
