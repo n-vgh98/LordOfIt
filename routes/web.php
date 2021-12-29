@@ -1,5 +1,4 @@
 <?php
-
 use App\Http\Controllers\Admin\AdminAboutUsController;
 use App\Http\Controllers\Admin\AdminArticleController;
 use App\Http\Controllers\Admin\AdminCommentController;
@@ -21,6 +20,7 @@ use App\Http\Controllers\Admin\AdminServiceSubCategory;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminWorkSample;
 use App\Http\Controllers\Admin\AdminWorkSampleCategory;
+use App\Http\Controllers\Front\CourseController;
 use App\Http\Controllers\Front\FrontServicePrice;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\OurTeamController;
@@ -68,6 +68,11 @@ Route::prefix('/{locale}')->middleware("language")->group(function () {
         route::prefix("work-samples-categories")->group(function () {
             route::get("/", [WorkSampleCategory::class, "index"])->name("front.project.categories");
         });
+    });
+
+    route::prefix("courses")->group(function () {
+        route::get("/show/{id}", [CourseController::class, "show"])->name("front.courses.show");
+        route::get("/", [CourseController::class, "index"])->name("front.courses.all");
     });
 
     route::prefix("service_prices")->group(function () {
