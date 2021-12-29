@@ -12,7 +12,17 @@ class ServiceCategory extends Model
 
 
     public function services(){
-        return $this->hasMany("App\Models\Service_Category");
+        return $this->hasMany("App\Models\Service");
+    }
+
+    public function subcategories()
+    {
+        return $this->hasMany("App\Models\ServiceCategory", "parent_id");
+    }
+
+    public function category()
+    {
+        return $this->belongsTo("App\Models\ServiceCategory", "parent_id");
     }
 
     // polymorphic relation to lang table

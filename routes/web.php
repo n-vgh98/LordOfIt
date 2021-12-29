@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\AdminServiceController;
 use App\Http\Controllers\Admin\AdminServicePriceCategoryController;
 use App\Http\Controllers\Admin\AdminServicePriceController;
 use App\Http\Controllers\Admin\AdminServicePriceSubcategoryController;
+use App\Http\Controllers\Admin\AdminServiceSubCategory;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminWorkSample;
 use App\Http\Controllers\Admin\AdminWorkSampleCategory;
@@ -222,6 +223,17 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
             route::patch("update/{id}", [AdminServiceCategoryController::class, "update"])->name("admin.services_categories.update");
             route::delete("destroy/{id}", [AdminServiceCategoryController::class, "destroy"])->name("admin.services_categories.destroy");
         });
+
+        //create service sub categories route
+        route::prefix("sub_categories")->group(function () {
+            route::get("/{lang}", [AdminServiceSubCategory::class, "index"])->name("admin.services_sub_categories.index");
+            route::get("/create/{lang}", [AdminServiceSubCategory::class, "create"])->name("admin.services_sub_categories.create");
+            route::post("/store", [AdminServiceSubCategory::class, "store"])->name("admin.services_sub_categories.store");
+            route::get("/edit/{id}", [AdminServiceSubCategory::class, "edit"])->name("admin.services_sub_categories.edit");
+            route::patch("update/{id}", [AdminServiceSubCategory::class, "update"])->name("admin.services_sub_categories.update");
+            route::delete("destroy/{id}", [AdminServiceSubCategory::class, "destroy"])->name("admin.services_sub_categories.destroy");
+        });
+
     });
     //
 

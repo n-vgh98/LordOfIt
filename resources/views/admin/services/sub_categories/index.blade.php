@@ -1,17 +1,17 @@
 @extends('admin.layouts.master')
 @section('sitetitle')
-دسته بندی خدمات
+زیر دسته ها
 @endsection
 
 @section('pagetitle')
-لیست دسته بندی ها
+لیست  زیر دستهها
 @endsection
 
 @section('content')
 <section class="text-center">
     <div class="btn-group btn-group-toggle">
-        <a href="{{ route('admin.services_categories.index','fa') }}" class="btn btn-primary">فارسی</a>
-        <a href="{{ route('admin.services_categories.index','en') }}" class="btn btn-primary">انگلیسی</a>
+        <a href="{{ route('admin.services_sub_categories.index','fa') }}" class="btn btn-primary">فارسی</a>
+        <a href="{{ route('admin.services_sub_categories.index','en') }}" class="btn btn-primary">انگلیسی</a>
     </div>
 </section>
 
@@ -32,7 +32,6 @@
             <th>تنظیمات</th>
             <th>امکانات</th>
             <th> نام دسته بندی</th>
-            <th>زیردسته ها</th>
             <th>#</th>
         </tr>
     </thead>
@@ -45,7 +44,7 @@
         @php
         $category=$language->langable
         @endphp
-        @if ($category->parent_id == null)
+        @if ($category->parent_id !== null)
         <tr>
             <td>
                 <form action="{{ route('admin.services_categories.destroy', $category->id) }}" method="POST">
@@ -59,13 +58,6 @@
                     ویرایش
                 </button>
 
-            </td>
-            <td class="text-center">
-                @if (count($category->subcategories) == 0)
-                <a class="btn btn-success" href="{{ route('admin.services.price.subcategory.create', $category->id) }}">ساختن</a>
-                @else
-                <a class="btn btn-success" href="{{ route('admin.services.price.subcategory.show', $category->id) }}">مشاهده</a>
-                @endif
             </td>
             <td>{{ $category->title }}</td>
             <th>{{ $number }}</th>
