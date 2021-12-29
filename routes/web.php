@@ -3,14 +3,19 @@
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Front\ServicePrice;
 use App\Http\Controllers\Admin\AdminDashboard;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Admin\AdminWorkSample;
+use App\Http\Controllers\Front\CourseController;
+
+use App\Http\Controllers\Front\AboutUsController;
 use App\Http\Controllers\Front\FrontServicePrice;
 use App\Http\Controllers\Front\OurTeamController;
-
+use App\Http\Controllers\Front\ProjectController;
 use App\Http\Controllers\Front\WorkSampleCategory;
 use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\Front\WorkSampleController;
 use App\Http\Controllers\Admin\AdminFooterController;
 use App\Http\Controllers\Admin\AdminAboutUsController;
 use App\Http\Controllers\Admin\AdminArticleController;
@@ -18,6 +23,7 @@ use App\Http\Controllers\Admin\AdminCommentController;
 use App\Http\Controllers\Admin\AdminCoursesController;
 use App\Http\Controllers\Admin\AdminOurTeamController;
 use App\Http\Controllers\Admin\AdminServiceController;
+use App\Http\Controllers\Front\FrontServiceController;
 use App\Http\Controllers\Admin\AdminServiceSubCategory;
 use App\Http\Controllers\Admin\AdminWorkSampleCategory;
 use App\Http\Controllers\Admin\AdminFooterLinkController;
@@ -29,11 +35,6 @@ use App\Http\Controllers\Admin\AdminOurTeamSliderController;
 use App\Http\Controllers\Admin\AdminServicecategoryController;
 use App\Http\Controllers\Admin\AdminServicePriceCategoryController;
 use App\Http\Controllers\Admin\AdminServicePriceSubcategoryController;
-use App\Http\Controllers\Front\AboutUsController;
-use App\Http\Controllers\Front\ProjectController;
-use App\Http\Controllers\Front\ServicePrice;
-use App\Http\Controllers\Front\WorkSampleController;
-use App\Http\Controllers\Front\FrontServiceController;
 
 
 /*

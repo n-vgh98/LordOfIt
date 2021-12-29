@@ -48,7 +48,7 @@ class WorkSampleController extends Controller
     public function show($lang, $id)
     {
         $samples = WorkSample::where("category_id", $id)->get();
-        return view("front.worksamples.samples", compact("samples"));
+        return view("front.worksamples.samples", compact("samples", "lang"));
     }
 
     /**
