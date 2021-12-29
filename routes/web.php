@@ -300,6 +300,7 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
     route::prefix("comments")->group(function () {
         route::get("/", [AdminCommentController::class, "index"])->name("admin.comments.index");
         route::post("/accept/{id}", [AdminCommentController::class, "accept"])->name("admin.comments.accept");
+        route::post("/store", [AdminCommentController::class, "store"])->name("admin.comments.store");
         route::post("/decline/{id}", [AdminCommentController::class, "decline"])->name("admin.comments.decline");
         route::delete("/destroy/{id}", [AdminCommentController::class, "destroy"])->name("admin.comments.destroy");
     });
