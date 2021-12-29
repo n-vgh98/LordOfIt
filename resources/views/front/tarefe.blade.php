@@ -1,8 +1,6 @@
 @extends('front.layouts.master')
 
 @section('main')
-
-
     <form class="main-form" action="">
 
         <input type="text" name="" id="" placeholder="دنبال چی میگردی؟">
@@ -11,9 +9,6 @@
             </i>
         </button>
     </form>
-
-
-
     <section class="section-one-tarfe-page">
         <div class="wrapper-tarfe">
             <figure>
@@ -61,7 +56,6 @@
             روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع
             با هدف بهبود
             ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده
-
         </p>
 
     </article>

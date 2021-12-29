@@ -10,8 +10,6 @@
 
 
 <body>
-
-
     <header>
         <!-- scroll start -->
         <div id="progressbarScorll"></div>
@@ -21,7 +19,12 @@
         @yield('header')
     </header>
     @yield('main')
-        
+
+
+    @include('front.layouts.sweetalert.error')
+
+
+
     @include('front.layouts.footer')
 </body>
 @yield('scripts')
