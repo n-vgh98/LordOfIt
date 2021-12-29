@@ -1,6 +1,13 @@
 @extends('front.layouts.master')
 @section('main')
 
+    <div id="big-photo-id" class="big-photo">
+        <i onClick="closePhoto()" class="fas fa-times"></i>
+        <div class="big-photo-divImg">
+            <img id="big-photo-show" src="imgs/Content-production.jpg" alt="">
+        </div>
+    </div>
+
     <form class="main-form" action="">
 
         <input type="text" name="" id="" placeholder="دنبال چی میگردی؟">
@@ -62,23 +69,39 @@
                             <h3 id="project-site" class="project-title-h2">پروژه های {{ $category->title }}</h3>
 
                         @endif
-                        <section class="examples-project">
-                            @foreach ($category->samples as $sample)
-                                <a href="#">
-                                    <div class="examples-project-item">
-                                        <img src="{{ asset($sample->image->path) }}" alt="{{ $sample->image->alt }}"
-                                            title="{{ $sample->image->name }}">
-                                        <p>{{ $sample->title }}</p>
-                                    </div>
-                                </a>
-                            @endforeach
-
-                        </section>
+                        @if ($category->title == 'ui/ux' or $category->title == 'ux/ui' or $category->title == 'گرافیک' or $category->title == 'graphic')
+                            <section class="examples-project">
+                                @foreach ($category->samples as $sample)
+                                    <a href="#">
+                                        <div class="examples-project-item">
+                                            <img onClick="bigPhoto(this)" src="{{ asset($sample->image->path) }}"
+                                                alt="{{ $sample->image->alt }}" title="{{ $sample->image->name }}">
+                                            <p>{{ $sample->title }}</p>
+                                        </div>
+                                    </a>
+                                @endforeach
+                            </section>
+                        @else
+                            <section class="examples-project">
+                                @foreach ($category->samples as $sample)
+                                    <a href="{{ $sample->link }}">
+                                        <div class="examples-project-item">
+                                            <img src="{{ asset($sample->image->path) }}"
+                                                alt="{{ $sample->image->alt }}" title="{{ $sample->image->name }}">
+                                            <p>{{ $sample->title }}</p>
+                                        </div>
+                                    </a>
+                                @endforeach
+                            </section>
+                        @endif
                         <a class="more-examples" href="#">بیشتر...</a>
                     </div>
                 @endforeach
                 <!--                           web examples project end                    -->
             </section>
+
+
+
 
         </section>
 
@@ -89,17 +112,20 @@
 
                 <p class="project-title-h2">در حال پیشرفت</p>
                 <section class="examples-project-left">
-
+                    @php
+                        $i = 0;
+                    @endphp
                     @foreach ($languages as $language)
                         @php
+                            $i++;
                             $category = $language->langable;
                         @endphp
                         @foreach ($category->samples as $sample)
-                            @if ($sample->status == 2)
+                            @if ($sample->status == 2 and $i < 4)
                                 <a href="#">
                                     <div class="examples-project-item">
-                                        <img src="{{ asset($sample->image->path) }}" alt="{{ $sample->image->alt }}"
-                                            title="{{ $sample->image->name }}">
+                                        <img onClick="bigPhoto(this)" src="{{ asset($sample->image->path) }}"
+                                            alt="{{ $sample->image->alt }}" title="{{ $sample->image->name }}">
                                         <p>{{ $sample->title }}</p>
                                     </div>
                                 </a>
@@ -108,12 +134,15 @@
 
                     @endforeach
 
+
+
                 </section>
 
             </div>
             <!--                           Development examples project end                    -->
 
 
+            {{-- jadidtarin ha be soorate adi khodesh miad niazi be in ghesmat nist --}}
             {{-- <!--                           more newer examples project start                    -->
             <div class="examples-project-main">
 
@@ -148,46 +177,7 @@
 
         </section>
     </section>
-    <div class="title title-comments">
-        <p>نظرات کاربران </p>
-    </div>
-    <section class="comments">
-        <!-- row one comment -->
-        @foreach ($comments as $comment)
-
-            <div class="row">
-                <img src="{{ $comment->writer->name }}" alt="profile-photo">
-                <div class="text-comments">
-                    {{ $comment->text }}
-                </div>
-
-                <div class="parent-amozesh-btn cm-btn">
-                    <form action="">
-                        <button class="amozesh-btn cm-btn" type="submit">
-                            <span>پاسخ</span>
-                        </button>
-                    </form>xR
-
-                </div>
-            </div>
-        @endforeach
-        </div>
-
-
-    </section>
-
-
-
-    <div class="parenet-didgah">
-        <div class="row-one-didgah">
-            <p>دیدگاه شما...</p>
-            <form method="post" action="{{ route('front.project.comments') }}">
-                @csrf
-                <textarea type="text" name="didgah" class="textare-didgah"></textarea>
-                <button class="amozesh-btn cm-btn didgah">
-                    <span>ارسال</span>
-                </button>
-            </form>
-        </div>
-    </div>
+@endsection
+@section('scripts')
+    <script src="{{ asset('front/js/bigPhoto.js') }}" type="text/javascript"></script>
 @endsection
