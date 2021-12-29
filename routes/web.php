@@ -27,6 +27,7 @@ use App\Http\Controllers\Front\OurTeamController;
 use App\Http\Controllers\Front\ProjectController;
 use App\Http\Controllers\Front\ServicePrice;
 use App\Http\Controllers\Front\WorkSampleCategory;
+use App\Http\Controllers\Front\WorkSampleController;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -62,7 +63,11 @@ Route::prefix('/{locale}')->middleware("language")->group(function () {
     route::get("/", [HomeController::class, "index"])->name("home");
     route::get("/ourteam", [OurTeamController::class, "index"])->name("front.ourteam.index");
     route::prefix("work-samples")->group(function () {
-        route::get("/", [WorkSampleCategory::class, "index"])->name("front.project.categories");
+        route::get("/show/{id}", [WorkSampleController::class, "show"])->name("front.project.show");
+
+        route::prefix("work-samples-categories")->group(function () {
+            route::get("/", [WorkSampleCategory::class, "index"])->name("front.project.categories");
+        });
     });
 
     route::prefix("service_prices")->group(function () {
@@ -233,7 +238,6 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
             route::patch("update/{id}", [AdminServiceSubCategory::class, "update"])->name("admin.services_sub_categories.update");
             route::delete("destroy/{id}", [AdminServiceSubCategory::class, "destroy"])->name("admin.services_sub_categories.destroy");
         });
-
     });
     //
 

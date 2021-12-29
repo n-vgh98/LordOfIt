@@ -1,4 +1,8 @@
 <!-- start parent main menu and logo -->
+@php
+$lang = substr(Request::getPathInfo(), 1, 2);
+$languages = App\Models\Lang::where([['langable_type', 'App\Models\ServiceCategory'], ['name', $lang]])->get();
+@endphp
 <section class="parent-main-logo-sigin_and_main-menu">
 
     <!-- start main logo big scop and sigin -->

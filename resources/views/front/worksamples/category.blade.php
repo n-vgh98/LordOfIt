@@ -69,7 +69,7 @@
                             <h3 id="project-site" class="project-title-h2">پروژه های {{ $category->title }}</h3>
 
                         @endif
-                        @if ($category->title == 'ui/ux' or $category->title == 'ux/ui' or $category->title == 'گرافیک' or $category->title == 'graphic')
+                        @if ($category->title == 'UI/UX' or $category->title == 'UX/UI' or $category->title == 'گرافیک' or $category->title == 'Graphic' or $category->title == 'graphic')
                             <section class="examples-project">
                                 @foreach ($category->samples as $sample)
                                     <a href="#">
@@ -94,7 +94,7 @@
                                 @endforeach
                             </section>
                         @endif
-                        <a class="more-examples" href="#">بیشتر...</a>
+                        <a class="more-examples" href="{{ route('front.project.show', $category->id) }}">بیشتر...</a>
                     </div>
                 @endforeach
                 <!--                           web examples project end                    -->

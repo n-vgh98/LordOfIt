@@ -2,26 +2,20 @@
 
 namespace App\Http\Controllers\Front;
 
-use App\Models\Lang;
-
-use Illuminate\Http\Request;
-use App\Models\ServiceCategory;
 use App\Http\Controllers\Controller;
+use App\Models\WorkSample;
+use Illuminate\Http\Request;
 
-
-
-class HomeController extends Controller
+class WorkSampleController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $lang = substr($request->getPathInfo(), 1, 2);
-        $languages = Lang::where([["langable_type", "App\Models\ServiceCategory"], ["name", $lang]])->get();
-        return view('front.index', compact(['lang', 'languages']));
+        //
     }
 
     /**
@@ -31,6 +25,7 @@ class HomeController extends Controller
      */
     public function create()
     {
+        //
     }
 
     /**
@@ -50,9 +45,10 @@ class HomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($lang, $id)
     {
-        //
+        $samples = WorkSample::where("category_id", $id)->get();
+        return view("front.worksamples.samples", compact("samples"));
     }
 
     /**
