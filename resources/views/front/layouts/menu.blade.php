@@ -106,7 +106,7 @@ $languages = App\Models\Lang::where([['langable_type', 'App\Models\ServiceCatego
                     <i class="fa fa-project-diagram"></i>
                     نمونه کار
                 </a></li>
-            <li><a href="amozesh.html">
+            <li><a href="{{ route('front.courses.all') }}">
                     <i class="fa fa-book-reader"></i>
                     آموزش
                 </a></li>

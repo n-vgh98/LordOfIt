@@ -74,6 +74,11 @@ Route::prefix('/{locale}')->middleware("language")->group(function () {
         });
     });
 
+    route::prefix("courses")->group(function () {
+        route::get("/show/{id}", [CourseController::class, "show"])->name("front.courses.show");
+        route::get("/", [CourseController::class, "index"])->name("front.courses.all");
+    });
+
     route::prefix("service_prices")->group(function () {
         route::get("/", [FrontServicePrice::class, "index"])->name("front.project.serviceprice.category");
     });
