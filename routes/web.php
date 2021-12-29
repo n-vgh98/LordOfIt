@@ -85,10 +85,10 @@ Route::prefix('/{locale}')->middleware("language")->group(function () {
     });
     // need more work
     route::prefix("comment")->group(function () {
-        route::post("/store", [AdminCommentController::class, "store"])->name("front.project.comments");
+        route::post("/store", [AdminCommentController::class, "store"])->name("front.project.comments.store");
     });
     // route::prefix("service")->group(function () {
-        route::get("service/{slug}", [FrontServiceController::class, "index"])->name("front.services");
+    route::get("service/{slug}", [FrontServiceController::class, "index"])->name("front.services");
     // });
     route::get("about_us", [AboutUsController::class, "index"])->name("front.about_us");
 });

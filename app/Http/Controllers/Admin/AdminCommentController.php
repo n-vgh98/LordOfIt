@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
+use App\Models\Course;
 use App\Models\WorkSampleCategory;
 use Illuminate\Http\Request;
 
@@ -38,16 +39,18 @@ class AdminCommentController extends Controller
      */
     public function store(Request $request)
     {
-        $category = new WorkSampleCategory();
-        $comment = new Comment();
-        $comment->writer_id = auth()->user()->id;
-        $comment->text = $request->didgah;
-        if ($request->parent_id !== null) {
-            $comment->parent_id = $request->parent_id;
+
+        if ($request->comment == "course") {
+            $course = Course::find($request->id);
+            $comment = new Comment();
+            $comment->writer_id = auth()->user()->id;
+            $comment->text = $request->didgah;
+            if ($request->parent_id !== null) {
+                $comment->parent_id = $request->parent_id;
+            }
+            $course->comments()->save($comment);
         }
-        dd($category);
-        $category->commentable->save($comment);
-        return redirect()->back()->with("success", "پیام با موفقیت ارسال شد و پس از تایید ادمین نمایش داده میشود کرد");
+        return redirect()->back()->with("success", "پیام با موفقیت ارسال شد و پس از تایید ادمین نمایش داده میشود");
     }
 
     /**

@@ -12,7 +12,7 @@
     <!-- course-content -->
     <h1 class="main-title-h1">{{ $course->title }}</h1>
     <article class="course-content">
-        <button class="btn-course"><a href="#">شرکت در دوره</a></button>
+        <button><a href="#" class="btn-course">شرکت در دوره</a></button>
         <section class="course-content-wrapp ">
             <article class="course-description">
                 <section class="course-pic course-bg">
@@ -40,7 +40,7 @@
                     <p>تعداد جلسات: {{ $course->section }}</p>
                     <p>زبان : {{ $course->lang }}</p>
                 </div>
-                <a href="#">شرکت در دوره</a>
+                <button><a href="#">شرکت در دوره</a></button>
             </section>
         </section>
     </article>
@@ -108,49 +108,52 @@
     </div>
     <section class="comments">
         <!-- row one comment -->
-        <div class="comments-div">
-            <div class="row">
-                <img src="imgs/photo-profile.jpg" alt="profile-photo">
-                <p>علی زارع</p>
-                <div class="text-comments">
-                    بنظرم محتوای خیلی خوبی داشت
-                </div>
+        @foreach ($comments as $comment)
 
-                <div class="parent-amozesh-btn cm-btn">
-                    <form action="">
-                        <button class="amozesh-btn cm-btn" type="submit">
-                            <span>پاسخ</span>
-                        </button>
-                    </form>
+            <div class="comments-div">
+                <div class="row">
+                    <img src="imgs/photo-profile.jpg" alt="profile-photo">
+                    <p>{{ $comment->writer->name }}</p>
+                    <div class="text-comments">
+                        {{ $comment->text }}
+                    </div>
 
+                    <div class="parent-amozesh-btn cm-btn">
+                        <form action="">
+                            <button class="amozesh-btn cm-btn" type="submit">
+                                <span>پاسخ</span>
+                            </button>
+                        </form>
+                    </div>
                 </div>
+                @foreach ($comment->answers as $answer)
+                    <div class="row">
+                        <img src="{{ asset($answer->writer->profile) }}" alt="profile-photo">
+                        <p>{{ $answer->writer->name }}</p>
+                        <div class="text-comments">
+                            {{ $answer->text }}
+                        </div>
+                    </div>
+                @endforeach
+
             </div>
-
-            <div class="row">
-                <img src="imgs/photo-profile.jpg" alt="profile-photo">
-                <p>علی زارع</p>
-                <div class="text-comments">
-                    بنظرم محتوای خیلی خوبی داشت
-                </div>
-            </div>
-
-        </div>
+        @endforeach
 
 
     </section>
     <div class="parenet-didgah">
         <div class="row-one-didgah">
             <p>دیدگاه شما...</p>
-            <form>
+            <form action="{{ route('front.project.comments.store') }}" method="POST">
+                @csrf
                 <textarea type="text" name="didgah" class="textare-didgah"></textarea>
-            </form>
+                <input type="hidden" name="comment" value="course">
+                <input type="hidden" name="id" value="{{ $course->id }}">
         </div>
         <div class="row-two-didgah">
-
-            <form action="">
-                <button class="amozesh-btn cm-btn didgah">
-                    <span>ارسال</span>
-                </button>
+            <button type="submit" class="amozesh-btn cm-btn didgah">
+                <span>ارسال</span>
+            </button>
             </form>
         </div>
     </div>
