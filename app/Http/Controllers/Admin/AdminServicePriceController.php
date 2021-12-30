@@ -16,7 +16,7 @@ class AdminServicePriceController extends Controller
      */
     public function index()
     {
-        // 
+        //
     }
 
     /**
