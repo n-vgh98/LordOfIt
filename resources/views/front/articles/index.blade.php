@@ -96,7 +96,7 @@
 
 <section class="pagination-wrapper">
     <ul class="pagination">
-   <!-- {{$article->links()}} -->
+  
         <!-- <li class="page-item">
             <a href="#" class="pagination-arrow" id="arrowRight-course-btns-pages"><i class="fas fa-arrow-right"></i></a>
         </li> -->
