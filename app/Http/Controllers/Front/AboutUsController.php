@@ -11,7 +11,8 @@ class AboutUsController extends Controller
 {
     public function index($lang){
 
-        $languages = Lang::where([["langable_type", "App\Models\AboutUs"], ["name", $lang]])->get();
-        return view('front.about_us',compact('languages'));
+        $laqnguage = Lang::where([["langable_type", "App\Models\AboutUs"], ["name", $lang]])->first();
+        $about_us=$laqnguage->langable;
+        return view('front.about_us',compact('about_us'));
     }
 }

@@ -15,10 +15,11 @@ class FrontServiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($slug,$lang)
+    public function index($lang)
     {
-        $languages = Lang::where([["langable_type", "App\Models\Service"], ["name", $lang]])->get();
-        return view('front.services',compact('languages'));
+        $languages = Lang::where([["langable_type", "App\Models\Service"], ["name", $lang]])->first();
+        $service = $languages->langable;
+        return view('front.services',compact(['languages','service']));
     }
 
     /**

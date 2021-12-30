@@ -93,7 +93,7 @@ $languages = App\Models\Lang::where([['langable_type', 'App\Models\ServiceCatego
                                         <ul class="submenu-ul-ul">
                                         @elseif ($category->parent_id !==null || $category->parent_id ==
                                             $category->id)
-                                            <li><a href="{{route('front.services',$services->slug)}}">{{ $category->title }}</a></li>
+                                            <li><a href="{{route('front.services',$category->slug)}}">{{ $category->title }}</a></li>
                                         </ul>
                                     @endif
                                 </li>
@@ -110,7 +110,7 @@ $languages = App\Models\Lang::where([['langable_type', 'App\Models\ServiceCatego
                     <i class="fa fa-book-reader"></i>
                     آموزش
                 </a></li>
-            <li><a href="article.html">
+            <li><a href="{{route('front.articles.index')}}">
                     <i class="fa fa-newspaper"></i>
                     مقالات
                 </a></li>

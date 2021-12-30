@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 @if ($local = app()->getLocale() == 'fa')
-    <html lang="fa" dir="rtl">
+<html lang="fa" dir="rtl">
 @else
-    <html lang="en" dir="ltr">
+<html lang="en" dir="ltr">
+
 @endif
+
 @yield('head')
 @include('front.layouts.head')
+
 <title>@yield('title')</title>
 
 

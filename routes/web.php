@@ -30,6 +30,7 @@ use App\Http\Controllers\Admin\AdminServicecategoryController;
 use App\Http\Controllers\Admin\AdminServicePriceCategoryController;
 use App\Http\Controllers\Admin\AdminServicePriceSubcategoryController;
 use App\Http\Controllers\Front\AboutUsController;
+use App\Http\Controllers\Front\ArticleController;
 use App\Http\Controllers\Front\ProjectController;
 use App\Http\Controllers\Front\ServicePrice;
 use App\Http\Controllers\Front\WorkSampleController;
@@ -90,6 +91,9 @@ Route::prefix('/{locale}')->middleware("language")->group(function () {
         route::get("service/{slug}", [FrontServiceController::class, "index"])->name("front.services");
     // });
     route::get("about_us", [AboutUsController::class, "index"])->name("front.about_us");
+    route::prefix("articles")->group(function () {
+        route::get("/", [ArticleController::class, "index"])->name("front.articles.index");
+    });
 });
 
 // admin routing

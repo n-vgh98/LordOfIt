@@ -1,4 +1,13 @@
 @extends('front.layouts.master')
+
+
+
+@section('meta_key')
+{{$about_us->meta_keywords}}
+@endsection
+@section('meta_des')
+{{$about_us->meta_description}}
+@endsection
 @section('main')
 
 <!-- {{-- <form class="main-form" action="">
@@ -9,10 +18,6 @@
         </i>
     </button>
 </form> --}} -->
-@foreach ($languages as $language)
-@php
-$about_us = $language->langable;
-@endphp
 
 
 
@@ -44,24 +49,25 @@ $about_us = $language->langable;
 
         <section class="article-text-wrapper">
             <div>
-                {{$about_us->text_1}}
+                {!! $about_us->text_1 !!}
             </div>
             <div class="video-1 article-video">
                 {{$about_us->v_link_1}}
             </div>
             <div>
+                {!! $about_us->text_2 !!}
             </div>
             <div class="video-1 article-video">
                 {{$about_us->v_link_2}}
             </div>
             <div>
-                {{$about_us->text_3}}
+                {!! $about_us->text_3 !!}
             </div>
             <div class="video-1 article-video">
                 {{$about_us->v_link_3}}
             </div>
             <div>
-                {{$about_us->text_4}}
+                {!! $about_us->text_4 !!}
             </div>
             <div class="video-1 article-video">
                 {{$about_us->v_link_4}}
@@ -219,4 +225,4 @@ $about_us = $language->langable;
 
 
 </div>
-@endforeach
+@endsection
