@@ -28,40 +28,40 @@
                     <li><a href="#">مقالات</a></li>
                 </ul>
             </section>
-             <h1 class="main-title-h1"> {{$service->title}} </h1>
+             <h1 class="main-title-h1"> {{$article->title}} </h1>
             <article class="article-wrapper-content">
                 <section class="right-article-wrapper ">
                     
                     <div class="article-img-wrapper">
                         <figure>
-                            <img src="{{asset($service->image->path)}}" alt="{{$service->image->alt}}" title="{{$service->image->name}}">
+                            <img src="{{asset($article->image->path)}}" alt="{{$article->image->alt}}" title="{{$article->image->name}}">
                         </figure>
                     </div>
 
                     <section class="article-text-wrapper">
                         <div>
-                            {!! $service->text_1 !!}
+                            {!! $article->text_1 !!}
                         </div>
                         <div class="video-1 article-video">
-                            {{$service->v_link_1}}
+                            {{$article->v_link_1}}
                         </div>
                         <div>
-                        {!! $service->text_2 !!}
+                        {!! $article->text_2 !!}
                         </div>
                         <div class="video-1 article-video">
-                            {{$service->v_link_2}}
+                            {{$article->v_link_2}}
                         </div>
                         <div>
-                        {!! $service->text_3 !!}
+                        {!! $article->text_3 !!}
                         </div>
                         <div class="video-1 article-video">
-                            {{$service->v_link_3}}
+                            {{$article->v_link_3}}
                         </div>
                         <div>
-                        {!! $service->text_4 !!}
+                        {!! $article->text_4 !!}
                         </div>
                         <div class="video-1 article-video">
-                            {{$service->v_link_4}}
+                            {{$article->v_link_4}}
                         </div>
 
                         <!-- <div class="article-page-wiriter">
