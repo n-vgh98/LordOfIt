@@ -25,6 +25,8 @@
                 <th class="text-center" scope="col">عکس</th>
                 <th class="text-center" scope="col">لیست موضوعات</th>
                 <th class="text-center" scope="col">توضیحات</th>
+                <th class="text-center" scope="col">توضیحات کلیدی</th>
+                <th class="text-center" scope="col">کلمات کلیدی</th>
                 <th class="text-center" scope="col">زبان دوره</th>
                 <th class="text-center" scope="col">هزینه دوره</th>
                 <th class="text-center" scope="col">تعداد جلسه دوره</th>
@@ -80,10 +82,24 @@
                             data-target="#courselist{{ $course->id }}">مشاهده</button>
                     </td>
 
-                    {{-- button for showing job description course --}}
+                    {{-- button for showing   course descriptions --}}
                     <td class="text-center">
                         <button type="button" class="btn btn-info" data-toggle="modal"
                             data-target="#coursedesc{{ $course->id }}">مشاهده</button>
+                    </td>
+
+
+
+                    {{-- button for showing metadescription  course --}}
+                    <td class="text-center">
+                        <button type="button" class="btn btn-info" data-toggle="modal"
+                            data-target="#metadescription{{ $course->id }}">مشاهده</button>
+                    </td>
+
+                    {{-- button for showing keywords  course --}}
+                    <td class="text-center">
+                        <button type="button" class="btn btn-info" data-toggle="modal"
+                            data-target="#metakeywords{{ $course->id }}">مشاهده</button>
                     </td>
 
                     <td class="text-center">
@@ -189,6 +205,100 @@
                                                 class="form-control @error('job_description') is-invalid @enderror" required
                                                 disabled autocomplete="description"
                                                 autofocus>{{ $course->topic_list }}</textarea>
+
+                                            @error('description')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div style="margin-top:15px;">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">دیدم</button>
+                                    </div>
+
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- modal for showing course metadescription -->
+                <div class="modal fade" id="metadescription{{ $course->id }}" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel"> توضیحات کلیدی </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="{{ route('admin.courses.update', $course->id) }}" method="POST"
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    {{-- topic_list of course --}}
+                                    <div class="form-group row">
+                                        <label for="description"
+                                            class="col-md-4 col-form-label text-md-right">{{ __('توضیحات کلیدی') }}</label>
+
+                                        <div class="col-md-6">
+                                            <textarea id="description" type="text"
+                                                class="form-control @error('job_description') is-invalid @enderror" required
+                                                disabled autocomplete="description"
+                                                autofocus>{{ $course->meta_description }}</textarea>
+
+                                            @error('description')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div style="margin-top:15px;">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">دیدم</button>
+                                    </div>
+
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- modal for showing metakeywords -->
+                <div class="modal fade" id="metakeywords{{ $course->id }}" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel"> کلمات کلیدی </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="{{ route('admin.courses.update', $course->id) }}" method="POST"
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    {{-- topic_list of course --}}
+                                    <div class="form-group row">
+                                        <label for="description"
+                                            class="col-md-4 col-form-label text-md-right">{{ __('لیست کلمات کلیدی') }}</label>
+
+                                        <div class="col-md-6">
+                                            <textarea id="description" type="text"
+                                                class="form-control @error('job_description') is-invalid @enderror" required
+                                                disabled autocomplete="description"
+                                                autofocus>{{ $course->meta_keywords }}</textarea>
 
                                             @error('description')
                                                 <span class="invalid-feedback" role="alert">

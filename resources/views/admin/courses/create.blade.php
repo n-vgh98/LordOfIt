@@ -117,8 +117,8 @@
                 <label for="language" class="col-md-1 col-form-label text-md-right">{{ __('زبان دوره') }}</label>
 
                 <div class="col-md-11">
-                    <input id="language" type="text" class="form-control" @error('language') is-invalid @enderror" name="language"
-                        value="{{ old('language') }}" required autocomplete="language" autofocus>
+                    <input id="language" type="text" class="form-control" @error('language') is-invalid @enderror"
+                        name="language" value="{{ old('language') }}" required autocomplete="language" autofocus>
 
                     @error('language')
                         <span class="invalid-feedback" role="alert">
@@ -203,6 +203,39 @@
                         name="img_name" value="{{ old('img_name') }}" required autocomplete="img_name" autofocus>
 
                     @error('img_name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>
+
+            {{-- meta_keywords of course --}}
+            <div class="form-group row">
+                <label for="meta_keywords" class="col-md-1 col-form-label text-md-right">{{ __('کلمات کلیدی') }}</label>
+
+                <div class="col-md-11">
+                    <input id="meta_keywords" type="text" class="form-control" @error('meta_keywords') is-invalid
+                        @enderror" name="meta_keywords" value="{{ old('meta_keywords') }}" required
+                        autocomplete="meta_keywords" autofocus>
+
+                    @error('meta_keywords')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>
+
+            {{-- meta_description of course --}}
+            <div class="form-group row">
+                <label for="meta_description" class="col-md-1 col-form-label text-md-right">{{ __('توضیحات کلیدی') }}</label>
+
+                <div class="col-md-11">
+                    <input id="meta_description" type="text" class="form-control" @error('meta_description') is-invalid @enderror" name="meta_description"
+                        value="{{ old('meta_description') }}" required autocomplete="meta_description" autofocus>
+
+                    @error('meta_description')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>

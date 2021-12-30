@@ -121,7 +121,7 @@
 
                 <div class="col-md-11">
                     <input id="lang" type="text" class="form-control" @error('lang') is-invalid @enderror" name="lang"
-                        value="{{ $course->lang }}" value="{{ old('lang') }}" required autocomplete="lang" autofocus>
+                        value="{{ $course->lang }}" required autocomplete="lang" autofocus>
 
                     @error('lang')
                         <span class="invalid-feedback" role="alert">
@@ -164,6 +164,42 @@
                     @enderror
                 </div>
             </div>
+
+            {{-- meta_keywords of course --}}
+            <div class="form-group row">
+                <label for="meta_keywords" class="col-md-1 col-form-label text-md-right">{{ __('کلمات کلیدی') }}</label>
+
+                <div class="col-md-11">
+                    <input id="meta_keywords" type="text" class="form-control" @error('meta_keywords') is-invalid
+                        @enderror" name="meta_keywords" required value="{{ $course->meta_keywords }}"
+                        autocomplete="meta_keywords" autofocus>
+
+                    @error('meta_keywords')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>
+
+            {{-- meta_description of course --}}
+            <div class="form-group row">
+                <label for="meta_description"
+                    class="col-md-1 col-form-label text-md-right">{{ __('توضیحات کلیدی') }}</label>
+
+                <div class="col-md-11">
+                    <input id="meta_description" type="text" class="form-control" @error('meta_description') is-invalid
+                        @enderror" name="meta_description" required value="{{ $course->meta_description }}"
+                        autocomplete="meta_description" autofocus>
+
+                    @error('meta_description')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>
+
 
             <div style="margin-top:15px;">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">منصرف

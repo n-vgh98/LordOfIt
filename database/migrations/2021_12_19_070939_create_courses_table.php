@@ -24,6 +24,8 @@ class CreateCoursesTable extends Migration
             $table->string("lang");
             $table->text("description");
             $table->text("topic_list");
+            $table->text("meta_keywords");
+            $table->text("meta_description");
             $table->timestamps();
         });
     }
