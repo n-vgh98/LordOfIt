@@ -1,4 +1,10 @@
 @extends('front.layouts.master')
+@section('meta_key')
+    {{ $course->meta_keywords }}
+@endsection
+@section('meta_des')
+    {{ $course->meta_description }}
+@endsection
 @section('main')
 
     <br><br><br><br><br>
