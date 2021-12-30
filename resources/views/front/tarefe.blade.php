@@ -40,13 +40,20 @@
         </p>
 
     </article>
-
+    @php
+    $i = 1;
+    @endphp
     @foreach ($languages as $language)
         @php
             $category = $language->langable;
+
         @endphp
         <div class="title-tarefe">
-            <h2 id="{{ $category->title }}">تعرفه {{ $category->title }}</h2>
+            @if ($i == 1)
+                <h2 id="{{ $category->title }}">تعرفه {{ $category->title }}</h2>
+            @else
+                <h3 id="{{ $category->title }}">تعرفه {{ $category->title }}</h3>
+            @endif
             <p>عوامل موثر بر تعیین {{ $category->title }}:</p>
         </div>
         <!-- end title -->
@@ -163,6 +170,9 @@
 
 
         @endforeach
+        @php
+            $i++;
+        @endphp
     @endforeach
     <!-- end section-one for swiper slider - pelan -->
 

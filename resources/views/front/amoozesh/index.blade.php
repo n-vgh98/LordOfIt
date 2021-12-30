@@ -1,4 +1,10 @@
 @extends('front.layouts.master')
+@section('meta_key')
+    {{ $course->meta_keywords }}
+@endsection
+@section('meta_des')
+    {{ $course->meta_description }}
+@endsection
 @section('main')
 
     <br><br><br><br><br>
@@ -135,7 +141,22 @@
                         </div>
                     </div>
                 @endforeach
-
+                <div class="parenet-didgah">
+                    <div class="row-one-didgah">
+                        <p>پاسخ شما به این کامنت</p>
+                        <form action="{{ route('front.project.comments.store') }}" method="POST">
+                            @csrf
+                            <textarea type="text" name="didgah" class="textare-didgah"></textarea>
+                            <input type="hidden" name="comment" value="course">
+                            <input type="hidden" name="id" value="{{ $course->id }}">
+                    </div>
+                    <div class="row-two-didgah">
+                        <button type="submit" class="amozesh-btn cm-btn didgah">
+                            <span>پاسخ</span>
+                        </button>
+                    </div>
+                    </form>
+                </div>
             </div>
         @endforeach
 
@@ -154,8 +175,8 @@
             <button type="submit" class="amozesh-btn cm-btn didgah">
                 <span>ارسال</span>
             </button>
-            </form>
         </div>
+        </form>
     </div>
 @endsection
 @section('scripts')

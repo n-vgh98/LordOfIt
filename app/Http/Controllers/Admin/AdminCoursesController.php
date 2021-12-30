@@ -49,6 +49,8 @@ class AdminCoursesController extends Controller
         $course->price = $request->price;
         $course->lang = $request->language;
         $course->description = $request->description;
+        $course->meta_description = $request->meta_description;
+        $course->meta_keywords = $request->meta_keywords;
         $course->topic_list = $request->topic_list;
         $course->save();
 
@@ -88,6 +90,7 @@ class AdminCoursesController extends Controller
      */
     public function edit($id)
     {
+
         $course = Course::find($id);
         return view("admin.courses.edit", compact("course"));
     }
@@ -101,7 +104,6 @@ class AdminCoursesController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $course = Course::find($id);
         $course->name = $request->name;
         $course->type = $request->type;
@@ -109,11 +111,13 @@ class AdminCoursesController extends Controller
         $course->section = $request->section;
         $course->pre_need = $request->pre_need;
         $course->price = $request->price;
-        $course->lang = $request->language;
+        $course->lang = $request->lang;
         $course->description = $request->description;
         $course->topic_list = $request->topic_list;
+        $course->meta_keywords = $request->meta_keywords;
+        $course->topic_list = $request->topic_list;
         $course->save();
-        return redirect()->route("admin.courses.index")->with("success", "دوره شما با موفقیت ویرایش شد");
+        return redirect()->route("admin.courses.index", $course->language->name)->with("success", "دوره شما با موفقیت ثبت شد");
     }
 
     /**

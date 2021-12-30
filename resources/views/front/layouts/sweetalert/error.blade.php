@@ -1,7 +1,7 @@
 @if (session('success'))
     <script>
         Swal.fire({
-            title: '!انجام شد',
+            title: 'انجام شد!',
             text: '{{ session('success') }}',
             icon: 'success',
             confirmButtonText: 'باشه'
@@ -11,7 +11,7 @@
 @if (session('fail'))
     <script>
         Swal.fire({
-            title: '!خطا',
+            title: 'خطا!',
             text: '{{ session('fail') }}',
             icon: 'error',
             confirmButtonText: 'باشه'
