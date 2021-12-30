@@ -3,14 +3,19 @@
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Front\ServicePrice;
 use App\Http\Controllers\Admin\AdminDashboard;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Admin\AdminWorkSample;
+use App\Http\Controllers\Front\CourseController;
+
+use App\Http\Controllers\Front\AboutUsController;
 use App\Http\Controllers\Front\FrontServicePrice;
 use App\Http\Controllers\Front\OurTeamController;
-
+use App\Http\Controllers\Front\ProjectController;
 use App\Http\Controllers\Front\WorkSampleCategory;
 use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\Front\WorkSampleController;
 use App\Http\Controllers\Admin\AdminFooterController;
 use App\Http\Controllers\Admin\AdminAboutUsController;
 use App\Http\Controllers\Admin\AdminArticleController;
@@ -18,6 +23,7 @@ use App\Http\Controllers\Admin\AdminCommentController;
 use App\Http\Controllers\Admin\AdminCoursesController;
 use App\Http\Controllers\Admin\AdminOurTeamController;
 use App\Http\Controllers\Admin\AdminServiceController;
+use App\Http\Controllers\Front\FrontServiceController;
 use App\Http\Controllers\Admin\AdminServiceSubCategory;
 use App\Http\Controllers\Admin\AdminWorkSampleCategory;
 use App\Http\Controllers\Admin\AdminFooterLinkController;
@@ -29,12 +35,7 @@ use App\Http\Controllers\Admin\AdminOurTeamSliderController;
 use App\Http\Controllers\Admin\AdminServicecategoryController;
 use App\Http\Controllers\Admin\AdminServicePriceCategoryController;
 use App\Http\Controllers\Admin\AdminServicePriceSubcategoryController;
-use App\Http\Controllers\Front\AboutUsController;
-use App\Http\Controllers\Front\ArticleController;
-use App\Http\Controllers\Front\ProjectController;
-use App\Http\Controllers\Front\ServicePrice;
-use App\Http\Controllers\Front\WorkSampleController;
-use App\Http\Controllers\Front\FrontServiceController;
+
 
 
 /*
@@ -85,10 +86,10 @@ Route::prefix('/{locale}')->middleware("language")->group(function () {
     });
     // need more work
     route::prefix("comment")->group(function () {
-        route::post("/store", [AdminCommentController::class, "store"])->name("front.project.comments");
+        route::post("/store", [AdminCommentController::class, "store"])->name("front.project.comments.store");
     });
     // route::prefix("service")->group(function () {
-        route::get("service/{slug}", [FrontServiceController::class, "index"])->name("front.services");
+    route::get("service/{slug}", [FrontServiceController::class, "index"])->name("front.services");
     // });
     route::get("about_us", [AboutUsController::class, "index"])->name("front.about_us");
     route::prefix("articles")->group(function () {
@@ -303,6 +304,7 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
     route::prefix("comments")->group(function () {
         route::get("/", [AdminCommentController::class, "index"])->name("admin.comments.index");
         route::post("/accept/{id}", [AdminCommentController::class, "accept"])->name("admin.comments.accept");
+        route::post("/store", [AdminCommentController::class, "store"])->name("admin.comments.store");
         route::post("/decline/{id}", [AdminCommentController::class, "decline"])->name("admin.comments.decline");
         route::delete("/destroy/{id}", [AdminCommentController::class, "destroy"])->name("admin.comments.destroy");
     });

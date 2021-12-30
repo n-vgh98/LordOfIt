@@ -16,6 +16,7 @@
                 <th class="text-center" scope="col">امکانات</th>
                 <th class="text-center" scope="col">وضعیت</th>
                 <th class="text-center" scope="col">متن</th>
+                <th class="text-center" scope="col">پاسخ</th>
                 <th class="text-center" scope="col">فرستنده</th>
                 <th class="text-center" scope="col-1">#</th>
             </tr>
@@ -59,13 +60,19 @@
                         @endif
                     </td>
 
-
-
                     <td class="text-center">
                         <button type="button" class="btn btn-info" data-toggle="modal"
                             data-target="#courselist{{ $comment->id }}">مشاهده</button>
                     </td>
 
+                    @if ($comment->parent_id == null)
+                        <td class="text-center">
+                            <button type="button" class="btn btn-info" data-toggle="modal"
+                                data-target="#commentanswer{{ $comment->id }}">پاسخ</button>
+                        </td>
+                    @else
+                        <td class="text-center">نیاز به پاسخ ندارد</td>
+                    @endif
 
 
 
@@ -84,7 +91,7 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel"> توضیحات دوره </h5>
+                                <h5 class="modal-title" id="exampleModalLabel"> متن کامنت </h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -115,6 +122,50 @@
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">دیدم</button>
                                     </div>
 
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- modal for answering --}}
+                <div class="modal fade" id="commentanswer{{ $comment->id }}" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel"> پاسخ </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="{{ route('admin.comments.store') }}" method="POST"
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    {{-- text of comment --}}
+                                    <div class="form-group row">
+                                        <label for="text"
+                                            class="col-md-4 col-form-label text-md-right">{{ __(':پاسخ') }}</label>
+
+                                        <div class="col-md-6">
+                                            <textarea id="text" type="text"
+                                                class="form-control @error('text') is-invalid @enderror" required
+                                                name="text" autocomplete="text" autofocus></textarea>
+
+                                            @error('text')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-secondary">ارسال</button>
+
+                                    <input type="hidden" name="comment" value="answer">
+                                    <input type="hidden" name="id" value="{{ $comment->id }}">
                                 </form>
                             </div>
                             <div class="modal-footer">

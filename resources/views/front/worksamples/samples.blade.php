@@ -48,22 +48,20 @@
 
                 <!--                           examples project-demo first start                  -->
                 <div class="examples-project-main">
-
                     <h2 id="project-id1" class="project-title-h2">پروژه های {{ $samples[0]->category->title }}</h2>
                     <section class="examples-project-full">
                         @if ($samples[0]->category->title == 'UI/UX' or $samples[0]->category->title == 'UX/UI' or $samples[0]->category->title == 'گرافیک' or $samples[0]->category->title == 'Graphic' or $samples[0]->category->title == 'graphic')
                             @foreach ($samples as $sample)
-                                <a href="#">
-                                    <div class="examples-project-item">
-                                        <img onClick="bigPhoto(this)" src="{{ asset($sample->image->path) }}"
-                                            alt="{{ $sample->image->alt }}" title="{{ $sample->image->name }}">
-                                        <p>{{ $sample->title }}</p>
-                                        <p>@php
-                                            echo strip_tags(html_entity_decode($sample->text));
-                                        @endphp
-                                        </p>
-                                    </div>
-                                </a>
+                                @if ($sample->category->language->name == $lang)
+                                    <a href="#">
+                                        <div class="examples-project-item">
+                                            <img onClick="bigPhoto(this)" src="{{ asset($sample->image->path) }}"
+                                                alt="{{ $sample->image->alt }}" title="{{ $sample->image->name }}">
+                                            <p>{{ $sample->title }}</p>
+                                            <p>{!! $sample->text !!}</p>
+                                        </div>
+                                    </a>
+                                @endif
                             @endforeach
 
                         @else

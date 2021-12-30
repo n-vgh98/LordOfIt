@@ -90,7 +90,8 @@
                     @if ($i < 7)
 
                         <div class="swiper-slide">
-                            <a href="#"><img src="{{ asset($course->image->path) }}" alt="algorithm">
+                            <a href="{{ route('front.courses.show', $course->id) }}"><img
+                                    src="{{ asset($course->image->path) }}" alt="algorithm">
                                 <div class="one-text-swiper-slide-amozesh">
                                     <p>{{ $course->name }} </p>
                                 </div>
@@ -173,7 +174,7 @@
     <!-- btn -->
     <div class="parent-amozesh-btn">
         <div class="amozesh-btn">
-            <a href=""><span>همه مقالات</span></a>
+            <a href="#"><span>همه مقالات</span></a>
         </div>
     </div>
     <!-- btn -->

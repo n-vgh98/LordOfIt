@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Front;
 use App\Models\Lang;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
+use App\Models\Course;
 
 class CourseController extends Controller
 {
@@ -49,9 +51,12 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($lang, $id)
     {
-        //
+        $course = Course::find($id);
+        $languages = Lang::where([["langable_type", "App\Models\Course"], ["name", $lang]])->get();
+        $comments = Comment::where([["commentable_type", "App\Models\Course"], ["commentable_id", $id], ["parent_id", null], ["status", 1]])->get();
+        return view("front.amoozesh.index", compact("course", "languages", "comments"));
     }
 
     /**
