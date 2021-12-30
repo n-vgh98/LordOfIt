@@ -35,8 +35,7 @@ use App\Http\Controllers\Admin\AdminOurTeamSliderController;
 use App\Http\Controllers\Admin\AdminServicecategoryController;
 use App\Http\Controllers\Admin\AdminServicePriceCategoryController;
 use App\Http\Controllers\Admin\AdminServicePriceSubcategoryController;
-
-
+use App\Http\Controllers\Front\ArticleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -94,6 +93,7 @@ Route::prefix('/{locale}')->middleware("language")->group(function () {
     route::get("about_us", [AboutUsController::class, "index"])->name("front.about_us");
     route::prefix("articles")->group(function () {
         route::get("/", [ArticleController::class, "index"])->name("front.articles.index");
+        route::get("/{slug}", [ArticleController::class, "show"])->name("front.articles.show");
     });
 });
 
