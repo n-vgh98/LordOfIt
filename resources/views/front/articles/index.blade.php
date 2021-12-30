@@ -40,14 +40,14 @@
 
 <article class="article-background">
     <!-- breadcrumb -->
-    <h2 class="article-title-h2">جدید ترین ها</h2>
+
 
     <section class="articles-wrapper">
         @foreach ($languages as $language)
         @php
         $article = $language->langable;
         $article->orderBy('created_at','desc')
-        ->paginate('4');
+        ->paginate('12');
         $article->increment('views');
         @endphp
         <section class="articles">
@@ -91,129 +91,19 @@
 
 </article>
 
-<article class="article-background">
-    <!-- breadcrumb -->
-    <h3 class="article-title-h2">پر بازدید</h3>
 
-
-    <section class="articles-wrapper">
-
-        <section class="articles">
-            <div class="article">
-                <div class="img-wrapper">
-                    <img src="imgs/1629958522www.tahkimghias.comانتقال مال به غیر.jpg" alt="article-pic">
-                    <a href="#"></a>
-                </div>
-                <p>کسب و کار سنتی یا دیجیتال؟</p>
-                <span class="article-text">اولین سوالی که ممکن است با شنیدن این دو کلمه ( کسب و کار سنتی و
-                    کسب و کار دیجیتال) برایتان ایجاد شود این است که چه تفاوتی بین این دو هست، در این مقاله
-                    به معرفی کسب و کار دیجیتال و کسب و کار سنتی و تفاوت این دو مدل کسب و کار می پردازیم. با
-                    ما همراه باشید.
-
-
-
-                    کسب وکار سنتی: به مجموعه عملیاتی که در فضای واقعی سبب فروش محصولات و خدمات می شود کسب و
-                    کار سنتی می گویند که به آن trading marketing هم گفته می شود.
-
-                </span><span class="article-dots">...</span>
-                <div class="article-bishtar">
-                    <a href="#">
-                        <span>بیشتر</span>
-                        <i class="fas fa-arrow-left"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div class="article">
-                <div class="img-wrapper">
-                    <img src="imgs/1629958522www.tahkimghias.comانتقال مال به غیر.jpg" alt="article-pic">
-                    <a href="#"></a>
-                </div>
-                <p>کسب و کار سنتی یا دیجیتال؟</p>
-                <span class="article-text">اولین سوالی که ممکن است با شنیدن این دو کلمه ( کسب و کار سنتی و
-                    کسب و کار دیجیتال) برایتان ایجاد شود این است که چه تفاوتی بین این دو هست، در این مقاله
-                    به معرفی کسب و کار دیجیتال و کسب و کار سنتی و تفاوت این دو مدل کسب و کار می پردازیم. با
-                    ما همراه باشید.
-
-
-
-                    کسب وکار سنتی: به مجموعه عملیاتی که در فضای واقعی سبب فروش محصولات و خدمات می شود کسب و
-                    کار سنتی می گویند که به آن trading marketing هم گفته می شود.
-
-                </span><span class="article-dots">...</span>
-                <div class="article-bishtar">
-                    <a href="#">
-                        <span>بیشتر</span>
-                        <i class="fas fa-arrow-left"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="article">
-                <div class="img-wrapper">
-                    <img src="imgs/1629958522www.tahkimghias.comانتقال مال به غیر.jpg" alt="article-pic">
-                    <a href="#"></a>
-                </div>
-                <p>کسب و کار سنتی یا دیجیتال؟</p>
-                <span class="article-text">اولین سوالی که ممکن است با شنیدن این دو کلمه ( کسب و کار سنتی و
-                    کسب و کار دیجیتال) برایتان ایجاد شود این است که چه تفاوتی بین این دو هست، در این مقاله
-                    به معرفی کسب و کار دیجیتال و کسب و کار سنتی و تفاوت این دو مدل کسب و کار می پردازیم. با
-                    ما همراه باشید.
-
-
-
-                    کسب وکار سنتی: به مجموعه عملیاتی که در فضای واقعی سبب فروش محصولات و خدمات می شود کسب و
-                    کار سنتی می گویند که به آن trading marketing هم گفته می شود.
-
-                </span><span class="article-dots">...</span>
-                <div class="article-bishtar">
-                    <a href="#">
-                        <span>بیشتر</span>
-                        <i class="fas fa-arrow-left"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="article">
-                <div class="img-wrapper">
-                    <img src="imgs/1629958522www.tahkimghias.comانتقال مال به غیر.jpg" alt="article-pic">
-                    <a href="#"></a>
-                </div>
-                <p>کسب و کار سنتی یا دیجیتال؟</p>
-                <span class="article-text">اولین سوالی که ممکن است با شنیدن این دو کلمه ( کسب و کار سنتی و
-                    کسب و کار دیجیتال) برایتان ایجاد شود این است که چه تفاوتی بین این دو هست، در این مقاله
-                    به معرفی کسب و کار دیجیتال و کسب و کار سنتی و تفاوت این دو مدل کسب و کار می پردازیم. با
-                    ما همراه باشید.
-
-
-
-                    کسب وکار سنتی: به مجموعه عملیاتی که در فضای واقعی سبب فروش محصولات و خدمات می شود کسب و
-                    کار سنتی می گویند که به آن trading marketing هم گفته می شود.
-
-                </span><span class="article-dots">...</span>
-                <div class="article-bishtar">
-                    <a href="#">
-                        <span>بیشتر</span>
-                        <i class="fas fa-arrow-left"></i>
-                    </a>
-                </div>
-            </div>
-
-
-        </section>
-    </section>
-
-
-
-</article>
 <!-- DOOOOOKKMEEE -->
+
 <section class="pagination-wrapper">
     <ul class="pagination">
-        <li class="page-item">
+   <!-- {{$article->links()}} -->
+        <!-- <li class="page-item">
             <a href="#" class="pagination-arrow" id="arrowRight-course-btns-pages"><i class="fas fa-arrow-right"></i></a>
-        </li>
-        <li class="page-item">
-            <a href="#">1</a>
-        </li>
-        <li class="page-item">
+        </li> -->
+        <!-- <li class="page-item">
+           
+        </li> -->
+        <!-- <li class="page-item">
             <a href="#" class="active">2</a>
         </li>
         <li class="page-item">
@@ -221,7 +111,7 @@
         </li>
         <li class="page-item">
             <a href="#" class="pagination-arrow" id="arrowLeft-course-btns-pages"><i class="fas fa-arrow-left"></i></a>
-        </li>
+        </li> -->
     </ul>
 </section>
 
