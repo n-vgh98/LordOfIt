@@ -30,7 +30,7 @@
        
         <section class="articles">
         @foreach($articles as $article)
-       @if($article->lang->name == app()->getLocale())
+        @if($article->lang->name == app()->getLocale())
         @php
         $article->increment('views');
         @endphp
@@ -85,6 +85,7 @@
         <section class="articles-wrapper">
         <section class="articles">
         @foreach($services as $service)
+        @if($service->language->name == app()->getLocale())
         @php
             $service->increment('views')
         @endphp
@@ -118,6 +119,7 @@
                     </a>
                 </div>
             </div>  
+        @endif
         @endforeach
         </section>
          
@@ -133,6 +135,7 @@
         <section class="articles-wrapper">
         <section class="articles">
         @foreach($cources as $cource)
+        @if($cource->language->name == app()->getLocale())
             <div class="article">
                 <div class="img-wrapper">
                     <img src="{{asset($cources->image->path)}}" alt="{{$cources->image->alt}}" title="{{$cources->image->name}}">
