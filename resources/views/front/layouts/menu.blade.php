@@ -53,11 +53,11 @@ $languages = App\Models\Lang::where([['langable_type', 'App\Models\ServiceCatego
         </figure>
 
         <ul class="ul-sign">
-            <li><a href="sabtNam.html">عضویت</a></li>
+            <li><a href="{{ route('register') }}">{{ __('translation.signup') }}</a></li>
             <p>/</p>
-            <li><a href="Vorod.html">
+            <li><a href="{{ route('login') }}">
 
-                    ورود
+                    {{ __('translation.login') }}
                     <i class="fas fa-user-plus"></i>
 
                 </a></li>
@@ -84,16 +84,18 @@ $languages = App\Models\Lang::where([['langable_type', 'App\Models\ServiceCatego
                                     $category = $language->langable;
                                 @endphp
                                 <li>
-                            
+
                                     @if ($category->parent_id == null)
-                                        <a href="{{route('front.services',$category->slug)}}">
+                                        <a href="{{ route('front.services', $category->slug) }}">
                                             <span> {{ $category->title }}</span>
                                             <i class="fas fa-chevron-left"></i>
                                         </a>
                                         <ul class="submenu-ul-ul">
                                         @elseif ($category->parent_id !==null || $category->parent_id ==
                                             $category->id)
-                                            <li><a href="{{route('front.services',$category->slug)}}">{{ $category->title }}</a></li>
+                                            <li><a
+                                                    href="{{ route('front.services', $category->slug) }}">{{ $category->title }}</a>
+                                            </li>
                                         </ul>
                                     @endif
                                 </li>
@@ -110,7 +112,7 @@ $languages = App\Models\Lang::where([['langable_type', 'App\Models\ServiceCatego
                     <i class="fa fa-book-reader"></i>
                     آموزش
                 </a></li>
-            <li><a href="{{route('front.articles.index')}}">
+            <li><a href="{{ route('front.articles.index') }}">
                     <i class="fa fa-newspaper"></i>
                     مقالات
                 </a></li>
@@ -123,7 +125,7 @@ $languages = App\Models\Lang::where([['langable_type', 'App\Models\ServiceCatego
                 </a>
                 <!-- پایان  تعرفه خدمات -->
             </li>
-            <li><a href="{{route('front.about_us')}}">
+            <li><a href="{{ route('front.about_us') }}">
                     <i class="fa fa-address-card"></i>
                     درباره ما
                 </a></li>
@@ -207,11 +209,11 @@ $languages = App\Models\Lang::where([['langable_type', 'App\Models\ServiceCatego
     <ul class="responsive-menu">
         <ul class="responsive-sigin">
             <li>
-                <a href="sabtNam.html">
-                    عضویت /
+                <a href="{{ route('register') }}">
+                    {{ __('translation.signup') }} /
                 </a>
-                <a href="Vorod.html">
-                    ورود
+                <a href="{{ route('login') }}">
+                    {{ __('translation.login') }}
                 </a>
             </li>
 

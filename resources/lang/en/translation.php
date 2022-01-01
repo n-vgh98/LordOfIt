@@ -143,6 +143,8 @@ return [
     'or'                    => 'Or',
     'name'                  => 'name',
     'email'                 => 'Email',
+    'not-registered-yet'      => 'not registered yet',
+
 
 
 

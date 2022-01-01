@@ -175,5 +175,6 @@ return [
     'google-login'          => 'ورود با گوگل',
     'or'                    => 'یا',
     'email'                 => 'ایمیل ',
+    'not-registered-yet'      => 'هنوز ثبت نام نکرده اید؟',
 
 ];
