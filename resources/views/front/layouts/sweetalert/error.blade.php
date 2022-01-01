@@ -1,20 +1,20 @@
 @if (session('success'))
     <script>
         Swal.fire({
-            title: 'انجام شد!',
+            title: '{{ __('translation.done') }}',
             text: '{{ session('success') }}',
             icon: 'success',
-            confirmButtonText: 'باشه'
+            confirmButtonText: '{{ __('translation.ok') }}'
         })
     </script>
 @endif
 @if (session('fail'))
     <script>
         Swal.fire({
-            title: 'خطا!',
+            title: '{{ __('translation.fail') }}',
             text: '{{ session('fail') }}',
             icon: 'error',
-            confirmButtonText: 'باشه'
+            confirmButtonText: '{{ __('translation.ok') }}'
         })
     </script>
 @endif

@@ -53,14 +53,23 @@ $languages = App\Models\Lang::where([['langable_type', 'App\Models\ServiceCatego
         </figure>
 
         <ul class="ul-sign">
-            <li><a href="{{ route('register') }}">{{ __('translation.signup') }}</a></li>
-            <p>/</p>
-            <li><a href="{{ route('login') }}">
-
-                    {{ __('translation.login') }}
-                    <i class="fas fa-user-plus"></i>
-
-                </a></li>
+            @if (Auth::check())
+                <li>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        <button type="submit">{{ __('translation.logout') }}</button>
+                        @csrf
+                    </form>
+                </li>
+            @else
+                <li>
+                    <a href="{{ route('register') }}">
+                        {{ __('translation.signup') }} /
+                    </a>
+                    <a href="{{ route('login') }}">
+                        {{ __('translation.login') }}
+                    </a>
+                </li>
+            @endif
         </ul>
     </div>
     <!-- end main logo big scop and sigin -->
@@ -208,15 +217,25 @@ $languages = App\Models\Lang::where([['langable_type', 'App\Models\ServiceCatego
 <nav class="responsive-nav">
     <ul class="responsive-menu">
         <ul class="responsive-sigin">
-            <li>
-                <a href="{{ route('register') }}">
-                    {{ __('translation.signup') }} /
-                </a>
-                <a href="{{ route('login') }}">
-                    {{ __('translation.login') }}
-                </a>
-            </li>
 
+
+            @if (Auth::check())
+                <li>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        <button type="submit">{{ __('translation.logout') }}</button>
+                        @csrf
+                    </form>
+                </li>
+            @else
+                <li>
+                    <a href="{{ route('register') }}">
+                        {{ __('translation.signup') }} /
+                    </a>
+                    <a href="{{ route('login') }}">
+                        {{ __('translation.login') }}
+                    </a>
+                </li>
+            @endif
         </ul>
         <li>
             <i class="fa fa-home"></i>
