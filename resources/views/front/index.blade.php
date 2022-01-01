@@ -30,14 +30,15 @@
         </p>
     </div>
 
-    <form action="">
-
-        <input type="text" name="" id="" placeholder="دنبال چی میگردی؟">
+    <!-- <form action=""> -->
+    {!! Form::open(['method'=>'GET' , 'action'=>'App\Http\Controllers\Front\FrontSearchController@searchTitle']) !!}
+        <input type="text" name="title" id="" placeholder="دنبال چی میگردی؟">
         <button type="submit">
             <i class="fa fa-search">
             </i>
         </button>
-    </form>
+        {!! Form::close() !!}
+    <!-- </form> -->
     <button type="button" class="call-us">
         <a href="#">
             سفارش پروژه

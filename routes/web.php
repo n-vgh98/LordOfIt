@@ -36,6 +36,7 @@ use App\Http\Controllers\Admin\AdminServicecategoryController;
 use App\Http\Controllers\Admin\AdminServicePriceCategoryController;
 use App\Http\Controllers\Admin\AdminServicePriceSubcategoryController;
 use App\Http\Controllers\Front\ArticleController;
+use App\Http\Controllers\Front\FrontSearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -95,6 +96,7 @@ Route::prefix('/{locale}')->middleware("language")->group(function () {
         route::get("/", [ArticleController::class, "index"])->name("front.articles.index");
         route::get("/{slug}", [ArticleController::class, "show"])->name("front.articles.show");
     });
+    Route::get('/search',[FrontSearchController::class, "searchTitle"])->name('search');
 });
 
 // admin routing
@@ -137,7 +139,7 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
     // ##
 
     //route for articles
-    route::prefix("articles")->group(function () {
+    route::prefix("article")->group(function () {
         route::get("/{lang}", [AdminArticleController::class, "index"])->name("admin.articles.index");
         route::get("/create/{lang}", [AdminArticleController::class, "create"])->name("admin.articles.create");
         route::post("/store", [AdminArticleController::class, "store"])->name("admin.articles.store");
