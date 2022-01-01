@@ -6,6 +6,7 @@ use App\Models\Lang;
 // use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
+use App\Models\Course;
 use App\Models\Service;
 
 Illuminate\Support\Facades\Input::class;
@@ -26,6 +27,10 @@ class FrontSearchController extends Controller
         ->where('title','like',"%" .$query. "%")
         ->orderBy('created_at','desc')
         ->paginate(3);
-        return view('front.search', compact(['articles','query','services']));
+
+        $cources = Course::where('name','like',"%" .$query. "%")
+        ->orderBy('created_at','desc')
+        ->paginate(3);
+        return view('front.search', compact(['articles','query','services','cources']));
     }
 }

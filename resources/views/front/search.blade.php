@@ -126,7 +126,43 @@
  
 </article>
 
+<!-- for cources -->
+<article>  
+        <section class="articles-wrapper">
+        <section class="articles">
+        @foreach($cources as $cource)
+            <div class="article">
+                <div class="img-wrapper">
+                    <img src="{{asset($cources->image->path)}}" alt="{{$cources->image->alt}}" title="{{$cources->image->name}}">
+                    <a href="{{route('front.courses.show',$cources->id)}}"></a>
+                </div>
+                <p> {{$cources->title}}</p>
+                <span class="article-text">
+                    {!!Str::limit($cources->text_1 , '400') !!}
+                </span><span class="article-dots">...</span>
+                <div class="article-bishtar">
+                    <div>
+                        <i class="fa fa-calendar-alt"></i>
+                        <p>
+                            {{$cources->created_at}}
+                        </p>
+                    </div>
 
+                    <a href="{{route('front.courses.show',$cources->id)}}">
+                        <span>بیشتر</span>
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                </div>
+            </div>  
+        @endforeach
+        </section>
+         
+        </section>
+   
+       
+    <!-- </section> -->
+ 
+</article>
 
 <!-- DOOOOOKKMEEE -->
 
