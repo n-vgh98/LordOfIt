@@ -53,14 +53,23 @@ $languages = App\Models\Lang::where([['langable_type', 'App\Models\ServiceCatego
         </figure>
 
         <ul class="ul-sign">
-            <li><a href="sabtNam.html">عضویت</a></li>
-            <p>/</p>
-            <li><a href="Vorod.html">
-
-                    ورود
-                    <i class="fas fa-user-plus"></i>
-
-                </a></li>
+            @if (Auth::check())
+                <li>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        <button type="submit">{{ __('translation.logout') }}</button>
+                        @csrf
+                    </form>
+                </li>
+            @else
+                <li>
+                    <a href="{{ route('register') }}">
+                        {{ __('translation.signup') }} /
+                    </a>
+                    <a href="{{ route('login') }}">
+                        {{ __('translation.login') }}
+                    </a>
+                </li>
+            @endif
         </ul>
     </div>
     <!-- end main logo big scop and sigin -->
@@ -84,16 +93,18 @@ $languages = App\Models\Lang::where([['langable_type', 'App\Models\ServiceCatego
                                     $category = $language->langable;
                                 @endphp
                                 <li>
-                            
+
                                     @if ($category->parent_id == null)
-                                        <a href="{{route('front.services',$category->slug)}}">
+                                        <a href="{{ route('front.services', $category->slug) }}">
                                             <span> {{ $category->title }}</span>
                                             <i class="fas fa-chevron-left"></i>
                                         </a>
                                         <ul class="submenu-ul-ul">
                                         @elseif ($category->parent_id !==null || $category->parent_id ==
                                             $category->id)
-                                            <li><a href="{{route('front.services',$category->slug)}}">{{ $category->title }}</a></li>
+                                            <li><a
+                                                    href="{{ route('front.services', $category->slug) }}">{{ $category->title }}</a>
+                                            </li>
                                         </ul>
                                     @endif
                                 </li>
@@ -110,7 +121,7 @@ $languages = App\Models\Lang::where([['langable_type', 'App\Models\ServiceCatego
                     <i class="fa fa-book-reader"></i>
                     آموزش
                 </a></li>
-            <li><a href="{{route('front.articles.index')}}">
+            <li><a href="{{ route('front.articles.index') }}">
                     <i class="fa fa-newspaper"></i>
                     مقالات
                 </a></li>
@@ -123,7 +134,7 @@ $languages = App\Models\Lang::where([['langable_type', 'App\Models\ServiceCatego
                 </a>
                 <!-- پایان  تعرفه خدمات -->
             </li>
-            <li><a href="{{route('front.about_us')}}">
+            <li><a href="{{ route('front.about_us') }}">
                     <i class="fa fa-address-card"></i>
                     درباره ما
                 </a></li>
@@ -206,15 +217,25 @@ $languages = App\Models\Lang::where([['langable_type', 'App\Models\ServiceCatego
 <nav class="responsive-nav">
     <ul class="responsive-menu">
         <ul class="responsive-sigin">
-            <li>
-                <a href="sabtNam.html">
-                    عضویت /
-                </a>
-                <a href="Vorod.html">
-                    ورود
-                </a>
-            </li>
 
+
+            @if (Auth::check())
+                <li>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        <button type="submit">{{ __('translation.logout') }}</button>
+                        @csrf
+                    </form>
+                </li>
+            @else
+                <li>
+                    <a href="{{ route('register') }}">
+                        {{ __('translation.signup') }} /
+                    </a>
+                    <a href="{{ route('login') }}">
+                        {{ __('translation.login') }}
+                    </a>
+                </li>
+            @endif
         </ul>
         <li>
             <i class="fa fa-home"></i>

@@ -143,6 +143,16 @@ return [
     'or'                    => 'Or',
     'name'                  => 'name',
     'email'                 => 'Email',
+    'not-registered-yet'      => 'not registered yet',
+    'enter-email'           => 'Please Enter Your Email',
+    'forgot-email'           => 'If you forgot your passwor please enter the email that you have signed up with ',
+    'reset-password-link'   => 'send password recovery link',
+    'email.success.text'   => 'password recovery link has been sent to your email address.',
+    'email.fail.text'   => 'Problem happend in sending email for you please contact support.',
+    'ok'   => 'Ok',
+    'fail'   => 'Fail',
+    'done'   => 'Done!',
+
 
 
 
