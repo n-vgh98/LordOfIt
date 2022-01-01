@@ -74,6 +74,10 @@ Route::prefix('/{locale}')->middleware("language")->group(function () {
 
     route::prefix("user-panel")->group(function () {
         route::get("/", [FrontUserPanleController::class, "index"])->name("front.panel.index");
+        route::get("/edit", [FrontUserPanleController::class, "edit"])->name("front.panel.edit");
+        route::get("/update", [FrontUserPanleController::class, "update"])->name("front.panel.update");
+        route::get("/change-password", [FrontUserPanleController::class, "editpass"])->name("front.panel.edit.password");
+        route::post("/change-password", [FrontUserPanleController::class, "updatepass"])->name("front.panel.update.password");
 
         route::prefix("work-samples-categories")->group(function () {
             route::get("/", [WorkSampleCategory::class, "index"])->name("front.project.categories");

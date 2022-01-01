@@ -55,7 +55,8 @@ $languages = App\Models\Lang::where([['langable_type', 'App\Models\ServiceCatego
         <ul class="ul-sign">
             @if (Auth::check())
                 <li>
-                    <a class="user-info" href="#"> <i class="fa fa-user"></i> {{ auth()->user()->name }}</a>
+                    <a class="user-info" href="{{ route('front.panel.index') }}"> <i class="fa fa-user"></i>
+                        {{ auth()->user()->name }}</a>
                 </li>
             @else
                 <li>
@@ -218,7 +219,8 @@ $languages = App\Models\Lang::where([['langable_type', 'App\Models\ServiceCatego
 
             @if (Auth::check())
                 <li>
-                    <a class="user-info" href="#"> <i class="fa fa-user"></i> {{ auth()->user()->name }}</a>
+                    <a class="user-info" href="{{ route('front.panel.index') }}"> <i class="fa fa-user"></i>
+                        {{ auth()->user()->name }}</a>
                 </li>
             @else
                 <li>

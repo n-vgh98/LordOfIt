@@ -160,6 +160,12 @@ return [
     'panel-welcome-text'   => 'Welcome to Your Panel',
     'panel'   => 'Panel',
     'edit'   => 'Edit',
+    'change'   => 'Change',
+    'update-password-text'   => 'If you wish to change your password please Enter you New password',
+    'password-change-confirm'   => 'Your password changed successfully',
+    'detail-change-confirm'   => 'Your Detail changed successfully',
+    'change-detail'   => 'Change Account Detail',
+
 
 
 

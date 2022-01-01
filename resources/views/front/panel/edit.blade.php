@@ -10,9 +10,29 @@
             </section>
             <section class="panel-content">
 
-                <div class="welcome-panel">
-                    <h2>{{ __('translation.panel-welcome-text') }}</h2>
-                    <img src="{{ asset('front/imgs/730_generated[1].png') }}" alt="panelKarbari">
+                <div class="parent-all-parent-edit">
+
+                    <div class="user-edit-informations">
+                        <h3>{{ __('translation.detail-change-confirm') }}</h3>
+
+                        <form class="user-edit-informations-content" action="{{ route('front.panel.update') }}">
+                            @csrf
+                            <div class="name placeFix">
+                                <fieldset>
+                                    <legend>
+                                        <span>{{ __('translation.name') }}</span>
+                                    </legend>
+                                    <input value="{{ auth()->user()->name }}" name="name" type="text" required>
+                                </fieldset>
+
+                                <fieldset>
+                                    <legend> <span>{{ __('translation.email') }}</span> </legend>
+                                    <input value="{{ auth()->user()->email }}" name="email" type="email" required>
+                                </fieldset>
+                            </div>
+                            <button type="submit">{{ __('translation.change') }}</button>
+                        </form>
+                    </div>
                 </div>
 
                 <div class="userInfo-wrapper">

@@ -10,9 +10,18 @@
             </section>
             <section class="panel-content">
 
-                <div class="welcome-panel">
-                    <h2>{{ __('translation.panel-welcome-text') }}</h2>
-                    <img src="{{ asset('front/imgs/730_generated[1].png') }}" alt="panelKarbari">
+                <div class="changepass">
+                    <div class="changepass changepass-2">
+                        <h3>{{ __('translation.update-password-text') }} </h3>
+                        <form class="changepass-form" action="{{ route('front.panel.update.password') }}" method="post">
+                            @csrf
+                            <input type="text" name="password" placeholder="{{ __('translation.password') }}" required>
+                            <input type="text" name="password_confirmation"
+                                placeholder="{{ __('translation.password_confirmation') }}" required>
+                            <button type="submit">{{ __('translation.change') }}</button>
+                        </form>
+
+                    </div>
                 </div>
 
                 <div class="userInfo-wrapper">
