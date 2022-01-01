@@ -152,6 +152,10 @@ return [
     'ok'   => 'Ok',
     'fail'   => 'Fail',
     'done'   => 'Done!',
+    'new-password'   => 'New Password',
+    'update-password'   => 'Update Password',
+    'update-password-text'   => 'Please enter you new password and click on the button',
+    'forgot-password-text'   => 'Forgot your password?',
 
 
 

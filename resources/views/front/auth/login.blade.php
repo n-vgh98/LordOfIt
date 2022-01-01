@@ -24,13 +24,15 @@
                     </div>
                 </div> --}}
 
-                <button type="submit">ورود</button>
+                <button type="submit">{{ __('translation.login') }}</button>
             </form>
             <p class="btn-forget"><span class="btn-link2"><a
                         href="{{ route('register') }}">{{ __('translation.not-registered-yet') }}</a>
             </p>
-            {{-- <p class="btn-forget">آیا رمز عبور را <a href="forgetPassword.html" class="btn-link3">فراموش</a>
-                کرده اید؟</p> --}}
+            <p class="btn-forget"><span class="btn-link2"><a
+                        href="password/reset">{{ __('translation.forgot-password-text') }}</a>
+            </p>
+
         </section>
     </article>
 @endsection
