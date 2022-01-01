@@ -25,14 +25,15 @@
 <article class="article-background">
     <!-- breadcrumb -->
 
-
+   
     <section class="articles-wrapper">
-       @foreach($articles as $article)
+       
+        <section class="articles">
+        @foreach($articles as $article)
        @if($article->lang == app()->getLocale())
         @php
         $article->increment('views');
         @endphp
-        <section class="articles">
             <div class="article">
                 <div class="img-wrapper">
                     <img src="{{asset($article->image->path)}}" alt="{{$article->image->alt}}" title="{{$article->image->name}}">
@@ -64,13 +65,67 @@
                 </div>
             </div>
 
-
-        </section>
         @endif
         @endforeach
+        </section>
+        
     </section>
-
+   
 </article>
+
+
+
+<!-- <section class="articles-wrapper"> -->
+
+
+       
+    <article>  
+    
+      
+       
+        <section class="articles-wrapper">
+        <section class="articles">
+        @foreach($services as $service)
+            <div class="article">
+                <div class="img-wrapper">
+                    <img src="{{asset($service->image->path)}}" alt="{{$service->image->alt}}" title="{{$service->image->name}}">
+                    <a href="{{route('front.services',$service->title)}}"></a>
+                </div>
+                <p> {{$service->title}}</p>
+                <span class="article-text">
+                    {!!Str::limit($service->text_1 , '400') !!}
+                </span><span class="article-dots">...</span>
+                <div class="article-bishtar">
+                    <div>
+                        <i class="fa fa-eye"></i>
+                        <p>
+                            بازدید{{$service->views}}
+                        </p>
+                    </div>
+
+                    <div>
+                        <i class="fa fa-calendar-alt"></i>
+                        <p>
+                            {{$service->created_at}}
+                        </p>
+                    </div>
+
+                    <a href="{{route('front.services',$service->title)}}">
+                        <span>بیشتر</span>
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                </div>
+            </div>  
+        @endforeach
+        </section>
+         
+        </section>
+   
+       
+    <!-- </section> -->
+ 
+</article>
+
 
 
 <!-- DOOOOOKKMEEE -->
