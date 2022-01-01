@@ -30,7 +30,7 @@
        
         <section class="articles">
         @foreach($articles as $article)
-       @if($article->lang == app()->getLocale())
+       @if($article->lang->name == app()->getLocale())
         @php
         $article->increment('views');
         @endphp
@@ -50,7 +50,6 @@
                             بازدید{{$article->views}}
                         </p>
                     </div>
-
                     <div>
                         <i class="fa fa-calendar-alt"></i>
                         <p>
@@ -86,6 +85,9 @@
         <section class="articles-wrapper">
         <section class="articles">
         @foreach($services as $service)
+        @php
+            $service->increment('views')
+        @endphp
             <div class="article">
                 <div class="img-wrapper">
                     <img src="{{asset($service->image->path)}}" alt="{{$service->image->alt}}" title="{{$service->image->name}}">
