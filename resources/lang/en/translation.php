@@ -156,6 +156,11 @@ return [
     'update-password'   => 'Update Password',
     'update-password-text'   => 'Please enter you new password and click on the button',
     'forgot-password-text'   => 'Forgot your password?',
+    'change-password'   => 'change passowrd',
+    'panel-welcome-text'   => 'Welcome to Your Panel',
+    'panel'   => 'Panel',
+    'edit'   => 'Edit',
+
 
 
 

@@ -188,6 +188,10 @@ return [
     'update-password'   => 'تغییر رمز عبور',
     'update-password-text'   => 'لطفا رمز عبور جدید خود را وارد کنید و سپس دکمه  زیر را بزنید',
     'forgot-password-text'   => 'رمز عبور خود را فراموش کرده ای؟',
+    'change-password'   => 'تغییر رمز عبور',
+    'panel-welcome-text'   => 'به پنل کاربری خوش آمدید',
+    'panel'   => 'پنل کاربری',
+    'edit'   => 'ویرایش',
 
 
 ];
