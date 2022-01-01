@@ -48,7 +48,7 @@ use App\Http\Controllers\Front\ArticleController;
 |
  */
 
-Auth::routes();
+
 
 //front routing
 
@@ -65,6 +65,7 @@ route::get("/", function () {
 // })->name("en");
 
 Route::prefix('/{locale}')->middleware("language")->group(function () {
+    Auth::routes();
     route::get("/", [HomeController::class, "index"])->name("home");
     route::get("/ourteam", [OurTeamController::class, "index"])->name("front.ourteam.index");
     route::prefix("work-samples")->group(function () {
