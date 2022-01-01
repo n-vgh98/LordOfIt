@@ -32,7 +32,7 @@
 
     <!-- <form action=""> -->
     {!! Form::open(['method'=>'GET' , 'action'=>'App\Http\Controllers\Front\FrontSearchController@searchTitle']) !!}
-        <input type="text" name="title" id="" placeholder="دنبال چی میگردی؟">
+        <input type="text" name="title" id="title" placeholder="دنبال چی میگردی؟">
         <button type="submit">
             <i class="fa fa-search">
             </i>

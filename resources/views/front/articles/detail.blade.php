@@ -1,31 +1,16 @@
 @extends('front.layouts.master')
 @section('main')
-
-    <!-- {{-- <form class="main-form" action="">
-
-    <input type="text" name="" id="" placeholder="دنبال چی میگردی؟">
-    <button type="submit">
-        <i class="fa fa-search">
-        </i>
-    </button>
-</form> --}} -->
-
-
-
-            <form class="main-form" action="">
-                <input type="text" name="" id="" placeholder="دنبال چی میگردی؟">
-                <button type="submit">
-                    <i class="fa fa-search">
-                    </i>
-                </button>
-            </form> 
-            
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
             <!-- breadcrumb -->
             <section class="breadcrumb-section">
                 <ul id="breadcrumbs">
-                    <li><a href="#">خانه</a></li>
-                    <li><a href="#">آموزش</a></li>
-                    <li><a href="#">مقالات</a></li>
+                    <li><a href="{{route('home')}}">خانه</a></li>
+                    <li><a href="{{route('front.articles.index')}}">مقالات</a></li>
+                    <li><a>{{$article->title}}</a></li>
                 </ul>
             </section>
              <h1 class="main-title-h1"> {{$article->title}} </h1>
@@ -70,66 +55,7 @@
                     </section>
                 </section>
 
-                <section class="left-article-wrapper">
-                    <section class="article-input-wrapper">
-                        <form class="article-input-group" role="search">
-                            <input type="text" placeholder="جستجو ...">
-                            <span>
-                                <i class="fa fa-search"></i>
-                            </span>
-                        </form>
-                        <div class="article-category">
-                            <h4>آخرین مقالات</h4>
-                            <div class="article-category-list">
-                                <div>
-                                    <i class="fa fa-chevron-left "></i>
-                                    <span>طراحی سایت</span>
-                                </div>
-                                <div>
-                                    <i class="fa fa-chevron-left "></i>
-                                    <span> کسب و کار دیجیتال</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="article-category">
-                            <h4>مقالات مشابه</h4>
-                            <div class="article-category-list">
-                                <div>
-                                    <i class="fa fa-chevron-left "></i>
-                                    <span>طراحی سایت</span>
-                                </div>
-                                <div>
-                                    <i class="fa fa-chevron-left "></i>
-                                    <span> کسب و کار دیجیتال</span>
-                                </div>
-                                <div>
-                                    <i class="fa fa-chevron-left "></i>
-                                    <span> کسب و کار دیجیتال</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="article-adds">
-                            <span class="article-adds-close">
-                                <i class="fas fa-times"></i>
-                            </span>
-                            <h4>تبلیغات</h4>
-                            <div class="article-content">
-                                <div class="article-content-adds">
-                                    <img src="imgs/1629958522www.tahkimghias.comانتقال مال به غیر.jpg" alt="">
-                                    <p>عنوان دوره : دوره گرافیک</p>
-                                    <span class="article-img-caption">دوره ی آموزش طراحی UI/UX توسعه گران جهان رایانه،
-                                        طی 7 جلسه، فراگیر را با طراحی UI/UX آشنا می کند.</span>
-                                </div>
-                                <div class="article-content-adds">
-                                    <img src="imgs/1629958522www.tahkimghias.comانتقال مال به غیر.jpg" alt="">
-                                    <p class="article-content-head">عنوان دوره : دوره گرافیک</p>
-                                    <span class="article-img-caption">دوره ی آموزش طراحی UI/UX توسعه گران جهان رایانه،
-                                        طی 7 جلسه، فراگیر را با طراحی UI/UX آشنا می کند.</span>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </section>
+               @include('front.layouts.sidebar')
             </article>
             <div class="title title-comments">
                 <p>نظرات کاربران </p>
