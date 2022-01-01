@@ -187,6 +187,7 @@ return [
     'new-password'   => 'رمز عبور جدید',
     'update-password'   => 'تغییر رمز عبور',
     'update-password-text'   => 'لطفا رمز عبور جدید خود را وارد کنید و سپس دکمه  زیر را بزنید',
+    'forgot-password-text'   => 'رمز عبور خود را فراموش کرده ای؟',
 
 
 ];
