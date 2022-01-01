@@ -131,7 +131,7 @@ return [
 
     // new ranslation
 
-    'password' => 'password',
+    'password'              => 'password',
     'password_confirmation' => 'password Confirmation',
     'email-or-phone'        => 'Email or Phone Number',
     'job'                   => 'job',
@@ -141,7 +141,8 @@ return [
     'have-account'          => 'Already Sigend Up? ',
     'google-login'          => 'Login With Google',
     'or'                    => 'Or',
-
+    'name'                  => 'name',
+    'email'                 => 'Email',
 
 
 

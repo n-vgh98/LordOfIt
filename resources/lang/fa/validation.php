@@ -132,4 +132,8 @@ return [
             'rule-name' => 'custom-message',
         ],
     ],
+    'attributes' => [
+        "password" => "رمز عبور",
+        "email" => "ایمیل",
+    ]
 ];
