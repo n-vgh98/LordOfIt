@@ -55,10 +55,7 @@ $languages = App\Models\Lang::where([['langable_type', 'App\Models\ServiceCatego
         <ul class="ul-sign">
             @if (Auth::check())
                 <li>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        <button type="submit">{{ __('translation.logout') }}</button>
-                        @csrf
-                    </form>
+                    <a class="user-info" href="#"> <i class="fa fa-user"></i> {{ auth()->user()->name }}</a>
                 </li>
             @else
                 <li>
@@ -221,10 +218,7 @@ $languages = App\Models\Lang::where([['langable_type', 'App\Models\ServiceCatego
 
             @if (Auth::check())
                 <li>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        <button type="submit">{{ __('translation.logout') }}</button>
-                        @csrf
-                    </form>
+                    <a class="user-info" href="#"> <i class="fa fa-user"></i> {{ auth()->user()->name }}</a>
                 </li>
             @else
                 <li>
