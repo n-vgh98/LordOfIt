@@ -197,7 +197,20 @@ return [
     'password-change-confirm'   => 'رمز عبور شما با موفقیت تغیر کرد',
     'change-detail'   => ' ویرایش مشخصات',
     'detail-change-confirm'   => 'اطلاعات شما با موفقیت ویرایش شد',
-
-
-
+    'comment-answer'   => 'پاسخ',
+    'your-comment'   => 'نظر شما',
+    'login-text'   => 'برای ثبت نظر خود ابتدا وارد حساب کاربری خود شوید.',
+    'your-comment'   => 'نظر شما',
+    'amoozesh'   => 'آموزش',
+    'course-type'   => 'نوع دوره',
+    'course-level'   => 'سطح دوره',
+    'course-pre-need'   => 'پیش نیاز',
+    'course-sessions'   => 'تعداد جلسات',
+    'course-add'   => 'شرکت در دوره',
+    'description'   => 'توضیحات تکمیلی',
+    'topics'   => 'فهرست سرفصل های مطرح شده در این دوره',
+    "how-to-sign-courses" => "راهنمای سفارش آموزش ها",
+    "choose-favorite-course" => "انتخاب دوره مورد علاقه شما",
+    "fast-login" => "ثبت نام سریع و ورود به سایت",
+    "sign-course" => "ثبت سفارش",
 ];

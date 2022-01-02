@@ -1,7 +1,12 @@
 <!-- start parent main menu and logo -->
 @php
+use Stichoza\GoogleTranslate\GoogleTranslate;
 $lang = substr(Request::getPathInfo(), 1, 2);
 $languages = App\Models\Lang::where([['langable_type', 'App\Models\ServiceCategory'], ['name', $lang]])->get();
+$translator = new GoogleTranslate();
+$translator->setSource('fa');
+$translator->setTarget($lang);
+
 @endphp
 <section class="parent-main-logo-sigin_and_main-menu">
 
@@ -11,7 +16,7 @@ $languages = App\Models\Lang::where([['langable_type', 'App\Models\ServiceCatego
             <li class="li-moshvereh">
 
                 <a href="sms:989174477749">
-                    مشاوره تخصصی
+                    {{ $translator->translate('مشاوره تخصصی') }}
                     <i class="fas fa-phone-alt animate-phone-big-menu"></i>
                 </a>
 
@@ -77,12 +82,15 @@ $languages = App\Models\Lang::where([['langable_type', 'App\Models\ServiceCatego
         <ul class="main-menu-first-ul">
             <li><a href="{{ route('home') }}">
                     <i class="fa fa-home"></i>
+                    {{ $translator->translate(' خانه') }}
 
-                    خانه
+
                 </a></li>
             <li><a>
                     <i class="fa fa-hands-helping"></i>
-                    خدمات
+                    {{ $translator->translate(' خدمات') }}
+
+
                     <i class="fas fa-chevron-down"></i>
                     <div class="submenu">
                         <ul class="submenu-ul">
@@ -113,32 +121,37 @@ $languages = App\Models\Lang::where([['langable_type', 'App\Models\ServiceCatego
                 </a></li>
             <li><a href="{{ route('front.project.categories') }}">
                     <i class="fa fa-project-diagram"></i>
-                    نمونه کار
+                    {{ $translator->translate('نمونه کار') }}
                 </a></li>
             <li><a href="{{ route('front.courses.all') }}">
                     <i class="fa fa-book-reader"></i>
-                    آموزش
+                    {{ $translator->translate(' آموزش') }}
+
                 </a></li>
             <li><a href="{{ route('front.articles.index') }}">
                     <i class="fa fa-newspaper"></i>
-                    مقالات
+
+                    {{ $translator->translate('مقالات') }}
                 </a></li>
 
             <li>
                 <!-- تعرفه خدمات  -->
                 <a href="{{ route('front.project.serviceprice.category') }}">
                     <i class="fa fa-hand-holding-usd"></i>
-                    تعرفه خدمات
+
+                    {{ $translator->translate('تعرفه خدمات') }}
                 </a>
                 <!-- پایان  تعرفه خدمات -->
             </li>
             <li><a href="{{ route('front.about_us') }}">
                     <i class="fa fa-address-card"></i>
-                    درباره ما
+
+                    {{ $translator->translate('درباره ما') }}
                 </a></li>
             <li><a href="{{ route('front.ourteam.index') }}">
                     <i class="fa fa-users"></i>
-                    تیم ما
+
+                    {{ $translator->translate(' تیم ما') }}
                 </a></li>
         </ul>
 
@@ -164,8 +177,9 @@ $languages = App\Models\Lang::where([['langable_type', 'App\Models\ServiceCatego
 
         <li class="be_most_none_if_sticky"><a href="sms:989174477749">
                 <i class="fas fa-phone-alt"></i>
+                {{ $translator->translate('مشاوره تخصصی') }}
 
-                مشاوره تخصصی
+
             </a>
         </li>
         <li class="be_most_none_if_sticky">
@@ -181,8 +195,8 @@ $languages = App\Models\Lang::where([['langable_type', 'App\Models\ServiceCatego
         <ul class="logo-sticky-responsive">
             <li><a href="sms:989174477749">
                     <i class="fas fa-phone-alt"></i>
+                    {{ $translator->translate('مشاوره تخصصی') }}
 
-                    مشاوره تخصصی
                 </a>
             </li>
             <li>
@@ -235,18 +249,22 @@ $languages = App\Models\Lang::where([['langable_type', 'App\Models\ServiceCatego
         </ul>
         <li>
             <i class="fa fa-home"></i>
-            <a href="index.html">خانه</a>
+            <a href="index.html">{{ $translator->translate(' خانه') }}</a>
 
         </li>
         <div class="toggle">
             <i class="fa fa-hands-helping"></i>
-            خدمات
+
+            {{ $translator->translate('خدمات') }}
+
             <i class="fas fa-caret-left"></i>
         </div>
         <ul class="wrapper-menu-responsive">
             <!-- طراحی سایت -->
             <div class="toggle">
-                طراحی سایت
+
+                {{ $translator->translate('طراحی سایت') }}
+
                 <i class="fas fa-caret-left"></i>
             </div>
             <!-- start web design wrapper -->
@@ -315,17 +333,20 @@ $languages = App\Models\Lang::where([['langable_type', 'App\Models\ServiceCatego
 
         <li><a href="#">
                 <i class="fa fa-project-diagram"></i>
-                نمونه کار</a>
+                {{ $translator->translate(' نمونه کا') }}</a>
         </li>
         <li><a href="#">
                 <i class="fa fa-book-reader"></i>
-                آموزش
+                {{ $translator->translate(' آموزش') }}
+
             </a>
         </li>
         <li>
             <a href="#">
                 <i class="fa fa-newspaper"></i>
-                مقالات
+
+                {{ $translator->translate('مقالات') }}
+
             </a>
         </li>
 
@@ -333,7 +354,9 @@ $languages = App\Models\Lang::where([['langable_type', 'App\Models\ServiceCatego
         <li>
             <a href="Tarefe.html">
                 <i class="fa fa-hand-holding-usd"></i>
-                تعرفه خدمات
+
+                {{ $translator->translate(' تعرفه خدمات') }}
+
             </a>
         </li>
 
@@ -341,12 +364,14 @@ $languages = App\Models\Lang::where([['langable_type', 'App\Models\ServiceCatego
         <li>
             <a href="#">
                 <i class="fa fa-address-card"></i>
-                درباره ما</a>
+
+                {{ $translator->translate(' درباره ما') }}
+            </a>
         </li>
 
         <li>
             <i class="fa fa-users"></i>
-            <a href="#">تیم ما</a>
+            <a href="#">{{ $translator->translate(' تیم ما') }}</a>
         </li>
     </ul>
 </nav>

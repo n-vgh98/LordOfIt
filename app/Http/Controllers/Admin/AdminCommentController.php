@@ -75,15 +75,13 @@ class AdminCommentController extends Controller
         }
 
         if ($request->comment == "answer") {
-            $comment = Comment::find($request->id);
-
+            $course = Course::find($request->id);
             $answer = new Comment();
-            $answer->parent_id = $request->id;
+            $answer->parent_id = $request->parent_id;
             $answer->text = $request->text;
-            $answer->status = 1;
+            $answer->status = 0;
             $answer->writer_id = auth()->user()->id;
-            $answer->commentable_id = $comment->commentable_id;
-            $answer->commentable_type = $comment->commentable_type;
+            $course->comments()->save($answer);
             $answer->save();
         }
         return redirect()->back()->with("success", "پیام با موفقیت ارسال شد و پس از تایید ادمین نمایش داده میشود");

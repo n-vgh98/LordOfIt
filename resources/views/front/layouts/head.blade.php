@@ -8,6 +8,8 @@
 <link rel="stylesheet" href="{{ asset('front/js/sweetalert/sweetalert2.min.css') }}">
 <meta name="keywords" content=@yield('meta_key')>
 <meta name="description" content=@yield('meta_des') />
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+crossorigin="anonymous"></script>
 
 <style>
     .form-apply {

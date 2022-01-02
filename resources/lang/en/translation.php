@@ -165,6 +165,23 @@ return [
     'password-change-confirm'   => 'Your password changed successfully',
     'detail-change-confirm'   => 'Your Detail changed successfully',
     'change-detail'   => 'Change Account Detail',
+    'comment-answer'   => 'Answer',
+    'your-comment'   => 'Your Idea',
+    'login-text'   => 'For Sending Comment please login to your account',
+    'your-comment'   => 'Your Comment',
+    'amoozesh'   => 'Learn',
+    'course-type'   => 'Course Type',
+    'course-level'   => 'Course Level',
+    'course-pre-need'   => 'Prerequisites',
+    'course-sessions'   => 'Course sessions',
+    'course-add'   => 'Participate in the course',
+    'description'   => 'Description',
+    'topics'   => 'Topics',
+    "how-to-sign-courses" => "How to paricipate in courses",
+    "choose-favorite-course" => "choose your favorit course",
+    "fast-login" => "login into your account",
+    "sign-course" => "participate",
+
 
 
 

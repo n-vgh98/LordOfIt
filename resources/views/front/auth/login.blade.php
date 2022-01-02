@@ -26,9 +26,11 @@
 
                 <button type="submit">{{ __('translation.login') }}</button>
             </form>
+            <br>
             <p class="btn-forget"><span class="btn-link2"><a
                         href="{{ route('register') }}">{{ __('translation.not-registered-yet') }}</a>
             </p>
+            <br>
             <p class="btn-forget"><span class="btn-link2"><a
                         href="password/reset">{{ __('translation.forgot-password-text') }}</a>
             </p>
