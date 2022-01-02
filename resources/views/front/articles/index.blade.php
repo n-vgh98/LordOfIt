@@ -54,7 +54,7 @@
             <div class="article">
                 <div class="img-wrapper">
                     <img src="{{asset($article->image->path)}}" alt="{{$article->image->alt}}" title="{{$article->image->name}}">
-                    <a href="{{route('front.articles.show',$article->slug)}}"></a>
+                    <a href="{{route('front.articles.show',[$article->id,$article->slug])}}"></a>
                 </div>
                 <p> {{$article->title}}</p>
                 <span class="article-text">
@@ -77,7 +77,7 @@
                         </p>
                     </div>
 
-                    <a href="{{route('front.articles.show',$article->slug)}}">
+                    <a href="{{route('front.articles.show',[$article->id,$article->slug])}}">
                         <span>بیشتر</span>
                         <i class="fas fa-arrow-left"></i>
                     </a>

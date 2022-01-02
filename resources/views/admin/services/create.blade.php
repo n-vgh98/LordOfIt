@@ -39,11 +39,11 @@
                 font-weight: bold;
                 ">نام زیر دسته :</label>
         <select name="subcategory" id="subcategory" class="form-control input-sm">
-            <!-- @foreach($categories as $category)
-            @if($category->parent_id !== null  || $category->parent_id == $category->id) -->
-            <option value=""></option>
-            <!-- @endif
-            @endforeach -->
+            @foreach($categories as $category)
+            @if($category->parent_id !== null)
+            <option value="{{$category->id}}">{{$category->title}}</option>
+            @endif
+            @endforeach
         </select>
     </div>
 
@@ -173,26 +173,54 @@
         language: 'fa',
     });
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            $("document").ready(function () {
+                $('select[name="category"]').on('change', function () {
+                    var catId = $(this).val();
+                    if (catId) {
+                        $.ajax({
+                            url: '/admin/services/' + catId,
+                            type: "GET",
+                            dataType: "json",
+                            success: function (data) {
+                                $('select[name="subcategory"]').empty();
+                                $.each(data, function (key, value) {
+                                    $('select[name="subcategory"]').append('<option value=" ' + key + '">' + value + '</option>');
+                                })
+                            }
 
-<!-- cripts for subcategories -->
-<!-- $('#category').on(change,function(e){
-  console.log(e);
-   var cat_id = e.target.value;
+                        })
+                    } else {
+                        $('select[name="subcategory"]').empty();
+                    }
+                });
 
-    //ajax
-    $get('/ajax-subcat?cat_id='+ cat_id,function(data){
-        //success data
-        //console.log(data);
-        $('#subcategory').empty();
-        $.each(data,function(index,subcatObj){
-            $('#subcategory').append('<option value ="'+subcatObj.id+'">'+subcatObj.name+'</option>');
+
+            });
+        </script>
+
+<!-- <script>
+$(document).ready(function () { 
+            $('#category').on('change',function(e){
+            console.log(e);
+            var cat_id = e.target.value;
+            //console.log(cat_id);
+            //ajax
+            $.get('/ajax-subcat?cat_id='+ cat_id,function(data){
+                //success data
+               //console.log(data);
+                var subcat =  $('#subcategory').empty();
+                $.each(data,function(create,subcatObj){
+                    var option = $('<option/>', {id:create, value:subcatObj});
+                    subcat.append('<option value ="'+subcatObj+'">'+subcatObj+'</option>');
+                });
+            });
         });
-
     });
-}); -->
 
-
-<!-- 
+</script> -->
+<!--
 $.ajax({
                 url : url,
                 type : "GET",

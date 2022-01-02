@@ -5,6 +5,7 @@
 <br/>
 <br/>
 <br/>
+
             <!-- breadcrumb -->
             <section class="breadcrumb-section">
                 <ul id="breadcrumbs">
@@ -55,17 +56,21 @@
                     </section>
                 </section>
 
-               @include('front.layouts.sidebar')
+               
             </article>
             <div class="title title-comments">
                 <p>نظرات کاربران </p>
             </div>
-            <section class="comments">
-                <!-- row one comment -->
+    <section class="comments">
+        <!-- row one comment -->
+        @foreach ($comments as $comment)
+
+            <div class="comments-div">
                 <div class="row">
                     <img src="imgs/photo-profile.jpg" alt="profile-photo">
+                    <p>{{ $comment->writer->name }}</p>
                     <div class="text-comments">
-                        بنظرم محتوای خیلی خوبی داشت
+                        {{ $comment->text }}
                     </div>
 
                     <div class="parent-amozesh-btn cm-btn">
@@ -74,73 +79,58 @@
                                 <span>پاسخ</span>
                             </button>
                         </form>
-
                     </div>
                 </div>
-                <!-- row two comment-->
-                <div class="row">
-                    <img src="imgs/photo-profile-2.jpg" alt="profile-photo">
-                    <div class="text-comments">
-                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
-                        چاپگرها
-                        و متون بلکه روزنامه
-                        و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با
-                        هدف
-                        بهبود ابزارهای
-                        کاربردی می باشد.
+                @foreach ($comment->answers as $answer)
+                    <div class="row">
+                        <img src="{{ asset($answer->writer->profile) }}" alt="profile-photo">
+                        <p>{{ $answer->writer->name }}</p>
+                        <div class="text-comments">
+                            {{ $answer->text }}
+                        </div>
                     </div>
-                    <div class="parent-amozesh-btn cm-btn">
-                        <form action="">
-                            <button class="amozesh-btn cm-btn" type="submit">
-                                <span>پاسخ</span>
-                            </button>
-                        </form>
+                @endforeach
+                <div class="parenet-didgah">
+                    <div class="row-one-didgah">
+                        <p>پاسخ شما به این کامنت</p>
+                        <form action="{{ route('front.project.comments.store') }}" method="POST">
+                            @csrf
+                            <textarea type="text" name="didgah" class="textare-didgah"></textarea>
+                            <input type="hidden" name="comment" value="article">
+                            <input type="hidden" name="id" value="{{ $article->id }}">
                     </div>
-                </div>
-
-
-            </section>
-            <section class="pagination-wrapper">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a href="#" class="pagination-arrow" id="arrowRight-course-btns-pages"><i
-                                class="fas fa-arrow-right"></i></a>
-                    </li>
-                    <li class="page-item">
-                        <a href="#">1</a>
-                    </li>
-                    <li class="page-item">
-                        <a href="#" class="active">2</a>
-                    </li>
-                    <li class="page-item">
-                        <a href="#">3</a>
-                    </li>
-                    <li class="page-item">
-                        <a href="#" class="pagination-arrow" id="arrowLeft-course-btns-pages"><i
-                                class="fas fa-arrow-left"></i></a>
-                    </li>
-                </ul>
-            </section>
-
-
-
-            <div class="parenet-didgah">
-                <div class="row-one-didgah">
-                    <p>دیدگاه شما...</p>
-                    <form>
-                        <textarea type="text" name="didgah" class="textare-didgah"></textarea>
-                    </form>
-                </div>
-                <div class="row-two-didgah">
-
-                    <form action="">
-                        <input type="text" name="" id="" placeholder="نام خانوادگی">
-                        <input type="mail" name="" id="" placeholder="ایمیل">
-                        <button class="amozesh-btn cm-btn didgah">
-                            <span>ارسال</span>
+                    <div class="row-two-didgah">
+                        <button type="submit" class="amozesh-btn cm-btn didgah">
+                            <span>پاسخ</span>
                         </button>
+                    </div>
                     </form>
                 </div>
-
-
             </div>
+        @endforeach
+
+
+    </section>
+    <div class="parenet-didgah">
+        <div class="row-one-didgah">
+            <p>دیدگاه شما...</p>
+            <form action="{{ route('front.project.comments.store') }}" method="POST">
+                @csrf
+                <textarea type="text" name="didgah" class="textare-didgah"></textarea>
+                <input type="hidden" name="comment" value="article">
+                <input type="hidden" name="id" value="{{ $article->id }}">
+        </div>
+        <div class="row-two-didgah">
+            <button type="submit" class="amozesh-btn cm-btn didgah">
+                <span>ارسال</span>
+            </button>
+        </div>
+        </form>
+    </div>
+    @section('scripts')
+    <script src="{{ asset('front/Scroll_FooteR_mouse.js') }}"></script>
+    <script src="{{ asset('front/js/btnEffect.js') }}"></script>
+    <script src="{{ asset('front/js/buttonNumber_All_pages.js') }}"></script>
+    <script src="{{ asset('front/js/course.js') }}"></script>
+    <script src="{{ asset('front/js/menu-with-scroll.js') }}"></script>
+@endsection

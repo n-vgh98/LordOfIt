@@ -16,7 +16,7 @@
                 <div>
                     <i class="fa fa-chevron-left "></i>
                     @if($side->lang->name == app()->getLocale())
-                    <a href="{{route('front.articles.show',$side->slug)}}"><span>{{$side->title}}</span>
+                    <a href="{{route('front.articles.show',[$side->id,$side->slug])}}"><span>{{$side->title}}</span>
                         @endif
                 </div>
                 @endforeach

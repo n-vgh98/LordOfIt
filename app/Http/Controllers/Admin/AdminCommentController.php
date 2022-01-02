@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Article;
 use App\Models\Comment;
 use App\Models\Course;
+use App\Models\Service;
 use App\Models\WorkSampleCategory;
 use Illuminate\Http\Request;
 
@@ -49,6 +51,27 @@ class AdminCommentController extends Controller
                 $comment->parent_id = $request->parent_id;
             }
             $course->comments()->save($comment);
+        }
+        if($request->comment == 'article'){
+            $article = Article::find($request->id);
+            $comment = new Comment();
+            $comment->writer_id = auth()->user()->id;
+            $comment->text = $request->didgah;
+            if ($request->parent_id !== null) {
+                $comment->parent_id = $request->parent_id;
+            }
+            $article->comments()->save($comment);
+        }
+
+        if($request->comment == 'services'){
+            $services = Service::find($request->id);
+            $comment = new Comment();
+            $comment->writer_id = auth()->user()->id;
+            $comment->text = $request->didgah;
+            if ($request->parent_id !== null) {
+                $comment->parent_id = $request->parent_id;
+            }
+            $services->comments()->save($comment);
         }
 
         if ($request->comment == "answer") {

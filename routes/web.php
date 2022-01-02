@@ -1,15 +1,20 @@
 <?php
 
 use GuzzleHttp\Middleware;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Response;
+use Symfony\Component\Console\Input\Input;
 use App\Http\Controllers\Front\ServicePrice;
+
 use App\Http\Controllers\Admin\AdminDashboard;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Admin\AdminWorkSample;
 use App\Http\Controllers\Front\CourseController;
-
 use App\Http\Controllers\Front\AboutUsController;
+use App\Http\Controllers\Front\ArticleController;
 use App\Http\Controllers\Front\FrontServicePrice;
 use App\Http\Controllers\Front\OurTeamController;
 use App\Http\Controllers\Front\ProjectController;
@@ -17,6 +22,7 @@ use App\Http\Controllers\Front\WorkSampleCategory;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Front\WorkSampleController;
 use App\Http\Controllers\Admin\AdminFooterController;
+use App\Http\Controllers\Front\FrontSearchController;
 use App\Http\Controllers\Admin\AdminAboutUsController;
 use App\Http\Controllers\Admin\AdminArticleController;
 use App\Http\Controllers\Admin\AdminCommentController;
@@ -26,6 +32,7 @@ use App\Http\Controllers\Admin\AdminServiceController;
 use App\Http\Controllers\Front\FrontServiceController;
 use App\Http\Controllers\Admin\AdminServiceSubCategory;
 use App\Http\Controllers\Admin\AdminWorkSampleCategory;
+use App\Http\Controllers\Front\FrontUserPanleController;
 use App\Http\Controllers\Admin\AdminFooterLinkController;
 use App\Http\Controllers\Admin\AdminFooterTitleController;
 use App\Http\Controllers\Admin\AdminServicePriceController;
@@ -35,9 +42,6 @@ use App\Http\Controllers\Admin\AdminOurTeamSliderController;
 use App\Http\Controllers\Admin\AdminServicecategoryController;
 use App\Http\Controllers\Admin\AdminServicePriceCategoryController;
 use App\Http\Controllers\Admin\AdminServicePriceSubcategoryController;
-use App\Http\Controllers\Front\ArticleController;
-use App\Http\Controllers\Front\FrontSearchController;
-use App\Http\Controllers\Front\FrontUserPanleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -110,7 +114,7 @@ Route::prefix('/{locale}')->middleware("language")->group(function () {
     route::get("about_us", [AboutUsController::class, "index"])->name("front.about_us");
     route::prefix("articles")->group(function () {
         route::get("/", [ArticleController::class, "index"])->name("front.articles.index");
-        route::get("/{slug}", [ArticleController::class, "show"])->name("front.articles.show");
+        route::get("/{id}/{slug}", [ArticleController::class, "show"])->name("front.articles.show");
     });
     Route::get('/search', [FrontSearchController::class, "searchTitle"])->name('search');
 });
@@ -254,12 +258,7 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
         route::patch("update/{id}", [AdminServiceController::class, "update"])->name("admin.services.update");
         route::delete("destroy/{id}", [AdminServiceController::class, "destroy"])->name("admin.services.destroy");
         route::post("/updateimage/{id}", [AdminServiceController::class, "updateimage"])->name("admin.services.update.image");
-        // Route::get('/ajax-subcat',function () {
-        //     $cat_id = ServiceCategory::whereNotNull('parent_id')->get();
-        // //    return $cat_id;
-        //     $subcategories = DB::table('services_categories')->where('title', '=',$cat_id)->get();
-        //     return Response::json($subcategories);
-        // });
+            // 
 
 
 
