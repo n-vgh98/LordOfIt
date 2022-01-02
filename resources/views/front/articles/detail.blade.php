@@ -52,8 +52,8 @@
                 </div>
 
                 <!-- <div class="article-page-wiriter">
-                                                <p><span>نویسنده:</span> امید فتاحی</p>
-                                            </div> -->
+                                                        <p><span>نویسنده:</span> امید فتاحی</p>
+                                                    </div> -->
             </section>
         </section>
 
@@ -89,28 +89,32 @@
                     @endif
                 </div>
                 @foreach ($comment->answers as $answer)
-                    <div class="row">
-                        @php
-                            $roles = [];
-                        @endphp
-                        @foreach ($answer->writer->roles as $role)
+                    @if ($answer->status == 1)
+
+                        <div class="row">
                             @php
-                                array_push($roles, $role->name);
+                                $roles = [];
                             @endphp
-                        @endforeach
-                        @if (in_array('admin', $roles))
-                            <img src="{{ asset('front/imgs/admin-avatar.jpg') }}" alt="profile-photo">
-                            <p>{{ 'admin' }}</p>
-                        @else
-                            <img src="{{ asset('front/imgs/user-avatar.png') }}" alt="profile-photo">
-                            <p>{{ $answer->writer->name }}</p>
-                        @endif
-                        <div class="text-comments">
-                            <p>
-                                {{ $answer->text }}
-                            </p>
+                            @foreach ($answer->writer->roles as $role)
+                                @php
+                                    array_push($roles, $role->name);
+                                @endphp
+                            @endforeach
+                            @if (in_array('admin', $roles))
+                                <img src="{{ asset('front/imgs/admin-avatar.jpg') }}" alt="profile-photo">
+                                <p>{{ 'admin' }}</p>
+                            @else
+                                <img src="{{ asset('front/imgs/user-avatar.png') }}" alt="profile-photo">
+                                <p>{{ $answer->writer->name }}</p>
+                            @endif
+                            <div class="text-comments">
+                                <p>
+                                    {{ $answer->text }}
+                                </p>
+                            </div>
                         </div>
-                    </div>
+                    @endif
+
                 @endforeach
                 <form action="{{ route('front.project.comments.store') }}" method="POST">
                     @csrf
