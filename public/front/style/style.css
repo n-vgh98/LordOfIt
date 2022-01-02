@@ -29,8 +29,8 @@ html {
 	scroll-behavior: smooth;
 }
 body{
-    margin-left: 10px !important;
-    margin-right: 10px !important;
+    margin-left: 10px ;
+    margin-right: 10px ;
 }
 
 p {
@@ -575,7 +575,7 @@ header {
 }
 .parent-main-logo-sigin_and_main-menu {
 	width: 100%;
-    position: fixed !important;
+    position: fixed ;
 	left: 0px;
 	top: 0px; 
 	z-index: 99;
@@ -782,7 +782,7 @@ header {
 	background-color: rgb(24, 24, 29);
 	right: 0%;
 	transition: all 0.3s ease;
-	z-index: 999 !important;
+	z-index: 999 ;
 }
 
 .submenu li {
@@ -829,19 +829,19 @@ header {
 
 /* logo start big scope */
 .big-mediaquery-logo {
-	display: flex !important;
-	justify-content: center !important;
+	display: flex ;
+	justify-content: center ;
 	text-align: right;
 	width: 50%;
-    align-content: center!important;
+    align-content: center;
     align-self: center;
     flex-direction: row-reverse;
     
 }
 
 .big-mediaquery-logo img {
-	width: auto !important;
-    max-height: 50px !important;
+	width: auto ;
+    max-height: 50px ;
 /*	margin-right: clamp(5em, 1rem, 4rem);*/
 	/* margin-top: 1rem; */
 }
@@ -849,7 +849,7 @@ header {
 .big-mediaquery-logo p {
 	margin-left: 0.2rem;
 	margin-top: 1rem;
-	color: aqua !important;
+	color: aqua ;
     
 }
 
@@ -858,7 +858,7 @@ header {
 	position: relative ;
     left: 0px ;
 /*    border: solid red;*/
-    width: auto !important;
+    width: auto ;
 }
 .ul-sign > p {
 	color: #fff;
@@ -969,7 +969,7 @@ header {
 /* start sticky menu  */
 .parent-responsive-logo_tell {
 	display: flex;
-	justify-content: center !important;
+	justify-content: center ;
     align-items: baseline;
     z-index: 99999;
     height: 100%;
@@ -1437,7 +1437,7 @@ header > form > button {
 	padding: 0;
 	margin: 0;
 	font-size: 1rem;
-    color: #201F1F !important;
+    color: #201F1F ;
 }
 
 .text-contetn-box {
@@ -1509,8 +1509,8 @@ header > form > button {
 	background-position: center;
 	background-image: url(../imgs/prev.png_64.png);
 	width: 10%;
-	position: fixed !important;
-	left: 0px !important;
+	position: fixed ;
+	left: 0px ;
 	transform: translateX(0px);
 }
 
@@ -1520,8 +1520,8 @@ header > form > button {
 	background-size: 100% auto;
 	background-position: center;
 	width: 10%;
-	position: fixed !important;
-	right: -5px !important;
+	position: fixed ;
+	right: -5px;
 }
 
 .swiper-button-next::after {
@@ -1955,7 +1955,7 @@ footer p {
 	margin-bottom: 2rem;
 	font-weight: 300;
 	border-bottom: 1px solid #06abbb;
-/*    line-height: 2.5rem !important;*/
+
 }
 
 .footer-line-one p,
@@ -2411,8 +2411,8 @@ input {
 	position: absolute;
 	opacity: 0;
 	cursor: pointer;
-	height: 16px !important;
-	width: 16px !important;
+	height: 16px ;
+	width: 16px ;
 	z-index: 1;
 }
 .both-check input:checked ~ .checkmark {
@@ -3262,7 +3262,7 @@ div.panel-four-row-more:hover i {
 }
 .training-course  {
 	border-bottom: 2px solid #000000;
-    color: #111 !important;
+    color: #111 ;
 }
 
 /* Finish panel */
@@ -3515,7 +3515,7 @@ button.google-login-button:hover {
 	border-bottom: 1px solid #04799c;
 }
 .btn-forget {
-	margin: 14px !important;
+	margin: 14px ;
 }
 .btn-forget span {
 	color: #00b8d4;
@@ -3816,7 +3816,7 @@ input[type='number'] {
 	height: 100%;
 }
 .pagination-arrow {
-	border: 3px solid #00b8d4 !important;
+	border: 3px solid #00b8d4 ;
 	color: #00b8d4;
 }
 .pagination .active {
@@ -3891,7 +3891,7 @@ input[type='number'] {
 
 .title > p {
 	color: #757171;
-    font-size: 1.2rem !important;
+    font-size: 1.2rem;
 	font-weight: bold;
 	font-size: 15px;
 	margin: 15px 15px 0px 0px;
@@ -3951,7 +3951,7 @@ input[type='number'] {
 	cursor: pointer;
 }
 .swiper-pagination {
-	position: static !important;
+	position: static ;
 	margin-top: 20px;
 }
 
@@ -4130,7 +4130,7 @@ input[type='number'] {
 	border-radius: 15px;
 	border: none;
 	outline: none;
-	background: #fff;
+
 }
 
 /* btn-next-page */
@@ -4153,7 +4153,7 @@ input[type='number'] {
 
 .row-one-didgah p {
 	font-weight: bold;
-    font-size: 1.2em !important;
+    font-size: 1.2em ;
 	margin: 10px;
 }
 .row-one-didgah form {
@@ -4826,7 +4826,7 @@ margin-top: 1rem;
 	margin-top: 4rem;
 }
 .related-courses h3 {
-	text-align: center !important;
+	text-align: center ;
 	margin-bottom: 1.5rem;
 }
 .related-courses-content {
@@ -4937,7 +4937,7 @@ table.blueTable td,
 table.blueTable th {
 	border: 1px solid #c4c4c4;
 	padding: 10px 2px;
-    font-size: 1em !important;
+    font-size: 1em ;
 }
 table.blueTable tbody td {
 	font-size: 13px;
@@ -5273,7 +5273,7 @@ table.blueTable thead th:first-child {
 	transform: none;
 	padding: 14px;
 	font-weight: 400;
-	text-align: left !important;
+	text-align: left ;
 	font-weight: bold;
 	border-bottom: 1px solid #828282;
 }
@@ -5420,7 +5420,7 @@ margin: auto;
     margin-top: 20px;
 }
 .tarefe-ul a{
-    font-size: 0.8em !important;
+    font-size: 0.8em ;
 }
 	.parent-all-parent-edit {
 		width: 100%;
@@ -5571,7 +5571,7 @@ margin: auto;
         margin-top: 70px;
     }
     main{
-        margin-top: 85px !important;
+        margin-top: 85px ;
     }
     
     .why-us{
@@ -5593,7 +5593,7 @@ margin: auto;
 	}
     
     .team-card-img img{
-       width: auto !important;
+       width: auto ;
        max-height: 300px;
     }
     
@@ -5645,7 +5645,7 @@ margin: auto;
 	}
     
       .team-card-img img{
-      width: 100% !important;
+      width: 100% ;
       height: auto;
     }
 
@@ -5842,15 +5842,15 @@ margin: auto;
 		width: 7%;
 		top: 75px;
 
-		position: fixed !important;
+		position: fixed ;
 	}
 
 	.swiper-button-next {
-		left: 0px !important;
+		left: 0px ;
 	}
 
 	.swiper-button-prev {
-		right: 0px !important;
+		right: 0px ;
 	}
 
 	.content-text-section-from {
@@ -5948,7 +5948,7 @@ margin: auto;
 	}  
     
     main {
-        margin-top: 75px !important;
+        margin-top: 75px ;
     }
     .why-us{
     
@@ -5989,7 +5989,7 @@ margin: auto;
 
     
        .examples-project-full{
-    grid-template-columns: repeat(3 , 32%) !important;
+    grid-template-columns: repeat(3 , 32%) ;
 }
     
     
@@ -6388,12 +6388,12 @@ margin: auto;
 	}
 
 	.swiper-button-next {
-		left: 0px !important;
+		left: 0px ;
 		position: relative;
 	}
 
 	.swiper-button-prev {
-		right: 0px !important;
+		right: 0px ;
 	}
 
 	.content-text-section-from {
@@ -6482,8 +6482,8 @@ margin: auto;
 
 	.academy-post {
 		width: 100%;
-		padding: 0 !important;
-		flex-direction: row !important;
+		padding: 0 ;
+		flex-direction: row ;
 		justify-content: space-evenly;
 	}
 
@@ -6669,7 +6669,7 @@ margin: auto;
     margin-top: 85px ; 
     }
     main {
-      margin-top: 95px !important;   
+      margin-top: 95px ;   
     }
     
     .why-us{
@@ -6857,14 +6857,14 @@ margin: auto;
 */
 /*////////////////////////////////////////////////*/
 #footer_showMenu p , #footer_showMenu li{
-    font-size: 1em !important;
+    font-size: 1em ;
 }
 .article h4{
-    color: black !important;
+    color: black ;
 }
 
 .panel-four-sidebar-article{
-    color: #111 !important;
+    color: #111 ;
 }
 
 .main-title-h1{
@@ -6878,16 +6878,16 @@ margin: auto;
 }
 .main-title-h2{
     color: darkcyan;
-    text-align: right !important;
-    text-shadow: 0px 0px 1px black !important;
+    text-align: right ;
+    text-shadow: 0px 0px 1px black ;
     margin-right: 10px;
-    padding-bottom: 0px !important;
+    padding-bottom: 0px ;
 }
 
 .main-title-h3{
     color: darkcyan;
-    text-shadow: 0px 0px 1px black !important;
-    padding-bottom: 0px !important;
+    text-shadow: 0px 0px 1px black ;
+    padding-bottom: 0px ;
 }
 
 .tarefe-class p{
@@ -6898,7 +6898,7 @@ margin: auto;
 
 .tarefe-class li{
     
-    font-size: 1em !important;
+    font-size: 1em ;
     
 }
 
@@ -6917,9 +6917,9 @@ margin: auto;
 }
 
 .wrapper-box-article-amozesh-p {
-    text-align: right !important;
+    text-align: right ;
     color: black;
-    font-size: 1.2em !important;
+    font-size: 1.2em ;
 }
 
 
@@ -6928,7 +6928,7 @@ margin: auto;
 
 
 .form-first-sabtNam{
-    margin-bottom: 10px !important;
+    margin-bottom: 10px ;
 }
 
 .title-tarefe-tow h2{
@@ -6937,7 +6937,7 @@ margin: auto;
 
 .sections-title h1{
     border-bottom-style: solid ;
-    border-bottom-color: #0060AA !important;
+    border-bottom-color: #0060AA ;
     border-bottom-width: 3px;
     width: 100% ;
     text-align: center ;
@@ -6967,12 +6967,12 @@ margin: auto;
 
 .article-wrapper-content h2 ,.article-wrapper-content h3 ,.article-wrapper-content h4 ,.article-wrapper-content h5{
     color: darkcyan;
-    text-shadow: 0px 0px 1px black !important; 
+    text-shadow: 0px 0px 1px black ; 
 	}
 
 main h3 , main h4 {
-    color: darkcyan !important;
-    text-shadow: 0px 0px 1px black !important; 
+    color: darkcyan ;
+    text-shadow: 0px 0px 1px black ; 
 }
 
 .why-us{
@@ -7000,17 +7000,17 @@ main h3 , main h4 {
 .article-title-h2{
     color: darkcyan;
     text-align: center;
-    text-shadow: 0px 0px 1px black !important;
+    text-shadow: 0px 0px 1px black ;
     margin-top: 5px;
-    padding-bottom: 0px !important;
+    padding-bottom: 0px ;
 }
 
 .article-title-h3{
     color: darkcyan;
     text-align: center;
-    text-shadow: 0px 0px 1px black !important;
+    text-shadow: 0px 0px 1px black ;
     margin-top: 5px;
-    padding-bottom: 0px !important;
+    padding-bottom: 0px;
 }
 
 .article-background{
@@ -7163,7 +7163,7 @@ img {vertical-align: middle;}
 .question-project p:first-of-type {
     color: darkcyan;
     font-weight: bold;
-    font-size: 1.2em !important;
+    font-size: 1.2em ;
    
 }
 
@@ -7177,22 +7177,22 @@ img {vertical-align: middle;}
 }
 .project-title-h2{
     color: darkcyan;
-    text-align: center !important;
-    text-shadow: 0px 0px 1px black !important;
+    text-align: center ;
+    text-shadow: 0px 0px 1px black ;
     margin-right: 10px;
-    padding-bottom: 0px !important;
+    padding-bottom: 0px ;
     border-bottom: solid;
     margin-bottom: 3px;
-    padding-bottom: 5px !important;
+    padding-bottom: 5px ;
     margin-top: 20px ;
     
 }
 
 .project-title-h3{
     color: darkcyan;
-    text-shadow: 0px 0px 1px black !important;
-    padding-bottom: 0px !important;
-    padding-bottom: 5px !important;
+    text-shadow: 0px 0px 1px black ;
+    padding-bottom: 0px ;
+    padding-bottom: 5px ;
     
 }
 
@@ -7238,10 +7238,10 @@ img {vertical-align: middle;}
 
 .more-examples{
     margin: 10px;
-    color: orangered !important;
+    color: orangered ;
     font-weight: bold;
-    font-size: 1.3em !important;
-    text-align: end !important;
+    font-size: 1.3em ;
+    text-align: end ;
 }
 
 .examples-project-left{
@@ -7291,7 +7291,7 @@ p.project-title-h2{
 .big-photo img {
 
     max-width: 100%;
-    height: auto !important;
+    height: auto ;
 }
 
 .dotSlide{
@@ -7299,7 +7299,7 @@ p.project-title-h2{
 }
 
 .fa-chevron-left{
-	display: none !important;
+	display: none ;
 }
 
 .mySwiper{

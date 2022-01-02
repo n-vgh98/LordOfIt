@@ -116,7 +116,7 @@
 
     </section>
     <!-- end btn -->
-    <h2 class="article-title-h2">دسته بندی خدمات شرکت </h2>
+    <h2 class="article-title-h2"> خدمات شرکت </h2>
     <!-- start six-boxes-section -->
     <section class="parent-boxes-grid-hompage-boxes">
         <!-- box-one -->
@@ -203,7 +203,7 @@
                 <!-- img -->
                 <figure>
                     <a href="#">
-                        <img src="imgs/mobile-app.jpg" alt="mobile-app" loading="lazy">
+                        <img src="{{asset('front/imgs/mobile-app.jpg')}}" alt="mobile-app" loading="lazy">
                     </a>
                 </figure>
                 <!-- text-content -->
@@ -277,7 +277,7 @@
                 <!-- img -->
                 <figure>
                     <a href="#">
-                        <img src="imgs/digital-marketing.jpg" alt="" loading="lazy">
+                        <img src="{{asset('front/imgs/digital-marketing.jpg')}}" alt="" loading="lazy">
                     </a>
                 </figure>
                 <!-- text-content -->
@@ -413,27 +413,27 @@
 
                 <!-- img-1 -->
                 <div>
-                    <img src="imgs/skill-web.png" alt="skill-web" id="around-imgs" loading="lazy">
+                    <img src="{{asset('front/imgs/skill-web.png')}}" alt="skill-web" id="around-imgs" loading="lazy">
                 </div>
                 <!-- img-2 -->
                 <div>
-                    <img src="imgs/skill-app.png" alt="skill-app" id="around-imgs" loading="lazy">
+                    <img src="{{asset('front/imgs/skill-app.png')}}" alt="skill-app" id="around-imgs" loading="lazy">
                 </div>
                 <!-- img-3 -->
                 <div>
-                    <img src="imgs/skill-seo.png" alt="seo" id="around-imgs" loading="lazy">
+                    <img src="{{asset('front/imgs/skill-seo.png')}}" alt="seo" id="around-imgs" loading="lazy">
                 </div>
                 <!-- img-4-->
                 <div>
-                    <img src="imgs/skill-graghic.png" alt="graghic" id="around-imgs" loading="lazy">
+                    <img src="{{asset('front/imgs/skill-graghic.png')}}" alt="graghic" id="around-imgs" loading="lazy">
                 </div>
                 <!-- img-5-->
                 <div>
-                    <img src="imgs/skill-i.png" alt="skill-i" id="around-imgs" loading="lazy">
+                    <img src="{{asset('front/imgs/skill-i.png')}}" alt="skill-i" id="around-imgs" loading="lazy">
                 </div>
                 <!-- img-6 -->
                 <div class="midel-img">
-                    <img src="imgs/main pic.jpg" alt="LordOFit" id="midel-img" loading="lazy">
+                    <img src="{{asset('front/imgs/main pic.jpg')}}" alt="LordOFit" id="midel-img" loading="lazy">
                 </div>
             </div>
         </div>
