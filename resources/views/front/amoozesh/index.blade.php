@@ -11,14 +11,15 @@
     <!-- breadcrumb-section  -->
     <section class="breadcrumb-section breadcrumb-course">
         <ul id="breadcrumbs">
-            <li><a href="{{ route('home') }}">خانه</a></li>
-            <li><a href="{{ route('front.courses.all') }}">آموزش</a></li>
+            <li><a href="{{ route('home') }}">{{ __('translation.home') }}</a></li>
+            <li><a href="{{ route('front.courses.all') }}">{{ __('translation.amoozesh') }}</a></li>
+            <li><a href="#">{{ $course->name }}</a></li>
         </ul>
     </section>
     <!-- course-content -->
     <h1 class="main-title-h1">{{ $course->title }}</h1>
     <article class="course-content">
-        <button><a href="#" class="btn-course">شرکت در دوره</a></button>
+        <button><a href="#" class="btn-course">{{ __('translation.course-add') }}</a></button>
         <section class="course-content-wrapp ">
             <article class="course-description">
                 <section class="course-pic course-bg">
@@ -40,13 +41,13 @@
             </article>
             <section class="course-Info-wrapper course-bg">
                 <div class="course-Info">
-                    <p>نوع دوره : {{ $course->type }}</p>
-                    <p>سطح دوره: {{ $course->level }}</p>
-                    <p>پیش نیاز : {{ $course->pre_need }}</p>
-                    <p>تعداد جلسات: {{ $course->section }}</p>
-                    <p>زبان : {{ $course->lang }}</p>
+                    <p>{{ __('translation.course-type') }} : {{ $course->type }}</p>
+                    <p>{{ __('translation.course-level') }}: {{ $course->level }}</p>
+                    <p>{{ __('translation.course-pre-need') }}: {{ $course->pre_need }}</p>
+                    <p>{{ __('translation.course-sessions') }}: {{ $course->section }}</p>
+                    <p>{{ __('translation.language') }} : {{ $course->lang }}</p>
                 </div>
-                <button><a href="#">شرکت در دوره</a></button>
+                <button><a href="#">{{ __('translation.course-add') }}</a></button>
             </section>
         </section>
     </article>
@@ -54,7 +55,7 @@
     <!-- Order guidance -->
 
     <article class="guidance-wrapper">
-        <p class="guidance-list-wrapper-title">راهنمای سفارش آموزش ها</p>
+        <p class="guidance-list-wrapper-title">{{ __('translation.how-to-sign-courses') }}</p>
         <section class="gudiance-content">
             <section class="guidance-pic">
                 <figure>
@@ -65,19 +66,18 @@
                 <ul class="guidance-list">
                     <li>
                         <span class="gudiance-num">1</span>
-                        <span class="gudiance-txt">انتخاب دوره مورد علاقه
-                            شما
+                        <span class="gudiance-txt">{{ __('translation.choose-favorite-course') }}
                         </span>
                     </li>
                     <li>
-                        <span class="gudiance-num">2</span><span class="gudiance-txt">ثبت نام سریع و ورود به
-                            سایت</span>
+                        <span class="gudiance-num">2</span><span
+                            class="gudiance-txt">{{ __('translation.fast-login') }}</span>
                     </li>
                     <li>
-                        <span class="gudiance-num">3</span><span class="gudiance-txt">ثبت سفارش </span>
+                        <span class="gudiance-num">3</span><span
+                            class="gudiance-txt">{{ __('translation.sign-course') }} </span>
                     </li>
                 </ul>
-                <p>در مورد این آموزش یا نحوه تهیه آن <span><a href="#">سوالی</a></span> دارید؟</p>
             </section>
         </section>
     </article>
@@ -113,76 +113,113 @@
         <p>نظرات کاربران </p>
     </div>
     <section class="comments">
-        <!-- row one comment -->
         @foreach ($comments as $comment)
-
+            <!-- row one comment -->
             <div class="comments-div">
                 <div class="row">
-                    <img src="imgs/photo-profile.jpg" alt="profile-photo">
+                    <img src="{{ asset('front/imgs/user-avatar.png') }}" alt="profile-photo">
                     <p>{{ $comment->writer->name }}</p>
                     <div class="text-comments">
-                        {{ $comment->text }}
-                    </div>
+                        <p>
+                            {{ $comment->text }}
+                        </p>
 
-                    <div class="parent-amozesh-btn cm-btn">
-                        <form action="">
-                            <button class="amozesh-btn cm-btn" type="submit">
-                                <span>پاسخ</span>
-                            </button>
-                        </form>
                     </div>
+                    @if (auth()->check())
+                        <div class="parent-amozesh-btn cm-btn">
+                            <form action="">
+                                <button id="pasokh" class="amozesh-btn cm-btn" type="button">
+                                    <span>{{ __('translation.comment-answer') }}</span>
+                                </button>
+                            </form>
+                        </div>
+                    @else
+                        <p>{{ __('translation.login-text') }}</p>
+                        <a href="{{ route('login') }}" class="amozesh-btn cm-btn">{{ __('translation.login') }}</a>
+                    @endif
                 </div>
                 @foreach ($comment->answers as $answer)
                     <div class="row">
-                        <img src="{{ asset($answer->writer->profile) }}" alt="profile-photo">
-                        <p>{{ $answer->writer->name }}</p>
+                        @php
+                            $roles = [];
+                        @endphp
+                        @foreach ($answer->writer->roles as $role)
+                            @php
+                                array_push($roles, $role->name);
+                            @endphp
+                        @endforeach
+                        @if (in_array('admin', $roles))
+                            <img src="{{ asset('front/imgs/admin-avatar.jpg') }}" alt="profile-photo">
+                            <p>{{ 'admin' }}</p>
+                        @else
+                            <img src="{{ asset('front/imgs/user-avatar.png') }}" alt="profile-photo">
+                            <p>{{ $answer->writer->name }}</p>
+                        @endif
                         <div class="text-comments">
-                            {{ $answer->text }}
+                            <p>
+                                {{ $answer->text }}
+                            </p>
                         </div>
                     </div>
                 @endforeach
-                <div class="parenet-didgah">
-                    <div class="row-one-didgah">
-                        <p>پاسخ شما به این کامنت</p>
-                        <form action="{{ route('front.project.comments.store') }}" method="POST">
-                            @csrf
-                            <textarea type="text" name="didgah" class="textare-didgah"></textarea>
-                            <input type="hidden" name="comment" value="course">
+                <form action="{{ route('front.project.comments.store') }}" method="POST">
+                    @csrf
+                    <div id="pasokh-div2" class="row">
+                        <img src="{{ asset('front/imgs/user-avatar.png') }}" alt="profile-photo">
+                        <p>{{ auth()->user()->name }}</p>
+                        <div class="text-comments">
+                            <textarea name="text" class="textarea-comment" rows="5" required="required"
+                                placeholder="{{ __('translation.your-comment') }}"></textarea>
+                        </div>
+                        <div class="parent-amozesh-btn cm-btn">
+
+                            <input type="hidden" name="comment" value="answer">
                             <input type="hidden" name="id" value="{{ $course->id }}">
+                            <input type="hidden" name="parent_id" value="{{ $comment->id }}">
+                            <button id="pasokh" class="amozesh-btn cm-btn" type="submit">
+                                <span>{{ __('translation.send') }}</span>
+                            </button>
+
+
+
+                        </div>
                     </div>
-                    <div class="row-two-didgah">
-                        <button type="submit" class="amozesh-btn cm-btn didgah">
-                            <span>پاسخ</span>
-                        </button>
-                    </div>
-                    </form>
-                </div>
+                </form>
+
             </div>
+
         @endforeach
-
-
     </section>
-    <div class="parenet-didgah">
-        <div class="row-one-didgah">
-            <p>دیدگاه شما...</p>
-            <form action="{{ route('front.project.comments.store') }}" method="POST">
-                @csrf
-                <textarea type="text" name="didgah" class="textare-didgah"></textarea>
-                <input type="hidden" name="comment" value="course">
-                <input type="hidden" name="id" value="{{ $course->id }}">
+
+    @auth
+
+        <div class="parenet-didgah">
+            <div class="row-one-didgah">
+                <p>{{ __('translation.your-comment') }}</p>
+                <form action="{{ route('front.project.comments.store') }}" method="POST">
+                    @csrf
+                    <textarea type="text" name="didgah" class="textare-didgah"></textarea>
+                    <input type="hidden" name="comment" value="course">
+                    <input type="hidden" name="id" value="{{ $course->id }}">
+            </div>
+            <div class="row-two-didgah">
+                <button type="submit" class="amozesh-btn cm-btn didgah">
+                    <span>{{ __('translation.send') }}</span>
+                </button>
+            </div>
+            </form>
         </div>
-        <div class="row-two-didgah">
-            <button type="submit" class="amozesh-btn cm-btn didgah">
-                <span>ارسال</span>
-            </button>
-        </div>
-        </form>
-    </div>
+    @endauth
+
 @endsection
 @section('scripts')
+    <script src="{{ asset('front/js/buttonNumber_All_pages.js') }}"></script>
+    <script src="{{ asset('front/js/ArrowUpIcon.js') }}"></script>
     <script src="{{ asset('front/Scroll_FooteR_mouse.js') }}"></script>
     <script src="{{ asset('front/js/btnEffect.js') }}"></script>
-    <script src="{{ asset('front/js/buttonNumber_All_pages.js') }}"></script>
-    <script src="{{ asset('front/js/course.js') }}"></script>
-    <script src="{{ asset('front/js/menu-with-scroll.js') }}"></script>
+    <script src="{{ asset('front/js/menuWhithOutScroll.js') }}"></script>
+    <script src="{{ asset('front/js/article-close.js') }}"></script>
+    <script src="{{ asset('front/js/jqure.js') }}" type="text/javascript"></script>
+
+
 @endsection
