@@ -37,6 +37,7 @@ use App\Http\Controllers\Admin\AdminServicePriceCategoryController;
 use App\Http\Controllers\Admin\AdminServicePriceSubcategoryController;
 use App\Http\Controllers\Front\ArticleController;
 use App\Http\Controllers\Front\FrontSearchController;
+use App\Http\Controllers\Front\FrontUserPanleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,8 +68,22 @@ route::get("/", function () {
 
 Route::prefix('/{locale}')->middleware("language")->group(function () {
     Auth::routes();
+
     route::get("/", [HomeController::class, "index"])->name("home");
     route::get("/ourteam", [OurTeamController::class, "index"])->name("front.ourteam.index");
+
+    route::prefix("user-panel")->group(function () {
+        route::get("/", [FrontUserPanleController::class, "index"])->name("front.panel.index");
+        route::get("/edit", [FrontUserPanleController::class, "edit"])->name("front.panel.edit");
+        route::get("/update", [FrontUserPanleController::class, "update"])->name("front.panel.update");
+        route::get("/change-password", [FrontUserPanleController::class, "editpass"])->name("front.panel.edit.password");
+        route::post("/change-password", [FrontUserPanleController::class, "updatepass"])->name("front.panel.update.password");
+
+        route::prefix("work-samples-categories")->group(function () {
+            route::get("/", [WorkSampleCategory::class, "index"])->name("front.project.categories");
+        });
+    });
+
     route::prefix("work-samples")->group(function () {
         route::get("/show/{id}", [WorkSampleController::class, "show"])->name("front.project.show");
 
@@ -97,7 +112,7 @@ Route::prefix('/{locale}')->middleware("language")->group(function () {
         route::get("/", [ArticleController::class, "index"])->name("front.articles.index");
         route::get("/{slug}", [ArticleController::class, "show"])->name("front.articles.show");
     });
-    Route::get('/search',[FrontSearchController::class, "searchTitle"])->name('search');
+    Route::get('/search', [FrontSearchController::class, "searchTitle"])->name('search');
 });
 
 // admin routing
