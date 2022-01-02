@@ -10,7 +10,8 @@ class Service extends Model
     use HasFactory;
     protected $table = "services";
 
-    public function category(){
+    public function category()
+    {
         return $this->belongsTo("App\Models\ServiceCategory");
     }
 
@@ -19,7 +20,7 @@ class Service extends Model
     {
         return $this->morphOne("App\Models\Image", "imageable");
     }
-    
+
     // polymorphic relation to lang table
     public function language()
     {

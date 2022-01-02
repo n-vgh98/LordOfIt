@@ -19,7 +19,7 @@ class AdminServiceCategoryController extends Controller
     {
         $languages = Lang::where([["langable_type", "App\Models\ServiceCategory"], ["name", $lang]])->get();
         // dd($languages[0]->langable);
-        
+
         return view('admin.services.categories.index', compact('languages', 'lang'));
 
 
@@ -34,7 +34,7 @@ class AdminServiceCategoryController extends Controller
      */
     public function create()
     {
-       //
+        //
     }
 
     /**
@@ -47,10 +47,10 @@ class AdminServiceCategoryController extends Controller
     {
         $category = new ServiceCategory();
         $category->title  = $request->title;
-        $category->slug= $request->input('slug');
-        if ($request->input('slug')){
-            $category->slug =make_slug( $request->input('slug'));
-        }else{
+        $category->slug = $request->input('slug');
+        if ($request->input('slug')) {
+            $category->slug = make_slug($request->input('slug'));
+        } else {
             $category->slug = make_slug($request->input('title'));
         }
         $category->meta_description  = $request->meta_description;
@@ -62,12 +62,9 @@ class AdminServiceCategoryController extends Controller
         $language->name = $request->lang;
         $category->language()->save($language);
 
-        Session::flash('add_servise_categroy','دسته بندی جدید با موفقیت ثبت شد');
-        return redirect()->route('admin.services_categories.index',$request->lang);
-
-
-
-       }
+        Session::flash('add_servise_categroy', 'دسته بندی جدید با موفقیت ثبت شد');
+        return redirect()->route('admin.services_categories.index', $request->lang);
+    }
 
 
     /**
@@ -103,19 +100,18 @@ class AdminServiceCategoryController extends Controller
     {
         $category = ServiceCategory::findOrFail($id);
         $category->title  = $request->title;
-        $category->slug= $request->slug;
-        if ($request->input('slug')){
-            $category->slug =make_slug( $request->input('slug'));
-        }else{
+        $category->slug = $request->slug;
+        if ($request->input('slug')) {
+            $category->slug = make_slug($request->input('slug'));
+        } else {
             $category->slug = make_slug($request->input('title'));
         }
         $category->meta_description  = $request->meta_description;
         $category->meta_keywords  = $request->meta_keywords;
         $category->save();
 
-        Session::flash('add_servise_categroy','دسته بندی  با موفقیت ویرایش شد');
-        return redirect()->route('admin.services_categories.index',$request->lang);
-
+        Session::flash('add_servise_categroy', 'دسته بندی  با موفقیت ویرایش شد');
+        return redirect()->route('admin.services_categories.index', $request->lang);
     }
 
     /**
@@ -129,7 +125,7 @@ class AdminServiceCategoryController extends Controller
         $category = ServiceCategory::findOrFail($id);
         $category->language()->delete();
         $category->delete();
-        Session::flash('delete_servise_categroy','دسته بندی حذف شد');
+        Session::flash('delete_servise_categroy', 'دسته بندی حذف شد');
         return redirect()->back();
     }
 }

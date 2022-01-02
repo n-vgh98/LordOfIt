@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Models\Lang;
+use App\Models\Comment;
 use App\Http\Models\Service;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -17,9 +18,10 @@ class FrontServiceController extends Controller
      */
     public function index($lang)
     {
+        $comments = Comment::where([["commentable_type", "App\Models\Service"], ["commentable_id", $id], ["parent_id", null], ["status", 1]])->get();
         $languages = Lang::where([["langable_type", "App\Models\Service"], ["name", $lang]])->first();
         $service = $languages->langable;
-        return view('front.services',compact(['languages','service']));
+        return view('front.services', compact(['languages', 'service']));
     }
 
     /**

@@ -19,6 +19,8 @@ class CreateServicesCategoriesTable extends Migration
             $table->string('slug')->unique();
             $table->text('meta_description');
             $table->text('meta_keywords');
+            $table->foreignId("parent_id")->nullable()->constrained("services_categories")->onDelete("cascade")->onUpdate("cascade");
+            $table->tinyInteger("show_in_menu")->default(0);
             $table->timestamps();
         });
     }
