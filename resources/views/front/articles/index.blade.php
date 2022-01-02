@@ -83,8 +83,6 @@
                     </a>
                 </div>
             </div>
-
-
         </section>
         @endforeach
     </section>
@@ -96,12 +94,12 @@
 
 <section class="pagination-wrapper">
     <ul class="pagination">
-  
+
         <!-- <li class="page-item">
             <a href="#" class="pagination-arrow" id="arrowRight-course-btns-pages"><i class="fas fa-arrow-right"></i></a>
         </li> -->
         <!-- <li class="page-item">
-           
+
         </li> -->
         <!-- <li class="page-item">
             <a href="#" class="active">2</a>

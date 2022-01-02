@@ -172,8 +172,8 @@
                                 placeholder="{{ __('translation.your-comment') }}"></textarea>
                         </div>
                         <div class="parent-amozesh-btn cm-btn">
-
                             <input type="hidden" name="comment" value="answer">
+                            <input type="hidden" name="model" value="course">
                             <input type="hidden" name="id" value="{{ $course->id }}">
                             <input type="hidden" name="parent_id" value="{{ $comment->id }}">
                             <button id="pasokh" class="amozesh-btn cm-btn" type="submit">

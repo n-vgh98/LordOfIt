@@ -6,7 +6,6 @@ $languages = App\Models\Lang::where([['langable_type', 'App\Models\ServiceCatego
 $translator = new GoogleTranslate();
 $translator->setSource('fa');
 $translator->setTarget($lang);
-
 @endphp
 <section class="parent-main-logo-sigin_and_main-menu">
 
@@ -19,9 +18,7 @@ $translator->setTarget($lang);
                     {{ $translator->translate('مشاوره تخصصی') }}
                     <i class="fas fa-phone-alt animate-phone-big-menu"></i>
                 </a>
-
             </li>
-
             <li><a href="tel:989174477749">09174477749
 
                 </a></li>

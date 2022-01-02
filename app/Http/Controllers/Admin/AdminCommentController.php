@@ -52,7 +52,7 @@ class AdminCommentController extends Controller
             }
             $course->comments()->save($comment);
         }
-        if($request->comment == 'article'){
+        if ($request->comment == 'article') {
             $article = Article::find($request->id);
             $comment = new Comment();
             $comment->writer_id = auth()->user()->id;
@@ -63,7 +63,7 @@ class AdminCommentController extends Controller
             $article->comments()->save($comment);
         }
 
-        if($request->comment == 'services'){
+        if ($request->comment == 'services') {
             $services = Service::find($request->id);
             $comment = new Comment();
             $comment->writer_id = auth()->user()->id;
@@ -75,13 +75,18 @@ class AdminCommentController extends Controller
         }
 
         if ($request->comment == "answer") {
-            $course = Course::find($request->id);
+            if ($request->model == "course") {
+                $model = Course::find($request->id);
+            } elseif ($request->model == "article") {
+                $model = Article::find($request->id);
+            }
+
             $answer = new Comment();
             $answer->parent_id = $request->parent_id;
             $answer->text = $request->text;
             $answer->status = 0;
             $answer->writer_id = auth()->user()->id;
-            $course->comments()->save($answer);
+            $model->comments()->save($answer);
             $answer->save();
         }
         return redirect()->back()->with("success", "پیام با موفقیت ارسال شد و پس از تایید ادمین نمایش داده میشود");

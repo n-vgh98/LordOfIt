@@ -18,12 +18,13 @@ class ArticleController extends Controller
 
     public function show($lang, $id)
     {
-       
+
         $languages = Lang::where([["langable_type", "App\Models\Article"], ["name", $lang]])->first();
         $article = Article::findOrFail($id);
         $article = $languages->langable;
         $comments = Comment::where([["commentable_type", "App\Models\Article"], ["commentable_id", $id], ["parent_id", null], ["status", 1]])->get();
-        
-        return view('front.articles.detail', compact(['comments','article']));
+
+
+        return view('front.articles.detail', compact(['comments', 'article']));
     }
 }
