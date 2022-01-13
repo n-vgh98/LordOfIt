@@ -121,7 +121,7 @@ class AdminAboutUsController extends Controller
         $about_us->save();
 
         Session::flash('add_about_us','درباره ما با موفقیت ویرایش شد');
-        return redirect()->route('admin.about_us.index',$request->lang);
+        return redirect()->route('admin.about_us.index',$about_us->language->name);
 
     }
 

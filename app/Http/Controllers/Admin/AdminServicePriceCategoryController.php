@@ -91,7 +91,7 @@ class AdminServicePriceCategoryController extends Controller
             $category->text = $request->text;
         }
         $category->save();
-        return redirect()->route("admin.services.price.category.index")->with("success", 'دسته بندی شما با موفقیت اضافه شد');
+        return redirect()->route("admin.services.price.category.index", $category->language->name)->with("success", 'دسته بندی شما با موفقیت اضافه شد');
     }
 
     /**

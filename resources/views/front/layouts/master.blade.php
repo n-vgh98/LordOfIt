@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 @if ($local = app()->getLocale() == 'fa')
-<html lang="fa" dir="rtl">
+    <html lang="fa" dir="rtl">
 @else
-<html lang="en" dir="ltr">
+    <html lang="en" dir="ltr">
 
 @endif
 
-@yield('head')
-@include('front.layouts.head')
 
+@include('front.layouts.head')
+@yield('head')
 <title>@yield('title')</title>
 
 
 <body>
+
     <header>
-        <!-- scroll start -->
-        <div id="progressbarScorll"></div>
-        <div id="scorllPath"></div>
-        <!-- scorll end  -->
+
         @include('front.layouts.menu')
         @yield('header')
     </header>
+    <!-- scroll start -->
+    <div id="progressbarScorll"></div>
+    <div id="scorllPath"></div>
+    <!-- scorll end  -->
     @yield('main')
 
 

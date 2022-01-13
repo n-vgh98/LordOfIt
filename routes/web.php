@@ -42,6 +42,7 @@ use App\Http\Controllers\Admin\AdminOurTeamSliderController;
 use App\Http\Controllers\Admin\AdminServicecategoryController;
 use App\Http\Controllers\Admin\AdminServicePriceCategoryController;
 use App\Http\Controllers\Admin\AdminServicePriceSubcategoryController;
+use App\Http\Controllers\Admin\AdminWorkSamplesSliderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -122,6 +123,7 @@ Route::prefix('/{locale}')->middleware("language")->group(function () {
 // admin routing
 route::prefix("admin")->middleware("auth", "admin")->group(function () {
     route::get("/home", [AdminDashboard::class, "index"])->name("admin.home");
+    route::post("/order/{type}", [AdminDashboard::class, "order"])->name("admin.order");
 
     // admin can do users operation throw this routes##
     route::prefix("users")->group(function () {
@@ -258,7 +260,7 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
         route::patch("update/{id}", [AdminServiceController::class, "update"])->name("admin.services.update");
         route::delete("destroy/{id}", [AdminServiceController::class, "destroy"])->name("admin.services.destroy");
         route::post("/updateimage/{id}", [AdminServiceController::class, "updateimage"])->name("admin.services.update.image");
-            // 
+        //
 
 
 
@@ -345,6 +347,14 @@ route::prefix("admin")->middleware("auth", "admin")->group(function () {
             route::post("/update/{id}", [AdminWorkSampleCategory::class, "update"])->name("admin.work_samples.category.update");
             route::get("/show/{id}", [AdminWorkSampleCategory::class, "show"])->name("admin.work_samples.category.show");
             route::delete("/destroy/{id}", [AdminWorkSampleCategory::class, "destroy"])->name("admin.work_samples.category.destroy");
+        });
+
+         // route for slider of work_samples page
+         route::prefix("slider")->group(function () {
+            route::get("/{lang}", [AdminWorkSamplesSliderController::class, "index"])->name("admin.work_samples.slider.index");
+            route::post("/store", [AdminWorkSamplesSliderController::class, "store"])->name("admin.work_samples.slider.store");
+            route::post("/update/{id}", [AdminWorkSamplesSliderController::class, "update"])->name("admin.work_samples.slider.update");
+            route::delete("/destroy/{id}", [AdminWorkSamplesSliderController::class, "destroy"])->name("admin.work_samples.slider.destroy");
         });
     });
 });

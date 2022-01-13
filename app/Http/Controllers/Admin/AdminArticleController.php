@@ -61,7 +61,7 @@ class AdminArticleController extends Controller
         $article->text_3 = $request->input('text_3');
         $article->text_4 = $request->input('text_4');
         $article->v_link_1 = $request->input('v_link_1');
-        $article->v_link_1 = $request->input('v_link_2');
+        $article->v_link_2 = $request->input('v_link_2');
         $article->v_link_3 = $request->input('v_link_3');
         $article->v_link_4 = $request->input('v_link_4');
         $article->user_id = Auth::id();
@@ -88,7 +88,7 @@ class AdminArticleController extends Controller
         $article->lang()->save($language);
 
         Session::flash('add_article', 'مقاله جدید با موفقیت ثبت شد');
-        return redirect()->route('admin.articles.index',$request->lang);
+        return redirect()->route('admin.articles.index', $request->lang);
     }
 
     /**
@@ -136,7 +136,7 @@ class AdminArticleController extends Controller
         $article->text_3 = $request->input('text_3');
         $article->text_4 = $request->input('text_4');
         $article->v_link_1 = $request->input('v_link_1');
-        $article->v_link_1 = $request->input('v_link_2');
+        $article->v_link_2 = $request->input('v_link_2');
         $article->v_link_3 = $request->input('v_link_3');
         $article->v_link_4 = $request->input('v_link_4');
         $article->user_id = Auth::id();
@@ -144,9 +144,8 @@ class AdminArticleController extends Controller
         $article->meta_keywords = $request->input('meta_keywords');
         $article->status = $request->input('status');
         $article->save();
-
         Session::flash('add_article', 'مقاله با موفقیت ویرایش شد');
-        return redirect()->route('admin.articles.index',$request->lang);
+        return redirect()->route('admin.articles.index', $article->lang->name);
     }
 
     /**

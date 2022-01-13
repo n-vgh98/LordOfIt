@@ -34,13 +34,11 @@
             @endforeach
         </div>
         <br>
-
         <div class="dotSlide">
             <span class="dot" onclick="currentSlide(1)"></span>
             <span class="dot" onclick="currentSlide(2)"></span>
             <span class="dot" onclick="currentSlide(3)"></span>
         </div>
-
     </div>
     <br>
     <section class="title-home_learning">

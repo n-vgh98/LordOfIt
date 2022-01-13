@@ -34,6 +34,7 @@
                 <th class="text-center" scope="col">سطح دوره</th>
                 <th class="text-center" scope="col">نوع دوره</th>
                 <th class="text-center" scope="col">نام دوره</th>
+                <th class="text-center" scope="col-1">شماره پست</th>
                 <th class="text-center" scope="col-1">#</th>
             </tr>
         </thead>
@@ -128,6 +129,10 @@
 
                     <td class="text-center">
                         {{ $course->name }}
+                    </td>
+
+                    <td class="text-center">
+                        {{ $course->language->id }}
                     </td>
 
                     <th class="text-center" scope="row">{{ $number }}</th>
@@ -491,12 +496,85 @@
                         </div>
                     </div>
                 </div>
+
+
+
+                {{-- modal for changing order --}}
+                <div class="modal fade" id="order" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel"> تغییر مکان </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="{{ route('admin.order', $course->language->langable_type) }}" method="POST"
+                                    enctype="multipart/form-data">
+                                    @csrf
+
+
+                                    {{-- order_1 --}}
+                                    <div class="form-group row">
+                                        <label for="order_1" class="col-md-4 col-form-label text-md-right">شماره آیتم
+                                            1</label>
+
+                                        <div class="col-md-6">
+                                            <input id="order_1" type="text"
+                                                class="form-control @error('order_1') is-invalid @enderror" name="order_1"
+                                                value="{{ old('order_1') }}" required autocomplete="order_1" autofocus>
+
+                                            @error('order_1')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    {{-- order_2 --}}
+                                    <div class="form-group row">
+                                        <label for="order_2" class="col-md-4 col-form-label text-md-right">شماره آیتم
+                                            2</label>
+
+                                        <div class="col-md-6">
+                                            <input id="order_2" type="text"
+                                                class="form-control @error('order_2') is-invalid @enderror" name="order_2"
+                                                value="{{ old('order_2') }}" required autocomplete="order_2" autofocus>
+
+                                            @error('order_2')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+
+                                    <div style="margin-top:15px;">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">منصرف
+                                            شدم</button>
+                                        <button type="submit" class="btn btn-primary">ارسال</button>
+                                    </div>
+                                    <input type="hidden" name="lang" value="{{ $lang }}">
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
             @endforeach
 
         </tbody>
     </table>
 
-    {{-- button to add course --}}
-    <a href="{{ route('admin.courses.create', $lang) }}" class="btn btn-primary">ایجاد دوره جدید</a>
 
+
+    {{-- button to add course --}}
+    <a href="{{ route('admin.courses.create', $lang) }}" class="btn btn-primary">ایجاد دوره </a>
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#order">تغییر مکان</button> 
 @endsection

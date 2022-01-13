@@ -103,8 +103,7 @@ $translator->setTarget($lang);
                                             <i class="fas fa-chevron-left"></i>
                                         </a>
                                         <ul class="submenu-ul-ul">
-                                        @elseif ($category->parent_id !==null || $category->parent_id ==
-                                            $category->id)
+                                        @elseif ($category->parent_id !== null || $category->parent_id == $category->id)
                                             <li><a
                                                     href="{{ route('front.services', $category->slug) }}">{{ $category->title }}</a>
                                             </li>
@@ -226,8 +225,6 @@ $translator->setTarget($lang);
 <nav class="responsive-nav">
     <ul class="responsive-menu">
         <ul class="responsive-sigin">
-
-
             @if (Auth::check())
                 <li>
                     <a class="user-info" href="{{ route('front.panel.index') }}"> <i class="fa fa-user"></i>
